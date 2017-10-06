@@ -189,6 +189,8 @@
 	</command>
 
 	<command name="ViewAnnouncementsPagination" priority="3">
+		<property name="portal.acceptance" value="josh" />
+
 		<var name="entryCountList" value="1,2,3,4,5,6,7" />
 
 		<for list="${entryCountList}" param="entryCount">
