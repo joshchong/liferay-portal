@@ -475,7 +475,7 @@
 				<execute function="AssertTextNotEquals" locator1="Home#BREADCRUMB_2" value1="Site Page" />
 			</then>
 		</if>
-		
+
 		<execute macro="User#firstLoginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="test@liferay.com" />

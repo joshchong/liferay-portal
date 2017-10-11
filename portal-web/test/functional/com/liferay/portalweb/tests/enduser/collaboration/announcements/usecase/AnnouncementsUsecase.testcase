@@ -254,7 +254,7 @@
 		<for list="${viewEntryList}" param="viewEntryCount">
 			<execute function="AssertElementNotPresent" locator1="Announcements#CARD_VIEW_ENTRY_TITLE">
 				<var name="key_entryTitle" value="Announcements Entry Title ${viewEntryCount}" />
-			</execute>		
+			</execute>
 		</for>
 
 		<execute function="AssertClick" locator1="Pagination#PREVIOUS_LINK" value1="Previous" />
@@ -339,6 +339,5 @@
 				<var name="key_entryTitle" value="Announcements Entry Title ${viewEntryCount}" />
 			</execute>
 		</for>
-
 	</command>
 </definition>
