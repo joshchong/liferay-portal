@@ -581,8 +581,8 @@
 		<execute macro="UserBar#gotoDashboard" />
 
 		<execute function="AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_2" value1="Home" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_3" value1="Wiki" />
+		<execute function="AssertTextNotEquals" locator1="Home#PAGE_2" value1="Home" />
+		<execute function="AssertTextNotEquals" locator1="Home#PAGE_3" value1="Wiki" />
 
 		<execute macro="User#logoutPG" />
 
@@ -596,14 +596,14 @@
 		<var name="key_pageName" value="Welcome" />
 
 		<execute function="AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_2" value1="Home" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_3" value1="Wiki" />
+		<execute function="AssertTextNotEquals" locator1="Home#PAGE_2" value1="Home" />
+		<execute function="AssertTextNotEquals" locator1="Home#PAGE_3" value1="Wiki" />
 
 		<execute macro="UserBar#gotoDashboard" />
 
 		<execute function="AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_2" value1="Home" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_3" value1="Wiki" />
+		<execute function="AssertTextNotEquals" locator1="Home#PAGE_2" value1="Home" />
+		<execute function="AssertTextNotEquals" locator1="Home#PAGE_3" value1="Wiki" />
 
 		<execute macro="User#logoutPG" />
 
@@ -641,8 +641,8 @@
 		<execute macro="UserBar#gotoDashboard" />
 
 		<execute function="AssertTextPresent" locator1="Home#PAGE_1" value1="Welcome" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_2" value1="Home" />
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE_3" value1="Wiki" />
+		<execute function="AssertTextNotEquals" locator1="Home#PAGE_2" value1="Home" />
+		<execute function="AssertTextNotEquals" locator1="Home#PAGE_3" value1="Wiki" />
 
 		<execute macro="User#logoutPG" />
 
