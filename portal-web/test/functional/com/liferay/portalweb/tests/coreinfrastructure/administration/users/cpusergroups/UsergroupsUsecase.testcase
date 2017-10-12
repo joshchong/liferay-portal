@@ -502,6 +502,7 @@
 	</command>
 
 	<command name="UserGroupSiteTemplates" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="UsergroupsUsecase#UserGroupSiteTemplates" />
 
 		<execute macro="ProductMenu#gotoPortlet">

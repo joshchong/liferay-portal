@@ -2079,6 +2079,8 @@
 	</command>
 
 	<command name="ViewOrganizationSiteViaSitesDirectory" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Page#add">
 			<var name="pageName" value="Sites Directory Page" />
 		</execute>
