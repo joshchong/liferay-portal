@@ -119,6 +119,7 @@ discoveryZenPingUnicastHostsPort=&quot;9300-9400&quot;" />
 	</command>
 
 	<command name="ElasticsearchRemoteClusterSmokeTest" priority="5">
+		<property name="portal.acceptance" value="josh" />
 		<property name="remote.elasticsearch.cluster.size" value="2" />
 		<property name="remote.elasticsearch.enabled" value="true" />
 		<property name="test.name.skip.portal.instance" value="ElasticsearchEE#ElasticsearchRemoteClusterSmokeTest" />
