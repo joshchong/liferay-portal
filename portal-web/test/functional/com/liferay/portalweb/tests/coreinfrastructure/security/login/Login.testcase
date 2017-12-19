@@ -306,6 +306,7 @@
 	</command>
 
 	<command name="TokenBasedSSOSmoke" priority="5">
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="Login#TokenBasedSSOSmoke" />
 
 		<execute macro="User#firstLoginPG" />
