@@ -63,6 +63,8 @@
 	</command>
 
 	<command name="HSQLtoHSQLLportal1" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="SetupWizard#configurePG">
 			<var name="administratorEmail" value="test@liferay.com" />
 			<var name="administratorFirstName" value="Test" />
@@ -84,6 +86,8 @@
 	</command>
 
 	<command name="HSQLtoHSQLLportal1SampleDataDisabled" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="SetupWizard#configurePG">
 			<var name="addSampleData" value="false" />
 			<var name="administratorEmail" value="test@liferay.com" />
