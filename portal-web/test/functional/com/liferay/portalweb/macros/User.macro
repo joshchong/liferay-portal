@@ -1,4 +1,5 @@
 <definition>
+	<var name="demoUser" value="usersn" />
 	<var name="password" value="test" />
 	<var name="userEmailAddress" value="test@liferay.com" />
 
@@ -1054,6 +1055,26 @@
 					<var name="userScreenName" value="${userScreenName}" />
 				</execute>
 			</else>
+		</if>
+	</command>
+
+	<command name="checkIfUserExists" returns="userExists">
+		<return name="userExists" value="false" />
+
+		<if>
+			<equals arg1="${userScreenName}" arg2="${demoUser}" />
+			<then>
+				<execute macro="User#searchCP">
+					<var name="searchTerm" value="${userEmailAddress}" />
+				</execute>
+
+				<if>
+					<condition function="IsElementPresent" locator1="ContentRow#ENTRY_CONTENT_ROW_1" />
+					<then>
+						<return name="userExists" value="true" />
+					</then>
+				</if>
+			</then>
 		</if>
 	</command>
 
