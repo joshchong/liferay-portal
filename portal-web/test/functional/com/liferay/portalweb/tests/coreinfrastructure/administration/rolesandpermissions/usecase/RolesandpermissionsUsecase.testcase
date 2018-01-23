@@ -46,6 +46,8 @@
 	</tear-down>
 
 	<command name="EditTeamPermissions" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Permissions#definePermissionViaJSONAPI">
 			<var name="resourceAction" value="VIEW_CONTROL_PANEL" />
 			<var name="resourceName" value="90" />
@@ -263,6 +265,7 @@
 
 	<command name="GroupScopePermissionCheck" priority="4">
 		<property name="test.name.skip.portal.instance" value="RolesandpermissionsUsecase#GroupScopePermissionCheck" />
+		<property name="portal.acceptance" value="josh" />
 
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
@@ -522,6 +525,8 @@
 	</command>
 
 	<command name="RolesOrganizationSearch" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
 			<var name="panel" value="Control Panel" />
@@ -800,6 +805,8 @@
 	</command>
 
 	<command name="RolesPermissionsDynamicDataLists" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -1162,6 +1169,8 @@
 	</command>
 
 	<command name="RolesSiteSearch" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -1408,6 +1417,8 @@
 	</command>
 
 	<command name="RolesSitesPermissionsInheritance" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
 			<var name="panel" value="Control Panel" />
@@ -2002,6 +2013,8 @@
 	</command>
 
 	<command name="SiteRoleBookmarksInlinePermissions" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -2562,6 +2575,8 @@
 	</command>
 
 	<command name="ViewRegRolePermissionsDefaultView" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="JSONRole#addRegularRole">
 			<var name="roleKey" value="Roles Regrole Name" />
 			<var name="roleTitle" value="Roles Regrole Name" />
