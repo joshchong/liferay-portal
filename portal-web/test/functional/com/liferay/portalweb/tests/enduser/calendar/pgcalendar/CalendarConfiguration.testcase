@@ -364,6 +364,7 @@
 
 	<command name="ViewCalendarTimeZoneDefaults" priority="5">
 		<property name="test.name.skip.portal.instance" value="CalendarConfiguration#ViewCalendarTimeZoneDefaults" />
+		<property name="portal.acceptance" value="josh" />
 
 		<execute macro="UserBar#gotoMyAccount" />
 
@@ -403,6 +404,7 @@
 	</command>
 
 	<command name="ViewEventDetailsAllDayWithModifiedUserTimeZone" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<description message="This is a use case for LPS-51783." />
 
 		<execute macro="TestCase#getSiteName">

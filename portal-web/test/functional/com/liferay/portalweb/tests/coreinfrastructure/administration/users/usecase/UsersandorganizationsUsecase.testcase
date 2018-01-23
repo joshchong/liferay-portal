@@ -887,6 +887,7 @@
 
 	<command name="OrganizationAdministratorActivate" priority="5">
 		<property name="testray.component.names" value="Training" />
+		<property name="portal.acceptance" value="josh" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
@@ -1430,6 +1431,7 @@
 	</command>
 
 	<command name="ViewContentInCustomOrganizationTypeSite" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="custom.properties" value="organizations.types=organization,location${line.separator}organizations.rootable[location]=true${line.separator}organizations.children.types[organization]=organization,location" />
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />

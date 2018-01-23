@@ -215,6 +215,8 @@
 	</command>
 
 	<command name="AddDMDocumentSiteRole" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Permissions#setUpSiteRoleLoginUserPG">
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Documents and Media Page" />
