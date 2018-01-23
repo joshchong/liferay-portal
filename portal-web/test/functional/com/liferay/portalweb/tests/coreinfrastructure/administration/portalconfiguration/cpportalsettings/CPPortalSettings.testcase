@@ -38,6 +38,7 @@
 	</tear-down>
 
 	<command name="EditDefaultUserAssociationsOrganizationSites" priority="5">
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#EditDefaultUserAssociationsOrganizationSites" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -113,6 +114,7 @@
 	</command>
 
 	<command name="EditDefaultUserAssociationsRoles" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#EditDefaultUserAssociationsRoles" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -174,6 +176,7 @@
 	</command>
 
 	<command name="EditDefaultUserAssociationsSites" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#EditDefaultUserAssociationsSites" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -235,6 +238,7 @@
 	</command>
 
 	<command name="EditDefaultUserAssociationsUserGroups" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#EditDefaultUserAssociationsUserGroups" />
 
 		<execute macro="ProductMenu#gotoPortlet">

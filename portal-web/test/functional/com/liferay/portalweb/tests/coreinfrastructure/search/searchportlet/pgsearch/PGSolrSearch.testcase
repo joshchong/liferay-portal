@@ -1020,6 +1020,8 @@
 	</command>
 
 	<command name="SearchUser" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
