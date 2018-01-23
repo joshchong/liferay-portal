@@ -113,6 +113,7 @@
 	</command>
 
 	<command name="EditDefaultUserAssociationsRoles" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="CPPortalSettings#EditDefaultUserAssociationsRoles" />
 
 		<execute macro="ProductMenu#gotoPortlet">
