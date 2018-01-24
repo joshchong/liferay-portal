@@ -1049,9 +1049,9 @@
 		</execute>
 
 		<execute macro="User#addCP">
-			<var name="userEmailAddress" value="userea@liferay.com" />
-			<var name="userFirstName" value="userfn" />
-			<var name="userLastName" value="userln" />
+			<var name="userEmailAddress" value="userea1@liferay.com" />
+			<var name="userFirstName" value="userfn1" />
+			<var name="userLastName" value="userln1" />
 			<var name="userScreenName" value="!@#$" />
 			<var name="userScreenNameVariation" value="Invalid" />
 		</execute>
@@ -1059,9 +1059,9 @@
 		<execute macro="Navigator#gotoBack" />
 
 		<execute macro="User#viewCP">
-			<var name="userEmailAddress" value="userea@liferay.com" />
-			<var name="userFirstName" value="userfn" />
-			<var name="userLastName" value="userln" />
+			<var name="userEmailAddress" value="userea1@liferay.com" />
+			<var name="userFirstName" value="userfn1" />
+			<var name="userLastName" value="userln1" />
 			<var name="userScreenName" value="!@#$" />
 			<var name="userScreenNameVariation" value="Invalid" />
 		</execute>
