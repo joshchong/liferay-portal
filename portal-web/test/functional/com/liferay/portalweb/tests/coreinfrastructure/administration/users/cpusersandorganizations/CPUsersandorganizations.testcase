@@ -643,9 +643,9 @@
 		<execute macro="User#addCP">
 			<var name="userEmailAddress" value="userea@@liferay.com" />
 			<var name="userEmailAddressVariation" value="Invalid" />
-			<var name="userFirstName" value="userfn" />
-			<var name="userLastName" value="userln" />
-			<var name="userScreenName" value="usersn" />
+			<var name="userFirstName" value="userfn1" />
+			<var name="userLastName" value="userln1" />
+			<var name="userScreenName" value="usersn1" />
 		</execute>
 
 		<execute macro="Navigator#gotoBack" />
@@ -653,9 +653,9 @@
 		<execute macro="User#viewCP">
 			<var name="userEmailAddress" value="userea@@liferay.com" />
 			<var name="userEmailAddressVariation" value="At" />
-			<var name="userFirstName" value="userfn" />
-			<var name="userLastName" value="userln" />
-			<var name="userScreenName" value="usersn" />
+			<var name="userFirstName" value="userfn1" />
+			<var name="userLastName" value="userln1" />
+			<var name="userScreenName" value="usersn1" />
 		</execute>
 	</command>
 
