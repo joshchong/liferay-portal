@@ -852,9 +852,9 @@
 		<execute macro="User#addCP">
 			<var name="userEmailAddress" value="" />
 			<var name="userEmailAddressVariation" value="Null" />
-			<var name="userFirstName" value="userfn" />
-			<var name="userLastName" value="userln" />
-			<var name="userScreenName" value="usersn" />
+			<var name="userFirstName" value="userfn1" />
+			<var name="userLastName" value="userln1" />
+			<var name="userScreenName" value="usersn1" />
 		</execute>
 	</command>
 
