@@ -161,13 +161,13 @@
 
 		<execute macro="Mentions#addMentionViaComments">
 			<var name="entryComment" value="Comment mentioning" />
-			<var name="mentionsUserFullName" value="userfn userln" />
-			<var name="mentionsUserScreenName" value="usersn" />
+			<var name="mentionsUserFullName" value="userfn1 userln1" />
+			<var name="mentionsUserScreenName" value="usersn1" />
 		</execute>
 
 		<execute macro="Mentions#viewCommentMentionTagLink">
-			<var name="mentionsUserFullName" value="userfn userln" />
-			<var name="mentionsUserScreenName" value="usersn" />
+			<var name="mentionsUserFullName" value="userfn1 userln1" />
+			<var name="mentionsUserScreenName" value="usersn1" />
 		</execute>
 	</command>
 </definition>
