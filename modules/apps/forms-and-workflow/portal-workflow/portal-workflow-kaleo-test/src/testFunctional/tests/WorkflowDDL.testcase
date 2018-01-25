@@ -31,8 +31,6 @@
 	<command name="EditDDLRecordViaMyWorkflowTasks" priority="5">
 		<property name="portal.acceptance" value="false" />
 
-		<description message="This is a use case for LPS-61212." />
-
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -73,12 +71,6 @@
 		<execute macro="DDLList#save" />
 
 		<execute macro="Navigator#openURL" />
-
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Content" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Dynamic Data Lists" />
-		</execute>
 
 		<execute macro="DDLRecord#addCP">
 			<var name="ddlDataDefinitionName" value="Data Definition Name" />
@@ -189,16 +181,6 @@
 			<var name="ddlDataDefinitionDescription" value="DDL Definition Description" />
 			<var name="ddlDataDefinitionName" value="DDL Definition" />
 		</execute>
-
-		<execute macro="DynamicDataMapping#addField">
-			<var name="field" value="Text" />
-			<var name="fieldFieldLabel" value="Text Label" />
-			<var name="fieldName" value="TextName" />
-		</execute>
-
-		<execute macro="DDLDataDefinition#save" />
-
-		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
