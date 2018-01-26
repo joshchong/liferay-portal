@@ -208,6 +208,8 @@
 	</command>
 
 	<command name="AddCustomFieldUserBoolean" priority="5">
+		<property name="portal.acceptance" value="true" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Configuration" />
 			<var name="panel" value="Control Panel" />
@@ -243,7 +245,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#viewUserMiscellaneousCustomFieldsCP">
+		<execute macro="User#viewUserCustomFieldsCP">
 			<var name="customFieldName" value="Boolean" />
 			<var name="customFieldValue" value="False" />
 		</execute>
@@ -300,7 +302,7 @@
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
-		<execute macro="User#viewUserMiscellaneousCustomFieldsCP">
+		<execute macro="User#viewUserCustomFieldsCP">
 			<var name="customFieldName" value="Boolean" />
 			<var name="customFieldValue" value="True" />
 		</execute>
