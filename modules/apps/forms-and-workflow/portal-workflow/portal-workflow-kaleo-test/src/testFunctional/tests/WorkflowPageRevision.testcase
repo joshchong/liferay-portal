@@ -331,10 +331,10 @@
 		</execute>
 
 		<execute macro="User#addCP">
-			<var name="userEmailAddress" value="user@liferay.com" />
-			<var name="userFirstName" value="userfn" />
-			<var name="userLastName" value="userln" />
-			<var name="userScreenName" value="usersn" />
+			<var name="userEmailAddress" value="user1@liferay.com" />
+			<var name="userFirstName" value="userfn1" />
+			<var name="userLastName" value="userln1" />
+			<var name="userScreenName" value="usersn1" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -344,8 +344,8 @@
 		</execute>
 
 		<execute macro="User#editPasswordCP">
-			<var name="userEmailAddress" value="user@liferay.com" />
-			<var name="userScreenName" value="usersn" />
+			<var name="userEmailAddress" value="user1@liferay.com" />
+			<var name="userScreenName" value="usersn1" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -356,7 +356,7 @@
 
 		<execute macro="User#editUserSiteCP">
 			<var name="siteName" value="Site Name" />
-			<var name="userScreenName" value="usersn" />
+			<var name="userScreenName" value="usersn1" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -367,12 +367,12 @@
 
 		<execute macro="User#assignSiteRoleCP">
 			<var name="siteRoleName" value="Site Administrator" />
-			<var name="userScreenName" value="usersn" />
+			<var name="userScreenName" value="usersn1" />
 		</execute>
 
 		<execute macro="User#logoutAndLoginPG">
-			<var name="userLoginEmailAddress" value="user@liferay.com" />
-			<var name="userScreenName" value="usersn" />
+			<var name="userLoginEmailAddress" value="user1@liferay.com" />
+			<var name="userScreenName" value="usersn1" />
 		</execute>
 
 		<execute macro="Navigator#gotoStagedSitePage">
