@@ -172,6 +172,31 @@ module.framework.properties.osgi.console=11312</echo>
 		</sequential>
 	</macrodef>
 
+	<macrodef name="check-upgrade-tool-help">
+		<sequential>
+			<local name="upgrade.help.output" />
+
+			<java
+				dir="${liferay.home}/tools/portal-tools-db-upgrade-client"
+				failonerror="true"
+				fork="true"
+				jar="${liferay.home}/tools/portal-tools-db-upgrade-client/com.liferay.portal.tools.db.upgrade.client.jar"
+				outputproperty="upgrade.help.output"
+			>
+				<arg value="-h" />
+			</java>
+
+			<if>
+				<not>
+					<contains string="${upgrade.help.output}" substring="-h,--help" />
+				</not>
+				<then>
+					<fail message="The upgrade tool help screen failed to appear." />
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="generate-gulp-user-config-json">
 		<attribute name="portlet.name" />
 
@@ -10535,31 +10560,6 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 	<target name="uninstall-patches">
 		<uninstall-patches patching.tool.dir="${app.server.parent.dir}/patching-tool" />
 	</target>
-
-	<macrodef name="check-upgrade-tool-help">
-		<sequential>
-			<local name="upgrade.help.output" />
-
-			<java
-				dir="${liferay.home}/tools/portal-tools-db-upgrade-client"
-				failonerror="true"
-				fork="true"
-				jar="${liferay.home}/tools/portal-tools-db-upgrade-client/com.liferay.portal.tools.db.upgrade.client.jar"
-				outputproperty="upgrade.help.output"
-			>
-				<arg value="-h" />
-			</java>
-
-			<if>
-				<not>
-					<contains string="${upgrade.help.output}" substring="-h,--help" />
-				</not>
-				<then>
-					<fail message="The upgrade tool help screen failed to appear." />
-				</then>
-			</if>
-		</sequential>
-	</macrodef>
 
 	<target name="upgrade-legacy-database">
 		<get-testcase-property property.name="view.upgrade.tool.help" />
