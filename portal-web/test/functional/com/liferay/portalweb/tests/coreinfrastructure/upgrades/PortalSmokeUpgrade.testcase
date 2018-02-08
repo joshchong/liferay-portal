@@ -12,6 +12,41 @@
 		<execute macro="Upgrade#reindexSearches" />
 	</set-up>
 
+	<command name="CheckUpgradeToolJavaVersion" priority="5">
+		<property name="check.upgrade.tool.java.version" value="true" />
+		<property name="data.archive.type" value="data-archive-portal" />
+		<property name="portal.upgrades" value="josh" />
+		<property name="portal.version" value="6.2.5" />
+	</command>
+
+	<command name="CheckUpgradeToolAdditionalSettings" priority="5">
+		<property name="check.upgrade.tool.additional.settings" value="true" />
+		<property name="data.archive.type" value="data-archive-portal" />
+		<property name="portal.upgrades" value="josh" />
+		<property name="portal.version" value="6.2.5" />
+	</command>
+
+	<command name="CheckUpgradeToolCustomLog" priority="5">
+		<property name="check.upgrade.tool.custom.log" value="true" />
+		<property name="data.archive.type" value="data-archive-portal" />
+		<property name="portal.upgrades" value="josh" />
+		<property name="portal.version" value="6.2.5" />
+	</command>
+
+	<command name="CheckUpgradeToolGogoShell" priority="5">
+		<property name="check.upgrade.tool.gogoshell" value="true" />
+		<property name="data.archive.type" value="data-archive-portal" />
+		<property name="portal.upgrades" value="josh" />
+		<property name="portal.version" value="6.2.5" />
+	</command>
+
+	<command name="CheckUpgradeToolHelp" priority="5">
+		<property name="check.upgrade.tool.help" value="true" />
+		<property name="data.archive.type" value="data-archive-portal" />
+		<property name="portal.upgrades" value="josh" />
+		<property name="portal.version" value="6.2.5" />
+	</command>
+
 	<command name="ViewPortalSmokeArchive6012" priority="5">
 		<property name="data.archive.type" value="data-archive-portal" />
 		<property name="portal.version" value="6.0.12" />
