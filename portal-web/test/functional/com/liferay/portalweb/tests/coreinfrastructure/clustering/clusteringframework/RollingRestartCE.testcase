@@ -1,5 +1,6 @@
 <definition component-name="rolling-restart-ce">
 	<property name="portal.release" value="true" />
+	<property name="portal.acceptance" value="josh" />
 	<property name="portal.upstream" value="true" />
 	<property name="app.server.bundles.size" value="1" />
 	<property name="cluster.enabled" value="true" />
