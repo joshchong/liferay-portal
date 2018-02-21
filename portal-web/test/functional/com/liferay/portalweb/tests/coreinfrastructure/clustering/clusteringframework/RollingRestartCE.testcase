@@ -1,0 +1,95 @@
+<definition component-name="rolling-restart-ce">
+	<property name="portal.release" value="true" />
+	<property name="portal.acceptance" value="josh" />
+	<property name="portal.upstream" value="true" />
+	<property name="app.server.bundles.size" value="1" />
+	<property name="cluster.enabled" value="true" />
+	<property name="osgi.modules.includes" value="portal-cluster-multiple,portal-cache-ehcache-multiple,portal-scheduler-multiple" />
+	<property name="remote.elasticsearch.enabled" value="true" />
+	<property name="test.run.environment" value="CE" />
+	<property name="testray.main.component.name" value="Clustering" />
+	<property name="deploy.latest.marketplace.app.disabled" value="true" />
+	<property name="portal.fixpack.release" value="true" />
+	<property name="test.ignore.tomcat.ext.environment" value="true" />
+
+	<var method="TestPropsUtil#get('test.build.fix.pack.zip.url')" name="testBuildFixPackZipURL" />
+
+	<set-up>
+		<execute macro="TestCase#setUpPortalInstance" />
+
+		<execute macro="User#firstLoginPG" />
+	</set-up>
+
+	<tear-down>
+		<var method="TestPropsUtil#get('test.portal.instance')" name="testPortalInstance" />
+
+		<if>
+			<equals arg1="${testPortalInstance}" arg2="true" />
+			<then>
+				<execute macro="PortalInstances#tearDownCP" />
+			</then>
+			<else>
+				<execute macro="Page#tearDownCP" />
+
+				<execute macro="BlogsEntry#tearDownCP" />
+			</else>
+		</if>
+	</tear-down>
+
+	<command name="BasicRollingRestart" priority="5">
+		<execute macro="Clustering#viewClusterStatusInConsole" />
+
+		<execute macro="Page#assertNodePortPG">
+			<var name="nodePort" value="8080" />
+		</execute>
+
+		<execute macro="User#logoutPG">
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="test@liferay.com" />
+		</execute>
+
+		<execute macro="User#loginPG">
+			<var name="nodePort" value="9080" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="test@liferay.com" />
+		</execute>
+
+		<execute macro="Page#assertNodePortPG">
+			<var name="nodePort" value="9080" />
+		</execute>
+
+		<execute macro="Portlet#shutdownSpecificServer">
+			<var name="nodePort" value="8" />
+		</execute>
+
+		<execute macro="Page#assertNodePortPG">
+			<var name="nodePort" value="9080" />
+		</execute>
+
+		<execute function="AntCommand" locator1="build-test.xml" value1="prepare-patching-tool -Dtest.fix.pack.base.url=http://files.liferay.com/private/ee/fix-packs" />
+
+		<execute macro="PatchingTool#installPatch">
+			<var name="clusterNodeIndex" value="0" />
+			<var name="patchFileZipURL" value="http://mirrors.lax.liferay.com/files.liferay.com/private/ee/fix-packs/7.0.10/de/liferay-fix-pack-de-39-7010.zip" />
+		</execute>
+
+		<execute macro="Portlet#startSpecificServer">
+			<var name="nodePort" value="8" />
+		</execute>
+
+		<execute macro="User#logoutPG">
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="test@liferay.com" />
+		</execute>
+
+		<execute macro="User#loginPG">
+			<var name="nodePort" value="8080" />
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="test@liferay.com" />
+		</execute>
+
+		<execute macro="Page#assertNodePortPG">
+			<var name="nodePort" value="8080" />
+		</execute>
+	</command>
+</definition>
