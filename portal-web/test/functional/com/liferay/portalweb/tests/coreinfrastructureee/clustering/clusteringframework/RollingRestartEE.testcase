@@ -1,11 +1,12 @@
 <definition component-name="portal-performance-and-fault-tolerance-ee">
 	<property name="app.server.bundles.size" value="1" />
 	<property name="cluster.enabled" value="true" />
+	<property name="osgi.modules.includes" value="portal-cluster-multiple,portal-cache-ehcache-multiple,portal-scheduler-multiple" />
 	<property name="portal.release" value="true" />
 	<property name="portal.upstream" value="true" />
 	<property name="remote.elasticsearch.enabled" value="true" />
 	<property name="test.ignore.tomcat.ext.environment" value="true" />
-	<property name="test.run.environment" value="EE" />
+	<property name="test.run.environment" value="CE" />
 	<property name="testray.main.component.name" value="Rolling Restart" />
 
 	<var method="TestPropsUtil#get('test.build.fix.pack.zip.url')" name="testBuildFixPackZipURL" />
@@ -15,6 +16,7 @@
 	</set-up>
 
 	<command name="InstallFixPackViaRollingRestart" priority="5">
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="RollingRestartEE#InstallFixPackViaRollingRestart" />
 
 		<execute macro="Clustering#viewClusterStatusInConsole" />
@@ -65,11 +67,11 @@
 			<var name="nodePort" value="9080" />
 		</execute>
 
-		<execute macro="PatchingTool#installPatchOnSpecificServer">
+		<!-- <execute macro="PatchingTool#installPatchOnSpecificServer">
 			<var name="nodePort" value="8080" />
 			<var name="patchFileZipURL" value="${testBuildFixPackZipURL}" />
 		</execute>
-
+ -->
 		<execute macro="Portlet#startSpecificServer">
 			<var name="deleteLiferayHome" value="true" />
 			<var name="keepCachedAppServerData" value="true" />
@@ -121,11 +123,11 @@
 			<var name="nodePort" value="9080" />
 		</execute>
 
-		<execute macro="PatchingTool#installPatchOnSpecificServer">
+<!-- 		<execute macro="PatchingTool#installPatchOnSpecificServer">
 			<var name="nodePort" value="9080" />
 			<var name="patchFileZipURL" value="${testBuildFixPackZipURL}" />
 		</execute>
-
+ -->
 		<execute macro="Portlet#startSpecificServer">
 			<var name="deleteLiferayHome" value="true" />
 			<var name="keepCachedAppServerData" value="true" />
@@ -175,6 +177,7 @@
 	</command>
 
 	<command name="RollingRestartSmoke">
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="RollingRestartEE#RollingRestartSmoke" />
 
 		<execute macro="Clustering#viewClusterStatusInConsole" />
