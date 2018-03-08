@@ -55,6 +55,12 @@ AUI.add(
 						return 'input';
 					},
 
+					getEvaluationContext: function(context) {
+						return {
+							dataType: context.dataType
+						};
+					},
+
 					getTemplateContext: function() {
 						var instance = this;
 
