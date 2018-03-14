@@ -406,6 +406,50 @@ jdbc.counter.connectionProperties=oracle.jdbc.ReadTimeout=0;oracle.net.CONNECT_T
 		</sequential>
 	</macrodef>
 
+	<macrodef name="get-jinfo-output">
+		<attribute name="process.name" />
+
+		<sequential>
+			<var name="jinfo.output" unset="true" />
+
+			<execute>
+				<![CDATA[
+					jps > jps_output
+				]]>
+			</execute>
+
+			<local name="jps.output" />
+
+			<loadfile property="jps.output" srcfile="jps_output" />
+
+			<if>
+				<contains string="${jps.output}" substring="@{process.name}" />
+				<then>
+					<local name="java.process.pid" />
+
+					<propertyregex
+						input="${jps.output}"
+						override="true"
+						property="java.process.pid"
+						regexp="(|[\S\s]*\n)([0-9]+) @{process.name}[\S\s]*"
+						replace="\2"
+					/>
+
+					<execute>
+						<![CDATA[
+							jinfo -flags ${java.process.pid} > jinfo_output
+						]]>
+					</execute>
+
+					<loadfile property="jinfo.output" srcfile="jinfo_output" />
+				</then>
+			</if>
+
+			<delete file="jps_output" />
+			<delete file="jinfo_output" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="get-jstack-output">
 		<attribute name="process.name" />
 
@@ -1417,6 +1461,58 @@ sendPasswordCaptchaEnabled=&quot;false&quot;</echo>
 					</replace>
 				</then>
 			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="prepare-database-upgrade-configuration">
+		<sequential>
+			<delete file="${liferay.home}/osgi/configs/com.liferay.portal.search.configuration.IndexStatusManagerConfiguration.cfg" />
+			<delete file="${liferay.home}/tools/portal-tools-db-upgrade-client/upgrade.log" />
+
+			<echo file="${liferay.home}/osgi/configs/com.liferay.portal.search.configuration.IndexStatusManagerConfiguration.cfg">indexReadOnly=true</echo>
+
+			<if>
+				<equals arg1="${app.server.type}" arg2="jboss" />
+				<then>
+					<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/app-server.properties">dir=${app.server.dir}
+	extra.lib.dirs=modules/system/layers/base/javax/mail,modules/system/layers/base/javax/persistence,modules/system/layers/base/javax/servlet,modules/system/layers/base/javax/transaction
+	global.lib.dir=modules/com/liferay/portal/main
+	portal.dir=standalone/deployments/ROOT.war
+	server.detector.server.id=jboss</echo>
+				</then>
+				<elseif>
+					<equals arg1="${app.server.type}" arg2="tomcat" />
+					<then>
+						<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/app-server.properties">dir=${app.server.dir}
+	extra.lib.dirs=bin
+	global.lib.dir=lib
+	portal.dir=webapps/ROOT
+	server.detector.server.id=tomcat</echo>
+					</then>
+				</elseif>
+				<elseif>
+					<equals arg1="${app.server.type}" arg2="wildfly" />
+					<then>
+						<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/app-server.properties">dir=${app.server.dir}
+	extra.lib.dirs=modules/system/layers/base/javax/mail,modules/system/layers/base/javax/persistence,modules/system/layers/base/javax/servlet,modules/system/layers/base/javax/transaction
+	global.lib.dir=modules/com/liferay/portal/main
+	portal.dir=standalone/deployments/ROOT.war
+	server.detector.server.id=wildfly</echo>
+					</then>
+				</elseif>
+			</if>
+
+			<get-database-property property.name="database.driver" />
+			<get-database-property property.name="database.password" />
+			<get-database-property property.name="database.url" />
+			<get-database-property property.name="database.username" />
+
+			<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/portal-upgrade-database.properties">jdbc.default.driverClassName=${database.driver}
+	jdbc.default.url=${database.url}
+	jdbc.default.username=${database.username}
+	jdbc.default.password=${database.password}</echo>
+
+			<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/portal-upgrade-ext.properties">liferay.home=${liferay.home}</echo>
 		</sequential>
 	</macrodef>
 
@@ -3719,6 +3815,60 @@ org.apache.catalina.startup.ClassLoaderFactory.level=INFO]]>
 		</sequential>
 	</macrodef>
 
+	<macrodef name="stop-one-java-process">
+		<attribute name="process.name" />
+
+		<sequential>
+			<execute>
+				<![CDATA[
+					jps > jps_output
+				]]>
+			</execute>
+
+			<local name="jps.output" />
+
+			<loadfile property="jps.output" srcfile="jps_output" />
+
+			<if>
+				<contains string="${jps.output}" substring="@{process.name}" />
+				<then>
+					<local name="java.process.pid" />
+
+					<propertyregex
+						input="${jps.output}"
+						override="true"
+						property="java.process.pid"
+						regexp="(|[\S\s]*\n)([0-9]+) \S*@{process.name}[\S\s]*"
+						replace="\2"
+					/>
+
+					<if>
+						<os family="unix" />
+						<then>
+							<execute>
+								<![CDATA[
+									kill ${java.process.pid}
+								]]>
+							</execute>
+						</then>
+						<elseif>
+							<os family="windows" />
+							<then>
+								<execute>
+									<![CDATA[
+										taskkill /f /pid ${java.process.pid}
+									]]>
+								</execute>
+							</then>
+						</elseif>
+					</if>
+				</then>
+			</if>
+
+			<delete file="jps_output" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="uninstall-patches">
 		<attribute name="patching.tool.dir" />
 
@@ -4143,6 +4293,175 @@ go]]></replacevalue>
 				</if>
 			</then>
 		</if>
+	</target>
+
+	<target name="check-upgrade-tool-additional-settings">
+		<parallel failonany="true">
+			<java
+				dir="${liferay.home}/tools/portal-tools-db-upgrade-client"
+				failonerror="true"
+				fork="true"
+				jar="${liferay.home}/tools/portal-tools-db-upgrade-client/com.liferay.portal.tools.db.upgrade.client.jar"
+				timeout="900000"
+			>
+				<arg value="-j" />
+				<arg value="&quot;-Dfile.encoding=UTF8 -Duser.country=US -Duser.language=en -Duser.timezone=GMT -Xmx4096m&quot;" />
+			</java>
+
+			<sequential>
+				<waitfor maxwait="60000">
+					<available file="${liferay.home}/tools/portal-tools-db-upgrade-client/upgrade.log" />
+				</waitfor>
+
+				<get-jinfo-output process.name="DBUpgrader" />
+
+				<echo>${jinfo.output}</echo>
+
+				<if>
+					<contains string="${jinfo.output}" substring="MaxHeapSize=4294967296" />
+					<then>
+						<echo message="Java memory was successfully set to 4GB during the upgrade process." />
+
+						<stop-one-java-process process.name="DBUpgrader" />
+						<stop-one-java-process process.name="LocalProcess" />
+					</then>
+					<else>
+						<fail message="Could not verify that Java memory was set to 4GB" />
+					</else>
+				</if>
+			</sequential>
+		</parallel>
+	</target>
+
+	<target name="check-upgrade-tool-custom-log">
+		<java
+			dir="${liferay.home}/tools/portal-tools-db-upgrade-client"
+			failonerror="true"
+			fork="true"
+			jar="${liferay.home}/tools/portal-tools-db-upgrade-client/com.liferay.portal.tools.db.upgrade.client.jar"
+			timeout="900000"
+		>
+			<arg value="-l" />
+			<arg value="&quot;log_file.txt&quot;" />
+		</java>
+
+		<if>
+			<not>
+				<available file="${liferay.home}/tools/portal-tools-db-upgrade-client/log_file.txt" />
+			</not>
+			<then>
+				<fail message="The upgrade tool custom log file was not created successfully." />
+			</then>
+		</if>
+
+		<local name="custom.log.file.output" />
+
+		<loadfile property="custom.log.file.output" srcfile="${liferay.home}/tools/portal-tools-db-upgrade-client/log_file.txt" />
+
+		<if>
+			<not>
+				<contains string="${custom.log.file.output}" substring="com.liferay.portal.tools.db.upgrade.client.jar" />
+			</not>
+			<then>
+				<fail message="The upgrade tool custom log file is missing some data." />
+			</then>
+		</if>
+
+		<echo message="The upgrade tool custom log file was created successfully." />
+
+		<delete file="${liferay.home}/tools/portal-tools-db-upgrade-client/log_file.txt" />
+	</target>
+
+	<target name="check-upgrade-tool-gogoshell">
+		<local name="upgrade.tool.log.file" />
+
+		<property name="upgrade.tool.log.file" value="${liferay.home}/tools/portal-tools-db-upgrade-client/upgrade.log" />
+
+		<parallel failonany="true">
+			<java
+				dir="${liferay.home}/tools/portal-tools-db-upgrade-client"
+				fork="true"
+				jar="${liferay.home}/tools/portal-tools-db-upgrade-client/com.liferay.portal.tools.db.upgrade.client.jar"
+				timeout="900000"
+			>
+				<arg value="-s" />
+			</java>
+
+			<sequential>
+				<waitfor maxwait="900000" timeoutproperty="gogoshell.not.started">
+					<resourcecontains resource="${upgrade.tool.log.file}" substring="You are connected to Gogo shell." />
+				</waitfor>
+
+				<if>
+					<isset property="gogoshell.not.started" />
+					<then>
+						<fail message="The Gogo shell failed to open before the test timed out." />
+					</then>
+				</if>
+
+				<echo message="A Gogo shell opened successfully." />
+
+				<stop-one-java-process process.name="jar" />
+			</sequential>
+		</parallel>
+	</target>
+
+	<target name="check-upgrade-tool-help">
+		<local name="upgrade.help.output" />
+
+		<java
+			dir="${liferay.home}/tools/portal-tools-db-upgrade-client"
+			failonerror="true"
+			fork="true"
+			jar="${liferay.home}/tools/portal-tools-db-upgrade-client/com.liferay.portal.tools.db.upgrade.client.jar"
+			outputproperty="upgrade.help.output"
+			timeout="30000"
+		>
+			<arg value="-h" />
+		</java>
+
+		<echo>${upgrade.help.output}</echo>
+
+		<if>
+			<contains string="${upgrade.help.output}" substring="-h,--help" />
+			<then>
+				<echo message="The upgrade tool help screen appeared successfully" />
+			</then>
+			<else>
+				<fail message="The upgrade tool help screen failed to appear." />
+			</else>
+		</if>
+	</target>
+
+	<target name="check-upgrade-tool-java-version">
+		<parallel failonany="true">
+			<java
+				dir="${liferay.home}/tools/portal-tools-db-upgrade-client"
+				failonerror="true"
+				fork="true"
+				jar="${liferay.home}/tools/portal-tools-db-upgrade-client/com.liferay.portal.tools.db.upgrade.client.jar"
+				timeout="300000"
+			>
+				<env key="JAVA_HOME" value="${java.jdk.7.x64.home}" />
+			</java>
+
+			<sequential>
+				<local name="java.error.unavailable" />
+
+				<waitfor maxwait="15000" timeoutproperty="java.error.unavailable">
+					<resourcecontains resource="${liferay.home}/tools/portal-tools-db-upgrade-client/upgrade.log" substring="Unsupported major.minor version" />
+				</waitfor>
+
+				<if>
+					<isset property="java.error.unavailable" />
+					<then>
+						<fail message="The upgrade tool should not be able to run on versions older than Java SE 8." />
+					</then>
+				</if>
+
+				<echo message="The upgrade tool correctly failed to run on a version older than Java SE 8." />
+			</sequential>
+		</parallel>
 	</target>
 
 	<target name="clean-app-server-deploy-dir">
@@ -8023,8 +8342,18 @@ cluster.link.bind.addr["cluster-link-udp"]=127.0.0.1</echo>
 	</target>
 
 	<target name="rebuild-legacy-database">
-		<get-testcase-property property.name="data.archive.type" />
-		<get-testcase-property property.name="portal.version" />
+		<if>
+			<not>
+				<and>
+					<isset property="data.archive.type" />
+					<isset property="portal.version" />
+				</and>
+			</not>
+			<then>
+				<get-testcase-property property.name="data.archive.type" />
+				<get-testcase-property property.name="portal.version" />
+			</then>
+		</if>
 
 		<unzip
 			dest="${liferay.home}"
@@ -9382,53 +9711,7 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 	</target>
 
 	<target name="upgrade-legacy-database">
-		<delete file="${liferay.home}/osgi/configs/com.liferay.portal.search.configuration.IndexStatusManagerConfiguration.cfg" />
-		<delete file="${liferay.home}/tools/portal-tools-db-upgrade-client/upgrade.log" />
-
-		<echo file="${liferay.home}/osgi/configs/com.liferay.portal.search.configuration.IndexStatusManagerConfiguration.cfg">indexReadOnly=true</echo>
-
-		<if>
-			<equals arg1="${app.server.type}" arg2="jboss" />
-			<then>
-				<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/app-server.properties">dir=${app.server.dir}
-extra.lib.dirs=modules/system/layers/base/javax/mail,modules/system/layers/base/javax/persistence,modules/system/layers/base/javax/servlet,modules/system/layers/base/javax/transaction
-global.lib.dir=modules/com/liferay/portal/main
-portal.dir=standalone/deployments/ROOT.war
-server.detector.server.id=jboss</echo>
-			</then>
-			<elseif>
-				<equals arg1="${app.server.type}" arg2="tomcat" />
-				<then>
-					<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/app-server.properties">dir=${app.server.dir}
-extra.lib.dirs=bin
-global.lib.dir=lib
-portal.dir=webapps/ROOT
-server.detector.server.id=tomcat</echo>
-				</then>
-			</elseif>
-			<elseif>
-				<equals arg1="${app.server.type}" arg2="wildfly" />
-				<then>
-					<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/app-server.properties">dir=${app.server.dir}
-extra.lib.dirs=modules/system/layers/base/javax/mail,modules/system/layers/base/javax/persistence,modules/system/layers/base/javax/servlet,modules/system/layers/base/javax/transaction
-global.lib.dir=modules/com/liferay/portal/main
-portal.dir=standalone/deployments/ROOT.war
-server.detector.server.id=wildfly</echo>
-				</then>
-			</elseif>
-		</if>
-
-		<get-database-property property.name="database.driver" />
-		<get-database-property property.name="database.password" />
-		<get-database-property property.name="database.url" />
-		<get-database-property property.name="database.username" />
-
-		<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/portal-upgrade-database.properties">jdbc.default.driverClassName=${database.driver}
-jdbc.default.url=${database.url}
-jdbc.default.username=${database.username}
-jdbc.default.password=${database.password}</echo>
-
-		<echo file="${liferay.home}/tools/portal-tools-db-upgrade-client/portal-upgrade-ext.properties">liferay.home=${liferay.home}</echo>
+		<prepare-database-upgrade-configuration />
 
 		<trycatch property="upgrade.error">
 			<try>
