@@ -4573,6 +4573,8 @@ go]]></replacevalue>
 				<if>
 					<isset property="gogoshell.not.started" />
 					<then>
+						<loadfile property="upgrade.log.contents" srcFile="${upgrade.tool.log.file}" />
+						<echo>${upgrade.log.contents}</echo>
 						<fail message="The Gogo shell failed to open before the test timed out." />
 					</then>
 				</if>
@@ -9692,7 +9694,7 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 
 		<prepare-database-upgrade-configuration />
 
-		<for keepgoing="true" list="check-upgrade-tool-help,check-upgrade-tool-java-version,check-upgrade-tool-custom-log,check-upgrade-tool-additional-settings,check-upgrade-tool-gogoshell" param="upgrade.test.target">
+		<for keepgoing="true" list="check-upgrade-tool-gogoshell" param="upgrade.test.target">
 			<sequential>
 				<delete file="${liferay.home}/tools/portal-tools-db-upgrade-client/upgrade.log" />
 				<antcall target="@{upgrade.test.target}" />
