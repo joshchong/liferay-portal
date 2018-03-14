@@ -9685,19 +9685,20 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			<param name="todir" value="${app.server.lib.global.dir}" />
 		</antcall>
 
-		<get-testcase-property property.name="portal.version" />
+		<antcall target="rebuild-legacy-database">
+			<param name="portal.version" value="6.2.5" />
+			<param name="data.archive.type" value="data-archive-polls" />
+		</antcall>
 
-		<if>
-			<isset property="portal.version" />
-			<then>
-				<antcall target="rebuild-legacy-database" />
+		<prepare-database-upgrade-configuration />
 
-				<antcall target="upgrade-legacy-database" />
-			</then>
-			<else>
-				<antcall inheritAll="false" target="rebuild-database" />
-			</else>
-		</if>
+		<for keepgoing="true" list="check-upgrade-tool-help,check-upgrade-tool-java-version,check-upgrade-tool-custom-log,check-upgrade-tool-additional-settings,check-upgrade-tool-gogoshell" param="upgrade.test.target">
+			<sequential>
+				<delete file="${liferay.home}/tools/portal-tools-db-upgrade-client/upgrade.log" />
+				<antcall target="@{upgrade.test.target}" />
+				<stop-one-java-process process.name="DBUpgrader" />
+			</sequential>
+		</for>
 
 		<get-testcase-property property.name="skip.clean-app-server-deploy-dir" />
 
