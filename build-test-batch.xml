@@ -1989,7 +1989,7 @@ app.server.type=@{app.server.type}]]></echo>
 		</run-batch-test>
 	</target>
 
-	<target name="functional-database-upgrade-client">
+	<target name="database-upgrade-client">
 		<run-batch-test>
 			<test-action>
 				<antcall target="rebuild-legacy-database">
