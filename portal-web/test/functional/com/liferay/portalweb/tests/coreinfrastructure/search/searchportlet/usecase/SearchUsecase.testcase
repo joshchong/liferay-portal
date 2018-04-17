@@ -34,6 +34,8 @@
 	</tear-down>
 
 	<command name="NavigateToSearchResultsViaURL" priority="4">
+		<property name="portal.release" value="es6" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />
