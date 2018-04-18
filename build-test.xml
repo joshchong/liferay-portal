@@ -426,7 +426,10 @@ jdbc.counter.connectionProperties=oracle.jdbc.ReadTimeout=0;oracle.net.CONNECT_T
 
 			<local name="jps.output" />
 
-			<loadfile property="jps.output" srcfile="jps_output" />
+			<loadfile
+				property="jps.output"
+				srcfile="jps_output"
+			/>
 
 			<if>
 				<contains string="${jps.output}" substring="@{process.name}" />
@@ -447,7 +450,10 @@ jdbc.counter.connectionProperties=oracle.jdbc.ReadTimeout=0;oracle.net.CONNECT_T
 						]]>
 					</execute>
 
-					<loadfile property="jinfo.output" srcfile="jinfo_output" />
+					<loadfile
+						property="jinfo.output"
+						srcfile="jinfo_output"
+					/>
 				</then>
 			</if>
 
@@ -3971,7 +3977,10 @@ org.apache.catalina.startup.ClassLoaderFactory.level=INFO]]>
 
 			<local name="jps.output" />
 
-			<loadfile property="jps.output" srcfile="jps_output" />
+			<loadfile
+				property="jps.output"
+				srcfile="jps_output"
+			/>
 
 			<if>
 				<contains string="${jps.output}" substring="@{process.name}" />
@@ -4523,7 +4532,10 @@ go]]></replacevalue>
 
 		<local name="custom.log.file.output" />
 
-		<loadfile property="custom.log.file.output" srcfile="${liferay.home}/tools/portal-tools-db-upgrade-client/log_file.txt" />
+		<loadfile
+			property="custom.log.file.output"
+			srcfile="${liferay.home}/tools/portal-tools-db-upgrade-client/log_file.txt"
+		/>
 
 		<if>
 			<not>
@@ -4556,7 +4568,10 @@ go]]></replacevalue>
 
 			<sequential>
 				<waitfor maxwait="900000" timeoutproperty="gogoshell.not.started">
-					<resourcecontains resource="${upgrade.tool.log.file}" substring="You are connected to Gogo shell." />
+					<resourcecontains
+						resource="${upgrade.tool.log.file}"
+						substring="You are connected to Gogo shell."
+					/>
 				</waitfor>
 
 				<if>
@@ -4616,7 +4631,10 @@ go]]></replacevalue>
 				<local name="java.error.unavailable" />
 
 				<waitfor maxwait="15000" timeoutproperty="java.error.unavailable">
-					<resourcecontains resource="${liferay.home}/tools/portal-tools-db-upgrade-client/upgrade.log" substring="Unsupported major.minor version" />
+					<resourcecontains
+						resource="${liferay.home}/tools/portal-tools-db-upgrade-client/upgrade.log"
+						substring="Unsupported major.minor version"
+					/>
 				</waitfor>
 
 				<if>
