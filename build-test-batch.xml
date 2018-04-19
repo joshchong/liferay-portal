@@ -1992,6 +1992,18 @@ app.server.type=@{app.server.type}]]></echo>
 	<target name="database-upgrade-client-jdk8">
 		<run-batch-test>
 			<test-action>
+				<database-test-action database.type="mysql">
+					<action>
+						<echo>database.service.executable: ${database.service.executable}</echo>
+						<echo>database.service.cmd.start: ${database.service.cmd.start}</echo>
+						<echo>database.version.cmd: ${database.version.cmd}</echo>
+
+						<exec executable="${database.service.executable}">
+							<arg line="${database.service.cmd.start}" />
+						</exec>
+					</action>
+				</database-test-action>
+
 				<antcall target="rebuild-legacy-database">
 					<param name="portal.version" value="6.2.5" />
 					<param name="data.archive.type" value="data-archive-polls" />
