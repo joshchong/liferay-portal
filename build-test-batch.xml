@@ -2009,6 +2009,10 @@ app.server.type=@{app.server.type}]]></echo>
 			</test-action>
 
 			<test-set-up>
+				<antcall target="deploy-sql-zip">
+					<param name="test.sql.zip.url" value="@{test.sql.zip.url}" />
+				</antcall>
+
 				<if>
 					<isset property="env.DIST_PATH" />
 					<then>
