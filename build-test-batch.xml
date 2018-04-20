@@ -1989,6 +1989,55 @@ app.server.type=@{app.server.type}]]></echo>
 		</run-batch-test>
 	</target>
 
+	<target name="database-upgrade-client-jdk8">
+		<run-batch-test>
+			<test-action>
+				<database-test-action database.type="mysql">
+					<action>
+						<echo>database.service.executable: ${database.service.executable}</echo>
+						<echo>database.service.cmd.start: ${database.service.cmd.start}</echo>
+						<echo>database.version.cmd: ${database.version.cmd}</echo>
+
+						<exec executable="${database.service.executable}">
+							<arg line="${database.service.cmd.start}" />
+						</exec>
+					</action>
+				</database-test-action>
+
+				<antcall target="rebuild-legacy-database">
+					<param name="portal.version" value="6.2.5" />
+					<param name="data.archive.type" value="data-archive-polls" />
+				</antcall>
+
+				<prepare-database-upgrade-configuration />
+
+				<for keepgoing="true" list="check-upgrade-tool-help,check-upgrade-tool-java-version,check-upgrade-tool-custom-log,check-upgrade-tool-additional-settings" param="upgrade.test.target">
+					<sequential>
+						<delete file="${liferay.home}/tools/portal-tools-db-upgrade-client/upgrade.log" />
+						<antcall target="@{upgrade.test.target}" />
+						<stop-one-java-process process.name="DBUpgrader" />
+					</sequential>
+				</for>
+			</test-action>
+
+			<test-set-up>
+				<antcall target="deploy-sql-zip">
+					<param name="test.sql.zip.url" value="@{test.sql.zip.url}" />
+				</antcall>
+
+				<if>
+					<isset property="env.DIST_PATH" />
+					<then>
+						<prepare-test-environment />
+					</then>
+					<else>
+						<prepare-test-build />
+					</else>
+				</if>
+			</test-set-up>
+		</run-batch-test>
+	</target>
+
 	<target name="dist-jdk7">
 		<prepare-test-build-dist app.server.type="${axis.variable}" />
 	</target>
