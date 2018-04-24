@@ -30,83 +30,74 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 	var <portlet:namespace />itemsInStock = true;
 
 	function <portlet:namespace />checkout() {
+		var form = AUI.$(document.<portlet:namespace />fm);
+
 		if (<portlet:namespace />itemsInStock || confirm('<%= UnicodeLanguageUtil.get(request, "your-cart-has-items-that-are-out-of-stock") %>')) {
-			var form = document.querySelector('#<portlet:namespace />fm');
-
-			if (form) {
-				form.querySelector('#<portlet:namespace /><%= Constants.CMD %>').value = '<%= Constants.CHECKOUT %>';
-
-				form.querySelector('#<portlet:namespace />redirect').value = '<portlet:actionURL name="/shopping/checkout"><portlet:param name="mvcActionCommand" value="/shopping/checkout" /><portlet:param name="cmd" value="<%= Constants.CHECKOUT %>" /></portlet:actionURL>');
-
-				<portlet:namespace />updateCart();
-			}
+			form.fm('<%= Constants.CMD %>').val('<%= Constants.CHECKOUT %>');
+			form.fm('redirect').val('<portlet:actionURL name="/shopping/checkout"><portlet:param name="mvcActionCommand" value="/shopping/checkout" /><portlet:param name="cmd" value="<%= Constants.CHECKOUT %>" /></portlet:actionURL>');
+			<portlet:namespace />updateCart();
 		}
 	}
 
 	function <portlet:namespace />updateCart() {
 		var count = 0;
+		var form = AUI.$(document.<portlet:namespace />fm);
 		var invalidSKUs = '';
 		var itemIds = '';
 		var subtotal = 0;
 
-		var form = document.querySelector('#<portlet:namespace />fm');
+		<%
+		int itemsCount = 0;
 
-		if (form) {
+		for (ShoppingCartItem cartItem : items.keySet()) {
+			ShoppingItem item = cartItem.getItem();
 
-			<%
-			int itemsCount = 0;
+			ShoppingItemPrice[] itemPrices = (ShoppingItemPrice[])ShoppingItemPriceLocalServiceUtil.getItemPrices(item.getItemId()).toArray(new ShoppingItemPrice[0]);
 
-			for (ShoppingCartItem cartItem : items.keySet()) {
-				ShoppingItem item = cartItem.getItem();
+			int maxQuantity = _getMaxQuantity(itemPrices);
+		%>
 
-				ShoppingItemPrice[] itemPrices = (ShoppingItemPrice[])ShoppingItemPriceLocalServiceUtil.getItemPrices(item.getItemId()).toArray(new ShoppingItemPrice[0]);
+			count = form.fm('item_<%= item.getItemId() %>_<%= itemsCount %>_count').val();
 
-				int maxQuantity = _getMaxQuantity(itemPrices);
-			%>
+			subtotal += <%= ShoppingUtil.calculateActualPrice(item, 1) %> * count;
 
-				count = form.querySelector('#<portlet:namespace />item_<%= item.getItemId() %>_<%= itemsCount %>_count').value;
-
-				subtotal += <%= ShoppingUtil.calculateActualPrice(item, 1) %> * count;
-
-				if ((count == '') || isNaN(count) || (count < 0) || ((count > <%= maxQuantity %>) && (<%= maxQuantity %> > 0))) {
-					if (invalidSKUs != '') {
-						invalidSKUs += ', ';
-					}
-
-					invalidSKUs += '<%= HtmlUtil.escapeJS(item.getSku()) %>';
+			if ((count == '') || isNaN(count) || (count < 0) || ((count > <%= maxQuantity %>) && (<%= maxQuantity %> > 0))) {
+				if (invalidSKUs != '') {
+					invalidSKUs += ', ';
 				}
 
-				for (var i = 0; i < count; i++) {
-					itemIds += '<%= HtmlUtil.escapeJS(cartItem.getCartItemId()) %>,';
-				}
-
-				count = 0;
-
-			<%
-				itemsCount++;
+				invalidSKUs += '<%= HtmlUtil.escapeJS(item.getSku()) %>';
 			}
-			%>
 
-			var cmdValue = form.querySelector('#<portlet:namespace /><%= Constants.CMD %>').value;
+			for (var i = 0; i < count; i++) {
+				itemIds += '<%= HtmlUtil.escapeJS(cartItem.getCartItemId()) %>,';
+			}
 
-			if (cmdValue == '<%= Constants.CHECKOUT %>' && subtotal < <%= shoppingGroupServiceOverriddenConfiguration.getMinOrder() %> {
-				cmdValue = '<%= Constants.UPDATE %>';
+			count = 0;
 
-				form.querySelector('#<portlet:namespace />redirect').value = '<%= currentURL %>';
+		<%
+			itemsCount++;
+		}
+		%>
+
+		if (form.fm('<%= Constants.CMD %>').val() == '<%= Constants.CHECKOUT %>') {
+			if (subtotal < <%= shoppingGroupServiceOverriddenConfiguration.getMinOrder() %>) {
+				form.fm('<%= Constants.CMD %>').val('<%= Constants.UPDATE %>');
+				form.fm('redirect').val('<%= currentURL %>');
 
 				alert('<%= UnicodeLanguageUtil.format(request, "your-order-cannot-be-processed-because-it-falls-below-the-minimum-required-amount-of-x", currencyFormat.format(shoppingGroupServiceOverriddenConfiguration.getMinOrder()), false) %>');
 
 				return;
 			}
+		}
 
-			form.querySelector('#<portlet:namespace />itemIds').value = itemIds;
+		form.fm('itemIds').val(itemIds);
 
-			if (invalidSKUs == '') {
-				submitForm(form);
-			}
-			else {
-				alert('<%= UnicodeLanguageUtil.get(request, "please-enter-valid-quantities-for-the-following-skus") %>' + invalidSKUs);
-			}
+		if (invalidSKUs == '') {
+			submitForm(form);
+		}
+		else {
+			alert('<%= UnicodeLanguageUtil.get(request, "please-enter-valid-quantities-for-the-following-skus") %>' + invalidSKUs);
 		}
 	}
 </aui:script>

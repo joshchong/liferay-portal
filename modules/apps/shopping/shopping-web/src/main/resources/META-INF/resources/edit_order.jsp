@@ -416,36 +416,23 @@ long orderId = BeanParamUtil.getLong(order, request, "orderId");
 
 <aui:script>
 	function <portlet:namespace />deleteOrder() {
-		var form = document.querySelector('#<portlet:namespace />fm');
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= Constants.DELETE %>';
+		document.<portlet:namespace />fm.<portlet:namespace />redirect.value = '<%= HtmlUtil.escapeJS(redirect) %>';
 
-		if (form) {
-			form.querySelector('#<portlet:namespace /><%= Constants.CMD %>').value = '<%= Constants.DELETE %>';
-
-			form.querySelector('#<portlet:namespace />redirect').value = '<%= HtmlUtil.escapeJS(redirect) %>';
-
-			submitForm(form);
-		}
+		submitForm(document.<portlet:namespace />fm);
 	}
 
 	function <portlet:namespace />saveOrder() {
-		var form = document.querySelector('#<portlet:namespace />fm');
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= Constants.UPDATE %>';
 
-		if (form) {
-			form.querySelector('#<portlet:namespace /><%= Constants.CMD %>').value = '<%= Constants.UPDATE %>';
-
-			submitForm(form);
-		}
+		submitForm(document.<portlet:namespace />fm);
 	}
 
 	function <portlet:namespace />sendEmail(emailType) {
-		var form = document.querySelector('#<portlet:namespace />fm');
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = 'sendEmail';
+		document.<portlet:namespace />fm.<portlet:namespace />emailType.value = emailType;
 
-		if (form) {
-			form.querySelector('<portlet:namespace /><%= Constants.CMD %>').value = 'sendEmail';
-			form.querySelector('<portlet:namespace />emailType').value = emailType;
-
-			submitForm(form);
-		}
+		submitForm(document.<portlet:namespace />fm);
 	}
 
 	function <portlet:namespace />viewCoupon() {
@@ -457,7 +444,7 @@ long orderId = BeanParamUtil.getLong(order, request, "orderId");
 				},
 				id: '<portlet:namespace />viewCoupon',
 				refreshWindow: window,
-				title: '<liferay-ui:message key="coupons" />',
+				title: '<%= UnicodeLanguageUtil.get(request, "coupons") %>',
 				uri: '<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcRenderCommandName" value="/shopping/view_coupon" /><portlet:param name="code" value="<%= order.getCouponCodes() %>" /></portlet:renderURL>'
 			}
 		);

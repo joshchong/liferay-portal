@@ -119,15 +119,17 @@ portletURL.setParameter("tabs1", "order");
 </aui:form>
 
 <aui:script>
-	function <portlet:namespace />deleteOrders () {
-		var form = var form = document.querySelector('#<portlet:namespace />fm');
+	Liferay.provide(
+		window,
+		'<portlet:namespace />deleteOrders',
+		function() {
+			if (confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-delete-the-selected-orders") %>')) {
+				document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= Constants.DELETE %>';
+				document.<portlet:namespace />fm.<portlet:namespace />deleteOrderIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
-		if (form && confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-the-selected-orders" />')) {
-			form.querySelector('#<portlet:namespace /><%= Constants.CMD %>').value = '<%= Constants.DELETE %>';
-
-			form.querySelector('#<portlet:namespace />deleteOrderIds').value = Liferay.Util.listCheckedExcept(form, '<portlet:namespace />allRowIds');
-
-			submitForm(form, '<portlet:actionURL name="/shopping/edit_order"><portlet:param name="mvcActionCommand" value="/shopping/edit_order" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>');
-		}
-	}
+				submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="/shopping/edit_order"><portlet:param name="mvcActionCommand" value="/shopping/edit_order" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>');
+			}
+		},
+		['liferay-util-list-fields']
+	);
 </aui:script>

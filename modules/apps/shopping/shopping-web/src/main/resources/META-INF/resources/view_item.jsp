@@ -173,33 +173,25 @@ renderResponse.setTitle(item.getName());
 
 <aui:script>
 	function <portlet:namespace />addToCart() {
-		var form = document.querySelector('#<portlet:namespace />fm');
+		document.<portlet:namespace />fm.<portlet:namespace />fields.value = '';
 
-		if (form) {
-			form.querySelector('#<portlet:namespace />fields').value = '';
+		<%
+		for (ShoppingItemField itemField : itemFields) {
+			String fieldName = itemField.getName();
+		%>
 
-			<%
-			for (ShoppingItemField itemField : itemFields) {
-				String fieldName = itemField.getName();
-			%>
+			if (document.<portlet:namespace />fm['<portlet:namespace />fieldName<%= HtmlUtil.escapeJS(fieldName) %>'].value == '') {
+				alert('<liferay-ui:message key="please-select-all-options" />');
 
-				if (form.querySelector('#<portlet:namespace />fieldName<%= HtmlUtil.escapeJS(fieldName) %>').value == '') {
-					alert('<liferay-ui:message key="please-select-all-options" />');
-
-					return;
-				}
-
-				var fields = form.querySelector('#<portlet:namespace />fields');
-
-				if (fields) {
-					fields.value = fields.value + '<%= HtmlUtil.escapeJS(fieldName) %>=' + form.querySelector('#<portlet:namespace />fieldName<%= HtmlUtil.escapeJS(fieldName) %>').value + '&';
-				}
-
-			<%
+				return;
 			}
-			%>
 
-			submitForm(form);
+			document.<portlet:namespace />fm.<portlet:namespace />fields.value = document.<portlet:namespace />fm.<portlet:namespace />fields.value + '<%= HtmlUtil.escapeJS(fieldName) %>=' + document.<portlet:namespace />fm['<portlet:namespace />fieldName<%= HtmlUtil.escapeJS(fieldName) %>'].value + '&';
+
+		<%
 		}
+		%>
+
+		submitForm(document.<portlet:namespace />fm);
 	}
 </aui:script>

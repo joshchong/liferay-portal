@@ -101,32 +101,28 @@ renderResponse.setTitle(((category == null) ? LanguageUtil.get(request, "new-cat
 	</aui:button-row>
 </aui:form>
 
-<aui:script require="metal-dom/src/dom">
-	let dom = metalDomSrcDom.default;
-
+<aui:script>
 	function <portlet:namespace />removeCategory(button) {
+		var $ = AUI.$;
+
+		var form = $(document.<portlet:namespace />fm);
+
 		Liferay.Util.removeEntitySelection('parentCategoryId', 'parentCategoryName', button, '<portlet:namespace />');
 
-		var form = document.querySelector('#<portlet:namespace />fm');
+		$('#<portlet:namespace />mergeParentCheckboxDiv').addClass('hide');
 
-		if (form) {
-			dom.addClasses(form.querySelector('#<portlet:namespace />mergeParentCheckboxDiv'), 'hide');
-
-			document.querySelector('#<portlet:namespace />mergeWithParentCategory').checked = false;
-		}
+		form.fm('mergeWithParentCategory').prop('checked', false);
 	}
 
 	function <portlet:namespace />saveCategory() {
-		var form = document.querySelector('#<portlet:namespace />fm');
+		var form = AUI.$(document.<portlet:namespace />fm);
 
-		if (form) {
-			form.querySelector('#<portlet:namespace /><%= Constants.CMD %>').value = '<%= (category == null) ? Constants.ADD : Constants.UPDATE %>';
+		form.fm('<%= Constants.CMD %>').val('<%= (category == null) ? Constants.ADD : Constants.UPDATE %>');
 
-			submitForm(form);
-		}
+		submitForm(form);
 	}
 
-	document.querySelector('#<portlet:namespace />selectCategoryButton').addEventListener(
+	AUI.$('#<portlet:namespace />selectCategoryButton').on(
 		'click',
 		function(event) {
 			Liferay.Util.selectEntity(
@@ -141,17 +137,16 @@ renderResponse.setTitle(((category == null) ? LanguageUtil.get(request, "new-cat
 					uri: '<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcRenderCommandName" value="/shopping/select_category" /><portlet:param name="categoryId" value="<%= String.valueOf(parentCategoryId) %>" /></portlet:renderURL>'
 				},
 				function(event) {
-					var form = document.querySelector('#<portlet:namespace />fm');
+					var form = AUI.$(document.<portlet:namespace />fm);
 
-					if (form) {
-						var parentCategoryId = event.categoryid;
+					var parentCategoryId = event.categoryid;
 
-						form.querySelector('#<portlet:namespace />parentCategoryId').value = parentCategoryId;
-						form.querySelector('#<portlet:namespace />parentCategoryName').value = event.name;
+					form.fm('parentCategoryId').val(parentCategoryId);
 
-						if (parentCategoryId != <%= ShoppingCategoryConstants.DEFAULT_PARENT_CATEGORY_ID %>) {
-							dom.removeClasses(document.querySelector('#<portlet:namespace />mergeParentCheckboxDiv'), 'hide');
-						}
+					form.fm('parentCategoryName').val(event.name);
+
+					if (parentCategoryId != <%= ShoppingCategoryConstants.DEFAULT_PARENT_CATEGORY_ID %>) {
+						$('#<portlet:namespace />mergeParentCheckboxDiv').removeClass('hide');
 					}
 				}
 			);

@@ -189,13 +189,11 @@ couponSearch.setResults(coupons);
 </aui:form>
 
 <aui:script>
-	document.querySelector('#<portlet:namespace />deleteCoupons').addEventListener(
+	$('#<portlet:namespace />deleteCoupons').on(
 		'click',
 		function() {
-			var form = document.querySelector('#<portlet:namespace />fm');
-
-			if (form && confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-the-selected-coupons" />')) {
-				submitForm(form);
+			if (confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-delete-the-selected-coupons") %>')) {
+				submitForm(document.<portlet:namespace />fm);
 			}
 		}
 	);
