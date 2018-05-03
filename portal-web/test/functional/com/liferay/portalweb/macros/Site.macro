@@ -603,6 +603,10 @@
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
+		<execute function="AssertElementPresent" locator1="SitesEditSite#SITE_ID" />
+
+		<take-screenshot />
+
 		<var method="selenium#getElementValue(SitesEditSite#SITE_ID)" name="siteId" />
 
 		<return name="siteId" value="${siteId}" />
