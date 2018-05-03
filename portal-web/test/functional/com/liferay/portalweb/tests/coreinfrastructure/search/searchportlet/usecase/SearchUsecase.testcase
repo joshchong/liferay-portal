@@ -282,7 +282,7 @@
 			<var name="searchTerm" value="Potato" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#viewSearchResults">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="entryDate" value="${currentDate}" />
 			<var name="searchAssetSummary" value="This is a blog about Potatoes" />
 			<var name="searchAssetTitle" value="Potato Blog" />
@@ -290,7 +290,7 @@
 			<var name="searchTerm" value="Potato" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#viewSearchResults">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="entryDate" value="${currentDate}" />
 			<var name="searchAssetTitle" value="Potato Document" />
 			<var name="searchAssetType" value="Document" />
@@ -310,7 +310,7 @@
 			<var name="searchAssetType" value="Blogs Entry" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#viewSearchResults">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="entryDate" value="${currentDate}" />
 			<var name="searchAssetTitle" value="Potato Document" />
 			<var name="searchAssetType" value="Document" />
