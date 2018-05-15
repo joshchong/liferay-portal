@@ -565,6 +565,8 @@
 	</command>
 
 	<command name="SearchEntriesByPortletsAndModifiedRangeFacet" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -769,6 +771,7 @@
 	<command name="SearchTwiceScopeEverything" priority="5">
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
+		<property name="portal.acceptance" value="josh" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
@@ -836,6 +839,7 @@
 	<command name="SearchTwiceScopeLetUserChoose" priority="5">
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
+		<property name="portal.acceptance" value="josh" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
@@ -1005,7 +1009,7 @@
 	<command name="SearchUsingNewSearchPortlets" priority="5">
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="josh" />
 
 		<var name="searchPage" value="Search Page" />
 
