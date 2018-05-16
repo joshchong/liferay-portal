@@ -1216,7 +1216,7 @@
 			<var name="pageName" value="${searchPage}" />
 		</execute>
 
-		<for list="Category Facet,Folder Facet,Site Facet,Tag Facet,Type Facet,User Facet,Search Results,Search Bar" param="portletName">
+		<for list="Category Facet,Tag Facet,Type Facet,User Facet,Search Bar,Folder Facet,Search Results,Site Facet" param="portletName">
 			<execute macro="Navigator#gotoPage">
 				<var name="pageName" value="${searchPage}" />
 			</execute>
