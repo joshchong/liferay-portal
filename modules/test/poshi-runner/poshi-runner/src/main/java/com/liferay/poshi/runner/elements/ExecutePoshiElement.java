@@ -52,16 +52,40 @@ public class ExecutePoshiElement extends PoshiElement {
 
 	@Override
 	public void parseReadableSyntax(String readableSyntax) {
-		String executeClassName = RegexUtil.getGroup(
-			readableSyntax, "(.*?)(\\(|\\.)", 1);
-
 		String executeType = "macro";
 
-		if (PoshiElement.utilClassNames.contains(executeClassName)) {
+		if (isValidUtilClassName(readableSyntax)) {
 			executeType = "class";
 		}
-		else if (PoshiElement.functionFileNames.contains(executeClassName)) {
+		else if (isValidFunctionFileName(readableSyntax)) {
 			executeType = "function";
+		}
+
+		if (executeType.equals("class")) {
+			int index = readableSyntax.indexOf("(");
+
+			String methodName = readableSyntax.substring(0, index);
+
+			for (String utilClassName : utilClassNames) {
+				if (readableSyntax.startsWith(utilClassName)) {
+					addAttribute("class", utilClassName);
+
+					System.out.println(utilClassName);
+
+					methodName = methodName.replace(utilClassName + ".", "");
+
+					addAttribute("method", methodName);
+
+					break;
+				}
+			}
+
+			String parentheticalContent = getParentheticalContent(
+				readableSyntax);
+
+			add(PoshiNodeFactory.newPoshiNode(this, parentheticalContent));
+
+			return;
 		}
 
 		if (readableSyntax.contains("return(\n")) {
@@ -131,9 +155,39 @@ public class ExecutePoshiElement extends PoshiElement {
 
 	@Override
 	public String toReadableSyntax() {
-		if (attributeValue("function") != null) {
-			StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 
+		if (attributeValue("class") != null) {
+			String pad = getPad();
+
+			sb.append("\n\n");
+			sb.append(pad);
+			sb.append(attributeValue("class"));
+			sb.append(".");
+			sb.append(attributeValue("method"));
+			sb.append("(");
+
+			for (PoshiElement poshiElement : toPoshiElements(elements())) {
+				String readableSyntax = poshiElement.toReadableSyntax();
+
+				if (poshiElement instanceof ArgPoshiElement) {
+					sb.append(readableSyntax.trim());
+					sb.append(", ");
+
+					continue;
+				}
+			}
+
+			if (sb.length() > 2) {
+				sb.setLength(sb.length() - 2);
+			}
+
+			sb.append(");");
+
+			return sb.toString();
+		}
+
+		if (attributeValue("function") != null) {
 			for (PoshiElementAttribute poshiElementAttribute :
 					toPoshiElementAttributes(attributeList())) {
 
@@ -164,8 +218,6 @@ public class ExecutePoshiElement extends PoshiElement {
 
 			return createFunctionReadableBlock(sb.toString());
 		}
-
-		StringBuilder sb = new StringBuilder();
 
 		ReturnPoshiElement returnPoshiElement = null;
 

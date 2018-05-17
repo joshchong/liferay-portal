@@ -232,6 +232,10 @@ public abstract class PoshiElement
 		return readableSyntax.substring(3, readableSyntax.length() - 3);
 	}
 
+	protected String getSingleQuotedContent(String readableSyntax) {
+		return RegexUtil.getGroup(readableSyntax, ".*?\'(.*)\'", 1);
+	}
+
 	protected String getValueFromAssignment(String assignment) {
 		assignment = assignment.trim();
 
@@ -327,6 +331,18 @@ public abstract class PoshiElement
 		return false;
 	}
 
+	protected boolean isValidFunctionFileName(String classCommandName) {
+		classCommandName = classCommandName.trim();
+
+		for (String functionFileName : functionFileNames) {
+			if (classCommandName.startsWith(functionFileName)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	protected boolean isValidReadableBlock(String readableSyntax) {
 		readableSyntax = readableSyntax.trim();
 
@@ -350,6 +366,18 @@ public abstract class PoshiElement
 
 		if (isBalanceValidationRequired(readableSyntax)) {
 			return isBalancedReadableSyntax(readableSyntax);
+		}
+
+		return false;
+	}
+
+	protected boolean isValidUtilClassName(String classCommandName) {
+		classCommandName = classCommandName.trim();
+
+		for (String utilClassName : utilClassNames) {
+			if (classCommandName.startsWith(utilClassName)) {
+				return true;
+			}
 		}
 
 		return false;
@@ -392,7 +420,9 @@ public abstract class PoshiElement
 
 	protected static final Set<String> functionFileNames = new TreeSet<>();
 	protected static final Pattern nestedVarAssignmentPattern = Pattern.compile(
-		"(\\w*? = \".*?\"|\\w*? = \'\'\'.*?\'\'\')($|\\s|,)", Pattern.DOTALL);
+		"(\\w*? = \".*?\"|\\w*? = \'\'\'.*?\'\'\'|\\w*? = .*?\\(.*?\\))" +
+			"($|\\s|,)",
+		Pattern.DOTALL);
 	protected static final Set<String> utilClassNames = new TreeSet<>();
 
 	private void _addAttributes(Element element) {

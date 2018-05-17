@@ -274,6 +274,10 @@
 		<execute function="Type" value1="Welcome" />
 
 		<execute function="AssertElementPresent#assertElementPresent" locator1="Home#PAGE" value1="Welcome" />
+
+		<execute class="com.liferay.poshi.runner.util.JSONCurlUtil" method="delete">
+			<arg value="${curl}" />
+		</execute>
 	</command>
 
 	<command name="AddBlogsEntries" priority="4">

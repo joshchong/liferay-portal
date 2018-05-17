@@ -1099,7 +1099,12 @@ public class PoshiRunnerExecutor {
 
 					Throwable throwable = e.getCause();
 
-					throw new Exception(throwable.getMessage(), e);
+					if (throwable != null) {
+						throw new Exception(throwable.getMessage(), e);
+					}
+					else {
+						throw e;
+					}
 				}
 			}
 			else if (element.attributeValue("property-value") != null) {
