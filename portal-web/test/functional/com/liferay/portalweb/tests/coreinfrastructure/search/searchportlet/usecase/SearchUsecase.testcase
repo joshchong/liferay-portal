@@ -771,6 +771,13 @@
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
 		<property name="portal.acceptance" value="josh" />
 
+		<execute macro="TestCase#getSiteName">
+			<return from="siteName" name="siteName" />
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<echo>ECHO SITE NAME: ${siteName}</echo>
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
 			<var name="panel" value="Control Panel" />
@@ -838,6 +845,13 @@
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
 		<property name="portal.acceptance" value="josh" />
+
+		<execute macro="TestCase#getSiteName">
+			<return from="siteName" name="siteName" />
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<echo>ECHO SITE NAME: ${siteName}</echo>
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
@@ -1398,6 +1412,13 @@
 		<execute macro="SearchResultPortlet#viewMultipleSearchResultsNotPresent">
 			<var name="noResultsList" value="apple/Web Content Article" />
 		</execute>
+
+		<execute macro="TestCase#getSiteName">
+			<return from="siteName" name="siteName" />
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
+		<echo>ECHO SITE NAME: ${siteName}</echo>
 
 		<execute macro="SearchFacetPortlet#checkFacetAndViewURL">
 			<return from="updatedSearchURL" name="testSearchURL" />
