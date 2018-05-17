@@ -392,14 +392,6 @@ public class MBMessagePersistenceTest {
 	}
 
 	@Test
-	public void testCountByP_S() throws Exception {
-		_persistence.countByP_S(RandomTestUtil.nextLong(),
-			RandomTestUtil.nextInt());
-
-		_persistence.countByP_S(0L, 0);
-	}
-
-	@Test
 	public void testCountByG_U_S() throws Exception {
 		_persistence.countByG_U_S(RandomTestUtil.nextLong(),
 			RandomTestUtil.nextLong(), RandomTestUtil.nextInt());
