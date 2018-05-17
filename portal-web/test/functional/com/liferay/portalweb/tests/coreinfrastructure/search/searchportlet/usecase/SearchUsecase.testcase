@@ -1044,7 +1044,7 @@
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="Navigator#openSpecificURL">
-			<var name="url" value="${portalURL}/search" />
+			<var name="url" value="${portalURL}/web/guest/search" />
 		</execute>
 
 		<execute macro="Portlet#addPG">
