@@ -17,6 +17,9 @@ package com.liferay.oauth2.provider.scope.sample.qa;
 import com.liferay.oauth2.provider.scope.RequiresNoScope;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 
+import java.util.Collections;
+import java.util.Set;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Application;
@@ -51,6 +54,11 @@ public class SampleQAApp extends Application {
 	)
 	public String anyScopesNeeded() {
 		return "anyScopesNeeded";
+	}
+
+	@Override
+	public Set<Object> getSingletons() {
+		return Collections.singleton(this);
 	}
 
 	@GET
