@@ -1,0 +1,3 @@
+navigate to modules/apps/oauth2-provider/oauth2-provider-scope-sample-qa/
+run gradle clean deploy
+grab the jar from either source "bundle" folder or tools/sdk/dist or your portal deploy folder
