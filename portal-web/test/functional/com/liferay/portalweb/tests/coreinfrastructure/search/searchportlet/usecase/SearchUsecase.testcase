@@ -2,7 +2,7 @@
 	<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 	<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;true&quot;" />
 	<property name="portal.release" value="true" />
-	<property name="portal.suite.search.engine" value="elasticsearch6,solr" />
+	<property name="portal.suite.search.engine" value="elasticsearch6,solr,josh" />
 	<property name="portal.upstream" value="true" />
 	<property name="testray.main.component.name" value="Web Search" />
 
@@ -1346,7 +1346,7 @@
 			<var name="pageName" value="${searchPage}" />
 		</execute>
 
-		<for list="Category Facet,Folder Facet,Site Facet,Tag Facet,Type Facet,User Facet,Search Results,Search Bar" param="portletName">
+		<for list="Category Facet,Folder Facet,Site Facet,Type Facet,User Facet,Search Bar,Tag Facet,Search Results" param="portletName">
 			<execute macro="Navigator#gotoPage">
 				<var name="pageName" value="${searchPage}" />
 			</execute>
