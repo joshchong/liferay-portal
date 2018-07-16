@@ -54,6 +54,8 @@
 	</tear-down>
 
 	<command name="SearchBlogsEntry" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -197,6 +199,8 @@
 	</command>
 
 	<command name="SearchBlogsEntryCategory" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -287,6 +291,8 @@
 	</command>
 
 	<command ignore="true" name="SearchBlogsEntryCategoryQuotes" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -388,6 +394,8 @@
 	</command>
 
 	<command name="SearchBlogsEntryQuotes" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -574,6 +582,8 @@
 	</command>
 
 	<command name="SearchBlogsEntryTag" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -646,6 +656,8 @@
 	</command>
 
 	<command name="SearchBlogsEntryTagQuotes" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -729,6 +741,8 @@
 	</command>
 
 	<command name="SearchDocumentsAndMediaDocument" priority="5">
+		<property name="portal.acceptance" value="josh" />
+
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="Navigator#openURL" />
@@ -864,6 +878,8 @@
 	</command>
 
 	<command name="SearchMessageBoardsThread" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Build" />
 			<var name="panel" value="Site Administration" />
@@ -1022,6 +1038,8 @@
 	</command>
 
 	<command name="SearchUser" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -1121,6 +1139,8 @@
 	</command>
 
 	<command name="SearchUserWildcard" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
@@ -1174,6 +1194,8 @@
 	</command>
 
 	<command name="SearchWebContent" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -1305,6 +1327,8 @@
 	</command>
 
 	<command name="SearchWikiPage" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Build" />
 			<var name="panel" value="Site Administration" />

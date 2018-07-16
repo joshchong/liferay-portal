@@ -803,6 +803,8 @@
 	</command>
 
 	<command name="SearchInSearchPortletWithTag" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<description message="This is a use case for LPS-54548." />
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
