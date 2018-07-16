@@ -114,6 +114,8 @@
 	</command>
 
 	<command name="SearchAssetsScopeEverythingAcrossMultipleSites" priority="4">
+		<property name="portal.acceptance" value="classic" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Sites" />
 			<var name="panel" value="Control Panel" />
@@ -338,6 +340,8 @@
 	</command>
 
 	<command name="SearchByPermission" priority="4">
+		<property name="portal.acceptance" value="classic" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />
@@ -413,6 +417,8 @@
 	</command>
 
 	<command name="SearchByUserFacet" priority="4">
+		<property name="portal.acceptance" value="classic" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
 			<var name="panel" value="Control Panel" />
@@ -546,6 +552,8 @@
 	</command>
 
 	<command name="SearchDeletedWebContent" priority="4">
+		<property name="portal.acceptance" value="classic" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />
@@ -582,6 +590,8 @@
 	</command>
 
 	<command ignore="true" name="SearchEntriesByPortletsAndModifiedRangeFacet" priority="4">
+		<property name="portal.acceptance" value="classic" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -743,7 +753,7 @@
 
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="classic" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
@@ -800,6 +810,8 @@
 
 	<command name="SearchPortletIdAfterLogout" priority="5">
 		<description message="This is a use case for LPS-25877." />
+
+		<property name="portal.acceptance" value="classic" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
@@ -1776,6 +1788,8 @@
 	</command>
 
 	<command name="SearchXSSAsset" priority="4">
+		<property name="portal.acceptance" value="classic" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Build" />
 			<var name="panel" value="Site Administration" />
@@ -1821,6 +1835,8 @@
 	</command>
 
 	<command name="ViewSearchResultForLongURL" priority="4">
+		<property name="portal.acceptance" value="classic" />
+
 		<execute macro="ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
@@ -1858,6 +1874,8 @@
 	</command>
 
 	<command name="ViewStagedAndLiveContentInSearchResults" priority="4">
+		<property name="portal.acceptance" value="classic" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Sites" />
 			<var name="panel" value="Control Panel" />
@@ -2011,7 +2029,7 @@
 	</command>
 
 	<command name="ViewUserSearchResult" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="classic" />
 		<property name="test.name.skip.portal.instance" value="SearchUsecase#ViewUserSearchResult" />
 
 		<execute macro="ProductMenu#gotoPortlet">
