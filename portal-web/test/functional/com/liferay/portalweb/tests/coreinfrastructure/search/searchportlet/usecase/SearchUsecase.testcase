@@ -757,7 +757,7 @@
 
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="classic" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
@@ -816,6 +816,8 @@
 		<property name="portal.acceptance" value="josh" />
 
 		<description message="This is a use case for LPS-25877." />
+
+		<property name="portal.acceptance" value="classic" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
