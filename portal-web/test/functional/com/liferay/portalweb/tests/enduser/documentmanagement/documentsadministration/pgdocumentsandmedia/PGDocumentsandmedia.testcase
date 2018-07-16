@@ -1569,6 +1569,8 @@
 	</command>
 
 	<command name="SearchContentDocument" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -1591,6 +1593,8 @@
 	</command>
 
 	<command name="SearchDocument" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -1612,6 +1616,8 @@
 	</command>
 
 	<command name="SearchFolderDocument" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -1642,6 +1648,8 @@
 	</command>
 
 	<command name="SearchFolderImage" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -1672,6 +1680,8 @@
 	</command>
 
 	<command name="SearchSubFolderDocument" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -1952,6 +1962,7 @@
 	<command name="ViewSearchResultsForChildObjectRespectsParentFolderPermissions" priority="5">
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;true&quot;" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="PGDocumentsandmedia#ViewSearchResultsForChildObjectRespectsParentFolderPermissions" />
 		<property name="testray.component.names" value="Training" />
 

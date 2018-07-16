@@ -519,6 +519,7 @@
 	<command name="RolesOrganizationSearch" priority="4">
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;true&quot;" />
+		<property name="portal.acceptance" value="josh" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
@@ -1160,6 +1161,8 @@
 	</command>
 
 	<command name="RolesSiteSearch" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
