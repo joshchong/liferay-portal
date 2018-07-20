@@ -344,6 +344,8 @@
 	</command>
 
 	<command name="SearchFolderBookmark" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Bookmarks Page" />
 		</execute>

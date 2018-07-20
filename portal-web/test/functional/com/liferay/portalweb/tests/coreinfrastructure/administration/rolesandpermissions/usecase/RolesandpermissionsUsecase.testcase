@@ -519,6 +519,7 @@
 	<command name="RolesOrganizationSearch" priority="4">
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;true&quot;" />
+		<property name="portal.acceptance" value="josh" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
@@ -710,7 +711,7 @@
 			<var name="siteName" value="Organization Name" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro=" SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Test Document" />
 		</execute>
 
@@ -743,7 +744,7 @@
 
 		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no documents or media files in this folder." />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro=" SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Test Document" />
 		</execute>
 
@@ -770,7 +771,7 @@
 			<var name="dmDocumentTitle" value="Test Document" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro=" SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Test Document" />
 		</execute>
 
@@ -1160,6 +1161,8 @@
 	</command>
 
 	<command name="RolesSiteSearch" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />

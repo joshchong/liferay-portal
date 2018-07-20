@@ -105,7 +105,7 @@
 			<var name="url" value="${searchURL}" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Search#SEARCH_BAR" value1="Potato" />
+		<execute function="AssertTextEquals" locator1="Search#SEARCH_BAR_WIDGET" value1="Potato" />
 
 		<execute macro="SearchPortlet#viewSearchResultsPG">
 			<var name="searchAssetTitle" value="Potato Blog" />
@@ -118,6 +118,8 @@
 	</command>
 
 	<command name="SearchAssetsScopeEverythingAcrossMultipleSites" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Sites" />
 			<var name="panel" value="Control Panel" />
@@ -192,7 +194,7 @@
 			<var name="searchScope" value="Everything" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Apple" />
 		</execute>
 
@@ -342,6 +344,8 @@
 	</command>
 
 	<command name="SearchByPermission" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />
@@ -406,7 +410,7 @@
 			<var name="site" value="${siteName}" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="WC Title" />
 		</execute>
 
@@ -417,6 +421,8 @@
 	</command>
 
 	<command name="SearchByUserFacet" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
 			<var name="panel" value="Control Panel" />
@@ -498,7 +504,7 @@
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Entry" />
 		</execute>
 
@@ -542,7 +548,7 @@
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Entry" />
 		</execute>
 
@@ -550,6 +556,8 @@
 	</command>
 
 	<command name="SearchDeletedWebContent" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />
@@ -578,7 +586,7 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="WC Title" />
 		</execute>
 
@@ -586,6 +594,8 @@
 	</command>
 
 	<command ignore="true" name="SearchEntriesByPortletsAndModifiedRangeFacet" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -701,21 +711,7 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
-		</execute>
-
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Search Page" />
-		</execute>
-
-		<execute macro="Navigator#gotoPage">
-			<var name="pageName" value="Search Page" />
-		</execute>
-
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm"><![CDATA["AssetContent"]]></var>
 		</execute>
 
@@ -759,6 +755,8 @@
 	<command name="SearchGlobalTemplateSmoke" priority="5">
 		<description message="This is a use case for LPS-81931" />
 
+		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
+		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
 		<property name="portal.acceptance" value="true" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -815,6 +813,8 @@
 	</command>
 
 	<command name="SearchPortletIdAfterLogout" priority="5">
+		<property name="portal.acceptance" value="josh" />
+
 		<description message="This is a use case for LPS-25877." />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -830,7 +830,7 @@
 
 		<execute macro="User#logoutPG" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="portletId:com_liferay_users_admin_web_portlet_UsersAdminPortlet" />
 		</execute>
 
@@ -846,6 +846,8 @@
 	</command>
 
 	<command name="SearchTwiceScopeEverything" priority="5">
+		<property name="portal.acceptance" value="josh" />
+
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
 
@@ -1015,6 +1017,8 @@
 	</command>
 
 	<command name="SearchTwiceScopeThisSite" priority="5">
+		<property name="portal.acceptance" value="josh" />
+
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
 
@@ -1098,6 +1102,8 @@
 	</command>
 
 	<command name="SearchUsingCustomFacet">
+		<property name="portal.acceptance" value="josh" />
+
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
 		<property name="portal.acceptance" value="true" />
@@ -1792,6 +1798,8 @@
 	</command>
 
 	<command name="SearchXSSAsset" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Build" />
 			<var name="panel" value="Site Administration" />
@@ -1819,7 +1827,7 @@
 			<var name="threadSubject" value="Thread Subject" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Liferay Alert" />
 		</execute>
 
@@ -1837,6 +1845,8 @@
 	</command>
 
 	<command name="ViewSearchResultForLongURL" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
@@ -1848,7 +1858,7 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Document" />
 		</execute>
 
@@ -1856,7 +1866,7 @@
 			<var name="searchAssetTitle" value="DM Document Title 1" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Document" />
 		</execute>
 
@@ -1874,6 +1884,8 @@
 	</command>
 
 	<command name="ViewStagedAndLiveContentInSearchResults" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Sites" />
 			<var name="panel" value="Control Panel" />
@@ -1920,7 +1932,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Web Content Article" />
 		</execute>
 
@@ -1931,7 +1943,7 @@
 
 		<execute macro="ProductMenu#gotoLiveSite" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Web Content Article" />
 		</execute>
 
@@ -1962,7 +1974,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Web Content Article" />
 		</execute>
 
@@ -1972,7 +1984,7 @@
 
 		<execute macro="ProductMenu#gotoLiveSite" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Web Content Article" />
 		</execute>
 
@@ -2027,7 +2039,7 @@
 	</command>
 
 	<command name="ViewUserSearchResult" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="SearchUsecase#ViewUserSearchResult" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -2060,7 +2072,7 @@
 			<var name="pageName" value="Search Page" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlet#searchClassicPG">
 			<var name="searchTerm" value="Test Test" />
 		</execute>
 

@@ -348,6 +348,8 @@
 	</command>
 
 	<command name="SearchFolderDocument" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Media Gallery Page" />
 		</execute>

@@ -37,6 +37,7 @@
 	</tear-down>
 
 	<command name="AddCategorywithLocalization" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Categories,Localization" />
 
 		<execute macro="Navigator#openURL" />
@@ -195,7 +196,6 @@
 		</execute>
 
 		<execute macro="SearchPortlet#searchPG">
-			<var name="localizationIDName" value="Suchen" />
 			<var name="searchTerm" value="Kategorienamen" />
 		</execute>
 
@@ -1799,6 +1799,8 @@
 	</command>
 
 	<command name="SearchEditedCategory" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<property name="testray.component.names" value="Categories,Documents Management" />
 
 		<execute macro="ProductMenu#gotoPortlet">
