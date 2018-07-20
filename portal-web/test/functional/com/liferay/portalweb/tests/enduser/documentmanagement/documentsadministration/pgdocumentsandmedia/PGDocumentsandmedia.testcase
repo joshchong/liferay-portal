@@ -1569,6 +1569,8 @@
 	</command>
 
 	<command name="SearchContentDocument" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -1579,11 +1581,11 @@
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="This is a *.doc file." />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultPG">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="searchAssetSummary" value="This is a *.doc file." />
 			<var name="searchAssetTitle" value="DM Document Title" />
 			<var name="searchAssetType" value="Document" />
@@ -1591,6 +1593,8 @@
 	</command>
 
 	<command name="SearchDocument" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -1601,17 +1605,19 @@
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="DM Document Title" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultPG">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="searchAssetTitle" value="DM Document Title" />
 			<var name="searchAssetType" value="Document" />
 		</execute>
 	</command>
 
 	<command name="SearchFolderDocument" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -1631,17 +1637,19 @@
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="DM Document Title" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultPG">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="searchAssetTitle" value="DM Document Title" />
 			<var name="searchAssetType" value="Document" />
 		</execute>
 	</command>
 
 	<command name="SearchFolderImage" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -1661,17 +1669,19 @@
 			<var name="dmDocumentTitle" value="DM Image Title" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="DM Image Title" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultPG">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="searchAssetTitle" value="DM Image Title" />
 			<var name="searchAssetType" value="Document" />
 		</execute>
 	</command>
 
 	<command name="SearchSubFolderDocument" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -1700,11 +1710,11 @@
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="DM Document Title" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultPG">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="searchAssetTitle" value="DM Document Title" />
 			<var name="searchAssetType" value="Document" />
 		</execute>
@@ -1952,6 +1962,7 @@
 	<command name="ViewSearchResultsForChildObjectRespectsParentFolderPermissions" priority="5">
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;true&quot;" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="PGDocumentsandmedia#ViewSearchResultsForChildObjectRespectsParentFolderPermissions" />
 		<property name="testray.component.names" value="Training" />
 
@@ -2262,11 +2273,11 @@
 			<var name="siteName" value="Site Name 1" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="DM Document Title" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchNoPG">
+		<execute macro="ClassicSearch#viewSearchNoPG">
 			<var name="searchAssetTitle" value="DM Document Title" />
 			<var name="searchAssetType" value="Document" />
 			<var name="searchNoResults" value="true" />

@@ -82,7 +82,7 @@
 	</command>
 
 	<command name="ElasticsearchRemoteClusterSmokeTest" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="remote.elasticsearch.cluster.size" value="2" />
 		<property name="remote.elasticsearch.enabled" value="true" />
 		<property name="test.name.skip.portal.instance" value="Elasticsearch6#ElasticsearchRemoteClusterSmokeTest" />
@@ -120,32 +120,32 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="Apple" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultsPG">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="searchAssetTitle" value="Apple" />
 			<var name="searchAssetType" value="Document" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultsPG">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="searchAssetTitle" value="Apple" />
 			<var name="searchAssetType" value="Message Boards Message" />
 		</execute>
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="Orange" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultsPG">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="searchAssetTitle" value="Apple" />
 			<var name="searchAssetType" value="Document" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultsPG">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="searchAssetTitle" value="Apple" />
 			<var name="searchAssetType" value="Message Boards Message" />
 		</execute>

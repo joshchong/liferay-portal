@@ -37,6 +37,7 @@
 	</tear-down>
 
 	<command name="AddCategorywithLocalization" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Categories,Localization" />
 
 		<execute macro="Navigator#openURL" />
@@ -194,12 +195,11 @@
 			<var name="pageName" value="Category Page Name" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
-			<var name="localizationIDName" value="Suchen" />
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="Kategorienamen" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultPG">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="searchAssetTitle" value="Web Content Title" />
 			<var name="searchAssetType" value="Webcontent" />
 		</execute>
@@ -1799,6 +1799,8 @@
 	</command>
 
 	<command name="SearchEditedCategory" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<property name="testray.component.names" value="Categories,Documents Management" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -1852,11 +1854,11 @@
 			<var name="pageName" value="Search Page" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="Edited" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultPG">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="searchAssetTitle" value="DM Document Title" />
 			<var name="searchAssetType" value="Document" />
 		</execute>

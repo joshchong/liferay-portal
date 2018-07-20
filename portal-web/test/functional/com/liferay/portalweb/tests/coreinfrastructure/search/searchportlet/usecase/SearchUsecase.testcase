@@ -66,7 +66,7 @@
 			<var name="pageName" value="Search Page" />
 		</execute>
 
-		<execute macro="SearchPortlet#addSearchPortlets">
+		<execute macro="SearchPortlets#addWidgets">
 			<var name="searchPortletList" value="Type Facet,Search Results,Search Bar" />
 		</execute>
 
@@ -76,20 +76,20 @@
 			<var name="portletName" value="Search Results" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#configureParameterNames">
+		<execute macro="SearchPortlets#configureWidgetParameterNames">
 			<var name="keywordsParameterName" value="keywordparameter" />
 			<var name="scopeParameterName" value="scopeparameter" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#configureScope">
+		<execute macro="SearchPortlets#configureWidgetScope">
 			<var name="searchScope" value="Let the User Choose" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#selectScopeInput">
+		<execute macro="SearchPortlets#selectWidgetScopeInput">
 			<var name="searchScope" value="Everything" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlets#searchWidget">
 			<var name="searchTerm" value="Potato" />
 		</execute>
 
@@ -105,9 +105,9 @@
 			<var name="url" value="${searchURL}" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Search#SEARCH_BAR" value1="Potato" />
+		<execute function="AssertTextEquals" locator1="Search#SEARCH_BAR_WIDGET" value1="Potato" />
 
-		<execute macro="SearchPortlet#viewSearchResultsPG">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="searchAssetTitle" value="Potato Blog" />
 			<var name="searchAssetType" value="Blogs Entry" />
 		</execute>
@@ -118,6 +118,8 @@
 	</command>
 
 	<command name="SearchAssetsScopeEverythingAcrossMultipleSites" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Sites" />
 			<var name="panel" value="Control Panel" />
@@ -188,25 +190,25 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="SearchPortlet#configureScope">
+		<execute macro="ClassicSearch#configureScope">
 			<var name="searchScope" value="Everything" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="Apple" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultsPG">
+		<execute macro="ClassicSearch#viewSearchResultsPG">
 			<var name="searchAssetTitle" value="Apple" />
 			<var name="searchAssetType" value="Web Content Article" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultsPG">
+		<execute macro="ClassicSearch#viewSearchResultsPG">
 			<var name="searchAssetTitle" value="Apple" />
 			<var name="searchAssetType" value="Document" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultsPG">
+		<execute macro="ClassicSearch#viewSearchResultsPG">
 			<var name="searchAssetTitle" value="Apple" />
 			<var name="searchAssetType" value="Blogs Entry" />
 		</execute>
@@ -271,7 +273,7 @@
 			<var name="pageName" value="Search Page" />
 		</execute>
 
-		<execute macro="SearchPortlet#addSearchPortlets">
+		<execute macro="SearchPortlets#addWidgets">
 			<var name="searchPortletList" value="Search Results,Search Bar" />
 		</execute>
 
@@ -281,23 +283,23 @@
 			<var name="portletName" value="Search Results" />
 		</execute>
 
-		<execute macro="SearchPortlet#configureScope">
+		<execute macro="SearchPortlets#configureEmbeddedScope">
 			<var name="searchScope" value="Let the User Choose" />
 		</execute>
 
-		<execute macro="SearchPortlet#selectScopeInput">
+		<execute macro="SearchPortlets#selectEmbeddedScopeInput">
 			<var name="searchScope" value="Everything" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#configureScope">
+		<execute macro="SearchPortlets#configureWidgetScope">
 			<var name="searchScope" value="Let the User Choose" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#selectScopeInput">
+		<execute macro="SearchPortlets#selectWidgetScopeInput">
 			<var name="searchScope" value="Everything" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlets#searchWidget">
 			<var name="searchTerm" value="Potato" />
 		</execute>
 
@@ -316,15 +318,15 @@
 			<var name="searchTerm" value="Potato" />
 		</execute>
 
-		<execute macro="SearchPortlet#selectScopeInput">
+		<execute macro="SearchPortlets#selectEmbeddedScopeInput">
 			<var name="searchScope" value="This Site" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#selectScopeInput">
+		<execute macro="SearchPortlets#selectWidgetScopeInput">
 			<var name="searchScope" value="This Site" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlets#searchWidget">
 			<var name="searchTerm" value="Potato" />
 		</execute>
 
@@ -342,6 +344,8 @@
 	</command>
 
 	<command name="SearchByPermission" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />
@@ -406,17 +410,19 @@
 			<var name="site" value="${siteName}" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="WC Title" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultPG">
+		<execute macro="ClassicSearch#viewSearchResultPG">
 			<var name="searchAssetTitle" value="WC Title" />
 			<var name="searchAssetType" value="Web Content Article" />
 		</execute>
 	</command>
 
 	<command name="SearchByUserFacet" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
 			<var name="panel" value="Control Panel" />
@@ -498,11 +504,11 @@
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="Entry" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewUserFacetPG">
+		<execute macro="ClassicSearch#viewUserFacetPG">
 			<var name="facetFrequency" value="1" />
 			<var name="searchAssetSummary" value="Blogs Super Admin Entry Content" />
 			<var name="searchAssetTitle" value="Blogs Super Admin Entry Title" />
@@ -510,7 +516,7 @@
 			<var name="userLoginFullName" value="Test Test" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchNoPG">
+		<execute macro="ClassicSearch#viewSearchNoPG">
 			<var name="searchAssetSummary" value="Blogs User Entry Content" />
 			<var name="searchAssetTitle" value="Blogs User Entry Title" />
 			<var name="searchAssetType" value="Blogs Entry" />
@@ -518,7 +524,7 @@
 
 		<execute function="AssertClick" locator1="SearchResults#USER_FACET_ANY_USER" value1="Any User" />
 
-		<execute macro="SearchPortlet#viewUserFacetPG">
+		<execute macro="ClassicSearch#viewUserFacetPG">
 			<var name="facetFrequency" value="1" />
 			<var name="searchAssetSummary" value="Blogs User Entry Content" />
 			<var name="searchAssetTitle" value="Blogs User Entry Title" />
@@ -526,7 +532,7 @@
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchNoPG">
+		<execute macro="ClassicSearch#viewSearchNoPG">
 			<var name="searchAssetSummary" value="Blogs Super Admin Entry Content" />
 			<var name="searchAssetTitle" value="Blogs Super Admin Entry Title" />
 			<var name="searchAssetType" value="Blogs Entry" />
@@ -536,13 +542,13 @@
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="SearchPortlet#removeUserFacetDisplayPG" />
+		<execute macro="ClassicSearch#removeUserFacetDisplayPG" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="Entry" />
 		</execute>
 
@@ -550,6 +556,8 @@
 	</command>
 
 	<command name="SearchDeletedWebContent" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />
@@ -578,7 +586,7 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="WC Title" />
 		</execute>
 
@@ -586,6 +594,8 @@
 	</command>
 
 	<command ignore="true" name="SearchEntriesByPortletsAndModifiedRangeFacet" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -701,21 +711,7 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
-		</execute>
-
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Search Page" />
-		</execute>
-
-		<execute macro="Navigator#gotoPage">
-			<var name="pageName" value="Search Page" />
-		</execute>
-
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm"><![CDATA["AssetContent"]]></var>
 		</execute>
 
@@ -731,15 +727,15 @@
 			<execute function="AssertElementNotPresent" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" />
 		</for>
 
-		<execute macro="SearchPortlet#viewAssetTypeFacetPG">
+		<execute macro="ClassicSearch#viewAssetTypeFacetPG">
 			<var name="facetFrequency" value="1" />
 			<var name="searchAssetTitle" value="Wiki Page2 Title" />
 			<var name="searchAssetType" value="Wiki Page" />
 		</execute>
 
-		<execute macro="SearchPortlet#unscopeAssetFacetPG" />
+		<execute macro="ClassicSearch#unscopeAssetFacetPG" />
 
-		<execute macro="SearchPortlet#gotoModifiedRangeFacetPG">
+		<execute macro="ClassicSearch#gotoModifiedRangeFacetPG">
 			<var name="searchModifiedRange" value="Past Month" />
 		</execute>
 
@@ -759,7 +755,9 @@
 	<command name="SearchGlobalTemplateSmoke" priority="5">
 		<description message="This is a use case for LPS-81931" />
 
-		<property name="portal.acceptance" value="true" />
+		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
+		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
+		<property name="portal.acceptance" value="classic" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
@@ -804,18 +802,22 @@
 			</execute>
 		</for>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlets#searchWidget">
 			<var name="searchTerm" value="Blogs" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultsPG">
+		<execute macro="SearchResultPortlet#viewSearchResults">
 			<var name="searchAssetTitle" value="Blogs Entry 1 Title" />
 			<var name="searchAssetType" value="Blogs Entry" />
 		</execute>
 	</command>
 
 	<command name="SearchPortletIdAfterLogout" priority="5">
+		<property name="portal.acceptance" value="josh" />
+
 		<description message="This is a use case for LPS-25877." />
+
+		<property name="portal.acceptance" value="classic" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
@@ -830,22 +832,24 @@
 
 		<execute macro="User#logoutPG" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="portletId:com_liferay_users_admin_web_portlet_UsersAdminPortlet" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchNoPG">
+		<execute macro="ClassicSearch#viewSearchNoPG">
 			<var name="searchAssetTitle" value="Test Test" />
 			<var name="searchAssetType" value="User" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchNoPG">
+		<execute macro="ClassicSearch#viewSearchNoPG">
 			<var name="searchAssetTitle" value="Organization Name" />
 			<var name="searchAssetType" value="Organization" />
 		</execute>
 	</command>
 
 	<command name="SearchTwiceScopeEverything" priority="5">
+		<property name="portal.acceptance" value="josh" />
+
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
 
@@ -893,15 +897,15 @@
 			<var name="url" value="${portalURL}/web/guest/search" />
 		</execute>
 
-		<execute macro="SearchPortlet#configureScope">
+		<execute macro="SearchPortlets#configureEmbeddedScope">
 			<var name="searchScope" value="Everything" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#configureScope">
+		<execute macro="SearchPortlets#configureWidgetScope">
 			<var name="searchScope" value="Everything" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="usersn" />
 		</execute>
 
@@ -910,7 +914,7 @@
 			<var name="searchTerm" value="usersn" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="usersn" />
 		</execute>
 
@@ -968,15 +972,15 @@
 			<var name="url" value="${portalURL}/web/guest/search" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#configureScope">
+		<execute macro="SearchPortlets#configureWidgetScope">
 			<var name="searchScope" value="Let the User Choose" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#selectScopeInput">
+		<execute macro="SearchPortlets#selectWidgetScopeInput">
 			<var name="searchScope" value="This Site" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlets#searchWidget">
 			<var name="searchTerm" value="usersn" />
 		</execute>
 
@@ -993,11 +997,11 @@
 
 		<!-- LPS-80521 -->
 
-		<!-- <execute macro="SearchBarPortlet#selectScopeInput">
+		<!-- <execute macro="SearchPortlets#selectWidgetScopeInput">
 			<var name="searchScope" value="Everything" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlets#searchWidget">
 			<var name="searchTerm" value="usersn" />
 		</execute>
 
@@ -1015,6 +1019,8 @@
 	</command>
 
 	<command name="SearchTwiceScopeThisSite" priority="5">
+		<property name="portal.acceptance" value="josh" />
+
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
 
@@ -1062,11 +1068,11 @@
 			<var name="url" value="${portalURL}/web/guest/search" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#configureScope">
+		<execute macro="SearchPortlets#configureWidgetScope">
 			<var name="searchScope" value="This Site" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="usersn" />
 		</execute>
 
@@ -1081,7 +1087,7 @@
 			<var name="searchAssetType" value="User" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="usersn" />
 		</execute>
 
@@ -1098,6 +1104,8 @@
 	</command>
 
 	<command name="SearchUsingCustomFacet">
+		<property name="portal.acceptance" value="josh" />
+
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
 		<property name="portal.acceptance" value="true" />
@@ -1136,7 +1144,7 @@
 			<var name="aggregationField" value="version" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlets#searchWidget">
 			<var name="searchTerm" value="WebContent" />
 		</execute>
 
@@ -1186,7 +1194,7 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="WebContent" />
 		</execute>
 
@@ -1428,7 +1436,7 @@
 			<var name="pageName" value="${searchPage}" />
 		</execute>
 
-		<execute macro="SearchPortlet#addSearchPortlets">
+		<execute macro="SearchPortlets#addWidgets">
 			<var name="searchPortletList" value="Search Options,Category Facet,Folder Facet,Site Facet,Tag Facet,Type Facet,User Facet,Search Results,Search Bar" />
 		</execute>
 
@@ -1438,11 +1446,11 @@
 			<var name="portletName" value="Search Results" />
 		</execute>
 
-		<execute macro="SearchPortlet#configureScope">
+		<execute macro="SearchPortlets#configureEmbeddedScope">
 			<var name="searchScope" value="Everything" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#configureScope">
+		<execute macro="SearchPortlets#configureWidgetScope">
 			<var name="searchScope" value="Everything" />
 		</execute>
 
@@ -1451,7 +1459,7 @@
 			<var name="basicFacetSelection" value="true" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlets#searchWidget">
 			<var name="searchTerm" value="apple" />
 		</execute>
 
@@ -1518,11 +1526,11 @@
 			<var name="searchURL" value="${testSearchURL}" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlets#searchWidget">
 			<var name="searchTerm" value="test" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#getSearchTermURL">
+		<execute macro="SearchPortlets#getSearchTermURL">
 			<return from="searchURL" name="testSearchURL" />
 			<var name="searchPage" value="${searchPage}" />
 			<var name="searchTerm" value="test" />
@@ -1589,11 +1597,11 @@
 			<var name="searchURL" value="${testSearchURL}" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlets#searchWidget">
 			<var name="searchTerm" value="test" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#getSearchTermURL">
+		<execute macro="SearchPortlets#getSearchTermURL">
 			<return from="searchURL" name="testSearchURL" />
 			<var name="searchPage" value="${searchPage}" />
 			<var name="searchTerm" value="test" />
@@ -1730,11 +1738,11 @@
 			<var name="searchURL" value="${testSearchURL}" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlets#searchWidget">
 			<var name="searchTerm" value="organic" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#getSearchTermURL">
+		<execute macro="SearchPortlets#getSearchTermURL">
 			<return from="searchURL" name="testSearchURL" />
 			<var name="searchPage" value="${searchPage}" />
 			<var name="searchTerm" value="organic" />
@@ -1792,6 +1800,8 @@
 	</command>
 
 	<command name="SearchXSSAsset" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Build" />
 			<var name="panel" value="Site Administration" />
@@ -1819,11 +1829,11 @@
 			<var name="threadSubject" value="Thread Subject" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="Liferay Alert" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultPG">
+		<execute macro="ClassicSearch#viewSearchResultPG">
 			<var name="searchAssetTitle" value="Thread Subject" />
 			<var name="searchAssetType" value="Message Boards Message" />
 			<var name="searchAssetSummary"><![CDATA[<script>alert(123);</script>]]></var>
@@ -1837,6 +1847,8 @@
 	</command>
 
 	<command name="ViewSearchResultForLongURL" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoSitesContent">
 			<var name="portlet" value="Documents and Media" />
 		</execute>
@@ -1848,32 +1860,34 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="Document" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchAssetTitle">
+		<execute macro="ClassicSearch#viewSearchAssetTitle">
 			<var name="searchAssetTitle" value="DM Document Title 1" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="Document" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchAssetTitle">
+		<execute macro="ClassicSearch#viewSearchAssetTitle">
 			<var name="searchAssetTitle" value="DM Document Title 1" />
 		</execute>
 
-		<execute macro="SearchPortlet#gotoSearchResultPG">
+		<execute macro="ClassicSearch#gotoSearchResultPG">
 			<var name="searchAssetTitle" value="DM Document Title 1" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchAssetDetailPage">
+		<execute macro="ClassicSearch#viewSearchAssetDetailPage">
 			<var name="searchAssetTitle" value="DM Document Title 1" />
 		</execute>
 	</command>
 
 	<command name="ViewStagedAndLiveContentInSearchResults" priority="4">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Sites" />
 			<var name="panel" value="Control Panel" />
@@ -1920,22 +1934,22 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="Web Content Article" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultsPG">
+		<execute macro="ClassicSearch#viewSearchResultsPG">
 			<var name="searchAssetTitle" value="WebContent Title" />
 			<var name="searchAssetType" value="Web Content Article" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoLiveSite" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="Web Content Article" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchNoAssetTitle">
+		<execute macro="ClassicSearch#viewSearchNoAssetTitle">
 			<var name="searchAssetTitle" value="WebContent Title" />
 		</execute>
 
@@ -1962,21 +1976,21 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="Web Content Article" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchNoAssetTitle">
+		<execute macro="ClassicSearch#viewSearchNoAssetTitle">
 			<var name="searchAssetTitle" value="WebContent Title" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoLiveSite" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="Web Content Article" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchResultsPG">
+		<execute macro="ClassicSearch#viewSearchResultsPG">
 			<var name="searchAssetTitle" value="WebContent Title" />
 			<var name="searchAssetType" value="Web Content Article" />
 		</execute>
@@ -2004,20 +2018,20 @@
 			<var name="portletName" value="Search Bar" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#configureParameterNames">
+		<execute macro="SearchPortlets#configureWidgetParameterNames">
 			<var name="keywordsParameterName" value="keywordparameter" />
 			<var name="scopeParameterName" value="scopeparameter" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#configureScope">
+		<execute macro="SearchPortlets#configureWidgetScope">
 			<var name="searchScope" value="Let the User Choose" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#selectScopeInput">
+		<execute macro="SearchPortlets#selectWidgetScopeInput">
 			<var name="searchScope" value="This Site" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlets#searchWidget">
 			<var name="searchTerm" value="Potato" />
 		</execute>
 
@@ -2027,7 +2041,7 @@
 	</command>
 
 	<command name="ViewUserSearchResult" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="SearchUsecase#ViewUserSearchResult" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -2060,19 +2074,19 @@
 			<var name="pageName" value="Search Page" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="Test Test" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchAssetTitle">
+		<execute macro="ClassicSearch#viewSearchAssetTitle">
 			<var name="searchAssetTitle" value="Test Test" />
 		</execute>
 
-		<execute macro="SearchPortlet#gotoSearchResultPG">
+		<execute macro="ClassicSearch#gotoSearchResultPG">
 			<var name="searchAssetTitle" value="Test Test" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewUserSearchResultPG">
+		<execute macro="ClassicSearch#viewUserSearchResultPG">
 			<var name="pageName" value="Welcome" />
 			<var name="userName" value="Test Test" />
 		</execute>

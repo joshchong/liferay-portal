@@ -776,8 +776,10 @@
 	</command>
 
 	<command name="SearchMultipleTagsViaBlogs" priority="3">
+		<property name="portal.acceptance" value="classic" />
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;true&quot;" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Blogs,Tags" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -847,21 +849,19 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="blue" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchAssetTitle">
-			<var name="searchAssetSummary" value="Entry Content 1" />
+		<execute macro="ClassicSearch#viewSearchAssetTitle">
 			<var name="searchAssetTitle" value="Entry Title 1" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="ClassicSearch#search">
 			<var name="searchTerm" value="yellow" />
 		</execute>
 
-		<execute macro="SearchPortlet#viewSearchAssetTitle">
-			<var name="searchAssetSummary" value="Entry Content 3" />
+		<execute macro="ClassicSearch#viewSearchAssetTitle">
 			<var name="searchAssetTitle" value="Entry Title 3" />
 		</execute>
 	</command>
