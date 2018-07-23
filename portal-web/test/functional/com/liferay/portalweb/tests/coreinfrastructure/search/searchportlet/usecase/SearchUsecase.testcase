@@ -923,6 +923,7 @@
 	<command name="SearchTwiceScopeLetUserChoose" priority="5">
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;false&quot;" />
+		<property name="portal.acceptance" value="josh" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
@@ -993,7 +994,7 @@
 
 		<!-- LPS-80521 -->
 
-		<!-- <execute macro="SearchBarPortlet#selectScopeInput">
+		<execute macro="SearchBarPortlet#selectScopeInput">
 			<var name="searchScope" value="Everything" />
 		</execute>
 
@@ -1011,7 +1012,7 @@
 			<var name="searchAssetTitle" value="userfn2 userln2" />
 			<var name="searchAssetType" value="User" />
 			<var name="searchTerm" value="usersn" />
-		</execute> -->
+		</execute>
 	</command>
 
 	<command name="SearchTwiceScopeThisSite" priority="5">
