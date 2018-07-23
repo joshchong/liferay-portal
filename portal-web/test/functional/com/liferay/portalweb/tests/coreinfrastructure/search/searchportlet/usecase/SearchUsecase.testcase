@@ -969,15 +969,15 @@
 			<var name="url" value="${portalURL}/web/guest/search" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#configureScope">
+		<execute macro="SearchPortlet#configureScope">
 			<var name="searchScope" value="Let the User Choose" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#selectScopeInput">
+		<execute macro="SearchPortlet#selectScopeInput">
 			<var name="searchScope" value="This Site" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlet#searchPG">
 			<var name="searchTerm" value="usersn" />
 		</execute>
 
@@ -994,11 +994,11 @@
 
 		<!-- LPS-80521 -->
 
-		<execute macro="SearchBarPortlet#selectScopeInput">
+		<execute macro="SearchPortlet#selectScopeInput">
 			<var name="searchScope" value="Everything" />
 		</execute>
 
-		<execute macro="SearchBarPortlet#searchPG">
+		<execute macro="SearchPortlet#searchPG">
 			<var name="searchTerm" value="usersn" />
 		</execute>
 
