@@ -6,7 +6,7 @@
 	<property name="portal.suite.search.engine" value="solr" />
 	<property name="portal.upstream" value="true" />
 	<property name="solr.enabled" value="true" />
-	<property name="testray.main.component.name" value="Web Search" />
+	<property name="testray.main.component.name" value="SOLR Impl" />
 
 	<var name="searchPageName" value="Test Page" />
 	<var name="searchPortletName" value="Search" />
