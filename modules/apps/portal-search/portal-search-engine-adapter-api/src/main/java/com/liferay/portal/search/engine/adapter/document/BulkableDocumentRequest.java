@@ -12,15 +12,18 @@
  * details.
  */
 
-package com.liferay.portal.osgi.web.servlet.jsp.compiler.internal;
+package com.liferay.portal.search.engine.adapter.document;
 
-import javax.servlet.ServletContext;
+import aQute.bnd.annotation.ProviderType;
+
+import java.util.function.Consumer;
 
 /**
- * @author Raymond Augé
+ * @author Michael C. Han
  */
-public interface JspServletContext {
+@ProviderType
+public interface BulkableDocumentRequest<T> {
 
-	public ServletContext getWrappedServletContext();
+	public void accept(Consumer<T> consumer);
 
 }
