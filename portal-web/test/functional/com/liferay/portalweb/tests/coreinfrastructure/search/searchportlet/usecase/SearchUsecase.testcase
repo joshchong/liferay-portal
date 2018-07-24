@@ -960,15 +960,15 @@
 			<var name="url" value="${portalURL}/web/guest/search" />
 		</execute>
 
-		<execute macro="SearchPortlets#configureWidgetScope">
+		<execute macro="SearchPortlets#configureEmbeddedScope">
 			<var name="searchScope" value="Let the User Choose" />
 		</execute>
 
-		<execute macro="SearchPortlets#selectWidgetScopeInput">
+		<execute macro="SearchPortlets#selectEmbeddedScopeInput">
 			<var name="searchScope" value="This Site" />
 		</execute>
 
-		<execute macro="SearchPortlets#searchWidget">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="usersn" />
 		</execute>
 
@@ -983,13 +983,11 @@
 			<var name="searchAssetType" value="User" />
 		</execute>
 
-		<!-- LPS-80521 -->
-
-		<!-- <execute macro="SearchPortlets#selectWidgetScopeInput">
+		<execute macro="SearchPortlets#selectEmbeddedScopeInput">
 			<var name="searchScope" value="Everything" />
 		</execute>
 
-		<execute macro="SearchPortlets#searchWidget">
+		<execute macro="SearchPortlets#searchEmbedded">
 			<var name="searchTerm" value="usersn" />
 		</execute>
 
@@ -1003,7 +1001,7 @@
 			<var name="searchAssetTitle" value="userfn2 userln2" />
 			<var name="searchAssetType" value="User" />
 			<var name="searchTerm" value="usersn" />
-		</execute> -->
+		</execute>
 	</command>
 
 	<command name="SearchTwiceScopeThisSite" priority="5">
