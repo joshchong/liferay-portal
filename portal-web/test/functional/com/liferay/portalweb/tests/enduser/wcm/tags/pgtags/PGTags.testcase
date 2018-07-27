@@ -776,6 +776,7 @@
 	</command>
 
 	<command name="SearchMultipleTagsViaBlogs" priority="3">
+		<property name="portal.suite.search.engine" value="elasticsearch6" />
 		<property name="testray.component.names" value="Blogs,Tags" />
 
 		<execute macro="ProductMenu#gotoPortlet">
