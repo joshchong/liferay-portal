@@ -519,6 +519,7 @@
 	<command name="RolesOrganizationSearch" priority="4">
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config" />
 		<property name="osgi.module.configurations" value="classicSearchPortletInFrontPage=&quot;true&quot;" />
+		<property name="portal.suite.search.engine" value="elasticsearch6" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
