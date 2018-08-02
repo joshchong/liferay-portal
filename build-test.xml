@@ -38,6 +38,18 @@
 	<property location="${project.dir}/tools/putty/plink.exe" name="plink.executable" />
 	<property location="${project.dir}/tools/putty/pscp.exe" name="pscp.executable" />
 
+	<macrodef name="check-solr-started">
+		<sequential>
+			<local name="solr.server.not.started" />
+
+			<waitfor maxwait="10" maxwaitunit="second" timeoutproperty="solr.server.not.started">
+				<socket port="8983" server="localhost" />
+			</waitfor>
+
+			<fail if="solr.server.not.started" message="Solr server failed to initialize." />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="apply-portal-ext-properties">
 		<sequential>
 			<if>
@@ -9634,6 +9646,10 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			</then>
 		</if>
 
+		<echo>BEFORE clean up java processes</echo>
+
+		<check-solr-started />
+
 		<if>
 			<not>
 				<equals arg1="${os.name}" arg2="SunOS" />
@@ -9642,6 +9658,10 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 				<antcall inheritAll="false" target="clean-up-java-processes" />
 			</then>
 		</if>
+
+		<echo>AFTER clean up java processes</echo>
+
+		<check-solr-started />
 
 		<antcall inheritAll="false" target="copy-optional-jars">
 			<param name="todir" value="${app.server.lib.global.dir}" />
@@ -9757,6 +9777,8 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 				<ant antfile="build-test-solr.xml" target="start-solr" />
 			</then>
 		</if>
+
+		<check-solr-started />
 
 		<get-testcase-property property.name="test.smtp.server.enabled" />
 
