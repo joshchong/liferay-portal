@@ -124,6 +124,8 @@
 	</command>
 
 	<command name="SearchBlogsEntry" priority="4">
+		<property name="portal.suite.search.engine" value="josh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
