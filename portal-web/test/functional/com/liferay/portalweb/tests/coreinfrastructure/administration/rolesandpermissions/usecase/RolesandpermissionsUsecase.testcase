@@ -263,6 +263,7 @@
 
 	<command name="GroupScopePermissionCheck" priority="4">
 		<property name="osgi.app.includes" value="bookmarks" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="RolesandpermissionsUsecase#GroupScopePermissionCheck" />
 
 		<execute macro="TestCase#getSiteName">
@@ -1999,6 +2000,7 @@
 
 	<command name="SiteRoleBookmarksInlinePermissions" priority="4">
 		<property name="osgi.app.includes" value="bookmarks" />
+		<property name="portal.acceptance" value="josh" />
 
 		<execute macro="TestCase#getSiteName">
 			<return name="siteName" />

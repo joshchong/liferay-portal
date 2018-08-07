@@ -1892,6 +1892,7 @@
 
 	<command name="ViewMultipleFacetURLs" priority="5">
 		<property name="osgi.app.includes" value="bookmarks" />
+		<property name="portal.acceptance" value="josh" />
 
 		<var name="searchPage" value="Search Page" />
 
