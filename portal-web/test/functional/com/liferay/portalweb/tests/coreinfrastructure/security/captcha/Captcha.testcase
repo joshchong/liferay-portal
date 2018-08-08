@@ -35,7 +35,8 @@
 		</execute>
 	</command>
 
-	<command ignore="true" name="ViewRecaptchaEnabled" priority="4">
+	<command name="ViewRecaptchaEnabled" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="Captcha#ViewRecaptchaEnabled" />
 
 		<var method="PropsUtil#get('recaptcha.private.key')" name="recaptchaPrivateKey" />
