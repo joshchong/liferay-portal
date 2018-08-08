@@ -3520,10 +3520,44 @@
 	</command>
 
 	<command name="SubmitFormContainingCaptchaAndViewTextFieldValue" priority="5">
-		<description message="This is a use case for LPS-60818." />
-		<property name="osgi.module.configuration.file.names" value="com.liferay.captcha.configuration.CaptchaConfiguration.config" />
-		<property name="osgi.module.configurations" value="maxChallenges=&quot;0&quot;" />
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="josh" />
+
+		<var method="PropsUtil#get('recaptcha.private.key')" name="recaptchaPrivateKey" />
+		<var method="PropsUtil#get('recaptcha.public.key')" name="recaptchaPublicKey" />
+
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
+			<var name="portlet" value="System Settings" />
+		</execute>
+
+		<execute macro="SystemSettings#gotoConfiguration">
+			<var name="configurationCategory" value="Security Tools" />
+			<var name="configurationName" value="CAPTCHA" />
+			<var name="configurationScope" value="System Scope" />
+		</execute>
+
+		<execute macro="SystemSettings#editTextSetting">
+			<var name="settingName" value="Maximum Challenges" />
+			<var name="settingValue" value="0" />
+		</execute>
+
+		<execute macro="SystemSettings#selectOptionSetting">
+			<var name="fieldName" value="CAPTCHA Engine" />
+			<var name="selectOption" value="reCAPTCHA" />
+		</execute>
+
+		<execute macro="SystemSettings#editTextAreaSetting">
+			<var name="settingName" value="reCAPTCHA Private Key" />
+			<var name="settingValue" value="${recaptchaPrivateKey}" />
+		</execute>
+
+		<execute macro="SystemSettings#editTextAreaSetting">
+			<var name="settingName" value="reCAPTCHA Public Key" />
+			<var name="settingValue" value="${recaptchaPublicKey}" />
+		</execute>
+
+		<execute macro="SystemSettings#saveConfiguration" />
 
 		<execute macro="Navigator#openURL" />
 
