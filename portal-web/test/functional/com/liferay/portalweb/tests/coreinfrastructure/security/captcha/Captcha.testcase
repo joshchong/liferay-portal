@@ -70,12 +70,12 @@
 
 		<execute macro="SystemSettings#editTextAreaSetting">
 			<var name="settingName" value="reCAPTCHA Private Key" />
-			<var name="settingValue" value="${recaptchaPrivateKey}" />
+			<var name="settingValue" value="6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe" />
 		</execute>
 
 		<execute macro="SystemSettings#editTextAreaSetting">
 			<var name="settingName" value="reCAPTCHA Public Key" />
-			<var name="settingValue" value="${recaptchaPublicKey}" />
+			<var name="settingValue" value="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" />
 		</execute>
 
 		<execute macro="SystemSettings#saveConfiguration" />
