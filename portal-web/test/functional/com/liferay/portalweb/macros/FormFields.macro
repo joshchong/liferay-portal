@@ -384,6 +384,7 @@
 	</command>
 
 	<command name="viewCaptchaField">
+		<execute function="SelectFrame" locator1="IFrame#RECAPTCHA" />
 		<execute function="AssertElementPresent#assertVisible" locator1="FormFields#CAPTCHA_FIELD" />
 		<execute function="AssertElementPresent#assertVisible" locator1="FormFields#CAPTCHA_FIELD_REFRESH" />
 		<execute function="AssertTextEquals#assertPartialText" locator1="FormFields#CAPTCHA_LABEL" value1="Text Verification" />
