@@ -36,7 +36,6 @@
 	</command>
 
 	<command name="ViewRecaptchaEnabled" priority="4">
-		<property name="dummy.socket.proxy.disabled" value="true" />
 		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="Captcha#ViewRecaptchaEnabled" />
 
@@ -84,6 +83,8 @@
 		<execute macro="User#logoutPG" />
 
 		<execute macro="SignInNavigator#gotoCreateAccount" />
+
+		<execute function="Pause" locator1="5000" />
 
 		<execute macro="User#viewCaptchaPG">
 			<var name="captchaType" value="recaptcha" />
