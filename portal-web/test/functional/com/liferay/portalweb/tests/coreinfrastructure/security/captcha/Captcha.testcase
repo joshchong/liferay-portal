@@ -36,7 +36,6 @@
 	</command>
 
 	<command name="ViewRecaptchaEnabled" priority="4">
-		<property name="dummy.socket.proxy.disabled" value="true" />
 		<property name="osgi.module.configuration.file.names" value="com.liferay.captcha.configuration.CaptchaConfiguration.config" />
 		<property name="osgi.module.configurations" value="maxChallenges=&quot;0&quot;" />
 		<property name="portal.acceptance" value="josh" />
@@ -61,6 +60,8 @@
 			<var name="configurationScope" value="System Scope" />
 		</execute>
 
+		<execute macro="SystemSettings#resetConfiguration" />
+
 		<execute macro="SystemSettings#editTextSetting">
 			<var name="settingName" value="Maximum Challenges" />
 			<var name="settingValue" value="0" />
@@ -82,20 +83,6 @@
 		</execute>
 
 		<execute macro="SystemSettings#saveConfiguration" />
-
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Configuration" />
-			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="System Settings" />
-		</execute>
-
-		<execute macro="SystemSettings#gotoConfiguration">
-			<var name="configurationCategory" value="Security Tools" />
-			<var name="configurationName" value="CAPTCHA" />
-			<var name="configurationScope" value="System Scope" />
-		</execute>
-
-		<execute function="AssertElementPresent" locator1="IFrame#RECAPTCHA" />
 
 		<execute macro="User#logoutPG" />
 
