@@ -80,6 +80,22 @@
 
 		<execute macro="SystemSettings#saveConfiguration" />
 
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
+			<var name="portlet" value="System Settings" />
+		</execute>
+
+		<execute macro="SystemSettings#gotoConfiguration">
+			<var name="configurationCategory" value="Security Tools" />
+			<var name="configurationName" value="CAPTCHA" />
+			<var name="configurationScope" value="System Scope" />
+		</execute>
+
+		<execute function="AssertChecked#assertCheckedNotVisible" locator1="//input[@type='checkbox' and contains(@id,'createAccountCaptchaEnabled')] | //li[contains(.,'createAccountCaptchaEnabled')]//input[@type='checkbox']" />
+
+		<execute function="AssertElementPresent" locator1="IFrame#RECAPTCHA" />
+
 		<execute macro="User#logoutPG" />
 
 		<execute macro="SignInNavigator#gotoCreateAccount" />
