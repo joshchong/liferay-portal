@@ -92,15 +92,15 @@
 			<var name="configurationScope" value="System Scope" />
 		</execute>
 
-		<execute function="AssertChecked#assertCheckedNotVisible" locator1="//input[@type='checkbox' and contains(@id,'createAccountCaptchaEnabled')] | //li[contains(.,'createAccountCaptchaEnabled')]//input[@type='checkbox']" />
+		<execute macro="FormFields#enableCheckbox">
+			<var name="fieldName" value="createAccountCaptchaEnabled" />
+		</execute>
 
-		<execute function="AssertElementPresent" locator1="IFrame#RECAPTCHA" />
+		<execute macro="SystemSettings#saveConfiguration" />
 
 		<execute macro="User#logoutPG" />
 
 		<execute macro="SignInNavigator#gotoCreateAccount" />
-
-		<execute function="Pause" locator1="5000" />
 
 		<execute macro="User#viewCaptchaPG">
 			<var name="captchaType" value="recaptcha" />
