@@ -35,7 +35,10 @@
 		</execute>
 	</command>
 
-	<command ignore="true" name="ViewRecaptchaEnabled" priority="4">
+	<command name="ViewRecaptchaEnabled" priority="4">
+		<property name="osgi.module.configuration.file.names" value="com.liferay.captcha.configuration.CaptchaConfiguration.config" />
+		<property name="osgi.module.configurations" value="maxChallenges=&quot;0&quot;" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="Captcha#ViewRecaptchaEnabled" />
 
 		<var method="PropsUtil#get('recaptcha.private.key')" name="recaptchaPrivateKey" />
@@ -57,6 +60,8 @@
 			<var name="configurationScope" value="System Scope" />
 		</execute>
 
+		<execute macro="SystemSettings#resetConfiguration" />
+
 		<execute macro="SystemSettings#editTextSetting">
 			<var name="settingName" value="Maximum Challenges" />
 			<var name="settingValue" value="0" />
@@ -69,12 +74,12 @@
 
 		<execute macro="SystemSettings#editTextAreaSetting">
 			<var name="settingName" value="reCAPTCHA Private Key" />
-			<var name="settingValue" value="${recaptchaPrivateKey}" />
+			<var name="settingValue" value="6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe" />
 		</execute>
 
 		<execute macro="SystemSettings#editTextAreaSetting">
 			<var name="settingName" value="reCAPTCHA Public Key" />
-			<var name="settingValue" value="${recaptchaPublicKey}" />
+			<var name="settingValue" value="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" />
 		</execute>
 
 		<execute macro="SystemSettings#saveConfiguration" />

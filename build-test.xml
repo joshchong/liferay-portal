@@ -5310,20 +5310,6 @@ go]]></replacevalue>
 				</if>
 			</sequential>
 		</for>
-
-		<pathconvert property="osgi.configs">
-			<path>
-				<fileset
-					dir="${liferay.home}/osgi/configs"
-				/>
-			</path>
-		</pathconvert>
-
-		<for delimiter=":" list="${osgi.configs}" param="osgi.config">
-			<sequential>
-				<print-file file.name="@{osgi.config}" />
-			</sequential>
-		</for>
 	</target>
 
 	<target name="deploy-osgi-modules">
@@ -6210,6 +6196,8 @@ osb.lcs.portlet.oauth.consumer.secret=${osb.lcs.portlet.oauth.consumer.secret}</
 				<contains string="${osgi.module.configurations}" substring="maxChallenges" />
 			</not>
 			<then>
+				<echo>PREPARING CAPTCHA CONFIGS</echo>
+
 				<prepare-captcha-configuration />
 			</then>
 		</if>
@@ -9871,6 +9859,20 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 				</if>
 			</then>
 		</if>
+
+		<pathconvert property="osgi.configs">
+			<path>
+				<fileset
+					dir="${liferay.home}/osgi/configs"
+				/>
+			</path>
+		</pathconvert>
+
+		<for delimiter=":" list="${osgi.configs}" param="osgi.config">
+			<sequential>
+				<print-file file.name="@{osgi.config}" />
+			</sequential>
+		</for>
 
 		<get-testcase-property property.name="hook.plugins.includes" />
 
