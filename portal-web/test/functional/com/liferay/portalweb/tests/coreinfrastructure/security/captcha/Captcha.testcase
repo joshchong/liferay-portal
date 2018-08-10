@@ -40,6 +40,7 @@
 		<property name="captcha.enabled" value="true" />
 		<property name="osgi.module.configuration.file.names" value="com.liferay.captcha.configuration.CaptchaConfiguration.config" />
 		<property name="osgi.module.configurations" value="maxChallenges=&quot;0&quot;" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="Captcha#ViewRecaptchaEnabled" />
 
 		<var method="PropsUtil#get('recaptcha.private.key')" name="recaptchaPrivateKey" />
