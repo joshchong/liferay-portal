@@ -8,6 +8,7 @@
 	</set-up>
 
 	<command name="CASSmoke" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="Login#CASSmoke" />
 		<property name="web.plugins.includes" value="cas-web" />
 
@@ -80,6 +81,7 @@
 
 	<command name="FacebookSSOSmoke" priority="4">
 		<property name="dummy.socket.proxy.disabled" value="true" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="Login#FacebookSSOSmoke" />
 
 		<var method="PropsUtil#get('facebook.application.id')" name="facebookApplicationID" />
@@ -126,6 +128,7 @@
 
 	<command name="GoogleSSOSmoke" priority="4">
 		<property name="dummy.socket.proxy.disabled" value="true" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="Login#GoogleSSOSmoke" />
 
 		<var method="MathUtil#randomNumber('3')" name="googlePropertiesSet" />
@@ -249,6 +252,7 @@
 
 	<command name="OpenIDSmoke" priority="4">
 		<property name="dummy.socket.proxy.disabled" value="true" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="Login#OpenIDSmoke" />
 
 		<var method="PropsUtil#get('openid.password')" name="openIDPassword" />
@@ -382,6 +386,8 @@
 	</command>
 
 	<command name="ViewInstanceSettingsAuthentication" priority="3">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="User#firstLoginPG" />
 
 		<execute macro="ProductMenu#gotoPortlet">
