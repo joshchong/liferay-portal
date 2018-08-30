@@ -4117,6 +4117,7 @@ log.sanitizer.enabled=false</echo>
 			<test-action>
 				<gradle-execute dir="modules" task="test">
 					<arg value="-Dbuild.exclude.ant.plugin=true" />
+					<arg value="-Dcom.liferay.portal.search.solr.test.unit.started=true" />
 					<arg value="-Djunit.code.coverage=${test.batch.code.coverage}" />
 					<arg value="-Dtest.class.group.index=${axis.variable}" />
 				</gradle-execute>
@@ -4135,6 +4136,20 @@ log.sanitizer.enabled=false</echo>
 					<else>
 						<prepare-test-build />
 					</else>
+				</if>
+
+				<if>
+					<isset property="env.CI_TEST_SUITE" />
+					<then>
+						<propertycopy from="search.engine[${env.CI_TEST_SUITE}]" name="suite.search.engine" silent="true" />
+
+						<if>
+							<equals arg1="${suite.search.engine}" arg2="solr" />
+							<then>
+								<ant antfile="build-test-solr.xml" target="prepare-solr-suite" />
+							</then>
+						</if>
+					</then>
 				</if>
 			</test-set-up>
 		</run-batch-test>
