@@ -201,8 +201,9 @@
 		</execute>
 	</command>
 
-	<command ignore="true" name="OpenIDConnectSmoke" priority="4">
+	<command name="OpenIDConnectSmoke" priority="4">
 		<property name="dummy.socket.proxy.disabled" value="true" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="test.name.skip.portal.instance" value="Login#OpenIDConnectSmoke" />
 
 		<var method="MathUtil#randomNumber('3')" name="googlePropertiesSet" />
