@@ -72,7 +72,7 @@
 	</command>
 
 	<command name="ExportImportCollectionViewFragment" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="josh" />
 
 		<execute macro="Fragment#addCollection">
 			<var name="collectionDescription" value="Collection Description" />
@@ -162,7 +162,7 @@
 			<var name="button" value="Submit" />
 		</execute>
 
-		<execute function="Confirm" value1="Form submitted" />
+		<execute function="AssertConfirm" value1="Form submitted" />
 
 		<execute macro="IFrame#selectTopFrame" />
 	</command>

@@ -45,7 +45,7 @@
 	</tear-down>
 
 	<command name="AddContentPage" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="josh" />
 
 		<execute macro="Navigator#gotoNavNested">
 			<var name="navNested" value="Collection Name" />
@@ -146,6 +146,6 @@
 			<var name="button" value="Submit" />
 		</execute>
 
-		<execute function="Confirm" value1="Form submitted" />
+		<execute function="AssertConfirm" value1="Form submitted" />
 	</command>
 </definition>
