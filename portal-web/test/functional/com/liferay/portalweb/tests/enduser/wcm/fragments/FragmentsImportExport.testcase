@@ -72,7 +72,7 @@
 	</command>
 
 	<command name="ExportImportCollectionViewFragment" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="josh" />
 
 		<execute macro="Fragment#addCollection">
 			<var name="collectionDescription" value="Collection Description" />
