@@ -65,12 +65,6 @@
 	<target name="check-upgrade-client-custom-log">
 		<get-database-upgrade-client-paths />
 
-		<antcall target="rebuild-legacy-database">
-			<param name="portal.version" value="6.2.5" />
-			<param name="data.archive.type" value="data-archive-polls" />
-			<param name="skip.get.testcase.database.properties" value="true" />
-		</antcall>
-
 		<java
 			dir="${db.upgrade.client.home}"
 			failonerror="true"
