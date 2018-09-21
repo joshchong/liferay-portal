@@ -2947,7 +2947,7 @@ log.sanitizer.enabled=false</echo>
 
 				<prepare-database-upgrade-configuration />
 
-				<for keepgoing="true" list="check-upgrade-client-help,check-upgrade-client-java-version,check-upgrade-client-custom-log,check-upgrade-client-additional-settings" param="upgrade.test.target">
+				<for keepgoing="true" list="check-upgrade-client-gogoshell,check-upgrade-client-help,check-upgrade-client-java-version,check-upgrade-client-custom-log,check-upgrade-client-additional-settings" param="upgrade.test.target">
 					<sequential>
 						<ant antfile="build-test-db-upgrade-client.xml" target="@{upgrade.test.target}" />
 					</sequential>
