@@ -31,13 +31,15 @@
 
 		<execute function="Click" locator1="Icon#OPENID_CONNECT" />
 
-		<execute function="Click" locator1="Button#SUBMIT" />
+		<execute function="Click" locator1="Button#SIGN_IN" />
 
-		<execute function="Type" locator1="GoogleLogin#LOGIN_EMAIL_FIELD" value1="${userEmailAddress}" />
+		<var method="selenium#runScript('document.getElementById(&quot;identifierId&quot;).value = &quot;liferay.qa2@gmail.com&quot;&#59;')" name="setLogin" />
 
 		<execute function="Click" locator1="GoogleLogin#LOGIN_NEXT_BUTTON" />
 
-		<execute function="Type" locator1="GoogleLogin#LOGIN_PASSWORD_FIELD" value1="${userPassword}" />
+		<execute function="AssertVisible" locator1="GoogleLogin#LOGIN_PASSWORD_FIELD" />
+
+		<var method="selenium#runScript('document.getElementsByName(&quot;password&quot;)[0].value = &quot;rejoicealways6&quot;&#59;')" name="setPassword" />
 
 		<if>
 			<condition function="IsElementPresent" locator1="GoogleLogin#LOGIN_SIGN_IN_BUTTON" />
