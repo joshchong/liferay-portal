@@ -1427,7 +1427,7 @@
 
 		<execute function="AssertClick" locator1="Link#FACEBOOK" value1="Facebook" />
 
-		<execute function="SelectWindow" locator1="title=Log into Facebook | Facebook" />
+		<execute function="SelectWindow" locator1="FacebookLogin#PAGE_TITLE" />
 
 		<execute function="Type" locator1="FacebookLogin#LOGIN_EMAIL_FIELD" value1="${facebookEmail}" />
 		<execute function="Type" locator1="FacebookLogin#LOGIN_PASSWORD_FIELD" value1="${facebookPassword}" />
