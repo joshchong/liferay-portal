@@ -15,6 +15,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>LOGIN_CONTINUE</td>
+	<td>//button[contains(.,'Continue Logging In')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>LOGIN_EMAIL_FIELD</td>
 	<td>//input[@id='email']</td>
 	<td></td>

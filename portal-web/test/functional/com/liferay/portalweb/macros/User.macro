@@ -1434,6 +1434,13 @@
 
 		<execute function="Click" locator1="FacebookLogin#LOGIN_BUTTON" />
 
+		<if>
+			<condition function="IsElementPresent" locator1="FacebookLogin#LOGIN_CONTINUE" />
+			<then>
+				<execute function="Click" locator1="FacebookLogin#LOGIN_CONTINUE" />
+			</then>
+		</if>
+
 		<execute function="SelectWindow#selectWindowTopNoSPARefresh" />
 
 		<if>
