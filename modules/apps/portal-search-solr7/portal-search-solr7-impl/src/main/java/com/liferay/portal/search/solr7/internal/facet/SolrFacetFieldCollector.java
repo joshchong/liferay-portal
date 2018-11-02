@@ -92,7 +92,8 @@ public class SolrFacetFieldCollector implements FacetCollector {
 
 		for (NamedList namedList : list) {
 			map.put(
-				(String)namedList.get("val"), (Integer)namedList.get("count"));
+				(String)namedList.get("val"),
+				((Number)namedList.get("count")).intValue());
 		}
 
 		return map;
