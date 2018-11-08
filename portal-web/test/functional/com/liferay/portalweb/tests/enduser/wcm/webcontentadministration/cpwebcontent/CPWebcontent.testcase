@@ -507,6 +507,7 @@
 	<command name="AddStructureWithWebContentAndGeolocationFields" priority="5">
 		<description message="This is a use case for LPS-69560." />
 
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Web Content Administration" />
 
 		<execute macro="JSONWebcontent#addWebContent">
@@ -1067,6 +1068,7 @@
 	</command>
 
 	<command name="CannotRepublishExpiredWebContent" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Web Content Administration" />
 
 		<execute macro="JSONWebcontent#addWebContent">
@@ -1122,6 +1124,7 @@
 	</command>
 
 	<command name="CompareWebContentVersionsHistory" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Web Content Administration" />
 
 		<execute macro="JSONWebcontent#addWebContent">
@@ -1169,6 +1172,7 @@
 	</command>
 
 	<command name="DeleteWebContent" priority="5">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Web Content Administration" />
 
 		<execute macro="JSONWebcontent#addWebContent">
@@ -1384,6 +1388,7 @@
 	</command>
 
 	<command name="EditWCAddLocalization" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Localization,Web Content Administration" />
 
 		<execute macro="JSONWebcontent#addWebContent">
@@ -1437,6 +1442,7 @@
 	</command>
 
 	<command name="EditWebContent" priority="5">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Web Content Administration" />
 
 		<execute macro="JSONWebcontent#addWebContent">
@@ -1474,7 +1480,7 @@
 	</command>
 
 	<command name="EditWebContentViaArticleTitle" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Web Content Administration" />
 
 		<execute macro="JSONWebcontent#addWebContent">
@@ -1523,6 +1529,7 @@
 	</command>
 
 	<command name="ExpireEditWebContent" priority="3">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Web Content Administration" />
 
 		<execute macro="JSONWebcontent#addWebContent">
@@ -1574,6 +1581,7 @@
 	</command>
 
 	<command name="ExpireWebContent" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Web Content Administration" />
 
 		<execute macro="JSONWebcontent#addWebContent">
@@ -1963,6 +1971,7 @@
 	</command>
 
 	<command name="MoveWebContentToFolder" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Web Content Administration" />
 
 		<execute macro="WebContent#openWebContentAdmin">
@@ -2004,6 +2013,7 @@
 	</command>
 
 	<command name="PublishDraftWebContent" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Web Content Administration" />
 
 		<execute macro="WebContent#openWebContentAdmin">
@@ -2055,6 +2065,7 @@
 	</command>
 
 	<command name="SearchWebContent" priority="5">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Web Content Administration" />
 
 		<execute macro="JSONWebcontent#addWebContent">
@@ -2264,6 +2275,7 @@
 	</command>
 
 	<command name="ViewContentNotLostWithBlankTitle" priority="4">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Web Content Administration" />
 
 		<execute macro="WebContent#openWebContentAdmin">
