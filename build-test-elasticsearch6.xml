@@ -295,78 +295,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 		</sequential>
 	</macrodef>
 
-	<macrodef name="prepare-elasticsearch-x-pack">
-		<sequential>
-			<if>
-				<not>
-					<available file="${elasticsearch.dir}/${elastic.x-pack.zip.name}" />
-				</not>
-				<then>
-					<mirrors-get
-						dest="${elasticsearch.dir}/${elastic.x-pack.zip.name}"
-						skipChecksum="true"
-						src="${elastic.x-pack.zip.url}"
-					/>
-				</then>
-			</if>
-
-			<if>
-				<os family="unix" />
-				<then>
-					<exec dir="${elasticsearch.dir}/bin" executable="/bin/bash">
-						<arg value="-c" />
-						<arg value="./elasticsearch-plugin install file:///${elasticsearch.dir}/${elastic.x-pack.zip.name}" />
-					</exec>
-				</then>
-				<elseif>
-					<os family="windows" />
-					<then>
-						<exec dir="${elasticsearch.dir}/bin" executable="cmd">
-							<arg value="/c" />
-							<arg value="elasticsearch-plugin install file:///${elasticsearch.dir}/${elastic.x-pack.zip.name}" />
-						</exec>
-					</then>
-				</elseif>
-			</if>
-		</sequential>
-	</macrodef>
-
-	<macrodef name="prepare-kibana-x-pack">
-		<sequential>
-			<if>
-				<not>
-					<available file="${elastic.kibana.dir}/${elastic.x-pack.zip.name}" />
-				</not>
-				<then>
-					<mirrors-get
-						dest="${elastic.kibana.dir}/${elastic.x-pack.zip.name}"
-						skipChecksum="true"
-						src="${elastic.x-pack.zip.url}"
-					/>
-				</then>
-			</if>
-
-			<if>
-				<os family="unix" />
-				<then>
-					<exec dir="${elastic.kibana.dir}/bin" executable="/bin/bash">
-						<arg value="-c" />
-						<arg value="./kibana-plugin install file:///${elastic.kibana.dir}/${elastic.x-pack.zip.name}" />
-					</exec>
-				</then>
-				<elseif>
-					<os family="windows" />
-					<then>
-						<exec dir="${elastic.kibana.dir}/bin" executable="cmd" spawn="true">
-							<arg value="/c" />
-							<arg value="kibana-plugin install file:///${elastic.kibana.dir}/${elastic.x-pack.zip.name}" />
-						</exec>
-					</then>
-				</elseif>
-			</if>
-		</sequential>
-	</macrodef>
-
 	<macrodef name="set-x-pack-user-passwords">
 		<sequential>
 			<if>
@@ -583,14 +511,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 xpack.monitoring.collection.enabled: true</echo>
 	</target>
 
-	<target name="deploy-elasticsearch6">
-		<gradle-execute dir="${project.dir}/modules/apps/portal-search-elasticsearch6/portal-search-elasticsearch6-api" task="deploy" />
-
-		<gradle-execute dir="${project.dir}/modules/apps/portal-search-elasticsearch6/portal-search-elasticsearch6-impl" task="deploy" />
-
-		<echo file="${liferay.home}/osgi/configs/com.liferay.portal.bundle.blacklist.internal.BundleBlacklistConfiguration.config">blacklistBundleSymbolicNames=&quot;com.liferay.portal.mobile.device.detection.fiftyonedegrees.api,com.liferay.portal.mobile.device.detection.fiftyonedegrees.enterprise,com.liferay.portal.mobile.device.detection.fiftyonedegrees.enterprise.test.data,com.liferay.portal.mobile.device.detection.fiftyonedegrees,com.liferay.portal.search.elasticsearch,com.liferay.portal.search.elasticsearch.shield,com.liferay.portal.search.elasticsearch.shield.fragment,com.liferay.portal.search.elasticsearch.marvel.web&quot;</echo>
-	</target>
-
 	<target name="prepare-additional-elasticsearch-dirs">
 		<var name="elasticsearch.node.number" value="0" />
 
@@ -629,9 +549,7 @@ xpack.monitoring.collection.enabled: true</echo>
 		<if>
 			<equals arg1="${elastic.xpack.enabled}" arg2="true" />
 			<then>
-				<property name="xpack.certificate.password" value="liferay" />
-
-				<generate-x-pack-security-certificates certificate.password="${xpack.certificate.password}" />
+				<generate-x-pack-security-certificates />
 
 				<configure-elasticsearch-x-pack-security-properties />
 			</then>
