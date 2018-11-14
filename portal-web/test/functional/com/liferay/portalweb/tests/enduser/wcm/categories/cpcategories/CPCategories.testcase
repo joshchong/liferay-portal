@@ -607,6 +607,8 @@
 	</command>
 
 	<command name="DeleteCategory" priority="5">
+		<property name="portal.acceptance" value="josh" />
+
 		<execute macro="JSONCategory#addCategoryByGroupName">
 			<var name="groupName" value="Test Site Name" />
 			<var name="title" value="Category Name 1" />

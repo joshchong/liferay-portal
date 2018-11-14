@@ -756,6 +756,7 @@
 	</command>
 
 	<command name="ViewSitePages" priority="3">
+		<property name="portal.acceptance" value="josh" />
 		<property name="testray.component.names" value="Site Administration" />
 
 		<execute macro="ProductMenu#gotoPortlet">
