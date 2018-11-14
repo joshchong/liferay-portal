@@ -10436,6 +10436,8 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			</then>
 		</if>
 
+		<print-file file.name="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch6.configuration.ElasticsearchConfiguration.config" />
+
 		<get-testcase-property property.name="socks.proxy.enabled" />
 
 		<if>
