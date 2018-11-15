@@ -64,10 +64,11 @@ public class EmbeddedElasticsearchNode extends Node {
 		super(environment, classpathPlugins, false);
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		EmbeddedElasticsearchNode.class);
-
 	@Override
 	protected void registerDerivedNodeNameWithLogger(String s) {
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		EmbeddedElasticsearchNode.class);
+
 }

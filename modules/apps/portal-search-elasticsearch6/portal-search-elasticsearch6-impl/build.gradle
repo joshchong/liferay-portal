@@ -55,8 +55,8 @@ dependencies {
 	compileInclude group: "org.elasticsearch", name: "elasticsearch-x-content", version: elasticsearchVersion
 	compileInclude group: "org.elasticsearch.client", name: "sniffer", version: "5.5.3"
 	compileInclude group: "org.elasticsearch.client", name: "transport", version: elasticsearchVersion
-	compileInclude group: "org.elasticsearch.plugin", name: "lang-mustache-client", version: elasticsearchVersion
 	compileInclude group: "org.elasticsearch.plugin", name: "elasticsearch-scripting-painless-spi", version: elasticsearchVersion
+	compileInclude group: "org.elasticsearch.plugin", name: "lang-mustache-client", version: elasticsearchVersion
 	compileInclude group: "org.elasticsearch.plugin", name: "parent-join-client", version: elasticsearchVersion
 	compileInclude group: "org.elasticsearch.plugin", name: "percolator-client", version: elasticsearchVersion
 	compileInclude group: "org.elasticsearch.plugin", name: "reindex-client", version: elasticsearchVersion
