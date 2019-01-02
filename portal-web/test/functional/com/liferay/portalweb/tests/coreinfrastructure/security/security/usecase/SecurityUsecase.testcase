@@ -94,6 +94,7 @@ out.println(PortalUtil.escapeRedirect("/"));
 	@description = "This is a use case for LPS-87768."
 	@priority = "5"
 	test NoPermissionFromUnauthorizedURLAsPowerUser {
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "SecurityUsecase#NoPermissionFromUnauthorizedURLAsPowerUser";
 
 		ProductMenu.gotoPortlet(
