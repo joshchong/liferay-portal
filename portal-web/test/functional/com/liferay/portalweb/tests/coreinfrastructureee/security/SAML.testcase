@@ -1,5 +1,6 @@
 @component-name = "portal-authentication-ee"
 definition {
+	property portal.acceptance = "josh";
 	property portal.release = "true";
 	property portal.upstream = "true";
 	property app.server.bundles.size = "1";
