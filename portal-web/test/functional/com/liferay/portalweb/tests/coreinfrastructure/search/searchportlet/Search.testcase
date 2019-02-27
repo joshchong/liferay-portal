@@ -1501,6 +1501,7 @@ definition {
 	@priority = "5"
 	test ViewMultipleFacetURLs {
 		property osgi.app.includes = "bookmarks";
+		property portal.acceptance = "josh";
 		property portal.suite.search.engine = "disable";
 		var searchPage = "Search Page";
 

@@ -158,7 +158,7 @@ definition {
 
 	@priority = "5"
 	test AddSelectTagViaBlogs {
-		property portal.acceptance = "false";
+		property portal.acceptance = "josh";
 		property testray.component.names = "Blogs,Tags";
 
 		ProductMenu.gotoPortlet(
@@ -257,6 +257,7 @@ definition {
 
 	@priority = "5"
 	test DisplayTagCloud {
+		property portal.acceptance = "josh";
 		property testray.component.names = "Tags";
 
 		ProductMenu.gotoPortlet(
@@ -346,6 +347,7 @@ definition {
 
 	@priority = "3"
 	test DisplayTagUsageStatistics {
+		property portal.acceptance = "josh";
 		property testray.component.names = "Tags";
 
 		ProductMenu.gotoPortlet(
@@ -539,7 +541,7 @@ definition {
 
 	@priority = "5"
 	test RemoveTagViaBlogs {
-		property portal.acceptance = "false";
+		property portal.acceptance = "josh";
 		property testray.component.names = "Blogs,Tags";
 
 		ProductMenu.gotoPortlet(
@@ -714,7 +716,7 @@ definition {
 
 	@priority = "5"
 	test ViewTagCloudIncrease {
-		property portal.acceptance = "false";
+		property portal.acceptance = "josh";
 		property testray.component.names = "Tags";
 
 		ProductMenu.gotoPortlet(

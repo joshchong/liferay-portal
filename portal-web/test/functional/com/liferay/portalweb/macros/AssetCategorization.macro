@@ -11,7 +11,7 @@ definition {
 			);
 		}
 		else {
-			KeyPress(locator1 = "AssetCategorization#TAGS_FIELD", value1 = ",");
+			KeyPress(locator1 = "AssetCategorization#TAGS_FIELD", value1 = "\RETURN");
 		}
 	}
 
