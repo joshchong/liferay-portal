@@ -1,6 +1,6 @@
 @component-name = "portal-security"
 definition {
-	property portal.upstream = "true";
+	property portal.acceptance = "josh";
 	property testray.main.component.name = "OAuth 2";
 
 	setUp {
