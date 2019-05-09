@@ -159,6 +159,7 @@ definition {
 	}
 
 	test EditApplicationScopes {
+		property portal.acceptance = "josh";
 		property prepare.oauth2.global.scopes = "true";
 
 		ProductMenu.gotoPortlet(
