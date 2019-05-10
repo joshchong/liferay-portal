@@ -5855,7 +5855,7 @@ go</echo>
 			</then>
 		</if>
 
-		<get-testcase-property property.name="prepare.oauth2.global.scopes" />
+<!-- 		<get-testcase-property property.name="prepare.oauth2.global.scopes" />
 
 		<if>
 			<equals arg1="${prepare.oauth2.global.scopes}" arg2="true" />
@@ -5867,7 +5867,7 @@ go</echo>
 					todir="${liferay.home}/deploy"
 				/>
 			</then>
-		</if>
+		</if> -->
 
 		<condition else="${app.server.parent.dir}-${app.server.bundle.index}/deploy" property="deploy.dir" value="${app.server.parent.dir}/deploy">
 			<or>
@@ -7369,14 +7369,14 @@ osb.lcs.portlet.oauth.consumer.secret=${osb.lcs.portlet.oauth.consumer.secret}</
 
 		<prepare-elasticsearch-configuration />
 
-		<get-testcase-property property.name="prepare.oauth2.global.scopes" />
+<!-- 		<get-testcase-property property.name="prepare.oauth2.global.scopes" />
 
 		<if>
 			<equals arg1="${prepare.oauth2.global.scopes}" arg2="true" />
 			<then>
 				<prepare-oauth2-configuration />
 			</then>
-		</if>
+		</if> -->
 	</target>
 
 	<target name="prepare-patching-tool">
