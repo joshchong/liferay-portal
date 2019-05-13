@@ -249,6 +249,7 @@ definition {
 
 	@priority = "4"
 	test ScheduleJobOnClusterNode1 {
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "ClusteringMissingPlugins#ScheduleJobOnClusterNode1";
 
 		Clustering.viewClusterStatusInConsole();
