@@ -1,4 +1,4 @@
-# Liferay Portal
+# Liferay Portal 
 
 [Liferay Portal](https://community.liferay.com/projects/portal) is an
 open source enterprise web platform for building business solutions that deliver
