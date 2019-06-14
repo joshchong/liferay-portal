@@ -162,11 +162,11 @@ definition {
 			portlet = "Service Access Policy");
 
 		ServiceAccessPolicy.addServiceAccessPolicy(
-			SAPEnabled = "true",
-			SAPMethodName = "deleteArticle",
-			SAPName = "OAUTH2_delete.journalarticles",
-			SAPServiceClass = "com.liferay.journal.service.JournalArticleService",
-			SAPTitle = "delete journal articles");
+			enabled = "true",
+			methodName = "deleteArticle",
+			policyName = "OAUTH2_delete.journalarticles",
+			serviceClass = "com.liferay.journal.service.JournalArticleService",
+			title = "delete journal articles");
 
 		JSONUser.addUser(
 			userEmailAddress = "userea@liferay.com",
