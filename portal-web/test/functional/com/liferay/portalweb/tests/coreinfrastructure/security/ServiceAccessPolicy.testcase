@@ -28,6 +28,7 @@ definition {
 	test ServiceAccessPolicySmoke {
 		property custom.properties = "json.service.auth.token.hosts.allowed=";
 		property test.name.skip.portal.instance = "ServiceAccessPolicy#ServiceAccessPolicySmoke";
+		property testray.main.component.name = "OAuth 2";
 
 		var companyId = JSONCompany.getCompanyId();
 
