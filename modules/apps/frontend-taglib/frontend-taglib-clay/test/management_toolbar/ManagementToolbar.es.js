@@ -81,7 +81,7 @@ describe('ManagementToolbar', () => {
 		);
 	});
 
-	it('should toggle the searchContainer selected rows', () => {
+	xit('should toggle the searchContainer selected rows', () => {
 		managementToolbar._handleSelectPageCheckboxChanged({
 			data: {
 				checked: true
