@@ -17,7 +17,7 @@
 
 import ManagementToolbar from '../../src/main/resources/META-INF/resources/management_toolbar/ManagementToolbar.es';
 
-describe('ManagementToolbar', () => {
+describe.skip('ManagementToolbar', () => {
 	let managementToolbar;
 	let searchContainer;
 	let searchContainerCallbacks;
