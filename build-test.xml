@@ -10758,6 +10758,22 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			</then>
 		</if>
 
+		<echo file="${test.app.server.parent.dir}/osgi/configs/com.liferay.portal.test.integration.hello.config">hello people</echo>
+
+		<pathconvert property="temp.configs">
+			<path>
+				<fileset
+					dir="${test.app.server.parent.dir}/osgi/configs"
+				/>
+			</path>
+		</pathconvert>
+
+		<for delimiter=":" list="${temp.configs}" param="osgi.config">
+			<sequential>
+				<print-file file.name="@{osgi.config}" />
+			</sequential>
+		</for>
+
 		<get-testcase-property property.name="app.server.bundles.size" />
 
 		<if>
