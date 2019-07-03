@@ -162,6 +162,7 @@ definition {
 		property custom.properties = "tunneling.servlet.shared.secret=1234567890123456${line.separator}auth.verifier.TunnelAuthVerifier.hosts.allowed=";
 		property databases.size = "1";
 		property portal.acceptance = "josh";
+		property saml.blacklist.algorithms = "true";
 
 		Staging.remoteStagingSetUp(siteName = "Site Name");
 	}
