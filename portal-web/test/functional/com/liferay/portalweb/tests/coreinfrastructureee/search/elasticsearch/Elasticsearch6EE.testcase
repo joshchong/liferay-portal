@@ -4,7 +4,6 @@ definition {
 	property portal.release = "true";
 	property portal.suite.search.engine = "elasticsearch6";
 	property portal.upstream = "true";
-	property test.run.environment = "EE";
 	property testray.main.component.name = "Elasticsearch Impl";
 
 	setUp {
@@ -119,6 +118,8 @@ definition {
 	}
 
 	test SearchWithSynonyms {
+		property portal.acceptance = "josh";
+
 		for (var title : list "banana,red apple,citrus-orange,blue.berry!,\"xigua\"") {
 			JSONWebcontent.addWebContent(
 				content = "WC Content",
