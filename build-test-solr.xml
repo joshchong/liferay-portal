@@ -382,6 +382,11 @@ schema=schema.xml</echo>
 	</target>
 
 	<target name="stop-solr-core">
+		<fileset id="solr.dir.files" dir="${solr.dir}" includes="**"/>
+		<property name="prop.solr.dir.files" refid="solr.dir.files"/>
+		<echo>***** SOLR DIRECTORY STRUCTURE *****</echo>
+		<echo>${prop.solr.dir.files}</echo>
+
 		<if>
 			<os family="unix" />
 			<then>
