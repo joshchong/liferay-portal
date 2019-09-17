@@ -1,10 +1,10 @@
 @component-name = "portal-search-ee"
 definition {
 
+	property portal.acceptance = "josh";
 	property portal.release = "true";
 	property portal.suite.search.engine = "elasticsearch6";
 	property portal.upstream = "true";
-	property test.run.environment = "EE";
 	property testray.main.component.name = "Elasticsearch Impl";
 
 	setUp {
@@ -493,7 +493,6 @@ definition {
 	}
 
 	test PinAndHideResultsWithAliases {
-		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "SearchTuning#PinAndHideResultsWithAliases";
 
 		JSONWebcontent.addWebContent(
@@ -699,8 +698,6 @@ definition {
 	}
 
 	test SearchWithSynonyms {
-		property portal.acceptance = "true";
-
 		for (var title : list "banana,red apple,citrus-orange,blue.berry!,\"xigua\"") {
 			JSONWebcontent.addWebContent(
 				content = "WC Content",
