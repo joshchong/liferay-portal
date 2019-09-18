@@ -21,6 +21,85 @@ definition {
 		}
 	}
 
+	test AAAInvestigate {
+		property test.name.skip.portal.instance = "SearchTuning#AAAInvestigate";
+
+		for (var title : list "Article 1,Article 2,Journal 1,Journal 2") {
+			JSONWebcontent.addWebContent(
+				content = "WC Content",
+				groupName = "Guest",
+				title = "${title}");
+		}
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		SearchTuning.addResultRanking(searchQuery = "Article");
+
+		SearchTuning.addResult(
+			assetTitle = "Journal 2",
+			searchTerm = "Journal");
+
+		Button.clickSave();
+	}
+
+	test AAAInvestigate2 {
+		property test.name.skip.portal.instance = "SearchTuning#AAAInvestigate2";
+
+		for (var title : list "Article 1,Article 2,Journal 1") {
+			JSONWebcontent.addWebContent(
+				content = "WC Content",
+				groupName = "Guest",
+				title = "${title}");
+		}
+
+		JSONGroup.addGroup(groupName = "New Site");
+
+		JSONWebcontent.addWebContent(
+			content = "WC Content",
+			groupName = "New Site",
+			title = "Journal 2");
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		SearchTuning.addResultRanking(searchQuery = "Article");
+
+		SearchTuning.addResult(
+			assetTitle = "Journal 2",
+			searchTerm = "content");
+
+		Button.clickSave();
+	}
+
+	test AAAInvestigate3 {
+		property test.name.skip.portal.instance = "SearchTuning#AAAInvestigate3";
+
+		for (var title : list "article 1,article 2,journal 1,journal 2") {
+			JSONWebcontent.addWebContent(
+				content = "WC Content",
+				groupName = "Guest",
+				title = "${title}");
+		}
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		SearchTuning.addResultRanking(searchQuery = "Article");
+
+		SearchTuning.addResult(
+			assetTitle = "journal 1",
+			searchTerm = "journal");
+
+		Button.clickSave();
+	}
+
 	test AssertCannotAddDuplicateQueriesAndAliases {
 		property test.name.skip.portal.instance = "SearchTuning#AssertCannotAddDuplicateQueriesAndAliases";
 
