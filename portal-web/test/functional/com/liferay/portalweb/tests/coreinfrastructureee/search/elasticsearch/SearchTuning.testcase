@@ -21,6 +21,103 @@ definition {
 		}
 	}
 
+	test AAAInvestigate1WithPause {
+		property test.name.skip.portal.instance = "SearchTuning#AAAInvestigate1WithPause";
+
+		for (var title : list "Article 1,Article 2,Journal 1,Journal 2") {
+			JSONWebcontent.addWebContent(
+				content = "WC Content",
+				groupName = "Guest",
+				title = "${title}");
+		}
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		SearchTuning.addResultRanking(searchQuery = "Article");
+
+		SearchTuning.addResultAndPause(
+			assetTitle = "Journal 2",
+			searchTerm = "Journal");
+
+		Button.clickSave();
+	}
+
+	test AAAInvestigate2WithDifferentWCAndNewSite {
+		property test.name.skip.portal.instance = "SearchTuning#AAAInvestigate2WithDifferentWCAndNewSite";
+
+		for (var title : list "fun,apple,things") {
+			JSONWebcontent.addWebContent(
+				content = "hi",
+				groupName = "Guest",
+				title = "${title}");
+		}
+
+		JSONGroup.addGroup(groupName = "New Site");
+
+		JSONWebcontent.addWebContent(
+			content = "content",
+			groupName = "New Site",
+			title = "new site wc");
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		SearchTuning.addResultRanking(searchQuery = "fun");
+
+		SearchTuning.addResult(
+			assetTitle = "new site wc",
+			searchTerm = "new");
+
+		Button.clickSave();
+	}
+
+	test AAAInvestigate3WithClickingCancelFirst {
+		property test.name.skip.portal.instance = "SearchTuning#AAAInvestigate3WithClickingCancelFirst";
+
+		for (var title : list "article 1,article 2,journal 1,journal 2") {
+			JSONWebcontent.addWebContent(
+				content = "WC Content",
+				groupName = "Guest",
+				title = "${title}");
+		}
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		SearchTuning.addResultRanking(searchQuery = "article");
+
+		Button.click(button = "Add Result");
+
+		Button.clickCancel();
+
+		Button.click(button = "Add Result");
+
+		Type(
+			locator1 = "SearchTuning#RESULT_RANKINGS_ADD_RESULT_SEARCH_BAR",
+			value1 = "journal");
+
+		KeyPress(
+			locator1 = "SearchTuning#RESULT_RANKINGS_ADD_RESULT_SEARCH_BAR",
+			value1 = "\RETURN");
+
+		FormFields.enableCheckbox(fieldName = "journal 1");
+
+		Button.click(button = "Add");
+
+		AssertElementPresent(
+			key_assetTitle = "journal 1",
+			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_PINNED");
+
+		Button.clickSave();
+	}
+
 	test AssertCannotAddDuplicateQueriesAndAliases {
 		property test.name.skip.portal.instance = "SearchTuning#AssertCannotAddDuplicateQueriesAndAliases";
 
