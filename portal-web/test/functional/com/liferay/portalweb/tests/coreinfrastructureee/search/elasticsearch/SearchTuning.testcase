@@ -100,11 +100,15 @@ definition {
 	test AssertDeletedResultRanking {
 		property test.name.skip.portal.instance = "SearchTuning#AssertDeletedResultRanking";
 
+		var content = "Article Article Article";
+
 		for (var title : list "Article 1,Article 2,Article 3") {
 			JSONWebcontent.addWebContent(
-				content = "WC Content",
+				content = "${content}",
 				groupName = "Guest",
 				title = "${title}");
+
+			var content = StringUtil.replaceFirst("${content}", "Article ", "");
 		}
 
 		ProductMenu.gotoPortlet(
@@ -145,14 +149,7 @@ definition {
 
 		SearchPortlets.searchEmbedded(searchTerm = "Article");
 
-		AssertTextNotEquals.assertNotPartialText(
-			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE_SPECIFIC_ORDER",
-			resultOrder = "1",
-			value1 = "Article 3");
-
-		SearchResultPortlet.viewSearchResults(
-			searchAssetTitle = "Article 2",
-			searchAssetType = "Web Content Article");
+		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Article 1,Article 2,Article 3");
 	}
 
 	test AssertResultRankingsMiscUI {
@@ -237,12 +234,25 @@ definition {
 	test AssertResultRankingsWithSynonyms {
 		property test.name.skip.portal.instance = "SearchTuning#AssertResultRankingsWithSynonyms";
 
-		for (var title : list "Article 1,Article 2,Journal 1,Journal 2") {
-			JSONWebcontent.addWebContent(
-				content = "WC Content",
-				groupName = "Guest",
-				title = "${title}");
-		}
+		JSONWebcontent.addWebContent(
+			content = "Article Article Article Article",
+			groupName = "Guest",
+			title = "Article 1");
+
+		JSONWebcontent.addWebContent(
+			content = "Article Article Article",
+			groupName = "Guest",
+			title = "Article 2");
+
+		JSONWebcontent.addWebContent(
+			content = "Journal Journal",
+			groupName = "Guest",
+			title = "Journal 1");
+
+		JSONWebcontent.addWebContent(
+			content = "Journal",
+			groupName = "Guest",
+			title = "Journal 2");
 
 		ProductMenu.gotoPortlet(
 			category = "Search Tuning",
@@ -484,15 +494,18 @@ definition {
 		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "SearchTuning#PinAndHideResultsWithAliases";
 
-		for (var title : list "WC Title 1,WC Title 3") {
-			JSONWebcontent.addWebContent(
-				content = "WC Content",
-				groupName = "Guest",
-				title = "${title}");
-		}
+		JSONWebcontent.addWebContent(
+			content = "WC WC",
+			groupName = "Guest",
+			title = "WC Title 1");
 
 		JSONWebcontent.addWebContent(
-			content = "apple",
+			content = "",
+			groupName = "Guest",
+			title = "WC Title 3");
+
+		JSONWebcontent.addWebContent(
+			content = "apple WC",
 			groupName = "Guest",
 			title = "WC Title 2");
 
@@ -595,14 +608,7 @@ definition {
 
 		SearchPortlets.searchEmbedded(searchTerm = "WC Title");
 
-		AssertTextNotEquals.assertNotPartialText(
-			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE_SPECIFIC_ORDER",
-			resultOrder = "1",
-			value1 = "WC Title 3");
-
-		SearchResultPortlet.viewSearchResults(
-			searchAssetTitle = "WC Title 2",
-			searchAssetType = "Web Content Article");
+		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "WC Title 1,WC Title 2,WC Title 3");
 	}
 
 	test ReorderAddedResultsFromOtherSites {
