@@ -1,7 +1,6 @@
 @component-name = "portal-search-ee"
 definition {
 
-	property portal.acceptance = "josh";
 	property portal.release = "true";
 	property portal.suite.search.engine = "elasticsearch6";
 	property portal.upstream = "true";
@@ -22,6 +21,7 @@ definition {
 	}
 
 	test AAAInvestigate1WithPause {
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "SearchTuning#AAAInvestigate1WithPause";
 
 		for (var title : list "Article 1,Article 2,Journal 1,Journal 2") {
@@ -46,6 +46,7 @@ definition {
 	}
 
 	test AAAInvestigate2WithDifferentWCAndNewSite {
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "SearchTuning#AAAInvestigate2WithDifferentWCAndNewSite";
 
 		for (var title : list "fun,apple,things") {
@@ -77,6 +78,7 @@ definition {
 	}
 
 	test AAAInvestigate3WithClickingCancelFirst {
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "SearchTuning#AAAInvestigate3WithClickingCancelFirst";
 
 		for (var title : list "article 1,article 2,journal 1,journal 2") {
@@ -329,6 +331,7 @@ definition {
 	}
 
 	test AssertResultRankingsWithSynonyms {
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "SearchTuning#AssertResultRankingsWithSynonyms";
 
 		JSONWebcontent.addWebContent(
@@ -708,6 +711,7 @@ definition {
 	}
 
 	test ReorderAddedResultsFromOtherSites {
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "SearchTuning#ReorderAddedResultsFromOtherSites";
 
 		JSONWebcontent.addWebContent(
