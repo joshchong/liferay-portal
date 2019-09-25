@@ -32,11 +32,34 @@ definition {
 		}
 
 		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Search");
+
+		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all search indexes.");
+
+		ProductMenu.gotoPortlet(
 			category = "Search Tuning",
 			panel = "Control Panel",
 			portlet = "Result Rankings");
 
 		SearchTuning.addResultRanking(searchQuery = "Article");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Search");
+
+		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all search indexes.");
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "Article");
 
 		SearchTuning.addResultAndPause(
 			assetTitle = "Journal 2",
@@ -64,11 +87,34 @@ definition {
 			title = "new site wc");
 
 		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Search");
+
+		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all search indexes.");
+
+		ProductMenu.gotoPortlet(
 			category = "Search Tuning",
 			panel = "Control Panel",
 			portlet = "Result Rankings");
 
 		SearchTuning.addResultRanking(searchQuery = "fun");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Search");
+
+		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all search indexes.");
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "fun");
 
 		SearchTuning.addResult(
 			assetTitle = "new site wc",
@@ -89,11 +135,34 @@ definition {
 		}
 
 		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Search");
+
+		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all search indexes.")
+
+		ProductMenu.gotoPortlet(
 			category = "Search Tuning",
 			panel = "Control Panel",
 			portlet = "Result Rankings");
 
 		SearchTuning.addResultRanking(searchQuery = "article");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Search");
+
+		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all search indexes.");
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "article");
 
 		Button.click(button = "Add Result");
 
