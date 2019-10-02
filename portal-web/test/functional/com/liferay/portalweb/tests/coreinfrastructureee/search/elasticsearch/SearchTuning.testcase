@@ -4,7 +4,6 @@ definition {
 	property portal.release = "true";
 	property portal.suite.search.engine = "elasticsearch6";
 	property portal.upstream = "true";
-	property test.run.environment = "EE";
 	property testray.main.component.name = "Elasticsearch Impl";
 
 	setUp {
@@ -494,7 +493,7 @@ definition {
 	}
 
 	test PinAndHideResultsWithAliases {
-		property portal.acceptance = "true";
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "SearchTuning#PinAndHideResultsWithAliases";
 
 		JSONWebcontent.addWebContent(
