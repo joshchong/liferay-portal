@@ -1,10 +1,10 @@
 @component-name = "portal-search-ee"
 definition {
 
+	property portal.acceptance = "josh";
 	property portal.release = "true";
 	property portal.suite.search.engine = "elasticsearch6";
 	property portal.upstream = "true";
-	property test.run.environment = "EE";
 	property testray.main.component.name = "Elasticsearch Impl";
 
 	setUp {
@@ -19,6 +19,171 @@ definition {
 		if ("${testPortalInstance}" == "true") {
 			PortalInstances.tearDownCP();
 		}
+	}
+
+	test AAAInvestigate1 {
+		property test.name.skip.portal.instance = "SearchTuning#AAAInvestigate1WithPause";
+
+		for (var title : list "Article 1,Article 2,Journal 1,Journal 2") {
+			JSONWebcontent.addWebContent(
+				content = "WC Content",
+				groupName = "Guest",
+				title = "${title}");
+		}
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Search");
+
+		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all search indexes.");
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		SearchTuning.addResultRanking(searchQuery = "Article");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Search");
+
+		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all search indexes.");
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "Article");
+
+		SearchTuning.addResult(
+			assetTitle = "Journal 2",
+			searchTerm = "Journal");
+
+		Button.clickSave();
+	}
+
+	test AAAInvestigate2WithDifferentWCAndNewSite {
+		property test.name.skip.portal.instance = "SearchTuning#AAAInvestigate2WithDifferentWCAndNewSite";
+
+		for (var title : list "fun,apple,things") {
+			JSONWebcontent.addWebContent(
+				content = "hi",
+				groupName = "Guest",
+				title = "${title}");
+		}
+
+		JSONGroup.addGroup(groupName = "New Site");
+
+		JSONWebcontent.addWebContent(
+			content = "content",
+			groupName = "New Site",
+			title = "new site wc");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Search");
+
+		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all search indexes.");
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		SearchTuning.addResultRanking(searchQuery = "fun");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Search");
+
+		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all search indexes.");
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "fun");
+
+		SearchTuning.addResult(
+			assetTitle = "new site wc",
+			searchTerm = "new");
+
+		Button.clickSave();
+	}
+
+	test AAAInvestigate3WithClickingCancelFirst {
+		property test.name.skip.portal.instance = "SearchTuning#AAAInvestigate3WithClickingCancelFirst";
+
+		for (var title : list "article 1,article 2,journal 1,journal 2") {
+			JSONWebcontent.addWebContent(
+				content = "WC Content",
+				groupName = "Guest",
+				title = "${title}");
+		}
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Search");
+
+		SearchAdministration.executeSearchActions(
+			actionsDescription = "Reindex all search indexes.",
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		SearchTuning.addResultRanking(searchQuery = "article");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Search");
+
+		SearchAdministration.executeSearchActions(actionsDescription = "Reindex all search indexes.");
+
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
+
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "article");
+
+		Button.click(button = "Add Result");
+
+		Button.clickCancel();
+
+		Button.click(button = "Add Result");
+
+		Type(
+			locator1 = "SearchTuning#RESULT_RANKINGS_ADD_RESULT_SEARCH_BAR",
+			value1 = "journal");
+
+		KeyPress(
+			locator1 = "SearchTuning#RESULT_RANKINGS_ADD_RESULT_SEARCH_BAR",
+			value1 = "\RETURN");
+
+		FormFields.enableCheckbox(fieldName = "journal 1");
+
+		Button.click(button = "Add");
+
+		AssertElementPresent(
+			key_assetTitle = "journal 1",
+			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_PINNED");
+
+		Button.clickSave();
 	}
 
 	test AssertCannotAddDuplicateQueriesAndAliases {
@@ -355,68 +520,66 @@ definition {
 
 		SearchResultPortlet.viewMultipleSearchResultsNotPresent(noResultsList = "Article 2/Web Content Article,Journal 1/Web Content Article,Journal 2/Web Content Article");
 
-		// Workaround due to LRQA-52239
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
 
-		// ProductMenu.gotoPortlet(
-		//	category = "Search Tuning",
-		//	panel = "Control Panel",
-		//	portlet = "Result Rankings");
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "Article");
 
-		// LexiconEntry.gotoEntryMenuItem(
-		//	menuItem = "Edit",
-		//	rowEntry = "Article");
+		SearchTuning.addResult(
+			assetTitle = "Journal 2",
+			searchTerm = "Journal");
 
-		// SearchTuning.addResult(
-		//	assetTitle = "Journal 2",
-		//	searchTerm = "Journal");
+		Button.clickSave();
 
-		// Button.clickSave();
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Synonyms");
 
-		// ProductMenu.gotoPortlet(
-		//	category = "Search Tuning",
-		//	panel = "Control Panel",
-		//	portlet = "Synonyms");
+		SearchTuning.addSynonymSet(synonyms = "Article,Journal");
 
-		// SearchTuning.addSynonymSet(synonyms = "Article,Journal");
+		ProductMenu.gotoPortlet(
+			category = "Search Tuning",
+			panel = "Control Panel",
+			portlet = "Result Rankings");
 
-		// ProductMenu.gotoPortlet(
-		//	category = "Search Tuning",
-		//	panel = "Control Panel",
-		//	portlet = "Result Rankings");
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "Article");
 
-		// LexiconEntry.gotoEntryMenuItem(
-		//	menuItem = "Edit",
-		//	rowEntry = "Article");
+		AssertElementPresent(
+			key_assetTitle = "Journal 2",
+			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_PINNED");
 
-		// AssertElementPresent(
-		//	key_assetTitle = "Journal 2",
-		//	locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_PINNED");
+		AssertElementPresent(
+			key_assetTitle = "Journal 1",
+			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT");
 
-		// AssertElementPresent(
-		//	key_assetTitle = "Journal 1",
-		//	locator1 = "SearchTuning#RESULT_RANKINGS_RESULT");
+		SearchTuning.configureAliases(addAlias = "Journal");
 
-		// SearchTuning.configureAliases(addAlias = "Journal");
+		Button.clickSave();
 
-		// Button.clickSave();
+		Navigator.openURL();
 
-		// Navigator.openURL();
+		SearchPortlets.searchEmbedded(searchTerm = "Article");
 
-		// SearchPortlets.searchEmbedded(searchTerm = "Article");
+		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Journal 2,Article 1,Journal 1");
 
-		// SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Journal 2,Article 1,Journal 1");
+		SearchResultPortlet.viewSearchResultNotPresent(
+			searchAssetTitle = "Article 2",
+			searchAssetType = "Web Content Article");
 
-		// SearchResultPortlet.viewSearchResultNotPresent(
-		//	searchAssetTitle = "Article 2",
-		//	searchAssetType = "Web Content Article");
+		SearchPortlets.searchEmbedded(searchTerm = "Journal");
 
-		// SearchPortlets.searchEmbedded(searchTerm = "Journal");
+		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Journal 2,Article 1,Journal 1");
 
-		// SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Journal 2,Article 1,Journal 1");
-
-		// SearchResultPortlet.viewSearchResultNotPresent(
-		//	searchAssetTitle = "Article 2",
-		//	searchAssetType = "Web Content Article");
+		SearchResultPortlet.viewSearchResultNotPresent(
+			searchAssetTitle = "Article 2",
+			searchAssetType = "Web Content Article");
 	}
 
 	test AssertSynonymBulkActions {
@@ -493,7 +656,6 @@ definition {
 	}
 
 	test PinAndHideResultsWithAliases {
-		property portal.acceptance = "true";
 		property test.name.skip.portal.instance = "SearchTuning#PinAndHideResultsWithAliases";
 
 		JSONWebcontent.addWebContent(
@@ -613,9 +775,6 @@ definition {
 		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "WC Title 1,WC Title 2,WC Title 3");
 	}
 
-	// Temporarily ignored due to LRQA-52239
-
-	@ignore = "true"
 	test ReorderAddedResultsFromOtherSites {
 		property test.name.skip.portal.instance = "SearchTuning#ReorderAddedResultsFromOtherSites";
 
@@ -699,8 +858,6 @@ definition {
 	}
 
 	test SearchWithSynonyms {
-		property portal.acceptance = "true";
-
 		for (var title : list "banana,red apple,citrus-orange,blue.berry!,\"xigua\"") {
 			JSONWebcontent.addWebContent(
 				content = "WC Content",
