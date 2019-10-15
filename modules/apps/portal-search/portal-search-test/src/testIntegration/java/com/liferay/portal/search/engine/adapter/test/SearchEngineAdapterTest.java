@@ -212,7 +212,11 @@ public class SearchEngineAdapterTest {
 		if (engine.equals("Elasticsearch7")) {
 			String version = _searchEngineInformation.getClientVersionString();
 
-			return vendor.equals("Elasticsearch") && version.startsWith("7");
+			if (vendor.equals("Elasticsearch") && version.startsWith("7")) {
+				return true;
+			}
+
+			return false;
 		}
 
 		return vendor.equals(engine);
