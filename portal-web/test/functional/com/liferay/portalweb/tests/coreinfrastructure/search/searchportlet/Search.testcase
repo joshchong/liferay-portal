@@ -1487,10 +1487,10 @@ definition {
 			key_facetClass = "Custom Facet",
 			locator1 = "SearchResults#FACET_PORTLET_CHECKBOX_LABEL_SPECIFIC");
 
-		Check(
+		Click(
 			key_checkboxName = "1.0",
 			key_facetClass = "Custom Facet",
-			locator1 = "SearchResults#FACET_PORTLET_CHECKBOX_SPECIFIC");
+			locator1 = "SearchResults#FACET_PORTLET_CHECKBOX_LABEL_SPECIFIC");
 
 		SearchResultPortlet.viewSearchResults(
 			searchAssetTitle = "WebContent Title 1",
@@ -1526,10 +1526,10 @@ definition {
 			key_facetClass = "Custom Facet",
 			locator1 = "SearchResults#FACET_PORTLET_CHECKBOX_LABEL_SPECIFIC");
 
-		Check(
+		Click(
 			key_checkboxName = "1.1",
 			key_facetClass = "Custom Facet",
-			locator1 = "SearchResults#FACET_PORTLET_CHECKBOX_SPECIFIC");
+			locator1 = "SearchResults#FACET_PORTLET_CHECKBOX_LABEL_SPECIFIC");
 
 		SearchResultPortlet.viewSearchResults(
 			searchAssetTitle = "WebContent Title 1.1",
