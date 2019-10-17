@@ -73,7 +73,7 @@ definition {
 
 		IFrame.closeFrame();
 
-		AssertVisible(
+		AssertElementPresent(
 			checkboxName = "fruit",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
@@ -93,7 +93,7 @@ definition {
 
 		SearchFacetPortlet.uncheckFacet(facetValueName = "Blogs Entry");
 
-		AssertVisible(
+		AssertElementPresent(
 			checkboxName = "fruit",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
@@ -101,13 +101,13 @@ definition {
 
 		SearchPortlets.searchEmbedded(searchTerm = "apple");
 
-		AssertVisible(
+		AssertElementPresent(
 			checkboxName = "fruit",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
 		SearchFacetPortlet.checkFacet(facetValueName = "Blogs Entry");
 
-		AssertVisible(
+		AssertElementPresent(
 			checkboxName = "fruit",
 			locator1 = "Checkbox#ANY_CHECKBOX");
 
