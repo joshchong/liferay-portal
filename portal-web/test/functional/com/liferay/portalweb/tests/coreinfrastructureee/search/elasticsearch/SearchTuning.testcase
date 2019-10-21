@@ -4,7 +4,6 @@ definition {
 	property portal.release = "true";
 	property portal.suite.search.engine = "elasticsearch6";
 	property portal.upstream = "true";
-	property test.run.environment = "EE";
 	property testray.main.component.name = "Elasticsearch Impl";
 
 	setUp {
@@ -22,7 +21,9 @@ definition {
 	}
 
 	test AssertCannotAddDuplicateQueriesAndAliases {
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "SearchTuning#AssertCannotAddDuplicateQueriesAndAliases";
+		property test.run.environment = "EE";
 
 		ProductMenu.gotoPortlet(
 			category = "Search Tuning",
@@ -98,6 +99,7 @@ definition {
 	}
 
 	test AssertDeletedResultRanking {
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "SearchTuning#AssertDeletedResultRanking";
 
 		var content = "Article Article Article";
