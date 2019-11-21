@@ -29,6 +29,7 @@ definition {
 	}
 
 	test AssertSimilarResultsDisplayTemplate {
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "Elasticsearch6EE#AssertSimilarResultsDisplayTemplate";
 
 		for (var count : list "1,2,3") {
@@ -89,6 +90,7 @@ definition {
 	}
 
 	test AssertSimilarResultsMatchesAssetType {
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "Elasticsearch6EE#AssertSimilarResultsMatchesAssetType";
 
 		for (var count : list "1,2,3") {
