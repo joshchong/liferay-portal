@@ -1769,6 +1769,7 @@ definition {
 	@priority = "5"
 	test ViewCreatedSearchPagePermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
+		property portal.acceptance = "josh";
 
 		JSONUser.addUser(
 			userEmailAddress = "userea@liferay.com",
@@ -1856,6 +1857,7 @@ definition {
 	@priority = "5"
 	test ViewDefaultSearchPagePermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
+		property portal.acceptance = "josh";
 
 		JSONUser.addUser(
 			userEmailAddress = "userea@liferay.com",
