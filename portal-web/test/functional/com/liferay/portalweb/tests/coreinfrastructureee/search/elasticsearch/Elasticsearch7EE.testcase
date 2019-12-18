@@ -233,6 +233,7 @@ definition {
 
 	test HotDeployLearningToRankApp {
 		property hot.deploy.osgi.app.includes = "portal-search-learning-to-rank";
+		property portal.acceptance = "josh";
 		property test.assert.warning.exceptions = "true";
 		property test.name.skip.portal.instance = "Elasticsearch7EE#HotDeployLearningToRankApp";
 
