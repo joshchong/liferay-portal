@@ -1771,7 +1771,7 @@ jdbc.default.password=${database.password}</echo>
 		</sequential>
 	</macrodef>
 
-	<macrodef name="prepare-elasticsearch-configuration">
+	<macrodef name="prepare-elasticsearch-osgi-configuration">
 		<sequential>
 			<echo file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch6.configuration.ElasticsearchConfiguration.config">logExceptionsOnly="false"</echo>
 			<echo file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration.config">logExceptionsOnly="false"</echo>
@@ -7533,7 +7533,7 @@ osb.lcs.portlet.oauth.consumer.secret=${osb.lcs.portlet.oauth.consumer.secret}</
 			</then>
 		</if>
 
-		<prepare-elasticsearch-configuration />
+		<prepare-elasticsearch-osgi-configuration />
 	</target>
 
 	<target name="prepare-patching-tool">
