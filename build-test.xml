@@ -11716,44 +11716,12 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			</then>
 		</if>
 
-		<get-testcase-property property.name="portal.suite.search.engine" />
 		<get-testcase-property property.name="remote.elasticsearch.enabled" />
 
 		<if>
 			<equals arg1="${remote.elasticsearch.enabled}" arg2="true" />
 			<then>
-				<if>
-					<contains string="${env.CI_TEST_SUITE}" substring="search" />
-					<then>
-						<propertycopy from="search.engine[${env.CI_TEST_SUITE}]" name="suite.search.engine" silent="true" />
-
-						<if>
-							<equals arg1="${suite.search.engine}" arg2="elasticsearch7" />
-							<then>
-								<ant antfile="build-test-elasticsearch7.xml" target="start-elasticsearch" />
-							</then>
-							<else>
-								<ant antfile="build-test-elasticsearch6.xml" target="start-elasticsearch" />
-							</else>
-						</if>
-					</then>
-					<else>
-						<if>
-							<or>
-								<contains string="${portal.suite.search.engine}" substring="elasticsearch6" />
-								<not>
-									<isset property="portal.suite.search.engine" />
-								</not>
-							</or>
-							<then>
-								<ant antfile="build-test-elasticsearch6.xml" target="start-elasticsearch" />
-							</then>
-							<else>
-								<ant antfile="build-test-elasticsearch7.xml" target="start-elasticsearch" />
-							</else>
-						</if>
-					</else>
-				</if>
+				<ant antfile="build-test-elasticsearch7.xml" target="start-elasticsearch" />
 			</then>
 		</if>
 
@@ -12283,21 +12251,12 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			</then>
 		</if>
 
-		<get-testcase-property property.name="portal.suite.search.engine" />
 		<get-testcase-property property.name="remote.elasticsearch.enabled" />
 
 		<if>
 			<equals arg1="${remote.elasticsearch.enabled}" arg2="true" />
 			<then>
-				<if>
-					<contains string="${portal.suite.search.engine}" substring="elasticsearch7" />
-					<then>
-						<ant antfile="build-test-elasticsearch7.xml" target="stop-elasticsearch" />
-					</then>
-					<else>
-						<ant antfile="build-test-elasticsearch6.xml" target="stop-elasticsearch" />
-					</else>
-				</if>
+				<ant antfile="build-test-elasticsearch7.xml" target="stop-elasticsearch" />
 			</then>
 		</if>
 
