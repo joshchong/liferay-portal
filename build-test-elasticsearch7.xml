@@ -828,6 +828,39 @@ xpack.monitoring.collection.enabled: true</echo>
 	</target>
 
 	<target name="print-elasticsearch-indices">
+		<get-testcase-property property.name="test.name.skip.portal.instance" />
+
+		<if>
+			<and>
+				<not>
+					<isset property="test.name.skip.portal.instance" />
+				</not>
+				<equals arg1="test.portal.instance" arg2="true" />
+			</and>
+			<then>
+				<var name="portalInstanceName" value="${env.HOSTNAME}" />
+			</then>
+			<else>
+				<var name="portalInstanceName" value="localhost" />
+			</else>
+		</if>
+
+		<local name="companyId" />
+
+		<exec executable="curl" outputproperty="companyId">
+			<arg value="http://localhost:8080/api/jsonws/company/get-company-by-virtual-host/virtual-host/${portalInstanceName}" />
+			<arg value="-u" />
+			<arg value="test@liferay.com:test" />
+		</exec>
+
+		<propertyregex
+			input="${companyId}"
+			override="true"
+			property="companyId"
+			regexp="(?&lt;=companyId&quot;:&quot;)(.*)(?=&quot;,&quot;home)"
+			select="\1"
+		/>
+
 		<exec executable="curl" outputproperty="curl.output.elasticsearch.indices">
 			<arg line="&apos;localhost:9201/liferay-${companyId}/_search?pretty&apos; -H &apos;Content-Type: application/json&apos; -d&apos;{&quot;query&quot;: {&quot;bool&quot;: {&quot;must&quot;: [{ &quot;match&quot;: { &quot;userName&quot;: &quot;test test&quot; } }],&quot;must_not&quot;: [{ &quot;match&quot;: { &quot;hidden&quot;: &quot;true&quot; } }]}}}&apos;" />
 		</exec>
