@@ -12167,12 +12167,17 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 		<trycatch property="shutdown.error">
 			<try>
 				<get-testcase-property property.name="solr.enabled" />
+				<propertycopy from="search.engine[${env.CI_TEST_SUITE}]" name="suite.search.engine" silent="true" />
 
 				<if>
-					<not>
+					<or>
 						<equals arg1="${solr.enabled}" arg2="true" />
-					</not>
+						<equals arg1="${suite.search.engine}" arg2="solr" />
+					</or>
 					<then>
+						<ant antfile="build-test-solr.xml" target="print-solr-indices" />
+					</then>
+					<else>
 						<get-testcase-property property.name="test.name.skip.portal.instance" />
 
 						<if>
@@ -12204,74 +12209,16 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 							select="\1"
 						/>
 
-						<get-testcase-property property.name="portal.suite.search.engine" />
-						<get-testcase-property property.name="remote.elasticsearch.enabled" />
-
 						<if>
-							<contains string="${env.CI_TEST_SUITE}" substring="search" />
+							<equals arg1="${suite.search.engine}" arg2="elasticsearch7" />
 							<then>
-								<propertycopy from="search.engine[${env.CI_TEST_SUITE}]" name="suite.search.engine" silent="true" />
-
-								<if>
-									<and>
-										<not>
-											<isset property="remote.elasticsearch.enabled" />
-										</not>
-										<equals arg1="${suite.search.engine}" arg2="elasticsearch7" />
-									</and>
-									<then>
-										<ant antfile="build-test-elasticsearch7.xml" target="print-elasticsearch-indices" />
-									</then>
-									<elseif>
-										<not>
-											<equals arg1="${suite.search.engine}" arg2="solr" />
-										</not>
-										<then>
-											<ant antfile="build-test-elasticsearch6.xml" target="print-elasticsearch-indices" />
-										</then>
-									</elseif>
-								</if>
+								<ant antfile="build-test-elasticsearch7.xml" target="print-elasticsearch-indices" />
 							</then>
 							<else>
-								<if>
-									<and>
-										<not>
-											<isset property="remote.elasticsearch.enabled" />
-										</not>
-										<equals arg1="${portal.suite.search.engine}" arg2="elasticsearch7" />
-									</and>
-									<then>
-										<ant antfile="build-test-elasticsearch7.xml" target="print-elasticsearch-indices" />
-									</then>
-									<else>
-										<ant antfile="build-test-elasticsearch6.xml" target="print-elasticsearch-indices" />
-									</else>
-								</if>
+								<ant antfile="build-test-elasticsearch6.xml" target="print-elasticsearch-indices" />
 							</else>
 						</if>
-					</then>
-				</if>
-
-				<get-testcase-property property.name="solr.enabled" />
-
-				<if>
-					<equals arg1="${solr.enabled}" arg2="true" />
-					<then>
-						<ant antfile="build-test-solr.xml" target="print-solr-indices" />
-					</then>
-					<elseif>
-						<isset property="env.CI_TEST_SUITE" />
-						<then>
-							<propertycopy from="search.engine[${env.CI_TEST_SUITE}]" name="suite.search.engine" silent="true" />
-
-							<if>
-								<equals arg1="${suite.search.engine}" arg2="solr" />
-								<then>
-									<ant antfile="build-test-solr.xml" target="print-solr-indices" />
-								</then>
-							</if>
-						</then>
-					</elseif>
+					</else>
 				</if>
 
 				<antcall target="clean-up-logs" />
