@@ -12212,7 +12212,10 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 						<echo>### SUITE.SEARCH.ENGINE is ${suite.search.engine}</echo>
 
 						<if>
-							<equals arg1="${suite.search.engine}" arg2="elasticsearch7" />
+							<or>
+								<equals arg1="${portal.suite.search.engine}" arg2="elasticsearch7" />
+								<equals arg1="${suite.search.engine}" arg2="elasticsearch7" />
+							</or>
 							<then>
 								<ant antfile="build-test-elasticsearch7.xml" target="print-elasticsearch-indices" />
 							</then>
