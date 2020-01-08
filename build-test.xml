@@ -12209,6 +12209,8 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 							select="\1"
 						/>
 
+						<echo>### SUITE.SEARCH.ENGINE is ${suite.search.engine}</echo>
+
 						<if>
 							<equals arg1="${suite.search.engine}" arg2="elasticsearch7" />
 							<then>
