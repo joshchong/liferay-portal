@@ -31,8 +31,6 @@ definition {
 	}
 
 	test AssertSearchAdmin {
-		property portal.smoke = "true";
-
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",

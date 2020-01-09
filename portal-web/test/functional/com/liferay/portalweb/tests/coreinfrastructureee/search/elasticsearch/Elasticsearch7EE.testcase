@@ -32,7 +32,6 @@ definition {
 	}
 
 	test AssertSimilarResultsDisplayTemplate {
-		property portal.smoke = "true";
 		property test.name.skip.portal.instance = "Elasticsearch7EE#AssertSimilarResultsDisplayTemplate";
 
 		for (var count : list "1,2,3") {

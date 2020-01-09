@@ -704,6 +704,10 @@ xpack.monitoring.collection.enabled: true</echo>
 		</exec>
 
 		<echo></echo>
+		<echo>Curling: &apos;localhost:9200/liferay-${companyId}/_search?pretty&apos; -H &apos;Content-Type: application/json&apos; -d&apos;{&quot;query&quot;: {&quot;bool&quot;: {&quot;must&quot;: [{ &quot;match&quot;: { &quot;userName&quot;: &quot;test test&quot; } }],&quot;must_not&quot;: [{ &quot;match&quot;: { &quot;hidden&quot;: &quot;true&quot; } }]}}}&apos;</echo>
+		<echo></echo>
+
+		<echo></echo>
 		<echo>##</echo>
 		<echo>## Elasticsearch Indices</echo>
 		<echo>##</echo>
