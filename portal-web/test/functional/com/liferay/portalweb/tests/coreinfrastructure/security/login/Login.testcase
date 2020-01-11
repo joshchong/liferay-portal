@@ -155,6 +155,7 @@ definition {
 	test GoogleSSOSmoke {
 		property dummy.socket.proxy.disabled = "true";
 		property osgi.app.includes = "portal-security-sso-google";
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "Login#GoogleSSOSmoke";
 		var googleClientID = PropsUtil.get("google.client.id.2");
 		var googleClientSecret = PropsUtil.get("google.client.secret.2");
@@ -218,6 +219,7 @@ definition {
 	@priority = "4"
 	test OpenIDConnectSmoke {
 		property dummy.socket.proxy.disabled = "true";
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "Login#OpenIDConnectSmoke";
 
 		// LRQA-43729
