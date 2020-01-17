@@ -160,7 +160,7 @@ definition {
 
 	@priority = "5"
 	test ElasticsearchRemoteClusterSmokeTest {
-		property portal.acceptance = "true";
+		property portal.acceptance = "josh";
 		property remote.elasticsearch.cluster.size = "2";
 		property remote.elasticsearch.enabled = "true";
 		property test.name.skip.portal.instance = "Elasticsearch7#ElasticsearchRemoteClusterSmokeTest";
@@ -219,7 +219,7 @@ definition {
 	test OSGiConfigSmokeTest {
 		property osgi.module.configuration.file.names = "com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration.config:com.liferay.portal.bundle.blacklist.internal.BundleBlacklistConfiguration.config";
 		property osgi.module.configurations = "clusterName=&quot;LiferayElasticsearchCluster1&quot;:blacklistBundleSymbolicNames=&quot;com.liferay.portal.mobile.device.detection.fiftyonedegrees.api,com.liferay.portal.mobile.device.detection.fiftyonedegrees.enterprise,com.liferay.portal.mobile.device.detection.fiftyonedegrees.enterprise.test.data,com.liferay.portal.mobile.device.detection.fiftyonedegrees,com.liferay.portal.search.elasticsearch6.impl,com.liferay.portal.search.elasticsearch6.spi,com.liferay.portal.search.elasticsearch6.api,com.liferay.portal.search.elasticsearch6.xpack.security.impl,com.liferay.portal.search.elasticsearch6.xpack.monitoring.web&quot;";
-		property portal.acceptance = "true";
+		property portal.acceptance = "josh";
 
 		Navigator.openSpecificURL(url = "http://localhost:9200");
 
@@ -227,6 +227,7 @@ definition {
 	}
 
 	test SearchWithNonLiferayIndex {
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "Elasticsearch7#SearchWithNonLiferayIndex";
 
 		Navigator.openSpecificURL(url = "http://localhost:9200");
