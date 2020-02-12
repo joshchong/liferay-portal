@@ -23,15 +23,6 @@ definition {
 
 		var searchEngineVendor = selenium.getText("SearchAdmin#SEARCH_ENGINE_VENDOR");
 
-		if (contains("${searchEngineVendor}", "Elasticsearch")) {
-			if (contains("${searchEngineVendor}", "Embedded")) {
-				var curl = "http://localhost:9201/_tasks";
-			}
-			else {
-				var curl = "http://localhost:9200/_tasks";
-			}
-		}
-
 		Navigator.gotoNavItem(navItem = "Index Actions");
 
 		AssertClick.assertTextClickAt(
@@ -44,6 +35,8 @@ definition {
 
 		if (contains("${searchEngineVendor}", "Elasticsearch")) {
 			echo("Current Elasticsearch Tasks:");
+
+			var curl = "http://localhost:9200/_tasks";
 
 			var elasticsearchTasks = JSONCurlUtil.get("${curl}");
 
