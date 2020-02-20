@@ -831,9 +831,21 @@ xpack.monitoring.collection.enabled: true</echo>
 	</target>
 
 	<target name="print-elasticsearch-indices">
-		<exec executable="curl" outputproperty="curl.output.elasticsearch.indices">
-			<arg line="&apos;localhost:9201/liferay-${companyId}/_search?pretty&apos; -H &apos;Content-Type: application/json&apos; -d&apos;{&quot;query&quot;: {&quot;bool&quot;: {&quot;must&quot;: [{ &quot;match&quot;: { &quot;userName&quot;: &quot;test test&quot; } }],&quot;must_not&quot;: [{ &quot;match&quot;: { &quot;hidden&quot;: &quot;true&quot; } }]}}}&apos;" />
-		</exec>
+		<get-testcase-property property.name="remote.elasticsearch.enabled" />
+
+		<if>
+			<equals arg1="${remote.elasticsearch.enabled}" arg2="true" />
+			<then>
+				<exec executable="curl" outputproperty="curl.output.elasticsearch.indices">
+					<arg line="&apos;localhost:9200/liferay-${companyId}/_search?pretty&apos; -H &apos;Content-Type: application/json&apos; -d&apos;{&quot;query&quot;: {&quot;bool&quot;: {&quot;must&quot;: [{ &quot;match&quot;: { &quot;userName&quot;: &quot;test test&quot; } }],&quot;must_not&quot;: [{ &quot;match&quot;: { &quot;hidden&quot;: &quot;true&quot; } }]}}}&apos;" />
+				</exec>
+			</then>
+			<else>
+				<exec executable="curl" outputproperty="curl.output.elasticsearch.indices">
+					<arg line="&apos;localhost:9201/liferay-${companyId}/_search?pretty&apos; -H &apos;Content-Type: application/json&apos; -d&apos;{&quot;query&quot;: {&quot;bool&quot;: {&quot;must&quot;: [{ &quot;match&quot;: { &quot;userName&quot;: &quot;test test&quot; } }],&quot;must_not&quot;: [{ &quot;match&quot;: { &quot;hidden&quot;: &quot;true&quot; } }]}}}&apos;" />
+				</exec>
+			</else>
+		</if>
 
 		<echo></echo>
 		<echo>##</echo>
