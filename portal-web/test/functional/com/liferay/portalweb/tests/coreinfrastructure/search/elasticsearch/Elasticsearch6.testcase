@@ -27,6 +27,27 @@ definition {
 		}
 	}
 
+	test AAAPrintES6EmbeddedIndex {
+		property portal.acceptance = "josh";
+		property portal.suite.search.engine = "es6";
+
+		JSONWebcontent.addWebContent(
+			content = "WC Content",
+			groupName = "Guest",
+			title = "embedded-es6-wc");
+	}
+
+	test AAAPrintES6RemoteIndex {
+		property portal.acceptance = "josh";
+		property portal.suite.search.engine = "es6";
+		property remote.elasticsearch.enabled = "true";
+
+		JSONWebcontent.addWebContent(
+			content = "WC Content",
+			groupName = "Guest",
+			title = "remote-es6-wc");
+	}
+
 	test AssertSearchAdmin {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",

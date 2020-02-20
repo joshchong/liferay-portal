@@ -22,6 +22,16 @@ definition {
 		}
 	}
 
+	test AAAPrintClassicSearchIndex {
+		property portal.acceptance = "josh";
+		property portal.suite.search.engine = "es6,es7,slr";
+
+		JSONWebcontent.addWebContent(
+			content = "WC Content",
+			groupName = "Guest",
+			title = "classic-search-wc");
+	}
+
 	@priority = "4"
 	test SearchByAssetAndModifiedRangeFacets {
 		ProductMenu.gotoPortlet(
