@@ -860,6 +860,7 @@ definition {
 	test XPackSmokeTest {
 		property elastic.xpack.enabled = "true";
 		property osgi.app.includes = "portal-search-elasticsearch6-xpack-monitoring,portal-search-elasticsearch7";
+		property portal.suite.search.engine = "josh";
 		property remote.elasticsearch.enabled = "true";
 		property test.name.skip.portal.instance = "Elasticsearch7EE#XPackSmokeTest";
 
