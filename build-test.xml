@@ -12012,6 +12012,19 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			</then>
 		</if>
 
+		<get-testcase-property property.name="elastic.xpack.enabled" />
+		<get-testcase-property property.name="remote.elasticsearch.enabled" />
+
+		<if>
+			<and>
+				<equals arg1="${elastic.xpack.enabled}" arg2="true" />
+				<equals arg1="${remote.elasticsearch.enabled}" arg2="true" />
+			</and>
+			<then>
+				<prepare-elasticsearch-connection-config />
+			</then>
+		</if>
+
 		<get-testcase-property property.name="hook.plugins.includes" />
 
 		<if>
