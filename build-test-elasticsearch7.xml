@@ -748,6 +748,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 	</target>
 
 	<target name="add-ltr-linear-regression-model">
+		<configure-elasticsearch75-ltr-test-properties />
+
 		<unzip-ltr-linear-regression-model />
 
 		<antcall target="restore-backup">
@@ -875,8 +877,6 @@ xpack.monitoring.collection.enabled: true</echo>
 		<if>
 			<equals arg1="${remote.elasticsearch.ltr.enabled}" arg2="true" />
 			<then>
-				<configure-elasticsearch7-ltr-test-properties />
-
 				<prepare-elasticsearch-ltr />
 
 				<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}path.repo: ${liferay.home}/data/elasticsearch7/repo</echo>

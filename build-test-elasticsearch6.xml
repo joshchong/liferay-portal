@@ -624,6 +624,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 	</target>
 
 	<target name="add-ltr-linear-regression-model">
+		<configure-elasticsearch68-ltr-test-properties />
+
 		<unzip-ltr-linear-regression-model />
 
 		<antcall target="restore-backup">
