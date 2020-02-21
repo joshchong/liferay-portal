@@ -11542,6 +11542,7 @@ jdbc.default.password=${database.mysql.password}</echo>
 		<antcall target="clean-up-selenium-driver" />
 	</target>
 
+
 	<target name="run-simple-server">
 		<if>
 			<not>
@@ -12223,6 +12224,10 @@ url=${short.hostname}:8080</echo>
 			</else>
 		</if>
 
+		<echo>### PRINTING ElasticsearchConnectionConfiguration-remote.config ES7 POST-TEST</echo>
+
+		<print-file file.name="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-remote.config" />
+
 		<get-testcase-property property.name="cmis.repository.type" />
 
 		<if>
@@ -12476,7 +12481,6 @@ url=${short.hostname}:8080</echo>
 
 		<antcall target="clean-up-web-xml" />
 	</target>
-
 	<target name="set-portal-impl-portal-test-ext-properties">
 		<set-portal-impl-portal-test-ext-properties />
 	</target>
