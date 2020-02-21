@@ -11964,6 +11964,10 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 
 		<antcall target="deploy-osgi-modules" />
 
+		<echo>### PRINTING ElasticsearchConnectionConfiguration-remote.config ES7 POST-DEPLOY</echo>
+
+		<print-file file.name="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-remote.config" />
+
 		<antcall target="deploy-specified-plugins">
 			<param name="test.class" value="${test.class}" />
 		</antcall>
