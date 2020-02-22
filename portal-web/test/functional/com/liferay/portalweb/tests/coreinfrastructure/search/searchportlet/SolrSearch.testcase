@@ -43,16 +43,6 @@ definition {
 		}
 	}
 
-	test AAAPrintSolrEnabledIndex {
-		property portal.acceptance = "josh";
-		property portal.suite.search.engine = "slr";
-
-		JSONWebcontent.addWebContent(
-			content = "WC Content",
-			groupName = "Guest",
-			title = "solr-enabled-wc");
-	}
-
 	test AssertBasicFacetSelection {
 		var webContentserviceContext1 = '''{"assetTagNames": ["fruit"]}''';
 

@@ -30,27 +30,6 @@ definition {
 		}
 	}
 
-	test AAAPrintES7EmbeddedIndex {
-		property portal.acceptance = "josh";
-		property portal.suite.search.engine = "es7";
-
-		JSONWebcontent.addWebContent(
-			content = "WC Content",
-			groupName = "Guest",
-			title = "embedded-es7-wc");
-	}
-
-	test AAAPrintES7RemoteIndex {
-		property portal.acceptance = "josh";
-		property portal.suite.search.engine = "es7";
-		property remote.elasticsearch.enabled = "true";
-
-		JSONWebcontent.addWebContent(
-			content = "WC Content",
-			groupName = "Guest",
-			title = "remote-es7-wc");
-	}
-
 	test AssertSearchAdmin {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
