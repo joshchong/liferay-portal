@@ -185,6 +185,10 @@ truststorePassword="liferay"
 truststorePath="${elasticsearch.dir}-1/config/certs/localhost.p12"
 truststoreType="pkcs12"
 username="elastic"</echo>
+
+			<echo>### PRINTING ElasticsearchConnectionConfiguration-remote.config ES7 PRE-DEPLOY</echo>
+
+			<print-file file.name="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-remote.config" />
 		</sequential>
 	</macrodef>
 
