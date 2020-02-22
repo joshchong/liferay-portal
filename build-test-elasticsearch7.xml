@@ -156,7 +156,7 @@ xpack.ml.enabled: false</echo>
 	<macrodef name="configure-portal-remote-elasticsearch-osgi-properties">
 		<sequential>
 			<echo append="true" file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration.config">${line.separator}operationMode="REMOTE"
-remoteClusterConnectionId="remote"</echo>
+remoteClusterConnectionId="tester"</echo>
 		</sequential>
 	</macrodef>
 
@@ -177,7 +177,7 @@ proxyServletLogEnable="true"</echo>
 
 			<echo append="true" file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-remote.config">${line.separator}active="true"
 authenticationEnabled="true"
-connectionId="remote"
+connectionId="tester"
 httpSSLEnabled="true"
 networkHostAddresses=["https://localhost:9200"]
 password="${osgi.config.elastic.user.password}"
