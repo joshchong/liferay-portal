@@ -45,6 +45,8 @@ definition {
 
 	@priority = "4"
 	test AssertSearchInsightsExplain {
+		property portal.acceptance = "josh";
+
 		JSONWebcontent.addWebContent(
 			content = "WC Content",
 			groupName = "Guest",

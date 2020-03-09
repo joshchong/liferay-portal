@@ -64,6 +64,8 @@ definition {
 
 	@priority = "4"
 	test AssertSearchInsightsExplain {
+		property portal.acceptance = "josh";
+
 		JSONWebcontent.addWebContent(
 			content = "WC Content",
 			groupName = "Guest",
@@ -158,6 +160,7 @@ definition {
 	@priority = "5"
 	test ElasticsearchRemoteClusterSmokeTest {
 		property portal.acceptance = "true";
+		property portal.suite.search.engine = "false";
 		property remote.elasticsearch.cluster.size = "2";
 		property remote.elasticsearch.enabled = "true";
 		property test.name.skip.portal.instance = "Elasticsearch6#ElasticsearchRemoteClusterSmokeTest";
@@ -224,6 +227,7 @@ definition {
 	}
 
 	test SearchWithNonLiferayIndex {
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "Elasticsearch6#SearchWithNonLiferayIndex";
 
 		Navigator.openSpecificURL(url = "http://localhost:9201");
