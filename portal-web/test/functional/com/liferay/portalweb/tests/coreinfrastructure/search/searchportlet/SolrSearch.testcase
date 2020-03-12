@@ -131,6 +131,8 @@ definition {
 	@description = "This is a use case for LPS-92008."
 	@priority = "3"
 	test AssertGuestCannotSeeEmptySearchWidgets {
+		property portal.acceptance = "josh";
+
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
 			layoutName = "Search Page");
@@ -1757,6 +1759,7 @@ definition {
 	@priority = "5"
 	test ViewCreatedSearchPagePermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
+		property portal.acceptance = "josh";
 
 		JSONUser.addUser(
 			userEmailAddress = "userea@liferay.com",
@@ -2392,6 +2395,8 @@ definition {
 	}
 
 	test ViewSortedSearchResults {
+		property portal.acceptance = "josh";
+
 		JSONWebcontent.addWebContent(
 			content = "Content",
 			groupName = "Guest",
