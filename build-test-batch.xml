@@ -2435,6 +2435,8 @@ log.sanitizer.enabled=false</echo>
 								<param name="database.type" value="@{database.type}" />
 							</antcall>
 
+							<prepare-portal-elasticsearch-osgi-configuration />
+
 							<antcall inheritAll="false" target="prepare-portal-ext-properties">
 								<param name="database.type" value="@{database.type}" />
 							</antcall>
