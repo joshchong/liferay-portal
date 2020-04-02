@@ -162,7 +162,7 @@ definition {
 
 	@priority = "5"
 	test ElasticsearchRemoteClusterSmokeTest {
-		property portal.acceptance = "true";
+		property portal.acceptance = "josh";
 		property portal.upstream = "quarantine";
 		property remote.elasticsearch.cluster.size = "2";
 		property remote.elasticsearch.enabled = "true";
@@ -221,6 +221,7 @@ definition {
 	test HotDeployElasticsearch7App {
 		property hot.deploy.osgi.app.includes = "portal-search-elasticsearch7";
 		property osgi.app.includes = "";
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "Elasticsearch7#HotDeployElasticsearch7App";
 
 		if (IsTextEqual.isPartialText(locator1 = "HelloWorld#PORTLET_CONTENT", value1 = "Liferay Community Edition")) {
