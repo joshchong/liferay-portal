@@ -12029,6 +12029,22 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 
 		<antcall target="deploy-osgi-modules" />
 
+		<echo>### PRINTING ElasticsearchConnectionConfiguration configs ES7 POST-DEPLOY</echo>
+
+		<if>
+			<available file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-default.config" />
+			<then>
+				<print-file file.name="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-default.config" />
+			</then>
+		</if>
+
+		<if>
+			<available file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-remote.config" />
+			<then>
+				<print-file file.name="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-remote.config" />
+			</then>
+		</if>
+
 		<antcall target="deploy-specified-plugins">
 			<param name="test.class" value="${test.class}" />
 		</antcall>
@@ -12301,6 +12317,22 @@ url=${short.hostname}:8080</echo>
 			</or>
 			<then>
 				<ant antfile="build-test-analytics-cloud.xml" target="stop-analytics-cloud" />
+			</then>
+		</if>
+
+		<echo>### PRINTING ElasticsearchConnectionConfiguration configs ES7 POST-TEST</echo>
+
+		<if>
+			<available file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-default.config" />
+			<then>
+				<print-file file.name="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-default.config" />
+			</then>
+		</if>
+
+		<if>
+			<available file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-remote.config" />
+			<then>
+				<print-file file.name="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-remote.config" />
 			</then>
 		</if>
 
