@@ -36,6 +36,8 @@ definition {
 			panel = "Control Panel",
 			portlet = "Search");
 
+		// test
+
 		SearchAdministration.assertEngineVendorAndVersions(
 			clientVersion = "7.3.0",
 			engineVendor = "Elasticsearch",
