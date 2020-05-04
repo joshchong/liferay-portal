@@ -773,6 +773,7 @@ definition {
 		property osgi.app.includes = "portal-search-elasticsearch-cross-cluster-replication,portal-search-elasticsearch7";
 		property osgi.module.configuration.file.names = "com.liferay.portal.bundle.blacklist.internal.BundleBlacklistConfiguration.config:com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-ccr.config";
 		property osgi.module.configurations = "blacklistBundleSymbolicNames=&quot;com.liferay.portal.mobile.device.detection.fiftyonedegrees.api,com.liferay.portal.mobile.device.detection.fiftyonedegrees.enterprise,com.liferay.portal.mobile.device.detection.fiftyonedegrees.enterprise.test.data,com.liferay.portal.mobile.device.detection.fiftyonedegrees,com.liferay.portal.search.elasticsearch6.impl,com.liferay.portal.search.elasticsearch6.spi,com.liferay.portal.search.elasticsearch6.api,com.liferay.portal.search.elasticsearch6.xpack.security.impl,com.liferay.portal.search.elasticsearch6.xpack.monitoring.web,com.liferay.portal.search.tuning.rankings.web&quot;:active=&quot;true&quot;,connectionId=&quot;ccr&quot;${line.separator}networkHostAddresses=[&quot;http&colon;//localhost&colon;9202&quot;]";
+		property portal.acceptance = "josh";
 		property portal.upstream = "quarantine";
 		property remote.elasticsearch.clusters.enabled = "true";
 		property remote.elasticsearch.enabled = "true";
