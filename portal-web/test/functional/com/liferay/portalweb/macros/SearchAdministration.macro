@@ -24,15 +24,6 @@ definition {
 		var searchClientVersion = selenium.getText("SearchAdmin#CLIENT_VERSION");
 		var searchEngineVendor = selenium.getText("SearchAdmin#SEARCH_ENGINE_VENDOR");
 
-		if (contains("${searchEngineVendor}", "Elasticsearch")) {
-			if (contains("${searchEngineVendor}", "Embedded")) {
-				var curl = "http://localhost:9201/_tasks";
-			}
-			else {
-				var curl = "http://localhost:9200/_tasks";
-			}
-		}
-
 		var reindexElapsedTime = "0";
 
 		while ("${reindexElapsedTime}" == "0" || "${reindexElapsedTime}" == "10" || "${reindexElapsedTime}" == "120" && (maxIterations = "2")) {
@@ -49,6 +40,8 @@ definition {
 
 			if (contains("${searchEngineVendor}", "Elasticsearch")) {
 				echo("Current Elasticsearch Tasks:");
+
+				var curl = "http://localhost:9200/_tasks";
 
 				var elasticsearchTasks = JSONCurlUtil.get("${curl}");
 

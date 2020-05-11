@@ -393,7 +393,7 @@ definition {
 		property osgi.module.configurations = "clusterName=&quot;LiferayElasticsearchCluster1&quot;";
 		property portal.acceptance = "true";
 
-		Navigator.openSpecificURL(url = "http://localhost:9201");
+		Navigator.openSpecificURL(url = "http://localhost:9200");
 
 		Elasticsearch.viewClusterStatus(clusterStatus = "&quot;cluster_name&quot; : &quot;LiferayElasticsearchCluster1&quot;");
 	}
@@ -401,11 +401,11 @@ definition {
 	test SearchWithNonLiferayIndex {
 		property test.name.skip.portal.instance = "Elasticsearch7#SearchWithNonLiferayIndex";
 
-		Navigator.openSpecificURL(url = "http://localhost:9201");
+		Navigator.openSpecificURL(url = "http://localhost:9200");
 
 		AntCommand(
 			locator1 = "build-test-elasticsearch7.xml",
-			value1 = "add-boston-dataset-index -Dbackup.index=boston311 -Delasticsearch.port=9201");
+			value1 = "add-boston-dataset-index -Dbackup.index=boston311 -Delasticsearch.port=9200");
 
 		Navigator.openURL();
 
