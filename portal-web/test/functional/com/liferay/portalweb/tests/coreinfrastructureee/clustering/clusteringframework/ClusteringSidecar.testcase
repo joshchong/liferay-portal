@@ -154,11 +154,9 @@ definition {
 			locator1 = "SearchAdmin#SEARCH_ENGINE_VENDOR",
 			value1 = "Elasticsearch (Embedded)");
 
-		// Workaround of LPS-109110
-
 		AssertTextEquals(
 			locator1 = "SearchAdmin#ACTIVE_CONNECTION_COUNT",
-			value1 = "2");
+			value1 = "1");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "SearchAdmin#SIDECAR_CLUSTER_NAME",
@@ -201,9 +199,11 @@ definition {
 			locator1 = "SearchAdmin#SEARCH_ENGINE_VENDOR",
 			value1 = "Elasticsearch (Embedded)");
 
+		// Workaround of LPS-109110
+
 		AssertTextEquals(
 			locator1 = "SearchAdmin#ACTIVE_CONNECTION_COUNT",
-			value1 = "1");
+			value1 = "2");
 
 		AssertTextEquals.assertPartialText(
 			locator1 = "SearchAdmin#SIDECAR_CLUSTER_NAME",
