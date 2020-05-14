@@ -10225,7 +10225,7 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 				<equals arg1="${app.server.type}" arg2="tomcat" />
 			</not>
 			<then>
-				<antcall target="deploy-elasticsearch-sidecar" />
+				<gradle-execute dir="modules/apps/portal-search-elasticsearch7" task="deploySidecar" />
 			</then>
 		</if>
 
