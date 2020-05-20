@@ -6,7 +6,7 @@ definition {
 	property osgi.module.configurations = "blacklistBundleSymbolicNames=&quot;com.liferay.portal.mobile.device.detection.fiftyonedegrees.api,com.liferay.portal.mobile.device.detection.fiftyonedegrees.enterprise,com.liferay.portal.mobile.device.detection.fiftyonedegrees.enterprise.test.data,com.liferay.portal.mobile.device.detection.fiftyonedegrees,com.liferay.portal.search.elasticsearch6.impl,com.liferay.portal.search.elasticsearch6.spi,com.liferay.portal.search.elasticsearch6.api,com.liferay.portal.search.elasticsearch6.xpack.security.impl&quot;";
 	property portal.release = "true";
 	property portal.suite.search.engine = "elasticsearch7";
-	property portal.upstream = "true";
+	property portal.upstream = "josh";
 	property test.run.environment = "EE";
 	property testray.main.component.name = "Elasticsearch Impl";
 
@@ -25,8 +25,6 @@ definition {
 	}
 
 	test AssertCannotAddDuplicateQueriesAndAliases {
-		property test.name.skip.portal.instance = "SearchTuningES7#AssertCannotAddDuplicateQueriesAndAliases";
-
 		ProductMenu.gotoPortlet(
 			category = "Search Tuning",
 			panel = "Control Panel",
@@ -87,8 +85,6 @@ definition {
 	}
 
 	test AssertDeletedResultRanking {
-		property test.name.skip.portal.instance = "SearchTuningES7#AssertDeletedResultRanking";
-
 		var content = "Article Article Article";
 
 		for (var title : list "Article 1,Article 2,Article 3") {
@@ -143,8 +139,6 @@ definition {
 
 	test AssertResultRankingsMiscUI {
 		property portal.upstream = "quarantine";
-		property test.name.skip.portal.instance = "SearchTuningES7#AssertResultRankingsMiscUI";
-
 		ProductMenu.gotoPortlet(
 			category = "Search Tuning",
 			panel = "Control Panel",
@@ -224,8 +218,6 @@ definition {
 	test AssertResultRankingsWithSynonyms {
 		property portal.suite.search.engine = "disable";
 		property portal.upstream = "quarantine";
-		property test.name.skip.portal.instance = "SearchTuningES7#AssertResultRankingsWithSynonyms";
-
 		JSONWebcontent.addWebContent(
 			content = "Article Article Article Article",
 			groupName = "Guest",
@@ -483,8 +475,6 @@ definition {
 	}
 
 	test EnableAndDisableResultRankings {
-		property test.name.skip.portal.instance = "SearchTuningES7#EnableAndDisableResultRankings";
-
 		var content = "Article Article Article Article";
 
 		for (var count : list "1,2,3,4") {
@@ -632,8 +622,6 @@ definition {
 
 	test PinAndHideResultsWithAliases {
 		property portal.acceptance = "true";
-		property test.name.skip.portal.instance = "SearchTuningES7#PinAndHideResultsWithAliases";
-
 		JSONWebcontent.addWebContent(
 			content = "WC WC",
 			groupName = "Guest",
@@ -752,8 +740,6 @@ definition {
 	}
 
 	test ReorderAddedResultsFromOtherSites {
-		property test.name.skip.portal.instance = "SearchTuningES7#ReorderAddedResultsFromOtherSites";
-
 		JSONWebcontent.addWebContent(
 			content = "WC Content",
 			groupName = "Guest",
