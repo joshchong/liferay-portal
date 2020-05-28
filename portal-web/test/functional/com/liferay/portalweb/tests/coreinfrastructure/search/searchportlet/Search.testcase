@@ -173,6 +173,7 @@ definition {
 
 	@priority = "4"
 	test AssertIndexOnStartup {
+		property portal.acceptance = "josh";
 		property test.assert.warning.exceptions = "true";
 		property test.name.skip.portal.instance = "Search#AssertIndexOnStartup";
 
