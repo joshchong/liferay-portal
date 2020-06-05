@@ -212,6 +212,8 @@ definition {
 	}
 
 	test AssertResultRankingsWithSynonyms {
+		property portal.acceptance = "josh";
+
 		JSONWebcontent.addWebContent(
 			content = "Article Article Article Article",
 			groupName = "Guest",
@@ -396,6 +398,8 @@ definition {
 	}
 
 	test AssertSynonymBulkActions {
+		property portal.acceptance = "josh";
+
 		GlobalMenu.gotoPortlet(
 			category = "Search Tuning",
 			panel = "Control Panel",
@@ -814,7 +818,7 @@ definition {
 	}
 
 	test SearchWithSynonyms {
-		property portal.acceptance = "true";
+		property portal.acceptance = "josh";
 
 		for (var title : list "banana,red apple,citrus-orange,blue.berry!,\"xigua\"") {
 			JSONWebcontent.addWebContent(
