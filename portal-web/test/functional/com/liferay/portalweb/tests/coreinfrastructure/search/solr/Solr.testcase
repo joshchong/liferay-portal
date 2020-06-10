@@ -186,6 +186,7 @@ definition {
 	@priority = "4"
 	test SolrWithSolrCloudSmokeTest {
 		property dummy.socket.proxy.disabled = "true";
+		property portal.acceptance = "josh";
 		property solr.solrcloud.enabled = "true";
 		property test.name.skip.portal.instance = "Solr#SolrWithSolrCloudSmokeTest";
 
