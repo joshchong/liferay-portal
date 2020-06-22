@@ -1577,6 +1577,16 @@ war.path=${app.server.portal.dir}/</echo>
 						<math
 							datatype="int"
 							operand1="${app.server.bundle.index}"
+							operand2="9201"
+							operation="+"
+							result="sidecar.http.port"
+						/>
+
+						<echo append="true" file="${test.app.server.classes.portal.dir}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration.config">${line.separator}sidecarHttpPort="${sidecar.http.port}"</echo>
+
+						<math
+							datatype="int"
+							operand1="${app.server.bundle.index}"
 							operand2="1"
 							operation="+"
 							result="app.server.bundle.index"
