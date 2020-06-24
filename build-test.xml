@@ -10537,7 +10537,30 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 				<equals arg1="${app.server.type}" arg2="websphere" />
 			</or>
 			<then>
-				<gradle-execute dir="modules/apps/portal-search-elasticsearch7" task="deploySidecar" />
+				<get
+					dest="${liferay.home}"
+					src="https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-icu/analysis-icu-7.3.0.zip"
+				/>
+
+				<get
+					dest="${liferay.home}"
+					src="https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-kuromoji/analysis-kuromoji-7.3.0.zip"
+				/>
+
+				<get
+					dest="${liferay.home}"
+					src="https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-smartcn/analysis-smartcn-7.3.0.zip"
+				/>
+
+				<get
+					dest="${liferay.home}"
+					src="https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-stempel/analysis-stempel-7.3.0.zip"
+				/>
+
+				<get
+					dest="${liferay.home}"
+					src="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.3.0-linux-x86_64.tar.gz"
+				/>
 			</then>
 		</if>
 
