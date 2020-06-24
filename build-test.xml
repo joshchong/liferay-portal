@@ -10559,7 +10559,7 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 
 				<get
 					dest="${liferay.home}"
-					src="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.3.0-linux-x86_64.tar.gz"
+					src="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-7.3.0-no-jdk-linux-x86_64.tar.gz"
 				/>
 			</then>
 		</if>
