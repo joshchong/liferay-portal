@@ -10539,27 +10539,27 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 			<then>
 				<get
 					dest="${liferay.home}"
-					src="https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-icu/analysis-icu-7.3.0.zip"
+					src="${elasticsearch.sidecar.analysis-icu.zip.url}"
 				/>
 
 				<get
 					dest="${liferay.home}"
-					src="https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-kuromoji/analysis-kuromoji-7.3.0.zip"
+					src="${elasticsearch.sidecar.analysis-kuromoji.zip.url}"
 				/>
 
 				<get
 					dest="${liferay.home}"
-					src="https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-smartcn/analysis-smartcn-7.3.0.zip"
+					src="${elasticsearch.sidecar.analysis-smartcn.zip.url}"
 				/>
 
 				<get
 					dest="${liferay.home}"
-					src="https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-stempel/analysis-stempel-7.3.0.zip"
+					src="${elasticsearch.sidecar.analysis-stempel.zip.url}"
 				/>
 
 				<get
 					dest="${liferay.home}"
-					src="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-7.3.0-no-jdk-linux-x86_64.tar.gz"
+					src="${elasticsearch.sidecar.no.jdk.tar.url}"
 				/>
 			</then>
 		</if>
