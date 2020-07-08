@@ -274,18 +274,7 @@ schema=schema.xml</echo>
 	<target name="prepare-solr-suite">
 		<antcall target="deploy-solr" />
 
-		<condition else="${env.TEST_BATCH_NAME}" property="test.batch.name" value="${test.batch.name}">
-			<isset property="test.batch.name" />
-		</condition>
-
-		<if>
-			<not>
-				<contains string="${test.batch.name}" substring="functional" />
-			</not>
-			<then>
-				<antcall target="start-solr" />
-			</then>
-		</if>
+		<antcall target="start-solr" />
 	</target>
 
 	<target name="print-solr-indices">

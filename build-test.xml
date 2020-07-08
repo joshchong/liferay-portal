@@ -12411,6 +12411,8 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 					<if>
 						<equals arg1="${suite.search.engine}" arg2="solr" />
 						<then>
+							<ant antfile="build-test-solr.xml" target="deploy-solr" />
+
 							<ant antfile="build-test-solr.xml" target="start-solr" />
 						</then>
 					</if>
