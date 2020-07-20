@@ -12500,6 +12500,8 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 
 		<antcall target="deploy-extra-apps" />
 
+		<delete dir="${liferay.home}/elasticsearch7" failonerror="false" />
+
 		<get-testcase-property property.name="osgi.module.configuration.file.names" />
 		<get-testcase-property property.name="osgi.module.configurations" />
 
