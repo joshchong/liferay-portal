@@ -2726,6 +2726,8 @@ log.sanitizer.enabled=false</echo>
 
 							<setup-test-batch-testable-tomcat test.portal.bundle.version="@{test.portal.bundle.version}" />
 
+							<print-file file.name="${app.server.parent.dir}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration.config" />
+
 							<antcall inheritAll="false" target="start-app-server-preserve-liferay-home" />
 
 							<gradle-execute dir="modules" refreshdependencies="@{refreshdependencies}" task="testIntegration">
