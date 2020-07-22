@@ -12176,6 +12176,8 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			</else>
 		</if>
 
+		<print-file file.name="${app.server.parent.dir}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration.config" />
+
 		<antcall target="prepare-ip-address-update" />
 
 		<antcall target="check-inet-address" />

@@ -27,6 +27,12 @@ definition {
 		}
 	}
 
+	test AssertAAA {
+		property portal.acceptance = "josh";
+
+		echo("AAA Asserted");
+	}
+
 	@priority = "4"
 	test AssertIndexOnStartup {
 		property test.assert.warning.exceptions = "true";
