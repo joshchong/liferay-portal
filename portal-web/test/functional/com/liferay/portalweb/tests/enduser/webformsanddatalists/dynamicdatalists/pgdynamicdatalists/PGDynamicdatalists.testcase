@@ -800,6 +800,8 @@ definition {
 
 	@priority = "4"
 	test SearchDynamicDataListsRecordsAsUserWithNoPermissions {
+		property portal.suite.search.engine = "josh";
+
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",

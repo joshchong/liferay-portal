@@ -4069,6 +4069,8 @@ definition {
 	@description = "This is a use case for LPS-98019."
 	@priority = "3"
 	test ViewSearchPageKeywordsParameterWithStaging {
+		property portal.suite.search.engine = "josh";
+
 		Staging.openStagingAdmin(siteURLKey = "site-name");
 
 		Staging.activateStagingCP(
