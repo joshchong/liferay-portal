@@ -223,6 +223,7 @@ definition {
 
 	test AssertSidecarAutoInstall {
 		property delete.sidecar.bundle = "true";
+		property environment.acceptance = "josh";
 		property test.assert.warning.exceptions = "true";
 
 		AssertConsoleTextPresent(value1 = "Sidecar Elasticsearch liferay is at 127.0.0.1:9201");
