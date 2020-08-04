@@ -222,7 +222,7 @@ definition {
 	}
 
 	test AssertSidecarAutoInstall {
-		property environment.acceptance = "true";
+		property environment.acceptance = "josh";
 		property delete.sidecar.bundle = "true";
 		property portal.acceptance = "true";
 		property test.assert.warning.exceptions = "true";
