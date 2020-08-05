@@ -15,7 +15,12 @@
 </tr>
 <tr>
 	<td>CLUSTER_NAME</td>
-	<td>//div[contains(@class,'connection-info-item')][//*[contains(@class,'connection-id') and contains(.,'${key_connectionID}')]]//span[contains(@class,'cluster-name')]</td>
+	<td>//div[contains(@class,'connection-info-item')][.//*[contains(@class,'connection-id') and contains(.,'${key_connectionID}')]]//span[contains(@class,'cluster-name')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONNECTION_ID</td>
+	<td>//div[contains(@class,'connection-info-item')]//*[contains(@class,'connection-id')]</td>
 	<td></td>
 </tr>
 <tr>
