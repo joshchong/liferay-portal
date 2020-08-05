@@ -327,6 +327,7 @@ definition {
 	}
 
 	test MultipleConnectionsSmokeTest {
+		property portal.suite.search.engine = "josh";
 		property portal.upstream = "quarantine";
 		property remote.elasticsearch.clusters.enabled = "true";
 		property remote.elasticsearch.enabled = "true";
@@ -497,6 +498,7 @@ definition {
 	}
 
 	test SwitchSidecarToRemote {
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "Elasticsearch7#SwitchSidecarToRemote";
 
 		JSONWebcontent.addWebContent(
