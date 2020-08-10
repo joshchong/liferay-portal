@@ -244,6 +244,7 @@ definition {
 	test AssertSidecarDoesNotCluster {
 		property app.server.bundles.size = "1";
 		property cluster.enabled = "true";
+		property portal.suite.search.engine = "josh";
 		property test.assert.warning.exceptions = "true";
 		property test.name.skip.portal.instance = "Elasticsearch7#AssertSidecarDoesNotCluster";
 
@@ -430,6 +431,7 @@ definition {
 	}
 
 	test MultipleConnectionsSmokeTest {
+		property portal.suite.search.engine = "josh";
 		property portal.upstream = "quarantine";
 		property remote.elasticsearch.clusters.enabled = "true";
 		property remote.elasticsearch.enabled = "true";
