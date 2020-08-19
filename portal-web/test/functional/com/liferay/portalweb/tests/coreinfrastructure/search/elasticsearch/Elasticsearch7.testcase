@@ -342,7 +342,6 @@ definition {
 			searchAssetType = "Web Content Article");
 	}
 
-	@ignore = "true"
 	@priority = "3"
 	test AssertSystemSettingsPropogateToModule {
 
@@ -366,7 +365,11 @@ definition {
 
 		SystemSettings.saveConfiguration();
 
-		Navigator.openSpecificURL(url = "http://localhost:9200");
+		Pause(locator1 = "5000");
+
+		AssertConsoleTextPresent(value1 = "Stopping sidecar Elasticsearch");
+
+		Navigator.openSpecificURL(url = "http://localhost:9201");
 
 		Elasticsearch.viewClusterStatus(clusterStatus = "&quot;cluster_name&quot; : &quot;LiferayElasticsearchCluster1&quot;");
 	}
