@@ -344,9 +344,7 @@ definition {
 
 	@priority = "3"
 	test AssertSystemSettingsPropogateToModule {
-
-		// Ignoring test until LPS-65459 is resolved
-
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "Elasticsearch7#AssertSystemSettingsPropogateToModule";
 
 		ApplicationsMenu.gotoPortlet(
