@@ -377,6 +377,7 @@ definition {
 		property portal.upstream = "quarantine";
 		property remote.elasticsearch.cluster.size = "2";
 		property remote.elasticsearch.enabled = "true";
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "Elasticsearch7#ElasticsearchRemoteClusterSmokeTest";
 
 		Elasticsearch.viewClusterStatusViaClusterHealthAPI(
@@ -433,6 +434,7 @@ definition {
 		property portal.upstream = "quarantine";
 		property remote.elasticsearch.clusters.enabled = "true";
 		property remote.elasticsearch.enabled = "true";
+		property portal.suite.search.engine = "josh";
 
 		OSGiConfig.deployOSGiConfigs(
 			OSGiConfigFileName = "com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConnectionConfiguration-connection2.config",
