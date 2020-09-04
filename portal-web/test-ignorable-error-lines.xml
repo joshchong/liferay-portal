@@ -244,6 +244,10 @@
 			<contains>Media expression uses unknown feature 'prefers-reduced-motion'</contains>
 			<matches></matches>
 		</ignore-error>
+		<ignore-error description="LRQA-70000 - Ignore dangling indices">
+			<contains>gateway.auto_import_dangling_indices is disabled</contains>
+			<matches></matches>
+		</ignore-error>
 		<ignore-error description="WCM-202">
 			<contains>No score point assigners available</contains>
 			<matches></matches>
