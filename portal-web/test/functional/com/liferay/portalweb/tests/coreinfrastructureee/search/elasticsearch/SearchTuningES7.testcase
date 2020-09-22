@@ -947,7 +947,9 @@ definition {
 
 		SearchTuning.addResultRanking(searchQuery = "Apple");
 
-		Click(
+		// Workaround for LPS-120977
+
+		/*Click(
 			key_assetTitle = "MB Thread Message Subject Apple",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_TITLE");
 
@@ -964,10 +966,13 @@ definition {
 			locator1 = "MessageBoardsThread#THREAD_BODY");
 
 		Close.closeAndSelectWindow(locator1 = "title=Customize Results - ${siteName}");
+		*/
 
 		Click(
 			key_assetTitle = "Web Content Article Apple",
 			locator1 = "SearchTuning#RESULT_RANKINGS_RESULT_TITLE");
+
+		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		SelectWindow(locator1 = "title=Result Rankings - ${siteName}");
 
