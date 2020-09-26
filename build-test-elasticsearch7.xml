@@ -1066,17 +1066,6 @@ xpack.monitoring.collection.enabled: true</echo>
 
 		<get-testcase-property property.name="elastic.xpack.enabled" />
 
-		<if>
-			<equals arg1="${elastic.xpack.enabled}" arg2="true" />
-			<then>
-				<generate-x-pack-security-certificates />
-
-				<configure-elasticsearch-x-pack-security-properties />
-
-				<configure-portal-x-pack-security-truststore />
-			</then>
-		</if>
-
 		<configure-portal-remote-elasticsearch-osgi-properties />
 
 		<get-testcase-property property.name="remote.elasticsearch.cluster.size" />
@@ -1118,12 +1107,6 @@ xpack.monitoring.collection.enabled: true</echo>
 			<equals arg1="${elastic.xpack.enabled}" arg2="true" />
 			<then>
 				<sleep seconds="30" />
-
-				<set-x-pack-user-passwords />
-
-				<start-x-pack-trial />
-
-				<configure-portal-x-pack-osgi-properties />
 
 				<antcall target="start-kibana" />
 
@@ -1245,8 +1228,6 @@ xpack.monitoring.collection.enabled: true</echo>
 			<equals arg1="${elastic.xpack.enabled}" arg2="true" />
 			<then>
 				<configure-kibana-properties />
-
-				<configure-kibana-x-pack-security-properties />
 			</then>
 		</if>
 
