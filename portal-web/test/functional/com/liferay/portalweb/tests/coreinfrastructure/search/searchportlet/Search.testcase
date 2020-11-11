@@ -358,6 +358,20 @@ definition {
 		}
 	}
 
+	test Josh {
+		property portal.suite.search.engine = "josh";
+
+		var fileContent1 = FileUtil.read("/opt/dev/projects/github/liferay-portal/portal-web/test/functional/com/liferay/portalweb/dependencies/groovy-script-master-slave.groovy");
+
+		echo("${fileContent1}");
+
+		echo("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+
+		var fileContent2 = FileUtil.read("/opt/dev/projects/github/liferay-portal/modules/apps/portal-search-elasticsearch7/portal-search-elasticsearch7-impl/build.gradle");
+
+		echo("${fileContent2}");
+	}
+
 	@description = "This is a use case for LPS-90078."
 	@priority = "4"
 	test ModifyPaginationPortalProperties {
