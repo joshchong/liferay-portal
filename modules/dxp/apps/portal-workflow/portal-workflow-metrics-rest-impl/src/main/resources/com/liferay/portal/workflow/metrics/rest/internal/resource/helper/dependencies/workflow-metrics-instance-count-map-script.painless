@@ -1,4 +1,4 @@
-def instanceId = doc.instanceId.value;
+def instanceId = doc.instanceId.value.toString();
 
 if (doc.uid.value.startsWith("WorkflowMetricsTask") &&
 	((state.assigneeIds == null) ||
