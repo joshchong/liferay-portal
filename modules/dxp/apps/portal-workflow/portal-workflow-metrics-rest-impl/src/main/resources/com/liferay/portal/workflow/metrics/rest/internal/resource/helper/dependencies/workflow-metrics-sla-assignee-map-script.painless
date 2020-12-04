@@ -1,4 +1,4 @@
-def instanceId = doc.instanceId.value;
+def instanceId = doc.instanceId.value.toString();
 
 def tasksMap = state.map.computeIfAbsent(
 	instanceId, instanceId -> new HashMap());
