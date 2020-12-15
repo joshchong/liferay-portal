@@ -159,6 +159,8 @@ definition {
 
 	@priority = "4"
 	test RejectFrontPageUserEdit {
+		property portal.acceptance = "josh";
+
 		ApplicationsMenu.gotoPortlet(
 			category = "Users",
 			panel = "Control Panel",
@@ -250,6 +252,8 @@ definition {
 
 	@priority = "4"
 	test RejectWikiPagePG {
+		property portal.acceptance = "josh";
+
 		Navigator.gotoPage(pageName = "Wiki Page");
 
 		WikiNavigator.gotoAllPagesPG();

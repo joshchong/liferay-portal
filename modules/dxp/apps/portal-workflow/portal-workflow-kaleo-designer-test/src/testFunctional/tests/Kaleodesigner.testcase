@@ -645,7 +645,7 @@ definition {
 
 	@priority = "5"
 	test EditAssignmentsForTaskNodeKDCP {
-		property portal.acceptance = "true";
+		property portal.acceptance = "josh";
 		property test.name.skip.portal.instance = "Kaleodesigner#EditAssignmentsForTaskNodeKDCP";
 		property testray.component.names = "Training";
 

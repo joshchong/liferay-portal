@@ -54,6 +54,8 @@ definition {
 
 	@priority = "4"
 	test ApproveWebContentViaWebContentDisplayPG {
+		property portal.acceptance = "josh";
+
 		Navigator.gotoPage(pageName = "Web Content Display Page");
 
 		WebContent.addWithWorkflowPGViaWCD(
@@ -97,6 +99,8 @@ definition {
 
 	@priority = "4"
 	test RejectWebContentViaWebContentDisplayPG {
+		property portal.acceptance = "josh";
+
 		Navigator.gotoPage(pageName = "Web Content Display Page");
 
 		WebContent.addWithWorkflowPGViaWCD(

@@ -37,6 +37,8 @@ definition {
 
 	@priority = "4"
 	test ConfigureFolderWorkflow {
+		property portal.acceptance = "josh";
+
 		Workflow.configureWCWorkflowViaFolderInfo(workflowDefinition = "Single Approver");
 
 		WebContentFolder.addCP(
