@@ -1497,62 +1497,50 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 	</target>
 
 	<target name="stop-elasticsearch">
-		<get-testcase-property property.name="remote.elasticsearch.cluster.size" />
+		<var name="elasticsearch.stop.dir" value="${elasticsearch.dir}" />
 
 		<if>
-			<not>
-				<isset property="remote.elasticsearch.cluster.size" />
-			</not>
+			<isset property="elasticsearch.bundle.number" />
 			<then>
-				<property name="remote.elasticsearch.cluster.size" value="1" />
+				<var name="elasticsearch.stop.dir" value="${elasticsearch.stop.dir}-${elasticsearch.bundle.number}" />
 			</then>
 		</if>
 
-		<var name="elasticsearch.node.number" value="0" />
+		<if>
+			<os family="unix" />
+			<then>
+				<loadfile
+					property="pid-elasticsearch"
+					srcFile="${elasticsearch.stop.dir}/pid-elasticsearch"
+				>
+					<filterchain>
+						<linecontainsregexp>
+							<regexp pattern="[0-9]*" />
+						</linecontainsregexp>
+					</filterchain>
+				</loadfile>
 
-		<antelope:repeat count="${remote.elasticsearch.cluster.size}">
-			<math
-				datatype="int"
-				operand1="${elasticsearch.node.number}"
-				operand2="1"
-				operation="+"
-				result="elasticsearch.node.number"
-			/>
-
-			<if>
-				<os family="unix" />
+				<exec dir="${elasticsearch.stop.dir}/bin" executable="/bin/bash">
+					<arg value="-c" />
+					<arg value="kill ${pid-elasticsearch}" />
+				</exec>
+			</then>
+			<elseif>
+				<os family="windows" />
 				<then>
-					<loadfile
-						property="pid-elasticsearch"
-						srcFile="${elasticsearch.dir}-${elasticsearch.node.number}/pid-elasticsearch"
-					>
-						<filterchain>
-							<linecontainsregexp>
-								<regexp pattern="[0-9]*" />
-							</linecontainsregexp>
-						</filterchain>
-					</loadfile>
-
-					<exec dir="${elasticsearch.dir}-${elasticsearch.node.number}/bin" executable="/bin/bash">
-						<arg value="-c" />
-						<arg value="kill ${pid-elasticsearch}" />
+					<exec dir="${elasticsearch.stop.dir}/bin" executable="cmd" spawn="true">
+						<arg value="/c" />
+						<arg value="for /f %x in (pid-elasticsearch) do taskkill /f /pid %x" />
 					</exec>
-
-					<var name="pid-elasticsearch" unset="true" />
 				</then>
-				<elseif>
-					<os family="windows" />
-					<then>
-						<exec dir="${elasticsearch.dir}-${elasticsearch.node.number}/bin" executable="cmd" spawn="true">
-							<arg value="/c" />
-							<arg value="for /f %x in (pid-elasticsearch) do taskkill /f /pid %x" />
-						</exec>
-					</then>
-				</elseif>
-			</if>
+			</elseif>
+		</if>
 
-			<print-file file.name="${elasticsearch.dir}-${elasticsearch.node.number}/logs/LiferayElasticsearchCluster.log" />
-		</antelope:repeat>
+		<condition else="LiferayElasticsearchCluster.log" property="elasticsearch.log.name" value="${elasticsearch.log.name}">
+			<isset property="elasticsearch.log.name" />
+		</condition>
+
+		<print-file file.name="${elasticsearch.stop.dir}/logs/${elasticsearch.log.name}" />
 
 		<condition property="kibana.running">
 			<socket port="5601" server="localhost" />
@@ -1566,42 +1554,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 				<antcall target="stop-kibana" />
 			</then>
 		</if>
-	</target>
-
-	<target name="stop-elasticsearch-local-cluster">
-		<if>
-			<os family="unix" />
-			<then>
-				<loadfile
-					property="pid-elasticsearch"
-					srcFile="${elasticsearch.dir}-2/pid-elasticsearch"
-				>
-					<filterchain>
-						<linecontainsregexp>
-							<regexp pattern="[0-9]*" />
-						</linecontainsregexp>
-					</filterchain>
-				</loadfile>
-
-				<exec dir="${elasticsearch.dir}-2/bin" executable="/bin/bash">
-					<arg value="-c" />
-					<arg value="kill ${pid-elasticsearch}" />
-				</exec>
-
-				<var name="pid-elasticsearch" unset="true" />
-			</then>
-			<elseif>
-				<os family="windows" />
-				<then>
-					<exec dir="${elasticsearch.dir}-2/bin" executable="cmd" spawn="true">
-						<arg value="/c" />
-						<arg value="for /f %x in (pid-elasticsearch) do taskkill /f /pid %x" />
-					</exec>
-				</then>
-			</elseif>
-		</if>
-
-		<print-file file.name="${elasticsearch.dir}-2/logs/LiferayElasticsearchClusterTwo.log" />
 	</target>
 
 	<target name="stop-kibana">
