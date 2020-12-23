@@ -436,16 +436,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 						dir="${elasticsearch.dir}"
 					/>
 				</copy>
-
-				<chmod
-					maxparallel="10"
-					perm="a+rwx"
-					type="both"
-				>
-					<fileset
-						dir="${elasticsearch.dir}-${elasticsearch.bundle.counter}"
-					/>
-				</chmod>
 			</antelope:repeat>
 
 			<delete dir="${elasticsearch.dir}" />
@@ -1378,6 +1368,16 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 				<var name="elasticsearch.start.dir" value="${elasticsearch.start.dir}-${elasticsearch.bundle.number}" />
 			</then>
 		</if>
+
+		<chmod
+			maxparallel="10"
+			perm="a+rwx"
+			type="both"
+		>
+			<fileset
+				dir="${elasticsearch.start.dir}"
+			/>
+		</chmod>
 
 		<get-java-jdk-home />
 
