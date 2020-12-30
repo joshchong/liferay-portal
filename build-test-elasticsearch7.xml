@@ -772,7 +772,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 
 			<antcall target="start-elasticsearch-node">
 				<param name="elasticsearch.bundle.number" value="2" />
-				<param name="elasticsearch.log.name" value="LiferayElasticsearchClusterTwo.log" />
 				<param name="elasticsearch.port" value="9202" />
 			</antcall>
 
@@ -1430,11 +1429,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			</else>
 		</if>
 
-		<condition else="LiferayElasticsearchCluster.log" property="elasticsearch.log.name" value="${elasticsearch.log.name}">
-			<isset property="elasticsearch.log.name" />
-		</condition>
-
-		<print-file file.name="${elasticsearch.start.dir}/logs/${elasticsearch.log.name}" />
+		<print-files dir="${elasticsearch.start.dir}/logs/" exclude="*_*" include="LiferayElasticsearchCluster*.log" />
 
 		<lstopwatch action="total" name="start.elasticsearch.node" />
 
@@ -1528,11 +1523,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			</elseif>
 		</if>
 
-		<condition else="LiferayElasticsearchCluster.log" property="elasticsearch.log.name" value="${elasticsearch.log.name}">
-			<isset property="elasticsearch.log.name" />
-		</condition>
-
-		<print-file file.name="${elasticsearch.stop.dir}/logs/${elasticsearch.log.name}" />
+		<print-files dir="${elasticsearch.stop.dir}/logs/" exclude="*_*" include="LiferayElasticsearchCluster*.log" />
 
 		<condition property="kibana.running">
 			<socket port="5601" server="localhost" />
