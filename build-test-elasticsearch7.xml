@@ -1342,12 +1342,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 
 		<var name="elasticsearch.start.dir" value="${elasticsearch.dir}" />
 
-		<if>
-			<isset property="elasticsearch.bundle.number" />
-			<then>
-				<var name="elasticsearch.start.dir" value="${elasticsearch.start.dir}-${elasticsearch.bundle.number}" />
-			</then>
-		</if>
+		<var if:set="elasticsearch.bundle.number" name="elasticsearch.start.dir" value="${elasticsearch.start.dir}-${elasticsearch.bundle.number}" />
 
 		<chmod
 			maxparallel="10"
@@ -1401,9 +1396,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			</elseif>
 		</if>
 
-		<condition else="9200" property="elasticsearch.port" value="${elasticsearch.port}">
-			<isset property="elasticsearch.port" />
-		</condition>
+		<property name="elasticsearch.port" unless:set="elasticsearch.port" value="9200" />
 
 		<if>
 			<istrue value="${wait.for.server.implicitly}" />
@@ -1479,12 +1472,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 	<target name="stop-elasticsearch">
 		<var name="elasticsearch.stop.dir" value="${elasticsearch.dir}" />
 
-		<if>
-			<isset property="elasticsearch.bundle.number" />
-			<then>
-				<var name="elasticsearch.stop.dir" value="${elasticsearch.stop.dir}-${elasticsearch.bundle.number}" />
-			</then>
-		</if>
+		<var if:set="elasticsearch.bundle.number" name="elasticsearch.stop.dir" value="${elasticsearch.stop.dir}-${elasticsearch.bundle.number}" />
 
 		<if>
 			<available file="${elasticsearch.stop.dir}/pid-elasticsearch" />
