@@ -1366,14 +1366,9 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 	<target name="start-elasticsearch-node">
 		<lstopwatch action="start" name="start.elasticsearch.node" />
 
-		<var name="elasticsearch.start.dir" value="${elasticsearch.dir}" />
-
-		<if>
+		<condition else="${elasticsearch.dir}" property="elasticsearch.start.dir" value="${elasticsearch.dir}-${elasticsearch.bundle.number}">
 			<isset property="elasticsearch.bundle.number" />
-			<then>
-				<var name="elasticsearch.start.dir" value="${elasticsearch.start.dir}-${elasticsearch.bundle.number}" />
-			</then>
-		</if>
+		</condition>
 
 		<get-java-jdk-home />
 
@@ -1417,9 +1412,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			</elseif>
 		</if>
 
-		<condition else="9200" property="elasticsearch.port" value="${elasticsearch.port}">
-			<isset property="elasticsearch.port" />
-		</condition>
+		<property name="elasticsearch.port" unless:set="elasticsearch.port" value="9200" />
 
 		<if>
 			<istrue value="${wait.for.server.implicitly}" />
