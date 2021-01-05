@@ -823,9 +823,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 
 			<configure-portal-x-pack-security-truststore />
 
-			<antcall target="start-elasticsearch-node">
-				<param name="wait.for.server.implicitly" value="true" />
-			</antcall>
+			<antcall target="start-elasticsearch-node" />
 
 			<set-x-pack-user-passwords />
 
@@ -840,9 +838,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 
 					<configure-elasticsearch-pki-realm-settings />
 
-					<antcall target="start-elasticsearch-node">
-						<param name="wait.for.server.implicitly" value="true" />
-					</antcall>
+					<antcall target="start-elasticsearch-node" />
 
 					<configure-portal-x-pack-pki-osgi-properties />
 				</then>
@@ -1382,17 +1378,9 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 
 		<property name="elasticsearch.port" unless:set="elasticsearch.port" value="9200" />
 
-		<if>
-			<istrue value="${wait.for.server.implicitly}" />
-			<then>
-				<sleep seconds="30" />
-			</then>
-			<else>
-				<waitfor maxwait="120" maxwaitunit="second" timeoutproperty="elasticsearch.server.not.started">
-					<http url="http://localhost:${elasticsearch.port}/" />
-				</waitfor>
-			</else>
-		</if>
+		<waitfor maxwait="120" maxwaitunit="second" timeoutproperty="elasticsearch.server.not.started">
+			<socket port="${elasticsearch.port}" server="localhost" />
+		</waitfor>
 
 		<print-files dir="${elasticsearch.start.dir}/logs/" exclude="*_*" include="LiferayElasticsearchCluster*.log" />
 
