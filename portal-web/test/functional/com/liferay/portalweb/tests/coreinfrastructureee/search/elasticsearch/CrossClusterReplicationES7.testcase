@@ -506,6 +506,7 @@ definition {
 
 	@priority = "3"
 	test SearchWithSynonyms {
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "CrossClusterReplicationES7#SearchWithSynonyms";
 
 		CrossClusterReplication.setupCrossClusterReplication();
