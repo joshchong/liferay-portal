@@ -1093,7 +1093,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 
 		<antcall target="restore-backup">
 			<param name="backup.index" value="${backup.index}" />
-
 			<param name="elasticsearch.port" value="${elasticsearch.port}" />
 		</antcall>
 
