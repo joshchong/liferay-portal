@@ -597,7 +597,6 @@ definition {
 	test Smoke {
 		property osgi.module.configuration.file.names = "com.liferay.portal.bundle.blacklist.internal.configuration.BundleBlacklistConfiguration.config";
 		property osgi.module.configurations = "blacklistBundleSymbolicNames=&quot;com.liferay.portal.search.tuning.rankings.web&quot;";
-		property portal.suite.search.engine = "josh";
 		property portal.upstream = "quarantine";
 		property test.name.skip.portal.instance = "CrossClusterReplicationES7#Smoke";
 

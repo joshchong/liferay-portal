@@ -354,7 +354,6 @@ definition {
 	test ElasticsearchClusteringSmokeTest {
 		property elasticsearch.cluster.size = "2";
 		property portal.acceptance = "true";
-		property portal.suite.search.engine = "josh";
 		property portal.upstream = "quarantine";
 		property remote.elasticsearch.enabled = "true";
 		property test.name.skip.portal.instance = "Elasticsearch7#ElasticsearchClusteringSmokeTest";
@@ -411,7 +410,6 @@ definition {
 
 	test MultipleConnectionsSmokeTest {
 		property elasticsearch.multiple.connections = "true";
-		property portal.suite.search.engine = "josh";
 		property portal.upstream = "quarantine";
 		property remote.elasticsearch.enabled = "true";
 
