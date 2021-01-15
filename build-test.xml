@@ -3035,6 +3035,38 @@ tell application "Safari" to quit
 		</sequential>
 	</macrodef>
 
+	<macrodef name="print-files">
+		<attribute name="dir" />
+		<attribute default="" name="exclude" />
+		<attribute name="include" />
+
+		<sequential>
+			<for param="file.name">
+				<fileset
+					dir="@{dir}"
+					excludes="@{exclude}"
+					includes="@{include}"
+				/>
+				<sequential>
+					<echo></echo>
+					<echo>##</echo>
+					<echo>## @{file.name}</echo>
+					<echo>##</echo>
+					<echo></echo>
+
+					<loadfile
+						property="file.content"
+						srcFile="@{file.name}"
+					/>
+
+					<echo>${file.content}</echo>
+
+					<var name="file.content" unset="true" />
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="print-gc-logs">
 		<attribute name="tomcat.gc.log" />
 		<attribute name="tsant.gc.log" />
@@ -5310,24 +5342,66 @@ org.apache.catalina.startup.ClassLoaderFactory.level=INFO]]>
 
 	<macrodef name="stop-remote-search-engine">
 		<sequential>
-			<get-testcase-property property.name="remote.elasticsearch.clusters.enabled" />
+			<get-testcase-property property.name="elasticsearch.cluster.size" />
+			<get-testcase-property property.name="elasticsearch.multiple.connections" />
 			<get-testcase-property property.name="remote.elasticsearch.enabled" />
-			<get-testcase-property property.name="test.name.skip.portal.instance" />
+
+			<condition else="true" property="stop.standard.elasticsearch" value="false">
+				<or>
+					<isset property="elasticsearch.cluster.size" />
+					<isset property="elasticsearch.multiple.connections" />
+				</or>
+			</condition>
 
 			<if>
 				<equals arg1="${remote.elasticsearch.enabled}" arg2="true" />
 				<then>
-					<ant antfile="build-test-elasticsearch7.xml" target="stop-elasticsearch" />
+					<if>
+						<istrue value="${stop.standard.elasticsearch}" />
+						<then>
+							<ant antfile="build-test-elasticsearch7.xml" target="stop-elasticsearch" />
+						</then>
+					</if>
 
 					<if>
-						<and>
-							<equals arg1="${remote.elasticsearch.clusters.enabled}" arg2="true" />
-							<not>
-								<contains string="${test.name.skip.portal.instance}" substring="#Smoke" />
-							</not>
-						</and>
+						<isset property="elasticsearch.cluster.size" />
 						<then>
-							<ant antfile="build-test-elasticsearch7.xml" target="stop-elasticsearch-local-cluster" />
+							<var name="elasticsearch.node.number" value="1" />
+
+							<antelope:repeat count="${elasticsearch.cluster.size}">
+								<ant antfile="build-test-elasticsearch7.xml" target="stop-elasticsearch">
+									<property name="elasticsearch.bundle.number" value="${elasticsearch.node.number}" />
+								</ant>
+
+								<math
+									datatype="int"
+									operand1="${elasticsearch.node.number}"
+									operand2="1"
+									operation="+"
+									result="elasticsearch.node.number"
+								/>
+							</antelope:repeat>
+						</then>
+					</if>
+
+					<if>
+						<equals arg1="${elasticsearch.multiple.connections}" arg2="true" />
+						<then>
+							<var name="elasticsearch.cluster.number" value="2" />
+
+							<antelope:repeat count="2">
+								<ant antfile="build-test-elasticsearch7.xml" target="stop-elasticsearch">
+									<property name="elasticsearch.bundle.number" value="${elasticsearch.cluster.number}" />
+								</ant>
+
+								<math
+									datatype="int"
+									operand1="${elasticsearch.cluster.number}"
+									operand2="1"
+									operation="-"
+									result="elasticsearch.cluster.number"
+								/>
+							</antelope:repeat>
 						</then>
 					</if>
 				</then>
