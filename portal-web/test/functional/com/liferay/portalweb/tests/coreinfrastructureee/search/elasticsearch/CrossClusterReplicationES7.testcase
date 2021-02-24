@@ -5,7 +5,7 @@ definition {
 	property elasticsearch.multiple.connections = "true";
 	property osgi.app.includes = "portal-search-elasticsearch-cross-cluster-replication";
 	property portal.release = "true";
-	property portal.suite.search.engine = "elasticsearch7";
+	property portal.suite.search.engine = "josh";
 	property portal.upstream = "true";
 	property remote.elasticsearch.enabled = "true";
 	property test.run.environment = "EE";
