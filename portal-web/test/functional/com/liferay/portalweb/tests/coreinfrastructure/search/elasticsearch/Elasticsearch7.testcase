@@ -2,7 +2,7 @@
 definition {
 
 	property portal.release = "true";
-	property portal.suite.search.engine = "elasticsearch7";
+	property portal.suite.search.engine = "josh";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Elasticsearch Impl";
 
@@ -25,6 +25,16 @@ definition {
 
 			Page.tearDownCP();
 		}
+	}
+
+	test AAASidecarVersionCheck {
+		var curl = "http://localhost:9201";
+
+		var serverInfo = JSONCurlUtil.get("${curl}");
+
+		var serverVersion = RegexUtil.replace("${serverInfo}", "number&quot; : &quot;(\d+\.\d+\.\d+)", "1");
+
+		echo("Version of the Elasticsearch server on port 9201: ${serverVersion}");
 	}
 
 	@priority = "4"

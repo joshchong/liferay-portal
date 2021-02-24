@@ -40,6 +40,8 @@ definition {
 	}
 
 	test AssertBasicFacetSelection {
+		property portal.suite.search.engine = "josh";
+
 		var webContentserviceContext1 = '''{"assetTagNames": ["fruit"]}''';
 
 		JSONWebcontent.addWebContent(
