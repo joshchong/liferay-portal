@@ -1215,6 +1215,24 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 		</if>
 	</target>
 
+	<target name="redeploy-sidecar">
+		<delete dir="${liferay.home}/elasticsearch7" failonerror="false" />
+
+		<echo file="${project.dir}/modules/apps/portal-search-elasticsearch7/portal-search-elasticsearch7-impl/src/main/resources/META-INF/sidecar.version">${sidecar.redeploy.version}</echo>
+
+		<gradle-execute dir="${project.dir}/modules/apps/portal-search-elasticsearch7/portal-search-elasticsearch7-impl" task="deploySidecar" />
+
+		<fileset
+			dir="${liferay.home}/elasticsearch7/lib"
+			id="sidecar.lib.dir"
+			includes="elasticsearch*"
+		/>
+
+		<echo>Sidecar Elasticsearch jars:</echo>
+
+		<pathconvert pathsep="${line.separator}" refid="sidecar.lib.dir" />
+	</target>
+
 	<target name="restore-backup">
 		<property name="register.repository">
 			<![CDATA[
