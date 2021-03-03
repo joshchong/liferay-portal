@@ -472,8 +472,6 @@ definition {
 	}
 
 	test EnableAndDisableResultRankings {
-		property portal.suite.search.engine = "josh";
-
 		var content = "Article Article Article Article";
 
 		for (var count : list "1,2,3,4") {
