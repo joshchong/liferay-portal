@@ -8782,8 +8782,6 @@ osb.lcs.portlet.oauth.consumer.secret=${osb.lcs.portlet.oauth.consumer.secret}</
 
 		<prepare-portal-elasticsearch-osgi-configuration />
 
-		<prepare-portal-search-osgi-configuration/>
-
 		<prepare-portal-template-freemarker-osgi-configuration />
 	</target>
 
