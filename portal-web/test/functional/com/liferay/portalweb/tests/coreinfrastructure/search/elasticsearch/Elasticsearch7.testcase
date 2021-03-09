@@ -27,6 +27,13 @@ definition {
 		}
 	}
 
+	test AAAtest {
+		property portal.suite.search.engine = "josh";
+		property remote.elasticsearch.enabled = "true";
+
+		echo("hi");
+	}
+
 	@priority = "4"
 	test AssertIndexOnStartup {
 		property test.assert.warning.exceptions = "true";

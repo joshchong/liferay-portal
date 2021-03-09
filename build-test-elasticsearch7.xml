@@ -1288,6 +1288,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 
 		<get-java-jdk-home />
 
+		<echo>!!!!! JAVA_HOME=${java.jdk.home} !!!!!</echo>
+
 		<exec dir="${elasticsearch.start.dir}/bin" executable="/bin/bash" osfamily="unix">
 			<arg value="-c" />
 			<arg if:set="env.JENKINS_HOME" value="sudo -H -u shutdown bash -c 'export JAVA_HOME=${java.jdk.home} &amp;&amp; ./elasticsearch -d -p pid-elasticsearch'" />
