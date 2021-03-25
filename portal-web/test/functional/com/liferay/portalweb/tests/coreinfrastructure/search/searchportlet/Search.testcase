@@ -2,7 +2,6 @@
 definition {
 
 	property portal.release = "true";
-	property portal.suite.search.engine = "elasticsearch7";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Web Search";
 
@@ -40,6 +39,8 @@ definition {
 	}
 
 	test AssertBasicFacetSelection {
+		property portal.suite.search.engine = "elasticsearch7";
+
 		var webContentserviceContext1 = '''{"assetTagNames": ["fruit"]}''';
 
 		JSONWebcontent.addWebContent(

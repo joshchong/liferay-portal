@@ -4,7 +4,6 @@ definition {
 	property osgi.module.configuration.file.names = "com.liferay.portal.search.web.internal.configuration.SearchWebConfiguration.config";
 	property osgi.module.configurations = "classicSearchPortletInFrontPage=&quot;true&quot;";
 	property portal.release = "true";
-	property portal.suite.search.engine = "elasticsearch7";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Web Search";
 
@@ -24,6 +23,8 @@ definition {
 
 	@priority = "4"
 	test SearchByAssetAndModifiedRangeFacets {
+		property portal.suite.search.engine = "elasticsearch7";
+
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			portlet = "Blogs");

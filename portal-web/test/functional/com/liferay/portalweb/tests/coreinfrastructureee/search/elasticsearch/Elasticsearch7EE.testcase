@@ -2,7 +2,6 @@
 definition {
 
 	property portal.release = "true";
-	property portal.suite.search.engine = "elasticsearch7";
 	property portal.upstream = "true";
 	property test.run.environment = "EE";
 	property testray.main.component.name = "Elasticsearch Impl";
@@ -30,6 +29,7 @@ definition {
 
 	test AssertSimilarResultsDisplayTemplate {
 		property osgi.app.includes = "portal-search-similar-results";
+		property portal.suite.search.engine = "elasticsearch7";
 
 		for (var count : list "1,2,3") {
 			JSONWebcontent.addWebContent(
@@ -751,6 +751,7 @@ definition {
 		property elastic.override.version = "7.9.0";
 		property elasticsearch.ltr.enabled = "true";
 		property osgi.app.includes = "portal-search-learning-to-rank";
+		property portal.suite.search.engine = "elasticsearch7";
 		property portal.upstream = "quarantine";
 		property remote.elasticsearch.enabled = "true";
 		property test.name.skip.portal.instance = "Elasticsearch7EE#LearningToRankSmoke";
@@ -834,6 +835,7 @@ definition {
 	test PortalClusterSmokeTest {
 		property app.server.bundles.size = "1";
 		property cluster.enabled = "true";
+		property portal.suite.search.engine = "elasticsearch7";
 		property portal.upstream = "quarantine";
 		property remote.elasticsearch.enabled = "true";
 		property test.name.skip.portal.instance = "Elasticsearch7EE#PortalClusterSmokeTest";
@@ -983,6 +985,7 @@ definition {
 		property elastic.pki.authentication.enabled = "true";
 		property elastic.xpack.enabled = "true";
 		property osgi.app.includes = "portal-search-elasticsearch-monitoring";
+		property portal.suite.search.engine = "elasticsearch7";
 		property portal.upstream = "quarantine";
 		property remote.elasticsearch.enabled = "true";
 		property test.name.skip.portal.instance = "Elasticsearch7EE#XPackPkiAuthenticationSmokeTest";
@@ -1034,6 +1037,7 @@ definition {
 	test XPackSmokeTest {
 		property elastic.xpack.enabled = "true";
 		property osgi.app.includes = "portal-search-elasticsearch-monitoring";
+		property portal.suite.search.engine = "elasticsearch7";
 		property portal.upstream = "quarantine";
 		property remote.elasticsearch.enabled = "true";
 		property test.name.skip.portal.instance = "Elasticsearch7EE#XPackSmokeTest";
