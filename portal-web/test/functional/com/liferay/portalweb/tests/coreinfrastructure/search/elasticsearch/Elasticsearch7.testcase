@@ -57,9 +57,10 @@ definition {
 		Portlet.addPG(portletName = "Asset Publisher");
 
 		var companyId = JSONCompany.getCompanyId();
+		var port = Elasticsearch.getServerPort();
 
 		var curl = '''
-			http://localhost:9201/liferay-${companyId}/_delete_by_query?pretty \
+			http://localhost:${port}/liferay-${companyId}/_delete_by_query?pretty \
 			-H 'Content-Type: application/json' \
 			-d '{
 				"query": {
@@ -526,11 +527,13 @@ definition {
 	test SearchWithNonLiferayIndex {
 		property test.name.skip.portal.instance = "Elasticsearch7#SearchWithNonLiferayIndex";
 
-		Navigator.openSpecificURL(url = "http://localhost:9201");
+		var port = Elasticsearch.getServerPort();
+
+		Navigator.openSpecificURL(url = "http://localhost:${port}");
 
 		AntCommand(
 			locator1 = "build-test-elasticsearch7.xml",
-			value1 = "add-boston-dataset-index -Dbackup.index=boston311 -Delasticsearch.port=9201");
+			value1 = "add-boston-dataset-index -Dbackup.index=boston311 -Delasticsearch.port=${port}");
 
 		Navigator.openURL();
 
