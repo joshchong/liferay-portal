@@ -65,6 +65,7 @@ definition {
 	@priority = "5"
 	test FilterByPageFacet {
 		property portal.acceptance = "true";
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "ContentPagesWithSearch#FilterByPageFacet";
 
 		task ("Add a Static Text fragment to the content page") {

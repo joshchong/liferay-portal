@@ -2173,6 +2173,7 @@ definition {
 
 	@priority = "4"
 	test ViewUpdateUserViaJSONWS {
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "CPUsersandorganizations#ViewUpdateUserViaJSONWS";
 
 		ApplicationsMenu.gotoPortlet(

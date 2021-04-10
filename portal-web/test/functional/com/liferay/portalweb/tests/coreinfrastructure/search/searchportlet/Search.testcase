@@ -2192,6 +2192,7 @@ definition {
 	@description = "This is a use case for LPS-74299."
 	@priority = "3"
 	test ViewFacetPersistence {
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "Search#ViewFacetPersistence";
 
 		// Workaround for LPS-89026
@@ -2238,6 +2239,8 @@ definition {
 
 	@priority = "5"
 	test ViewMultipleFacetURLs {
+		property portal.suite.search.engine = "josh";
+
 		var searchPage = "Search Page";
 
 		JSONCategory.addVocabulary(
@@ -2658,6 +2661,7 @@ definition {
 	@priority = "5"
 	test ViewSearchResultDetails {
 		property portal.acceptance = "true";
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "Search#ViewSearchResultDetails";
 
 		ApplicationsMenu.gotoPortlet(

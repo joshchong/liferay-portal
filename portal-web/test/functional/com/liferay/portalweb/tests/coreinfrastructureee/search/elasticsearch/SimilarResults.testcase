@@ -248,6 +248,7 @@ definition {
 	}
 
 	test ConfigureSimilarResultsDocumentFrequency {
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "SimilarResults#ConfigureSimilarResultsDocumentFrequency";
 
 		JSONWebcontent.addWebContent(

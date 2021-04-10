@@ -211,6 +211,7 @@ definition {
 	@priority = "5"
 	test SearchCurrentMembersAssignedToUserGroup {
 		property portal.acceptance = "true";
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "CPUsergroups#SearchCurrentMembersAssignedToUserGroup";
 
 		ApplicationsMenu.gotoPortlet(

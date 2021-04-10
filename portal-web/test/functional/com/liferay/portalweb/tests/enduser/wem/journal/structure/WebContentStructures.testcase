@@ -546,6 +546,7 @@ definition {
 
 	@priority = "4"
 	test ValidateDDMNavigation {
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "WebContentStructures#ValidateDDMNavigation";
 		property testray.component.names = "Web Content Administration";
 
