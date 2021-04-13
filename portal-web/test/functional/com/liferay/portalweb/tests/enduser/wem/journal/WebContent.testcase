@@ -198,6 +198,7 @@ definition {
 
 	@priority = "4"
 	test EditBasicWebContentStructureAndTemplate {
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "WebContent#EditBasicWebContentStructureAndTemplate";
 		property testray.component.names = "Web Content Administration";
 

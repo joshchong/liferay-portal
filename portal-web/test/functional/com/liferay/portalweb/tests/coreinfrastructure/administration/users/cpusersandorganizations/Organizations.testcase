@@ -31,6 +31,7 @@ definition {
 	@description = "This test adds five suborganizations to an organization"
 	@priority = "5"
 	test AddMultipleSuborganizations {
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "UsersandorganizationsUsecase#AddMultipleSuborganizations";
 		property testray.component.names = "Training";
 

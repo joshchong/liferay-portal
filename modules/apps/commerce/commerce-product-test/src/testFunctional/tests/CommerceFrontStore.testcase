@@ -2,6 +2,7 @@
 definition {
 
 	property portal.release = "true";
+	property portal.suite.search.engine = "josh";
 	property portal.upstream = "true";
 	property testray.main.component.name = "Commerce";
 

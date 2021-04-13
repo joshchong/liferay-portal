@@ -477,6 +477,7 @@ definition {
 	@priority = "4"
 	test UserGroupSiteOwnerPermissions {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "UsergroupsUsecase#UserGroupSiteOwnerPermissions";
 
 		ApplicationsMenu.gotoPortlet(
@@ -590,6 +591,7 @@ definition {
 	@priority = "4"
 	test UserGroupSiteTemplates {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "UsergroupsUsecase#UserGroupSiteTemplates";
 
 		SiteTemplates.addCP(

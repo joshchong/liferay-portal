@@ -537,7 +537,8 @@ definition {
 	@description = "This is a use case for LPS-71944."
 	@priority = "5"
 	test ViewWidgetTemplateEmbeddedWidgetAppliedToAssetPublisher {
-		property test.name.skip.portal.instance = "ApplicationDisplayTemplatesUseCase#ADTChangeTemplatePortletPreferencesMethodContracts";
+		property portal.suite.search.engine = "josh";
+		property test.name.skip.portal.instance = "ApplicationDisplayTemplatesUseCase#ViewWidgetTemplateEmbeddedWidgetAppliedToAssetPublisher";
 		property testray.component.names = "Asset Publisher,Content and Application Templates";
 
 		task ("Execute reindex all search indexes") {

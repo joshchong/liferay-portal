@@ -727,6 +727,7 @@ definition {
 	@priority = "4"
 	test ConfigureUserBelongsToRule {
 		property portal.acceptance = "true";
+		property portal.suite.search.engine = "josh";
 		property portal.upstream = "true";
 		property test.name.skip.portal.instance = "FormRules#ConfigureUserBelongsToRule";
 
