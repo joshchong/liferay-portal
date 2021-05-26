@@ -413,6 +413,7 @@ definition {
 
 	test MultipleConnectionsSmokeTest {
 		property elasticsearch.multiple.connections = "true";
+		property portal.suite.search.engine = "josh";
 		property portal.upstream = "quarantine";
 		property remote.elasticsearch.enabled = "true";
 
