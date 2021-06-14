@@ -38,6 +38,8 @@ definition {
 
 		for (var title : list "Blueprint 1,Blueprint 2") {
 			SearchExperiences.addBlueprint(name = "${title}");
+
+			PortletEntry.save();
 		}
 
 		LexiconEntry.gotoEntryMenuItem(
@@ -142,10 +144,6 @@ definition {
 
 		SearchExperiences.addBlueprint(name = "Score Explanation Blueprint");
 
-		LexiconEntry.gotoEntryMenuItem(
-			menuItem = "Edit",
-			rowEntry = "Score Explanation Blueprint");
-
 		Click(locator1 = "Button#PREVIEW");
 
 		SearchExperiences.searchBlueprintsPreview(searchTerm = "Apple");
@@ -169,8 +167,6 @@ definition {
 		SearchExperiences.addBlueprint(
 			clauseOption = "Custom Clauses",
 			name = "The Closer to Liferay, the Better");
-
-		SearchExperiences.editBlueprint(name = "The Closer to Liferay, the Better");
 
 		Type.sendKeysApplicationSearch(
 			locator1 = "SearchExperiences#BLUEPRINTS_FRAGMENT_QUERY_SEARCH_BAR",
@@ -488,9 +484,13 @@ definition {
 			description = "Blueprint Test Description",
 			name = "Test Blueprint - Adminicle");
 
+		Navigator.gotoBack();
+
 		SearchExperiences.addBlueprint(
 			description = "Serendipitous Blueprint Test Description",
 			name = "Test Blueprint - Aid");
+
+		Navigator.gotoBack();
 
 		SearchExperiences.searchReactiveSearchWidget(searchTerm = "Adminicle");
 
@@ -514,6 +514,8 @@ definition {
 
 		for (var blueprintNumber : list "1,3,2") {
 			SearchExperiences.addBlueprint(name = "Blueprint ${blueprintNumber}");
+
+			PortletEntry.save();
 		}
 
 		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
@@ -556,10 +558,6 @@ definition {
 		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
 
 		SearchExperiences.addBlueprint(name = "My Blueprint");
-
-		LexiconEntry.gotoEntryMenuItem(
-			menuItem = "Edit",
-			rowEntry = "My Blueprint");
 
 		Click(locator1 = "Button#PREVIEW");
 
