@@ -132,33 +132,50 @@ definition {
 			searchAssetType = "Web Content Article");
 	}
 
-	test ViewSearchResultsScoreViaBlueprintsPreview {
-		property test.name.skip.portal.instance = "SearchExperiences#ViewSearchResultsScoreViaBlueprintsPreview";
-
-		JSONWebcontent.addWebContent(
-			content = "WC Content",
-			groupName = "Guest",
-			title = "Apple");
+	test BoostSearchRankingForAssetType {
+		property test.name.skip.portal.instance = "SearchExperiences#BoostSearchRankingForAssetType";
 
 		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
 
-		SearchExperiences.addBlueprint(name = "Score Explanation Blueprint");
+		SearchExperiences.addBlueprint(name = "My Blueprint");
 
-		Click(locator1 = "Button#PREVIEW");
+		var portalURL = PropsUtil.get("portal.url");
 
-		SearchExperiences.searchBlueprintsPreview(searchTerm = "Apple");
+		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
 
-		Click(
-			key_searchAssetTitle = "Apple",
-			locator1 = "SearchExperiences#BLUEPRINTS_PREVIEW_SCORE");
+		SearchPortlets.addWidgets(searchPortletList = "Blueprints Options");
 
-		AssertTextEquals(
-			locator1 = "Modal#HEADER",
-			value1 = "Score Explanation");
+		SearchExperiences.selectBlueprintFromOptionsWidget(name = "My Blueprint");
 
-		AssertVisible(
-			key_searchExplanation = "PerFieldSimilarity",
-			locator1 = "SearchExperiences#BLUEPRINTS_PREVIEW_SCORE_EXPLANATION");
+		JSONWebcontent.addWebContent(
+			content = "Liferay",
+			groupName = "Guest",
+			title = "Liferay Web Content");
+
+		JSONBlog.addEntry(
+			entryContent = "Liferay Liferay",
+			entryTitle = "Liferay Blogs Entry");
+
+		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
+
+		SearchPortlets.searchEmbedded(searchTerm = "liferay");
+
+		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Liferay Blogs Entry,Liferay Web Content");
+
+		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
+
+		SearchExperiences.editBlueprint(name = "My Blueprint");
+
+		SearchExperiences.addQueryElements(
+			assetType = "Web Content Article",
+			fragment = "Boost Asset Type",
+			numberBoost = "1000");
+
+		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
+
+		SearchPortlets.searchEmbedded(searchTerm = "liferay");
+
+		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Liferay Web Content,Liferay Blogs Entry");
 	}
 
 	test BoostWithCustomElasticsearchQuery {
@@ -281,52 +298,6 @@ definition {
 		SearchPortlets.searchEmbedded(searchTerm = "location");
 
 		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Closest Location,Closer Location,Close Location");
-	}
-
-	test BoostSearchRankingForAssetType {
-		property test.name.skip.portal.instance = "SearchExperiences#BoostSearchRankingForAssetType";
-
-		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
-
-		SearchExperiences.addBlueprint(name = "My Blueprint");
-
-		var portalURL = PropsUtil.get("portal.url");
-
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
-
-		SearchPortlets.addWidgets(searchPortletList = "Blueprints Options");
-
-		SearchExperiences.selectBlueprintFromOptionsWidget(name = "My Blueprint");
-
-		JSONWebcontent.addWebContent(
-			content = "Liferay",
-			groupName = "Guest",
-			title = "Liferay Web Content");
-
-		JSONBlog.addEntry(
-			entryContent = "Liferay Liferay",
-			entryTitle = "Liferay Blogs Entry");
-
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
-
-		SearchPortlets.searchEmbedded(searchTerm = "liferay");
-
-		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Liferay Blogs Entry,Liferay Web Content");
-
-		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
-
-		SearchExperiences.editBlueprint(name = "My Blueprint");
-
-		SearchExperiences.addQueryElements(
-			assetType = "Web Content Article",
-			fragment = "Boost Asset Type",
-			numberBoost = "1000");
-
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
-
-		SearchPortlets.searchEmbedded(searchTerm = "liferay");
-
-		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Liferay Web Content,Liferay Blogs Entry");
 	}
 
 	@priority = "4"
@@ -594,6 +565,39 @@ definition {
 		AssertTextEquals(
 			locator1 = "WCD#WEB_CONTENT_CONTENT",
 			value1 = "red apple, citrus-orange");
+	}
+
+	test ViewSearchResultsScoreViaBlueprintsPreview {
+		property test.name.skip.portal.instance = "SearchExperiences#ViewSearchResultsScoreViaBlueprintsPreview";
+
+		JSONWebcontent.addWebContent(
+			content = "WC Content",
+			groupName = "Guest",
+			title = "Apple");
+
+		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
+
+		SearchExperiences.addBlueprint(name = "Score Explanation Blueprint");
+
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "Score Explanation Blueprint");
+
+		Click(locator1 = "Button#PREVIEW");
+
+		SearchExperiences.searchBlueprintsPreview(searchTerm = "Apple");
+
+		Click(
+			key_searchAssetTitle = "Apple",
+			locator1 = "SearchExperiences#BLUEPRINTS_PREVIEW_SCORE");
+
+		AssertTextEquals(
+			locator1 = "Modal#HEADER",
+			value1 = "Score Explanation");
+
+		AssertVisible(
+			key_searchExplanation = "PerFieldSimilarity",
+			locator1 = "SearchExperiences#BLUEPRINTS_PREVIEW_SCORE_EXPLANATION");
 	}
 
 }
