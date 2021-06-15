@@ -31,8 +31,8 @@ definition {
 		}
 	}
 
-	test AssertAddCopyAndDeleteSearchBlueprint {
-		property test.name.skip.portal.instance = "SearchExperiences#AssertAddCopyAndDeleteSearchBlueprint";
+	test AddCopyAndDeleteBlueprint {
+		property test.name.skip.portal.instance = "SearchExperiences#AddCopyAndDeleteBlueprint";
 
 		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
 
@@ -57,9 +57,9 @@ definition {
 			locator1 = "SearchExperiences#BLUEPRINTS_ASSET_ENTRY_TABLE_TITLE");
 	}
 
-	test AssertNonAdminsCannotSeeSearchExperience {
+	test AssertNonAdminsCannotAccessSearchExperiencePortlet {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
-		property test.name.skip.portal.instance = "SearchExperiences#AssertNonAdminsCannotSeeSearchExperience";
+		property test.name.skip.portal.instance = "SearchExperiences#AssertNonAdminsCannotAccessSearchExperiencePortlet";
 
 		JSONWebcontent.addWebContent(
 			content = "Los Angeles",
@@ -132,8 +132,8 @@ definition {
 			searchAssetType = "Web Content Article");
 	}
 
-	test AssertSearchResultsScore {
-		property test.name.skip.portal.instance = "SearchExperiences#AssertSearchResultsScore";
+	test ViewSearchResultsScoreViaBlueprintsPreview {
+		property test.name.skip.portal.instance = "SearchExperiences#ViewSearchResultsScoreViaBlueprintsPreview";
 
 		JSONWebcontent.addWebContent(
 			content = "WC Content",
@@ -161,7 +161,7 @@ definition {
 			locator1 = "SearchExperiences#BLUEPRINTS_PREVIEW_SCORE_EXPLANATION");
 	}
 
-	test BoostWithElasticsearchQuery {
+	test BoostWithCustomElasticsearchQuery {
 		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
 
 		SearchExperiences.addBlueprint(
@@ -283,8 +283,8 @@ definition {
 		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Closest Location,Closer Location,Close Location");
 	}
 
-	test CreateBoostAssetType {
-		property test.name.skip.portal.instance = "SearchExperiences#CreateBoostAssetType";
+	test BoostSearchRankingForAssetType {
+		property test.name.skip.portal.instance = "SearchExperiences#BoostSearchRankingForAssetType";
 
 		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
 
@@ -330,8 +330,8 @@ definition {
 	}
 
 	@priority = "4"
-	test HideWebContentWithCustomElement {
-		property test.name.skip.portal.instance = "SearchExperiences#HideWebContentWithCustomElement";
+	test HideWebContentViaCustomElement {
+		property test.name.skip.portal.instance = "SearchExperiences#HideWebContentViaCustomElement";
 
 		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
 
@@ -505,8 +505,8 @@ definition {
 			locator1 = "SearchExperiences#BLUEPRINTS_ASSET_ENTRY_TABLE_TITLE");
 	}
 
-	test SortAndViewSearchBlueprints {
-		property test.name.skip.portal.instance = "SearchExperiences#SortAndViewSearchBlueprints";
+	test SortAndViewBlueprints {
+		property test.name.skip.portal.instance = "SearchExperiences#SortAndViewBlueprints";
 
 		SearchExperiences.tearDownCP();
 
@@ -543,8 +543,8 @@ definition {
 		SearchExperiences.viewBlueprintsSpecificOrder(blueprintsList = "Blueprint 3,Blueprint 2,Blueprint 1");
 	}
 
-	test ViewBlueprintsAssetDetails {
-		property test.name.skip.portal.instance = "SearchExperiences#ViewBlueprintsAssetDetails";
+	test ViewAssetDetailsViaBlueprintsPreview {
+		property test.name.skip.portal.instance = "SearchExperiences#ViewAssetDetailsViaBlueprintsPreview";
 
 		JSONBlog.addEntry(
 			entryContent = "banana, red apple, blueberry!",
