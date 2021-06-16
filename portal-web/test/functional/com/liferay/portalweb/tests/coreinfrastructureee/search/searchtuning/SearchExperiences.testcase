@@ -32,8 +32,6 @@ definition {
 	}
 
 	test AddCopyAndDeleteBlueprint {
-		property test.name.skip.portal.instance = "SearchExperiences#AddCopyAndDeleteBlueprint";
-
 		SearchExperiences.openSearchExperiencesAdmin();
 
 		for (var title : list "Blueprint 1,Blueprint 2") {
@@ -59,7 +57,6 @@ definition {
 
 	test AssertNonAdminsCannotAccessSearchExperiencePortlet {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
-		property test.name.skip.portal.instance = "SearchExperiences#AssertNonAdminsCannotAccessSearchExperiencePortlet";
 
 		JSONWebcontent.addWebContent(
 			content = "Los Angeles",
@@ -133,8 +130,6 @@ definition {
 	}
 
 	test BoostSearchRankingForAssetType {
-		property test.name.skip.portal.instance = "SearchExperiences#BoostSearchRankingForAssetType";
-
 		SearchExperiences.openSearchExperiencesAdmin();
 
 		SearchExperiences.addBlueprint(name = "My Blueprint");
@@ -306,8 +301,6 @@ definition {
 
 	@priority = "4"
 	test HideWebContentViaCustomElement {
-		property test.name.skip.portal.instance = "SearchExperiences#HideWebContentViaCustomElement";
-
 		SearchExperiences.openSearchExperiencesAdmin();
 
 		SearchExperiences.addBlueprint(name = "Hide Test and Experimental Content");
@@ -453,8 +446,6 @@ definition {
 	}
 
 	test SearchBlueprintsByTitleAndDescription {
-		property test.name.skip.portal.instance = "SearchExperiences#SearchBlueprintsByTitleAndDescription";
-
 		SearchExperiences.openSearchExperiencesAdmin();
 
 		SearchExperiences.addBlueprint(
@@ -483,8 +474,6 @@ definition {
 	}
 
 	test SortAndViewBlueprints {
-		property test.name.skip.portal.instance = "SearchExperiences#SortAndViewBlueprints";
-
 		SearchExperiences.tearDownCP();
 
 		SearchExperiences.openSearchExperiencesAdmin();
@@ -523,8 +512,6 @@ definition {
 	}
 
 	test ViewAssetDetailsViaBlueprintsPreview {
-		property test.name.skip.portal.instance = "SearchExperiences#ViewAssetDetailsViaBlueprintsPreview";
-
 		JSONBlog.addEntry(
 			entryContent = "banana, red apple, blueberry!",
 			entryTitle = "Liferay Blogs Entry Apple");
@@ -576,8 +563,6 @@ definition {
 	}
 
 	test ViewSearchResultsScoreViaBlueprintsPreview {
-		property test.name.skip.portal.instance = "SearchExperiences#ViewSearchResultsScoreViaBlueprintsPreview";
-
 		JSONWebcontent.addWebContent(
 			content = "WC Content",
 			groupName = "Guest",
