@@ -136,10 +136,8 @@ definition {
 	}
 
 	macro searchForBlueprints {
-		AssertElementPresent(locator1 = "SearchExperiences#BLUEPRINTS_SEARCH_BAR");
-
 		Type(
-			locator1 = "SearchExperiences#BLUEPRINTS_SEARCH_BAR",
+			locator1 = "SearchExperiences#BLUEPRINTS_HOME_SEARCH_BAR",
 			value1 = "${searchTerm}");
 
 		var browserType = PropsUtil.get("browser.type");
@@ -149,7 +147,7 @@ definition {
 		}
 		else {
 			KeyPress(
-				locator1 = "SearchExperiences#BLUEPRINTS_SEARCH_BAR",
+				locator1 = "SearchExperiences#BLUEPRINTS_HOME_SEARCH_BAR",
 				value1 = "\RETURN");
 		}
 
@@ -174,7 +172,7 @@ definition {
 		var key_blueprintName = "${name}";
 
 		AssertClick(
-			locator1 = "SearchExperiences#BLUEPRINTS_TABLE_CHOOSE",
+			locator1 = "SearchExperiences#BLUEPRINTS_OPTIONS_WIDGET_CHOOSE",
 			value1 = "Choose");
 
 		SelectFrameTop();
