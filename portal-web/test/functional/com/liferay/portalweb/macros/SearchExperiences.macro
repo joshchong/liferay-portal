@@ -135,7 +135,7 @@ definition {
 		WaitForLiferayEvent.initializeLiferayEventLog();
 	}
 
-	macro searchReactiveSearchWidget {
+	macro searchForBlueprints {
 		AssertElementPresent(locator1 = "SearchExperiences#BLUEPRINTS_SEARCH_BAR");
 
 		Type(

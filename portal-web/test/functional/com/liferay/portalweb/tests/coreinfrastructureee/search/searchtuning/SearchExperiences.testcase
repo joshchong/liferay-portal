@@ -469,13 +469,13 @@ definition {
 
 		Navigator.gotoBack();
 
-		SearchExperiences.searchReactiveSearchWidget(searchTerm = "Adminicle");
+		SearchExperiences.searchForBlueprints(searchTerm = "Adminicle");
 
 		AssertElementPresent(
 			key_searchAssetTitle = "Test Blueprint - Adminicle",
 			locator1 = "SearchExperiences#BLUEPRINTS_ASSET_ENTRY_TABLE_TITLE");
 
-		SearchExperiences.searchReactiveSearchWidget(searchTerm = "Serendipitous");
+		SearchExperiences.searchForBlueprints(searchTerm = "Serendipitous");
 
 		AssertElementPresent(
 			key_searchAssetTitle = "Test Blueprint - Aid",
