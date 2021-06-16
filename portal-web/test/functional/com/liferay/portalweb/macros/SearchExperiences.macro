@@ -19,10 +19,6 @@ definition {
 		}
 
 		Button.click(button = "Create");
-
-		// Workaround for LPS-133591
-
-		Refresh();
 	}
 
 	macro addQueryElements {
@@ -86,12 +82,6 @@ definition {
 		PortletEntry.inputTitle(title = "${name}");
 
 		Button.click(button = "Create");
-
-		// Workaround for LPS-133591
-
-		Refresh();
-
-		SearchExperiences.editElement(name = "${name}");
 
 		Type.typeCodeMirrorEditor(
 			locator1 = "SearchExperiences#BLUEPRINTS_ELEMENT_TEMPLATE_JSON",
