@@ -417,7 +417,7 @@ definition {
 
 		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
 
-		SearchExperiences.addElements(
+		SearchExperiences.createElement(
 			elementTemplateJSON = "${elementTemplateJSON}",
 			name = "Hide Multiple Tagged Contents",
 			uiConfigurationJSON = "${uiConfigurationJSON}");

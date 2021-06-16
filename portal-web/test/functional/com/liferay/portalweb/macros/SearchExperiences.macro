@@ -25,32 +25,6 @@ definition {
 		Refresh();
 	}
 
-	macro addElements {
-		Navigator.gotoNavItem(navItem = "Elements");
-
-		Click(locator1 = "Button#PLUS");
-
-		PortletEntry.inputTitle(title = "${name}");
-
-		Button.click(button = "Create");
-
-		// Workaround for LPS-133591
-
-		Refresh();
-
-		SearchExperiences.editElement(name = "${name}");
-
-		Type.typeCodeMirrorEditor(
-			locator1 = "SearchExperiences#BLUEPRINTS_ELEMENT_TEMPLATE_JSON",
-			value1 = "${elementTemplateJSON}");
-
-		Type.typeCodeMirrorEditor(
-			locator1 = "SearchExperiences#BLUEPRINTS_ELEMENT_UI_CONFIGURATION_JSON",
-			value1 = "${uiConfigurationJSON}");
-
-		PortletEntry.save();
-	}
-
 	macro addQueryElements {
 		AssertElementPresent(locator1 = "//div[contains(@class,'sidebar-header')]//span[contains(.,'Add Query Elements')]");
 
@@ -100,6 +74,32 @@ definition {
 				locator1 = "SearchExperiences#BLUEPRINTS_QUERY_TEXT_FIELD",
 				value1 = "${tag2}");
 		}
+
+		PortletEntry.save();
+	}
+
+	macro createElement {
+		Navigator.gotoNavItem(navItem = "Elements");
+
+		Click(locator1 = "Button#PLUS");
+
+		PortletEntry.inputTitle(title = "${name}");
+
+		Button.click(button = "Create");
+
+		// Workaround for LPS-133591
+
+		Refresh();
+
+		SearchExperiences.editElement(name = "${name}");
+
+		Type.typeCodeMirrorEditor(
+			locator1 = "SearchExperiences#BLUEPRINTS_ELEMENT_TEMPLATE_JSON",
+			value1 = "${elementTemplateJSON}");
+
+		Type.typeCodeMirrorEditor(
+			locator1 = "SearchExperiences#BLUEPRINTS_ELEMENT_UI_CONFIGURATION_JSON",
+			value1 = "${uiConfigurationJSON}");
 
 		PortletEntry.save();
 	}
