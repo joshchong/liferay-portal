@@ -1,8 +1,6 @@
 definition {
 
 	macro addBlueprint {
-		Navigator.gotoNavItem(navItem = "Blueprints");
-
 		Click(locator1 = "Button#PLUS");
 
 		PortletEntry.inputTitle(title = "${name}");
@@ -93,22 +91,16 @@ definition {
 	}
 
 	macro deleteBlueprint {
-		Navigator.gotoNavItem(navItem = "Blueprints");
-
 		LexiconEntry.delete(rowEntry = "${name}");
 	}
 
 	macro editBlueprint {
-		Navigator.gotoNavItem(navItem = "Blueprints");
-
 		LexiconEntry.gotoEntryMenuItem(
 			menuItem = "Edit",
 			rowEntry = "${name}");
 	}
 
 	macro editElement {
-		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
-
 		Navigator.gotoNavItem(navItem = "Elements");
 
 		LexiconEntry.gotoEntryMenuItem(
