@@ -10,8 +10,13 @@
 <tbody>
 <!--BLUEPRINTS-->
 <tr>
-	<td>BLUEPRINTS_ADD_QUERY_FRAGMENT</td>
-	<td>//div[contains(@class,'autofit-col') and contains(.,'${key_fragmentName}')]/following-sibling::div/button[contains(.,'Add')]</td>
+	<td>BLUEPRINTS_ADD_QUERY_ELEMENTS_HEADER</td>
+	<td>//div[contains(@class,'sidebar-header')]//span[contains(.,'Add Query Elements')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLUEPRINTS_ADD_QUERY_ELEMENTS_SEARCH_BAR</td>
+	<td>//div[contains(@class,'open')]//input[contains(@placeholder,'Search')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -55,13 +60,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>BLUEPRINTS_ELASTICSEARCH_QUERY_JSON</td>
+	<td>BLUEPRINTS_ELASTICSEARCH_QUERY_JSON_EDITOR</td>
 	<td>//div[contains(@class,'custom-json')]//div[contains(@class,'CodeMirror cm-s-default')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>BLUEPRINTS_FRAGMENT_QUERY_SEARCH_BAR</td>
-	<td>//div[contains(@class,'open')]//input[contains(@placeholder,'Search')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -105,8 +105,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>BLUEPRINTS_QUERY_FRAGMENT_NAME</td>
-	<td>//p[contains(.,'${key_fragmentName}') and contains(@class, 'list-group-title')]</td>
+	<td>BLUEPRINTS_QUERY_ELEMENT_ADD_BUTTON</td>
+	<td>//div[contains(@class,'autofit-col') and contains(.,'${key_elementName}')]/following-sibling::div/button[contains(.,'Add')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLUEPRINTS_QUERY_ELEMENT_ADD_NAME</td>
+	<td>//p[contains(.,'${key_elementName}') and contains(@class, 'list-group-title')]</td>
 	<td></td>
 </tr>
 <tr>

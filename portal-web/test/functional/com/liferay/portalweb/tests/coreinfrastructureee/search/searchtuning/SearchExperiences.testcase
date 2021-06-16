@@ -166,10 +166,12 @@ definition {
 
 		SearchExperiences.editBlueprint(name = "My Blueprint");
 
-		SearchExperiences.addQueryElements(
+		SearchExperiences.addQueryElement(
 			assetType = "Web Content Article",
-			fragment = "Boost Asset Type",
+			element = "Boost Asset Type",
 			numberBoost = "1000");
+
+		PortletEntry.save();
 
 		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
 
@@ -186,16 +188,16 @@ definition {
 			name = "The Closer to Liferay, the Better");
 
 		Type.sendKeysApplicationSearch(
-			locator1 = "SearchExperiences#BLUEPRINTS_FRAGMENT_QUERY_SEARCH_BAR",
+			locator1 = "SearchExperiences#BLUEPRINTS_ADD_QUERY_ELEMENTS_SEARCH_BAR",
 			value1 = "Filter by Exact Terms Match");
 
 		MouseOver(
-			key_fragmentName = "Filter by Exact Terms Match",
-			locator1 = "SearchExperiences#BLUEPRINTS_QUERY_FRAGMENT_NAME");
+			key_elementName = "Filter by Exact Terms Match",
+			locator1 = "SearchExperiences#BLUEPRINTS_QUERY_ELEMENT_ADD_NAME");
 
 		Click.clickNoMouseOverNoWaitForVisible(
-			key_fragmentName = "Filter by Exact Terms Match",
-			locator1 = "SearchExperiences#BLUEPRINTS_ADD_QUERY_FRAGMENT");
+			key_elementName = "Filter by Exact Terms Match",
+			locator1 = "SearchExperiences#BLUEPRINTS_QUERY_ELEMENT_ADD_BUTTON");
 
 		Type(
 			key_fieldLabel = "Field",
@@ -227,9 +229,11 @@ definition {
 }
 			''';
 
-		SearchExperiences.addQueryElements(
+		SearchExperiences.addQueryElement(
 			elasticsearchQuery = "${elasticsearchQueryJSON}",
-			fragment = "Paste any Elasticsearch query");
+			element = "Paste any Elasticsearch query");
+
+		PortletEntry.save();
 
 		var portalURL = PropsUtil.get("portal.url");
 
@@ -424,10 +428,12 @@ definition {
 
 		SearchExperiences.editBlueprint(name = "Hide Test and Experimental Content");
 
-		SearchExperiences.addQueryElements(
-			fragment = "Hide Multiple Tagged Contents",
+		SearchExperiences.addQueryElement(
+			element = "Hide Multiple Tagged Contents",
 			tag1 = "test",
 			tag2 = "experimental");
+
+		PortletEntry.save();
 
 		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
 
@@ -505,7 +511,9 @@ definition {
 			menuItem = "Edit",
 			rowEntry = "Blueprint 1");
 
-		SearchExperiences.addQueryElements(fragment = "Boost Asset Type");
+		SearchExperiences.addQueryElement(element = "Boost Asset Type");
+
+		PortletEntry.save();
 
 		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
 
