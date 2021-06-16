@@ -108,7 +108,11 @@ definition {
 			rowEntry = "${name}");
 	}
 
-	macro openSearchExperiences {
+	macro openSearchExperiencesAdmin {
+		if (!(isSet(siteURLKey))) {
+			var siteURLKey = "guest";
+		}
+
 		Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_search_experiences_blueprints_web_internal_portlet_BlueprintsAdminPortlet");
 	}
 
@@ -185,7 +189,7 @@ definition {
 	}
 
 	macro tearDownCP {
-		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
+		SearchExperiences.openSearchExperiencesAdmin();
 
 		LexiconEntry.changeDisplayStyle(displayStyle = "list");
 
