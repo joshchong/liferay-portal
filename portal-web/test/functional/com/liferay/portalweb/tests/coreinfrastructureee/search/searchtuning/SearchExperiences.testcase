@@ -32,8 +32,6 @@ definition {
 	}
 
 	test AssertAddCopyAndDeleteSearchBlueprint {
-		property test.name.skip.portal.instance = "SearchExperiences#AssertAddCopyAndDeleteSearchBlueprint";
-
 		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
 
 		for (var title : list "Blueprint 1,Blueprint 2") {
@@ -59,7 +57,6 @@ definition {
 
 	test AssertNonAdminsCannotSeeSearchExperience {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
-		property test.name.skip.portal.instance = "SearchExperiences#AssertNonAdminsCannotSeeSearchExperience";
 
 		JSONWebcontent.addWebContent(
 			content = "Los Angeles",
@@ -133,8 +130,6 @@ definition {
 	}
 
 	test AssertSearchResultsScore {
-		property test.name.skip.portal.instance = "SearchExperiences#AssertSearchResultsScore";
-
 		JSONWebcontent.addWebContent(
 			content = "WC Content",
 			groupName = "Guest",
@@ -284,8 +279,6 @@ definition {
 	}
 
 	test CreateBoostAssetType {
-		property test.name.skip.portal.instance = "SearchExperiences#CreateBoostAssetType";
-
 		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
 
 		SearchExperiences.addBlueprint(name = "My Blueprint");
@@ -331,8 +324,6 @@ definition {
 
 	@priority = "4"
 	test HideWebContentWithCustomElement {
-		property test.name.skip.portal.instance = "SearchExperiences#HideWebContentWithCustomElement";
-
 		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
 
 		SearchExperiences.addBlueprint(name = "Hide Test and Experimental Content");
@@ -476,8 +467,6 @@ definition {
 	}
 
 	test SearchBlueprintsByTitleAndDescription {
-		property test.name.skip.portal.instance = "SearchExperiences#SearchBlueprintsByTitleAndDescription";
-
 		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
 
 		SearchExperiences.addBlueprint(
@@ -506,8 +495,6 @@ definition {
 	}
 
 	test SortAndViewSearchBlueprints {
-		property test.name.skip.portal.instance = "SearchExperiences#SortAndViewSearchBlueprints";
-
 		SearchExperiences.tearDownCP();
 
 		SearchExperiences.openSearchExperiences(siteURLKey = "guest");
@@ -544,8 +531,6 @@ definition {
 	}
 
 	test ViewBlueprintsAssetDetails {
-		property test.name.skip.portal.instance = "SearchExperiences#ViewBlueprintsAssetDetails";
-
 		JSONBlog.addEntry(
 			entryContent = "banana, red apple, blueberry!",
 			entryTitle = "Liferay Blogs Entry Apple");
