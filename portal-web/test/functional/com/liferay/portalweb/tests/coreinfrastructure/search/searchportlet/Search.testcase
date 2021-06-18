@@ -126,6 +126,8 @@ definition {
 	@description = "This is a use case for LPS-92008."
 	@priority = "3"
 	test AssertGuestCannotSeeEmptySearchWidgets {
+		property portal.suite.search.engine = "josh";
+
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
 			layoutName = "Search Page");
@@ -353,6 +355,7 @@ definition {
 	test AssertSuggestionsCannotOfferInvalidWordsAsSuggestion {
 		property custom.properties = "locales.enabled=de_DE,en_US${line.separator}locales=de_DE,en_US${line.separator}index.search.spell.checker.dictionary[de_DE]=spellchecker/dictionary_de_DE.txt${line.separator}index.search.spell.checker.supported.locales=en_US,es_ES,de_DE";
 		property index.search.spell.checker.enabled = "true";
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "Search#AssertSuggestionsCannotOfferInvalidWordsAsSuggestion";
 
 		JSONWebcontent.addBasicWebContentLocalized(
@@ -1256,6 +1259,7 @@ definition {
 	test SearchDifferentScopesViaSearchWidget {
 		property custom.properties = "company.default.time.zone=America/Los_Angeles";
 		property portal.acceptance = "true";
+		property portal.suite.search.engine = "josh";
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
@@ -1592,6 +1596,7 @@ definition {
 	@priority = "4"
 	test SearchUsingCustomFacet {
 		property portal.acceptance = "true";
+		property portal.suite.search.engine = "josh";
 
 		JSONWebcontent.addWebContent(
 			content = "WC Content",

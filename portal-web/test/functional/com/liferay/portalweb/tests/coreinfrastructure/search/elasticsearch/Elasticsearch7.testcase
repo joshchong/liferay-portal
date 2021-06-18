@@ -166,6 +166,7 @@ definition {
 
 	@priority = "4"
 	test AssertSearchInsightsExplain {
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "Elasticsearch7#AssertSearchInsightsExplain";
 
 		JSONWebcontent.addWebContent(
