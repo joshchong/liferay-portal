@@ -22,6 +22,10 @@ definition {
 	macro addQueryElement {
 		AssertElementPresent(locator1 = "SearchExperiences#BLUEPRINTS_ADD_QUERY_ELEMENTS_HEADER");
 
+		if (IsElementPresent(locator1 = "SearchExperiences#BLUEPRINTS_ADD_QUERY_ELEMENTS_SEARCH_CLEAR")) {
+			Click(locator1 = "SearchExperiences#BLUEPRINTS_ADD_QUERY_ELEMENTS_SEARCH_CLEAR");
+		}
+
 		Type.sendKeysApplicationSearch(
 			locator1 = "SearchExperiences#BLUEPRINTS_ADD_QUERY_ELEMENTS_SEARCH_BAR",
 			value1 = "${element}");
@@ -80,14 +84,32 @@ definition {
 		Button.click(button = "Create");
 
 		Type.typeCodeMirrorEditor(
-			locator1 = "SearchExperiences#BLUEPRINTS_ELEMENT_TEMPLATE_JSON",
+			locator1 = "SearchExperiences#CUSTOM_ELEMENT_TEMPLATE_EDITOR",
 			value1 = "${elementTemplateJSON}");
 
 		Type.typeCodeMirrorEditor(
-			locator1 = "SearchExperiences#BLUEPRINTS_ELEMENT_UI_CONFIGURATION_JSON",
+			locator1 = "SearchExperiences#CUSTOM_ELEMENT_UI_CONFIGURATION_EDITOR",
 			value1 = "${uiConfigurationJSON}");
 
 		PortletEntry.save();
+	}
+
+	macro deleteAllBlueprints {
+		SearchExperiences.openSearchExperiencesAdmin();
+
+		LexiconEntry.changeDisplayStyle(displayStyle = "list");
+
+		if (IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
+			PortletEntry.selectAll();
+
+			Click(locator1 = "ManagementBar#ELLIPSIS_ICON");
+
+			MenuItem.clickNoError(menuItem = "Delete");
+
+			AssertConfirm(value1 = "Are you sure you want to delete selected Blueprints?");
+
+			VerifyElementPresent(locator1 = "Message#SUCCESS");
+		}
 	}
 
 	macro deleteBlueprint {
@@ -95,17 +117,13 @@ definition {
 	}
 
 	macro editBlueprint {
-		LexiconEntry.gotoEntryMenuItem(
-			menuItem = "Edit",
-			rowEntry = "${name}");
+		LexiconEntry.gotoEntry(rowEntry = "${name}");
 	}
 
 	macro editElement {
 		Navigator.gotoNavItem(navItem = "Elements");
 
-		LexiconEntry.gotoEntryMenuItem(
-			menuItem = "Edit",
-			rowEntry = "${name}");
+		LexiconEntry.gotoEntry(rowEntry = "${name}");
 	}
 
 	macro openSearchExperiencesAdmin {
@@ -129,25 +147,6 @@ definition {
 		else {
 			KeyPress(
 				locator1 = "SearchExperiences#BLUEPRINTS_PREVIEW_SEARCH_BAR",
-				value1 = "\RETURN");
-		}
-
-		WaitForLiferayEvent.initializeLiferayEventLog();
-	}
-
-	macro searchForBlueprints {
-		Type(
-			locator1 = "SearchExperiences#BLUEPRINTS_HOME_SEARCH_BAR",
-			value1 = "${searchTerm}");
-
-		var browserType = PropsUtil.get("browser.type");
-
-		if ("${browserType}" == "safari") {
-			Click(locator1 = "Icon#BASIC_SEARCH");
-		}
-		else {
-			KeyPress(
-				locator1 = "SearchExperiences#BLUEPRINTS_HOME_SEARCH_BAR",
 				value1 = "\RETURN");
 		}
 
@@ -184,37 +183,6 @@ definition {
 		Alert.viewSuccessMessage();
 
 		IFrame.closeFrame();
-	}
-
-	macro tearDownCP {
-		SearchExperiences.openSearchExperiencesAdmin();
-
-		LexiconEntry.changeDisplayStyle(displayStyle = "list");
-
-		if (IsElementNotPresent(locator1 = "Message#EMPTY_INFO")) {
-			PortletEntry.selectAll();
-
-			Click(locator1 = "ManagementBar#ELLIPSIS_ICON");
-
-			MenuItem.clickNoError(menuItem = "Delete");
-
-			AssertConfirm(value1 = "Are you sure you want to delete selected Blueprints?");
-
-			VerifyElementPresent(locator1 = "Message#SUCCESS");
-		}
-	}
-
-	macro viewBlueprintsSpecificOrder {
-		var resultOrder = "0";
-
-		for (var blueprintsTitle : list "${blueprintsList}") {
-			var resultOrder = ${resultOrder} + 1;
-
-			AssertTextEquals.assertPartialText(
-				locator1 = "SearchExperiences#BLUEPRINTS_ASSET_ENTRY_LIST_TITLE_SPECIFIC_ORDER",
-				resultOrder = "${resultOrder}",
-				value1 = "${blueprintsTitle}");
-		}
 	}
 
 }

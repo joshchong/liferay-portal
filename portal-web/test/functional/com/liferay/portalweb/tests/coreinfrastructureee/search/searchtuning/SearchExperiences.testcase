@@ -25,7 +25,7 @@ definition {
 
 			WebContent.tearDownCP();
 
-			SearchExperiences.tearDownCP();
+			SearchExperiences.deleteAllBlueprints();
 
 			Page.tearDownCP();
 		}
@@ -44,15 +44,11 @@ definition {
 			menuItem = "Copy",
 			rowEntry = "Blueprint 2");
 
-		AssertElementPresent(
-			key_searchAssetTitle = "Blueprint 2 (Copy)",
-			locator1 = "SearchExperiences#BLUEPRINTS_ASSET_ENTRY_TABLE_TITLE");
+		LexiconEntry.viewEntryName(rowEntry = "Blueprint 2 (Copy)");
 
 		SearchExperiences.deleteBlueprint(name = "Blueprint 1");
 
-		AssertElementNotPresent(
-			key_searchAssetTitle = "Blueprint 1",
-			locator1 = "SearchExperiences#BLUEPRINTS_ASSET_ENTRY_TABLE_TITLE");
+		LexiconEntry.viewNoEntry(rowEntry = "Blueprint 1");
 	}
 
 	test AssertNonAdminsCannotAccessSearchExperiencePortlet {
@@ -79,10 +75,6 @@ definition {
 		JSONRole.assignRoleToUser(
 			roleTitle = "Administrator",
 			userEmailAddress = "userea1@liferay.com");
-
-		JSONRole.assignRoleToUser(
-			roleTitle = "User",
-			userEmailAddress = "userea2@liferay.com");
 
 		User.logoutPG();
 
@@ -130,6 +122,15 @@ definition {
 	}
 
 	test BoostSearchRankingForAssetType {
+		JSONWebcontent.addWebContent(
+			content = "Liferay",
+			groupName = "Guest",
+			title = "Liferay Web Content");
+
+		JSONBlog.addEntry(
+			entryContent = "Liferay Liferay",
+			entryTitle = "Liferay Blogs Entry");
+
 		SearchExperiences.openSearchExperiencesAdmin();
 
 		SearchExperiences.addBlueprint(name = "My Blueprint");
@@ -141,17 +142,6 @@ definition {
 		SearchPortlets.addWidgets(searchPortletList = "Blueprints Options");
 
 		SearchExperiences.selectBlueprintFromOptionsWidget(name = "My Blueprint");
-
-		JSONWebcontent.addWebContent(
-			content = "Liferay",
-			groupName = "Guest",
-			title = "Liferay Web Content");
-
-		JSONBlog.addEntry(
-			entryContent = "Liferay Liferay",
-			entryTitle = "Liferay Blogs Entry");
-
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
 
 		SearchPortlets.searchEmbedded(searchTerm = "liferay");
 
@@ -176,23 +166,59 @@ definition {
 	}
 
 	test BoostWithCustomElasticsearchQuery {
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Custom Fields");
+
+		CustomFields.addCP(
+			customFieldName = "location",
+			customFieldType = "Geolocation",
+			resourceName = "Web Content Article");
+
+		WebContentNavigator.openToAddBasicArticle(siteURLKey = "guest");
+
+		Click(locator1 = "TextInput#TITLE");
+
+		PortletEntry.inputTitle(title = "Close Location");
+
+		Panel.expandPanel(panel = "Categorization");
+
+		Click(locator1 = "WCEditWebContent#GEOLOCATION_ZOOM_OUT");
+
+		DragAndDrop.javaScriptDragAndDropToObject(
+			locator1 = "WCEditWebContent#GEOLOCATION_LEAFLET_MARKER_DRAG_HANDLE",
+			locator2 = "WCEditWebContent#GEOLOCATION_ZOOM_OUT");
+
+		PortletEntry.publish();
+
+		WebContentNavigator.openToAddBasicArticle(siteURLKey = "guest");
+
+		Click(locator1 = "TextInput#TITLE");
+
+		PortletEntry.inputTitle(title = "Closest Location");
+
+		PortletEntry.publish();
+
+		WebContentNavigator.openToAddBasicArticle(siteURLKey = "guest");
+
+		Click(locator1 = "TextInput#TITLE");
+
+		PortletEntry.inputTitle(title = "Closer Location");
+
+		Panel.expandPanel(panel = "Categorization");
+
+		DragAndDrop.javaScriptDragAndDropToObject(
+			locator1 = "WCEditWebContent#GEOLOCATION_LEAFLET_MARKER_DRAG_HANDLE",
+			locator2 = "WCEditWebContent#GEOLOCATION_ZOOM_OUT");
+
+		PortletEntry.publish();
+
 		SearchExperiences.openSearchExperiencesAdmin();
 
-		SearchExperiences.addBlueprint(
-			clauseOption = "Custom Clauses",
-			name = "The Closer to Liferay, the Better");
+		SearchExperiences.addBlueprint(name = "The Closer to Liferay, the Better");
 
-		Type.sendKeysApplicationSearch(
-			locator1 = "SearchExperiences#BLUEPRINTS_ADD_QUERY_ELEMENTS_SEARCH_BAR",
-			value1 = "Filter by Exact Terms Match");
-
-		MouseOver(
-			key_elementName = "Filter by Exact Terms Match",
-			locator1 = "SearchExperiences#BLUEPRINTS_QUERY_ELEMENT_ADD_NAME");
-
-		Click.clickNoMouseOverNoWaitForVisible(
-			key_elementName = "Filter by Exact Terms Match",
-			locator1 = "SearchExperiences#BLUEPRINTS_QUERY_ELEMENT_ADD_BUTTON");
+		SearchExperiences.addQueryElement(element = "Filter by Exact Terms Match");
 
 		Type(
 			key_fieldLabel = "Field",
@@ -203,8 +229,6 @@ definition {
 			key_fieldLabel = "Values",
 			locator1 = "SearchExperiences#BLUEPRINTS_QUERY_TEXT_FIELD",
 			value1 = "BASIC-WEB-CONTENT");
-
-		Click(locator1 = "SearchExperiences#BLUEPRINTS_CLEAR_BUTTON");
 
 		var elasticsearchQueryJSON = '''
 {
@@ -238,62 +262,6 @@ definition {
 
 		SearchExperiences.selectBlueprintFromOptionsWidget(name = "The Closer to Liferay, the Better");
 
-		ApplicationsMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Control Panel",
-			portlet = "Custom Fields");
-
-		CustomFields.addCP(
-			customFieldName = "location",
-			customFieldType = "Geolocation",
-			resourceName = "Web Content Article");
-
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content &amp; Data",
-			portlet = "Web Content");
-
-		WebContentNavigator.gotoAddCP();
-
-		Click(locator1 = "TextInput#TITLE");
-
-		PortletEntry.inputTitle(title = "Closest Location");
-
-		PortletEntry.publish();
-
-		WebContentNavigator.gotoAddCP();
-
-		Click(locator1 = "TextInput#TITLE");
-
-		PortletEntry.inputTitle(title = "Closer Location");
-
-		Panel.expandPanel(panel = "Categorization");
-
-		DragAndDrop.javaScriptDragAndDropToObject(
-			locator1 = "WCEditWebContent#GEOLOCATION_LEAFLET_MARKER_DRAG_HANDLE",
-			locator2 = "WCEditWebContent#GEOLOCATION_ZOOM_OUT");
-
-		PortletEntry.publish();
-
-		WebContentNavigator.gotoAddCP();
-
-		Click(locator1 = "TextInput#TITLE");
-
-		PortletEntry.inputTitle(title = "Close Location");
-
-		Panel.expandPanel(panel = "Categorization");
-
-		Click(locator1 = "WCEditWebContent#GEOLOCATION_ZOOM_OUT");
-
-		DragAndDrop.javaScriptDragAndDropToObject(
-			locator1 = "WCEditWebContent#GEOLOCATION_LEAFLET_MARKER_DRAG_HANDLE",
-			locator2 = "WCEditWebContent#GEOLOCATION_ZOOM_OUT");
-
-		PortletEntry.publish();
-
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
-
 		SearchPortlets.searchEmbedded(searchTerm = "location");
 
 		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Closest Location,Closer Location,Close Location");
@@ -301,18 +269,6 @@ definition {
 
 	@priority = "4"
 	test HideWebContentViaCustomElement {
-		SearchExperiences.openSearchExperiencesAdmin();
-
-		SearchExperiences.addBlueprint(name = "Hide Test and Experimental Content");
-
-		var portalURL = PropsUtil.get("portal.url");
-
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
-
-		SearchPortlets.addWidgets(searchPortletList = "Blueprints Options");
-
-		SearchExperiences.selectBlueprintFromOptionsWidget(name = "Hide Test and Experimental Content");
-
 		JSONWebcontent.addWebContent(
 			content = "",
 			groupName = "Guest",
@@ -330,19 +286,7 @@ definition {
 			groupName = "Guest",
 			title = "Experimental Content");
 
-		JSONBlog.addEntry(
-			entryContent = "Liferay Liferay",
-			entryTitle = "Liferay Blogs Entry");
-
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
-
-		SearchPortlets.searchEmbedded(searchTerm = "Content");
-
-		for (var searchAssetTitle : list "Content,Test Content,Experimental Content") {
-			SearchResultPortlet.viewSearchResults(
-				searchAssetTitle = "${searchAssetTitle}",
-				searchAssetType = "Web Content Article");
-		}
+		SearchExperiences.openSearchExperiencesAdmin();
 
 		var elementTemplateJSON = '''
 {
@@ -377,14 +321,14 @@ definition {
 			}
 		}
 	],
-	"conditions": [],
+	"conditions": {},
 	"description": {
-		"en_US": "Hide contents tagged with"
+		"en_US": "Hide content with multiple specific tags"
 	},
 	"enabled": true,
 	"icon": "hidden",
 	"title": {
-		"en_US": "Hide Multiple Tagged Contents"
+		"en_US": "Hide Content with Multiple Tags"
 	}
 }
 			''';
@@ -412,23 +356,29 @@ definition {
 }
 			''';
 
-		SearchExperiences.openSearchExperiencesAdmin();
-
 		SearchExperiences.createElement(
 			elementTemplateJSON = "${elementTemplateJSON}",
-			name = "Hide Multiple Tagged Contents",
+			name = "Hide Content with Multiple Tags",
 			uiConfigurationJSON = "${uiConfigurationJSON}");
 
-		SearchExperiences.editBlueprint(name = "Hide Test and Experimental Content");
+		Navigator.gotoNavItem(navItem = "Blueprints");
+
+		SearchExperiences.addBlueprint(name = "Hide Test and Experimental Content");
 
 		SearchExperiences.addQueryElement(
-			element = "Hide Multiple Tagged Contents",
+			element = "Hide Content with Multiple Tags",
 			tag1 = "test",
 			tag2 = "experimental");
 
 		PortletEntry.save();
 
+		var portalURL = PropsUtil.get("portal.url");
+
 		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search");
+
+		SearchPortlets.addWidgets(searchPortletList = "Blueprints Options");
+
+		SearchExperiences.selectBlueprintFromOptionsWidget(name = "Hide Test and Experimental Content");
 
 		SearchPortlets.searchEmbedded(searchTerm = "Content");
 
@@ -460,21 +410,27 @@ definition {
 
 		Navigator.gotoBack();
 
-		SearchExperiences.searchForBlueprints(searchTerm = "Adminicle");
+		Search.searchCP(searchTerm = "Adminicle");
 
-		AssertElementPresent(
-			key_searchAssetTitle = "Test Blueprint - Adminicle",
-			locator1 = "SearchExperiences#BLUEPRINTS_ASSET_ENTRY_TABLE_TITLE");
+		LexiconEntry.viewEntryName(rowEntry = "Test Blueprint - Adminicle");
 
-		SearchExperiences.searchForBlueprints(searchTerm = "Serendipitous");
+		LexiconEntry.viewNoEntry(rowEntry = "Test Blueprint - Aid");
 
-		AssertElementPresent(
-			key_searchAssetTitle = "Test Blueprint - Aid",
-			locator1 = "SearchExperiences#BLUEPRINTS_ASSET_ENTRY_TABLE_TITLE");
+		Search.searchCP(searchTerm = "Serendipitous");
+
+		LexiconEntry.viewEntryName(rowEntry = "Test Blueprint - Aid");
+
+		LexiconEntry.viewNoEntry(rowEntry = "Test Blueprint - Adminicle");
+
+		Search.clearSearchResult();
+
+		LexiconEntry.viewEntryName(rowEntry = "Test Blueprint - Adminicle");
+
+		LexiconEntry.viewEntryName(rowEntry = "Test Blueprint - Aid");
 	}
 
-	test SortAndViewBlueprints {
-		SearchExperiences.tearDownCP();
+	test SortBlueprints {
+		SearchExperiences.deleteAllBlueprints();
 
 		SearchExperiences.openSearchExperiencesAdmin();
 
@@ -484,31 +440,28 @@ definition {
 			PortletEntry.save();
 		}
 
-		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
+		ManagementBar.setFilterAndOrder(orderBy = "Title");
 
-		MenuItem.click(menuItem = "Title");
+		LexiconEntry.viewEntriesSpecificOrder(entryList = "Blueprint 1,Blueprint 2,Blueprint 3");
 
-		SearchExperiences.viewBlueprintsSpecificOrder(blueprintsList = "Blueprint 1,Blueprint 2,Blueprint 3");
+		ManagementBar.setFilterAndOrder(orderBy = "Created");
 
-		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
 
-		MenuItem.click(menuItem = "Created");
+		LexiconEntry.viewEntriesSpecificOrder(entryList = "Blueprint 2,Blueprint 3,Blueprint 1");
 
-		SearchExperiences.viewBlueprintsSpecificOrder(blueprintsList = "Blueprint 1,Blueprint 3,Blueprint 2");
-
-		LexiconEntry.gotoEntryMenuItem(
-			menuItem = "Edit",
-			rowEntry = "Blueprint 1");
+		SearchExperiences.editBlueprint(name = "Blueprint 1");
 
 		SearchExperiences.addQueryElement(element = "Boost Asset Type");
 
 		PortletEntry.save();
 
-		Click(locator1 = "Dropdown#FILTER_AND_ORDER");
+		ManagementBar.setFilterAndOrder(orderBy = "Modified");
 
-		MenuItem.click(menuItem = "Modified");
+		LexiconEntry.viewEntriesSpecificOrder(entryList = "Blueprint 1,Blueprint 2,Blueprint 3");
 
-		SearchExperiences.viewBlueprintsSpecificOrder(blueprintsList = "Blueprint 3,Blueprint 2,Blueprint 1");
+		ManagementBar.toggleViewOrder();
+
+		LexiconEntry.viewEntriesSpecificOrder(entryList = "Blueprint 3,Blueprint 2,Blueprint 1");
 	}
 
 	test ViewAssetDetailsViaBlueprintsPreview {
@@ -571,10 +524,6 @@ definition {
 		SearchExperiences.openSearchExperiencesAdmin();
 
 		SearchExperiences.addBlueprint(name = "Score Explanation Blueprint");
-
-		LexiconEntry.gotoEntryMenuItem(
-			menuItem = "Edit",
-			rowEntry = "Score Explanation Blueprint");
 
 		Click(locator1 = "Button#PREVIEW");
 
