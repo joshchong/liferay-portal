@@ -242,7 +242,7 @@ definition {
 		"boost": 100
 	}
 }
-			''';
+		''';
 
 		SearchExperiences.addQueryElement(
 			elasticsearchQuery = "${elasticsearchQueryJSON}",
@@ -325,7 +325,7 @@ definition {
 		"en_US": "Hide Content with Multiple Tags"
 	}
 }
-			''';
+		''';
 
 		var uiConfigurationJSON = '''
 {
@@ -348,7 +348,7 @@ definition {
 		}
 	]
 }
-			''';
+		''';
 
 		SearchExperiences.createElement(
 			elementTemplateJSON = "${elementTemplateJSON}",
@@ -455,12 +455,10 @@ definition {
 		LexiconEntry.viewEntriesSpecificOrder(entryList = "Blueprint 3,Blueprint 2,Blueprint 1");
 	}
 
-	test ValidateMalformedBlueprintsJSON {
+	test ViewBlueprintsConfigJSONValidation {
 		SearchExperiences.openSearchExperiencesAdmin();
 
-		Search.searchCP(searchTerm = "Aggregations");
-
-		SearchExperiences.editBlueprint(name = "Aggregations Test");
+		SearchExperiences.addBlueprint(name = "My Blueprint");
 
 		Navigator.gotoNavTab(navTab = "Settings");
 
@@ -469,12 +467,11 @@ definition {
 	"cardinality-test": {
 		"cardinality": {
 			"precision_threshold": "3000",
-			"field": "assetTagNames.raw",
-			"description": "Number of unique asset tag names"
+			"field": "assetTagNames.raw"
 		}
 	}
 }
-			''';
+		''';
 
 		Type.typeCodeMirrorEditor(
 			key_configurationField = "Aggregation Configuration",
@@ -484,20 +481,49 @@ definition {
 		PortletEntry.save();
 
 		AssertTextEquals.assertPartialText(
-			locator1 = "Modal#BODY",
-			value1 = "The blueprint configuration has errors that may cause unexpected results. Use the preview panel to review these errors.");
+			locator1 = "Modal#HEADER",
+			value1 = "Warning");
 
-		Alert.viewErrorMessage(errorMessage = "Invalid value typeexpected type: Number, found: String (Aggregation Configuration)");
+		Alert.viewErrorMessage(errorMessage = "expected type: Number, found: String (Aggregation Configuration)");
+
+		Button.clickCancel();
+
+		Navigator.gotoBack();
+
+		SearchExperiences.editBlueprint(name = "My Blueprint");
+
+		Navigator.gotoNavTab(navTab = "Settings");
+
+		AssertTextNotPresent(value1 = "cardinality-test");
+
+		Type.typeCodeMirrorEditor(
+			key_configurationField = "Aggregation Configuration",
+			locator1 = "SearchExperiences#BLUEPRINTS_SETTINGS_CONFIGURATION_EDITOR",
+			value1 = "${aggregationConfigurationJSON}");
+
+		PortletEntry.save();
+
+		Button.click(button = "Continue To Save");
+
+		SearchExperiences.editBlueprint(name = "My Blueprint");
+
+		Navigator.gotoNavTab(navTab = "Settings");
+
+		AssertTextPresent(value1 = "cardinality-test");
 	}
 
-	test ValidateMalformedElementsJSON {
+	test ViewCustomElementsJSONValidation {
 		SearchExperiences.openSearchExperiencesAdmin();
 
 		Navigator.gotoNavItem(navItem = "Elements");
 
-		Search.searchCP(searchTerm = "Boost");
-
-		LexiconEntry.gotoEntry(rowEntry = "Boost Contents on My Sites");
+		var elementTemplateJSON = '''
+{
+	"title": {
+		"en_US": "My Element"
+	}
+}
+		''';
 
 		var uiConfigurationJSON = '''
 {
@@ -505,19 +531,37 @@ definition {
 		{
 			"fields": [
 				{
-					"defaultValue": 20,
-					"name": "boost",
-					"typeOptions": {
-						"min": 0
-					},
 					"label": "Boost",
-					"type": "doesntexistexample"
+					"type": "thisTypeDoesNotExist"
 				}
 			]
 		}
 	]
 }
-			''';
+		''';
+
+		SearchExperiences.createElement(
+			elementTemplateJSON = "${elementTemplateJSON}",
+			name = "My Element",
+			uiConfigurationJSON = "${uiConfigurationJSON}");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "Modal#HEADER",
+			value1 = "Warning");
+
+		Alert.viewErrorMessage(errorMessage = "thisTypeDoesNotExist is not a valid enum value");
+
+		Button.clickCancel();
+
+		Navigator.gotoBack();
+
+		SearchExperiences.editElement(name = "My Element");
+
+		AssertTextNotPresent(value1 = "thisTypeDoesNotExist");
+
+		Type.typeCodeMirrorEditor(
+			locator1 = "SearchExperiences#CUSTOM_ELEMENT_TEMPLATE_EDITOR",
+			value1 = "${elementTemplateJSON}");
 
 		Type.typeCodeMirrorEditor(
 			locator1 = "SearchExperiences#CUSTOM_ELEMENT_UI_CONFIGURATION_EDITOR",
@@ -525,11 +569,11 @@ definition {
 
 		PortletEntry.save();
 
-		AssertTextEquals.assertPartialText(
-			locator1 = "Modal#BODY",
-			value1 = "The element configuration has errors that may cause unexpected results.");
+		Button.click(button = "Continue To Save");
 
-		Alert.viewErrorMessage(errorMessage = "Invalid value");
+		SearchExperiences.editElement(name = "My Element");
+
+		AssertTextPresent(value1 = "thisTypeDoesNotExist");
 	}
 
 	test ViewAssetDetailsViaBlueprintsPreview {
