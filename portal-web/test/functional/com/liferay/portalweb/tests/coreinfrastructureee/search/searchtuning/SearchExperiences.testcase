@@ -278,6 +278,8 @@ definition {
 	}
 
 	test ExportAndImportElement {
+		property portal.suite.search.engine = "josh";
+
 		SearchExperiences.openSearchExperiencesAdmin();
 
 		var elementTemplateJSON = '''
