@@ -3,6 +3,7 @@ definition {
 
 	property elasticsearch.ccr.enabled = "true";
 	property elasticsearch.multiple.connections = "true";
+	property liferay.data.guard.enabled = "true";
 	property minimum.slave.ram = "24";
 	property osgi.app.includes = "portal-search-elasticsearch-cross-cluster-replication";
 	property portal.release = "true";
