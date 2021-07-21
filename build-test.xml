@@ -10051,16 +10051,9 @@ auto.deploy.dest.dir=C:/WINDOWS/system32/config/systemprofile/liferay/websphere-
 			</then>
 		</if>
 
-		<get-testcase-property property.name="liferay.data.guard.enabled" />
-
-		<if>
-			<isset property="liferay.data.guard.enabled" />
-			<then>
-				<echo append="true" file="${test.ext.properties.file}">
-					liferay.data.guard.enabled=${liferay.data.guard.enabled}
-				</echo>
-			</then>
-		</if>
+		<echo append="true" file="${test.ext.properties.file}">
+			liferay.data.guard.enabled=true
+		</echo>
 
 		<if>
 			<isset property="liferay.portal.branch" />
@@ -13717,14 +13710,7 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 
 		<antcall target="deploy-osgi-modules" />
 
-		<get-testcase-property property.name="liferay.data.guard.enabled" />
-
-		<if>
-			<isset property="liferay.data.guard.enabled" />
-			<then>
-				<antcall target="deploy-data-guard" />
-			</then>
-		</if>
+		<antcall target="deploy-data-guard" />
 
 		<if>
 			<equals arg1="${functional.test.type}" arg2="analytics-cloud" />
