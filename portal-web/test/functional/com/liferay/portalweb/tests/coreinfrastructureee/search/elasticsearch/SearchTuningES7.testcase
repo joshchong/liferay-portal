@@ -212,7 +212,7 @@ definition {
 	}
 
 	test AssertResultRankingsWithSynonyms {
-		property portal.suite.search.engine = "disable";
+		property portal.suite.search.engine = "josh";
 		property portal.upstream = "quarantine";
 
 		JSONWebcontent.addWebContent(
