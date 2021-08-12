@@ -283,6 +283,8 @@ definition {
 	@description = "This test covers LPS-90346. It ensures that the document preview displays correctly after submitting an edit."
 	@priority = "4"
 	test PreviewSubmittedEdit {
+		property portal.suite.search.engine = "josh";
+
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");
 
 		ProductMenu.gotoPortlet(

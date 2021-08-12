@@ -227,6 +227,8 @@ definition {
 	@description = "Verify if the table is organized by Asset Title, Asset Type, Status, Definition, Last Activity Date and End Date columns"
 	@priority = "4"
 	test ColumnsAreDisplayed {
+		property portal.suite.search.engine = "josh";
+
 		ApplicationsMenu.gotoPortlet(
 			category = "Workflow",
 			panel = "Applications",
@@ -313,6 +315,8 @@ definition {
 	@description = "Verify the kebab menu is not displayed when task is completed"
 	@priority = "4"
 	test CompletedTaskCannnotBeWithdrawn {
+		property portal.suite.search.engine = "josh";
+
 		ApplicationsMenu.gotoPortlet(
 			category = "Workflow",
 			panel = "Applications",
@@ -345,6 +349,8 @@ definition {
 	@description = "Verify the kebab menu is not displayed on details page when task is completed"
 	@priority = "4"
 	test CompletedTaskCannnotBeWithdrawnThroughDetailsPage {
+		property portal.suite.search.engine = "josh";
+
 		ApplicationsMenu.gotoPortlet(
 			category = "Workflow",
 			panel = "Applications",

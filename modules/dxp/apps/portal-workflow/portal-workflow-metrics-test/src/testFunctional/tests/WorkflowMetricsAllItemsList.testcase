@@ -1894,6 +1894,7 @@ definition {
 	@description = "LPS-98517 - Verify that if Assignee dropdown menu is higher than 496px a search bar is added on it as specified on Figma"
 	@priority = "3"
 	test SearchBarIsAddedOnAssigneeDropdownMenuWhenItIsHigherThan496px {
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "WorkflowMetricsAllItemsList#SearchBarIsAddedOnAssigneeDropdownMenuWhenItIsHigherThan496px";
 
 		var siteName = TestCase.getSiteName(siteName = "${siteName}");

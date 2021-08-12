@@ -177,6 +177,8 @@ definition {
 
 	@priority = "4"
 	test ApproveResubmitTaskByActions {
+		property portal.suite.search.engine = "josh";
+
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(

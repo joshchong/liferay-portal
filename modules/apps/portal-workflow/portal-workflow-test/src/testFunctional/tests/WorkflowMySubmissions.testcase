@@ -148,6 +148,8 @@ definition {
 
 	@priority = "4"
 	test WithdrawTaskAssignedToMyRolesByActions {
+		property portal.suite.search.engine = "josh";
+
 		var webContentContent = "WC WebContent Content";
 		var webContentTitle = "WC WebContent Title";
 
@@ -240,6 +242,8 @@ definition {
 
 	@priority = "4"
 	test WithdrawTaskCompletedNoByActions {
+		property portal.suite.search.engine = "josh";
+
 		var webContentContent = "WC WebContent Content";
 		var webContentTitle = "WC WebContent Title";
 

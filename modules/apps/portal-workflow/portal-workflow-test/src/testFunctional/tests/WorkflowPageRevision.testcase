@@ -71,6 +71,8 @@ definition {
 
 	@priority = "4"
 	test RejectPageRevisionPG {
+		property portal.suite.search.engine = "josh";
+
 		var pageName = "Page Revision Page";
 
 		Navigator.gotoStagedSitePage(
