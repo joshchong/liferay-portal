@@ -123,6 +123,7 @@ definition {
 
 	test BoostCommerceItemsForAccountGroup {
 		property portal.suite.search.engine = "josh";
+		property test.name.skip.portal.instance = "SearchExperiences#BoostCommerceItemsForAccountGroup";
 
 		CommerceAccelerators.initializeNewSiteViaAccelerator(siteName = "Minium");
 
