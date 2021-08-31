@@ -1478,6 +1478,7 @@ jdbc.counter.connectionProperties=oracle.jdbc.ReadTimeout=0;oracle.net.CONNECT_T
 			<get-browser-property property.name="browser.docker.image" />
 			<get-operating-system-property property.name="operating.system.docker.image" />
 			<get-testcase-property property.name="analytics.cloud.enabled" />
+			<get-testcase-property property.name="liferay.data.guard.enabled" />
 			<get-testcase-property property.name="testcase.url" />
 
 			<if>
@@ -1511,6 +1512,12 @@ jdbc.counter.connectionProperties=oracle.jdbc.ReadTimeout=0;oracle.net.CONNECT_T
 					<isset property="testcase.url" />
 					<then>
 						<var name="test.url" value="${testcase.url}" />
+					</then>
+				</elseif>
+				<elseif>
+					<istrue value="${liferay.data.guard.enabled}" />
+					<then>
+						<var name="test.url" value="http://localhost:8080" />
 					</then>
 				</elseif>
 				<elseif>
@@ -9884,13 +9891,23 @@ auto.deploy.dest.dir=C:/WINDOWS/system32/config/systemprofile/liferay/websphere-
 			</then>
 		</if>
 
+		<get-testcase-property property.name="liferay.data.guard.enabled" />
+
 		<if>
-			<contains string="${test.class}" substring="," />
+			<istrue value="${liferay.data.guard.enabled}" />
 			<then>
 				<echo append="true" file="${test.ext.properties.file}">
-					test.portal.instance=true
+					test.portal.instance=false
 				</echo>
 			</then>
+			<elseif>
+				<contains string="${test.class}" substring="," />
+				<then>
+					<echo append="true" file="${test.ext.properties.file}">
+						test.portal.instance=true
+					</echo>
+				</then>
+			</elseif>
 			<else>
 				<echo append="true" file="${test.ext.properties.file}">
 					test.portal.instance=${test.portal.instance}
