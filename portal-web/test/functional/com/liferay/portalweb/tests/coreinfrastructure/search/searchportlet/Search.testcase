@@ -40,6 +40,37 @@ definition {
 		}
 	}
 
+	test AAARetry {
+		property portal.suite.search.engine = "josh";
+
+		SearchPortlets.searchEmbedded(searchTerm = "apple");
+
+		takeScreenshot();
+
+		SearchResultPortlet.viewSearchResultNotPresent(
+			searchAssetTitle = "apple",
+			searchAssetType = "Web Content Article");
+
+		JSONWebcontent.addWebContent(
+			content = "WC Content",
+			groupName = "Guest",
+			title = "apple");
+
+		fail("Intentional fail");
+	}
+
+	test AABPostRetry {
+		property portal.suite.search.engine = "josh";
+
+		SearchPortlets.searchEmbedded(searchTerm = "apple");
+
+		takeScreenshot();
+
+		SearchResultPortlet.viewSearchResultNotPresent(
+			searchAssetTitle = "apple",
+			searchAssetType = "Web Content Article");
+	}
+
 	test AssertBasicFacetSelection {
 		var webContentserviceContext1 = '''{"assetTagNames": ["fruit"]}''';
 
