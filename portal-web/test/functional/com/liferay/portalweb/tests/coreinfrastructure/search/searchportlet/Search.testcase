@@ -2827,6 +2827,8 @@ definition {
 
 	@priority = "4"
 	test ViewStagedAndLiveContentInSearchResults {
+		property portal.suite.search.engine = "josh";
+
 		JSONGroup.addGroup(groupName = "Site Name");
 
 		SitePages.openPagesAdmin(siteURLKey = "Site Name");
