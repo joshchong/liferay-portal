@@ -120,6 +120,9 @@ definition {
 	}
 
 	test BoostCommerceItemsForAccountGroup {
+		property portal.suite.search.engine = "josh";
+		property test.name.skip.portal.instance = "SearchExperiences#BoostCommerceItemsForAccountGroup";
+
 		CommerceAccelerators.initializeNewSiteViaAccelerator(siteName = "Minium");
 
 		Navigator.openSiteURL(siteName = "Minium");
@@ -180,6 +183,8 @@ definition {
 		Navigator.openSiteURL(siteName = "Minium");
 
 		CommerceAcceleratorsInitializer.selectAccountFromAccountSelector(accountName = "TestAccount");
+
+		takeScreenshot();
 
 		JSONLayout.addWidgetToPrivateLayout(
 			column = "1",
