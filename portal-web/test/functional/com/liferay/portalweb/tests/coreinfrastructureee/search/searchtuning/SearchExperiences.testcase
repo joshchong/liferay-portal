@@ -1134,6 +1134,9 @@ definition {
 	}
 
 	test ViewElementJSONViaBlueprintsQueryBuilder {
+		property portal.suite.search.engine = "josh";
+		property test.name.skip.portal.instance = "SearchExperiences#ViewElementJSONViaBlueprintsQueryBuilder";
+
 		SearchExperiences.openSearchExperiencesAdmin();
 
 		SearchExperiences.addBlueprint(name = "Element JSON Blueprint");
@@ -1162,9 +1165,7 @@ definition {
 
 		Click.javaScriptClick(locator1 = "Button#COPY");
 
-		// Workaround. See LRQA-70156.
-
-		// SearchExperiences.viewCopiedContent(text = "clauses");
+		SearchExperiences.viewCopiedContent(text = "clauses");
 	}
 
 	test ViewExpandedAndCollapsedBlueprintsPreviewEntry {
@@ -1396,6 +1397,9 @@ definition {
 	}
 
 	test ViewRawResponseViaBlueprintsPreview {
+		property portal.suite.search.engine = "josh";
+		property test.name.skip.portal.instance = "SearchExperiences#ViewRawResponseViaBlueprintsPreview";
+
 		JSONWebcontent.addWebContent(
 			content = "WC Content",
 			groupName = "Guest",
@@ -1431,9 +1435,7 @@ definition {
 
 		Click.javaScriptClick(locator1 = "Button#COPY");
 
-		// Workaround. See LRQA-70156.
-
-		// SearchExperiences.viewCopiedContent(text = "hits");
+		SearchExperiences.viewCopiedContent(text = "hits");
 	}
 
 	test ViewSearchResultsScoreViaBlueprintsPreview {
