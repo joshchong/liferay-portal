@@ -1140,6 +1140,9 @@ definition {
 	}
 
 	test ViewElementJSONViaBlueprintsQueryBuilder {
+		property portal.suite.search.engine = "josh";
+		property test.name.skip.portal.instance = "SearchExperiences#ViewElementJSONViaBlueprintsQueryBuilder";
+
 		SearchExperiences.openSearchExperiencesAdmin();
 
 		SearchExperiences.addBlueprint(name = "Element JSON Blueprint");
@@ -1400,6 +1403,9 @@ definition {
 	}
 
 	test ViewRawResponseViaBlueprintsPreview {
+		property portal.suite.search.engine = "josh";
+		property test.name.skip.portal.instance = "SearchExperiences#ViewRawResponseViaBlueprintsPreview";
+
 		JSONWebcontent.addWebContent(
 			content = "WC Content",
 			groupName = "Guest",
