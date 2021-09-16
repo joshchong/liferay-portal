@@ -125,6 +125,7 @@ definition {
 	}
 
 	test AssertSearchAdmin {
+		property portal.suite.search.engine = "josh";
 		property test.name.skip.portal.instance = "Elasticsearch7#AssertSearchAdmin";
 
 		ApplicationsMenu.gotoPortlet(
