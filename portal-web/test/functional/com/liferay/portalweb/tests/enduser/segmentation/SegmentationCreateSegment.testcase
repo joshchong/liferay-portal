@@ -1746,7 +1746,7 @@ definition {
 				panel = "Control Panel",
 				portlet = "Search");
 
-			SearchAdministration.executeSearchActions(actionsDescription = "Reindex search indexes.");
+			SearchAdministration.executeSearchReindex();
 		}
 
 		task ("Add segment and check the user Belongs To the segment") {
@@ -1945,7 +1945,7 @@ definition {
 				panel = "Control Panel",
 				portlet = "Search");
 
-			SearchAdministration.executeSearchActions(actionsDescription = "Reindex search indexes.");
+			SearchAdministration.executeSearchReindex();
 		}
 
 		task ("Add segment and check the user Belongs To the segment") {

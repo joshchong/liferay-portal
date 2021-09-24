@@ -14,7 +14,7 @@ definition {
 			panel = "Control Panel",
 			portlet = "Search");
 
-		SearchAdministration.executeSearchActions(actionsDescription = "Reindex search indexes.");
+		SearchAdministration.executeSearchReindex();
 	}
 
 	@description = "This is a use case for LPS-98651."

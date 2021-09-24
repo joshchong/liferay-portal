@@ -18,7 +18,7 @@ definition {
 				panel = "Control Panel",
 				portlet = "Search");
 
-			SearchAdministration.executeSearchActions(actionsDescription = "Reindex search indexes.");
+			SearchAdministration.executeSearchReindex();
 		}
 
 		task ("Add a new site") {
@@ -459,7 +459,7 @@ definition {
 				panel = "Control Panel",
 				portlet = "Search");
 
-			SearchAdministration.executeSearchActions(actionsDescription = "Reindex search indexes.");
+			SearchAdministration.executeSearchReindex();
 		}
 
 		task ("Navigate to the search page") {

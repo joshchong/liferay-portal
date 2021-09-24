@@ -587,7 +587,7 @@ definition {
 			panel = "Control Panel",
 			portlet = "Search");
 
-		SearchAdministration.executeSearchActions(actionsDescription = "Reindex search indexes.");
+		SearchAdministration.executeSearchReindex();
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "global");
 

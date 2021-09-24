@@ -275,7 +275,7 @@ definition {
 			panel = "Control Panel",
 			portlet = "Search");
 
-		SearchAdministration.executeSearchActions(actionsDescription = "Reindex search indexes.");
+		SearchAdministration.executeSearchReindex();
 
 		Navigator.openURL();
 

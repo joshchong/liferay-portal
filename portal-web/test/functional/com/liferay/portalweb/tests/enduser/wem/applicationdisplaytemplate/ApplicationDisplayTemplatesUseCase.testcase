@@ -523,7 +523,7 @@ definition {
 				panel = "Control Panel",
 				portlet = "Search");
 
-			SearchAdministration.executeSearchActions(actionsDescription = "Reindex search indexes.");
+			SearchAdministration.executeSearchReindex();
 		}
 
 		task ("Edit Rich Summary widget template") {

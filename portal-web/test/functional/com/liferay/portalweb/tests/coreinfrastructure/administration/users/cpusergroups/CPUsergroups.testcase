@@ -218,7 +218,7 @@ definition {
 			panel = "Control Panel",
 			portlet = "Search");
 
-		SearchAdministration.executeSearchActions(actionsDescription = "Reindex search indexes.");
+		SearchAdministration.executeSearchReindex();
 
 		JSONUserGroup.addUserGroup(
 			userGroupDescription = "UG UserGroup Description",
