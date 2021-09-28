@@ -183,17 +183,9 @@ definition {
 
 		CommerceAcceleratorsInitializer.selectAccountFromAccountSelector(accountName = "TestAccount");
 
-		JSONLayout.addWidgetToPrivateLayout(
-			column = "1",
-			groupName = "Minium",
-			layoutName = "Catalog",
-			widgetName = "Low Level Search Options");
+		SearchPortlets.addWidgets(searchPortletList = "Blueprints Options");
 
-		Refresh();
-
-		SearchPortlets.configureLowLevelSearchOptions(
-			attributesKey = "blueprintId",
-			attributesValue = "${blueprintsID}");
+		SearchExperiences.selectBlueprintFromOptionsWidget(name = "My Blueprint");
 
 		Type(
 			locator1 = "Search#EMBEDDED_SEARCH_BAR",
