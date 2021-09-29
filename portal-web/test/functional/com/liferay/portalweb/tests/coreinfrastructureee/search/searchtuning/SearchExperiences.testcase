@@ -1135,7 +1135,6 @@ definition {
 
 	test ViewElementJSONViaBlueprintsQueryBuilder {
 		property portal.suite.search.engine = "josh";
-		property test.name.skip.portal.instance = "SearchExperiences#ViewElementJSONViaBlueprintsQueryBuilder";
 
 		SearchExperiences.openSearchExperiencesAdmin();
 
@@ -1398,7 +1397,6 @@ definition {
 
 	test ViewRawResponseViaBlueprintsPreview {
 		property portal.suite.search.engine = "josh";
-		property test.name.skip.portal.instance = "SearchExperiences#ViewRawResponseViaBlueprintsPreview";
 
 		JSONWebcontent.addWebContent(
 			content = "WC Content",
