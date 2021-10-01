@@ -32,6 +32,8 @@ definition {
 	}
 
 	test AddCopyAndDeleteBlueprint {
+		property portal.suite.search.engine = "josh";
+
 		SearchExperiences.openSearchExperiencesAdmin();
 
 		for (var title : list "Blueprint 1,Blueprint 2") {
