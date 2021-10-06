@@ -1723,7 +1723,7 @@ app.server.type=@{app.server.type}]]></echo>
 
 			<property name="functional.test.type" value="@{functional.test.type}" />
 
-			<condition else="0" property="functional.batch.retry.count" value="1">
+			<condition else="0" property="functional.batch.retry.count" value="3">
 				<and>
 					<matches pattern="^[\w\.]+#[\w]+$" string="${test.class}" />
 					<or>
@@ -4945,6 +4945,18 @@ log.sanitizer.enabled=false</echo>
 	</target>
 
 	<target name="functional-tomcat90-mysql57-jdk8">
+		<run-functional-test app.server.type="tomcat" database.type="mysql" database.version="5.7" />
+	</target>
+
+	<target name="functional-tomcat90-mysql57-jdk8-2">
+		<run-functional-test app.server.type="tomcat" database.type="mysql" database.version="5.7" />
+	</target>
+
+	<target name="functional-tomcat90-mysql57-jdk8-3">
+		<run-functional-test app.server.type="tomcat" database.type="mysql" database.version="5.7" />
+	</target>
+
+	<target name="functional-tomcat90-mysql57-jdk8-4">
 		<run-functional-test app.server.type="tomcat" database.type="mysql" database.version="5.7" />
 	</target>
 
