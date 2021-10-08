@@ -376,6 +376,11 @@ definition {
 				roleTitle = "Search Blueprints Admin");
 		}
 
+		Permissions.definePermissionViaJSONAPI(
+			resourceAction = "VIEW_CONTROL_PANEL",
+			resourceName = "90",
+			roleTitle = "Search Blueprints Admin");
+
 		JSONUser.addUser(
 			userEmailAddress = "userea@liferay.com",
 			userFirstName = "userfn",
