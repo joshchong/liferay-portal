@@ -250,6 +250,8 @@ definition {
 	}
 
 	test BoostCustomLiferayObjectType {
+		property portal.suite.search.engine = "josh";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object",
 			objectName = "CustomObject",
