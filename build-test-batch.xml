@@ -906,7 +906,7 @@ mariadb.executable=${mariadb.executable}]]></echo>
 		<attribute default="" name="test.license.xml.url" />
 		<attribute default="" name="test.plugins.war.zip.url" />
 		<attribute default="" name="test.portal.bundle.dependencies.zip.url" />
-		<attribute default="" name="test.portal.bundle.elasticsearch.zip.url" />
+		<attribute default="" name="test.portal.bundle.sidecar.zip.url" />
 		<attribute default="" name="test.portal.bundle.osgi.zip.url" />
 		<attribute default="" name="test.portal.bundle.tools.zip.url" />
 		<attribute default="" name="test.portal.bundle.war.url" />
@@ -923,7 +923,7 @@ mariadb.executable=${mariadb.executable}]]></echo>
 				<param name="test.build.bundle.zip.url" value="@{test.portal.bundle.zip.url}" />
 				<param name="test.build.fix.pack.zip.url" value="@{test.build.fix.pack.zip.url}" />
 				<param name="test.build.portal.dependencies.zip.url" value="@{test.portal.bundle.dependencies.zip.url}" />
-				<param name="test.build.portal.elasticsearch.zip.url" value="@{test.portal.bundle.elasticsearch.zip.url}" />
+				<param name="test.build.portal.sidecar.zip.url" value="@{test.portal.bundle.sidecar.zip.url}" />
 				<param name="test.build.portal.osgi.zip.url" value="@{test.portal.bundle.osgi.zip.url}" />
 				<param name="test.build.portal.tools.zip.url" value="@{test.portal.bundle.tools.zip.url}" />
 				<param name="test.build.portal.war.url" value="@{test.portal.bundle.war.url}" />
@@ -1231,7 +1231,7 @@ app.server.type=@{app.server.type}]]></echo>
 				</then>
 				<elseif>
 					<and>
-						<available file="dist/liferay-portal-elasticsearch.zip" />
+						<available file="dist/liferay-portal-sidecar.zip" />
 						<available file="dist/liferay-portal-osgi.zip" />
 						<available file="dist/liferay-portal-tools.zip" />
 						<available file="dist/liferay-portal.war" />
@@ -1244,7 +1244,7 @@ app.server.type=@{app.server.type}]]></echo>
 						<antcall inheritAll="false" target="prepare-test-bundle">
 							<param name="app.server.type" value="@{app.server.type}" />
 							<param name="app.server.version" value="@{app.server.version}" />
-							<param name="test.build.portal.elasticsearch.zip.url" value="file://${portal.dist.dir}/liferay-portal-elasticsearch.zip" />
+							<param name="test.build.portal.sidecar.zip.url" value="file://${portal.dist.dir}/liferay-portal-sidecar.zip" />
 							<param name="test.build.portal.osgi.zip.url" value="file://${portal.dist.dir}/liferay-portal-osgi.zip" />
 							<param name="test.build.portal.tools.zip.url" value="file://${portal.dist.dir}/liferay-portal-tools.zip" />
 							<param name="test.build.portal.war.url" value="file://${portal.dist.dir}/liferay-portal.war" />
@@ -1707,7 +1707,7 @@ app.server.type=@{app.server.type}]]></echo>
 		<attribute default="" name="test.plugins.war.zip.url" />
 		<attribute default="false" name="test.portal.log.assert" />
 		<attribute default="" name="test.portal.bundle.dependencies.zip.url" />
-		<attribute default="" name="test.portal.bundle.elasticsearch.zip.url" />
+		<attribute default="" name="test.portal.bundle.sidecar.zip.url" />
 		<attribute default="" name="test.portal.bundle.osgi.zip.url" />
 		<attribute default="" name="test.portal.bundle.tools.zip.url" />
 		<attribute default="" name="test.portal.bundle.version" />
@@ -1814,7 +1814,7 @@ app.server.type=@{app.server.type}]]></echo>
 									test.license.xml.url="${test.license.xml.url}"
 									test.plugins.war.zip.url="@{test.plugins.war.zip.url}"
 									test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
-									test.portal.bundle.elasticsearch.zip.url="${test.portal.bundle.elasticsearch.zip.url}"
+									test.portal.bundle.sidecar.zip.url="${test.portal.bundle.sidecar.zip.url}"
 									test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
 									test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 									test.portal.bundle.war.url="${test.portal.bundle.war.url}"
@@ -1864,7 +1864,7 @@ app.server.type=@{app.server.type}]]></echo>
 											<available file="liferay-portal-bundle-${app.server.type}-${app.server.version}.tar.gz" />
 										</or>
 										<and>
-											<available file="dist/liferay-portal-elasticsearch.zip" />
+											<available file="dist/liferay-portal-sidecar.zip" />
 											<available file="dist/liferay-portal-osgi.zip" />
 											<available file="dist/liferay-portal-tools.zip" />
 											<available file="dist/liferay-portal.war" />
@@ -2935,7 +2935,7 @@ log.sanitizer.enabled=false</echo>
 		<attribute default="" name="test.fix.pack.base.url" />
 		<attribute default="" name="test.license.xml.url" />
 		<attribute default="" name="test.portal.bundle.dependencies.zip.url" />
-		<attribute default="" name="test.portal.bundle.elasticsearch.zip.url" />
+		<attribute default="" name="test.portal.bundle.sidecar.zip.url" />
 		<attribute default="" name="test.portal.bundle.osgi.zip.url" />
 		<attribute default="" name="test.portal.bundle.tools.zip.url" />
 		<attribute default="" name="test.portal.bundle.version" />
@@ -3037,7 +3037,7 @@ log.sanitizer.enabled=false</echo>
 								test.fix.pack.base.url="${test.fix.pack.base.url}"
 								test.license.xml.url="${test.license.xml.url}"
 								test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
-								test.portal.bundle.elasticsearch.zip.url="${test.portal.bundle.elasticsearch.zip.url}"
+								test.portal.bundle.sidecar.zip.url="${test.portal.bundle.sidecar.zip.url}"
 								test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
 								test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 								test.portal.bundle.war.url="${test.portal.bundle.war.url}"
@@ -6719,7 +6719,7 @@ ${output.content}</echo>
 									test.fix.pack.base.url="${test.fix.pack.base.url}"
 									test.license.xml.url="${test.license.xml.url}"
 									test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
-									test.portal.bundle.elasticsearch.zip.url="${test.portal.bundle.elasticsearch.zip.url}"
+									test.portal.bundle.sidecar.zip.url="${test.portal.bundle.sidecar.zip.url}"
 									test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
 									test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 									test.portal.bundle.war.url="${test.portal.bundle.war.url}"

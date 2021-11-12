@@ -2875,7 +2875,7 @@ plugins.includes=</echo>
 		</zip>
 	</target>
 
-	<target name="zip-portal-elasticsearch">
+	<target name="zip-portal-sidecar">
 		<tstamp>
 			<format pattern="yyyyMMddkkmmssSSS" property="tstamp.value" />
 		</tstamp>
@@ -2891,11 +2891,11 @@ plugins.includes=</echo>
 		</copy>
 
 		<zip
-			destfile="dist/liferay-portal-elasticsearch-${lp.version}.zip"
+			destfile="dist/liferay-portal-sidecar-${lp.version}.zip"
 		>
 			<zipfileset
 				dir="${tstamp.value}"
-				prefix="liferay-portal-elasticsearch-${lp.version}/elasticsearch-sidecar"
+				prefix="liferay-portal-sidecar-${lp.version}/elasticsearch-sidecar"
 			/>
 		</zip>
 
