@@ -1125,9 +1125,9 @@ definition {
 			locator1 = "Portlet#H4_COMPONENT_TITLE",
 			value1 = "Liferay Blogs Entry Apple");
 
-		AssertTextEquals(
-			locator1 = "PageEditor#CONTENT_PAGE_TEXT_CONTENT",
-			value1 = "banana, red apple, blueberry!");
+		// AssertTextEquals(
+		// 	locator1 = "PageEditor#CONTENT_PAGE_TEXT_CONTENT",
+		// 	value1 = "banana, red apple, blueberry!");
 
 		Close.closeAndSelectWindow(locator1 = "title=Edit Blueprint - ${siteName}");
 

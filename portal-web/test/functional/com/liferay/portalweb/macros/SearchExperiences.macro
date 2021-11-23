@@ -130,7 +130,7 @@ definition {
 			var siteURLKey = "guest";
 		}
 
-		Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_search_experiences_blueprints_web_internal_portlet_BlueprintsAdminPortlet");
+		Navigator.openWithAppendToBaseURL(urlAppend = "group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_search_experiences_web_internal_blueprint_admin_portlet_SXPBlueprintAdminPortlet");
 	}
 
 	macro searchBlueprintsPreview {
