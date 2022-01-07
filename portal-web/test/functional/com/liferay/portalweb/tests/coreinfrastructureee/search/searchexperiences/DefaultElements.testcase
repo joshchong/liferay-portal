@@ -1,6 +1,7 @@
 @component-name = "portal-search"
 definition {
 
+	property liferay.data.guard.enabled = "true";
 	property portal.release = "true";
 	property portal.suite.search.engine = "elasticsearch7";
 	property portal.upstream = "true";
@@ -8,8 +9,6 @@ definition {
 	property testray.main.component.name = "Search Experiences";
 
 	setUp {
-		TestCase.setUpPortalInstance();
-
 		User.firstLoginPG();
 
 		Blueprints.openBlueprintsAdmin();
@@ -17,17 +16,7 @@ definition {
 		Blueprints.createBlueprint(title = "Test Blueprint");
 	}
 
-	tearDown {
-		var testPortalInstance = PropsUtil.get("test.portal.instance");
-
-		if ("${testPortalInstance}" == "true") {
-			PortalInstances.tearDownCP();
-		}
-	}
-
 	test BoostTagsMatch {
-		property test.name.skip.portal.instance = "DefaultElements#BoostTagsMatch";
-
 		var element = "Boost Tags Match";
 
 		Blueprints.addElement(element = "${element}");
@@ -48,8 +37,6 @@ definition {
 	}
 
 	test BoostTaggedContents {
-		property test.name.skip.portal.instance = "DefaultElements#BoostTaggedContents";
-
 		var element = "Boost Tagged Contents";
 
 		Blueprints.addElement(element = "${element}");
@@ -70,8 +57,6 @@ definition {
 	}
 
 	test BoostProximity {
-		property test.name.skip.portal.instance = "DefaultElements#BoostProximity";
-
 		var element = "Boost Proximity";
 
 		Blueprints.addElement(element = "${element}");
@@ -92,8 +77,6 @@ definition {
 	}
 
 	test BoostLongerContents {
-		property test.name.skip.portal.instance = "DefaultElements#BoostLongerContents";
-
 		var element = "Boost Longer Contents";
 
 		Blueprints.addElement(element = "${element}");
@@ -114,8 +97,6 @@ definition {
 	}
 
 	test BoostFreshness {
-		property test.name.skip.portal.instance = "DefaultElements#BoostFreshness";
-
 		var element = "Boost Freshness";
 
 		Blueprints.addElement(element = "${element}");
@@ -136,8 +117,6 @@ definition {
 	}
 
 	test BoostContentsWithMoreVersions {
-		property test.name.skip.portal.instance = "DefaultElements#BoostContentsWithMoreVersions";
-
 		var element = "Boost Contents With More Versions";
 
 		Blueprints.addElement(element = "${element}");
@@ -158,8 +137,6 @@ definition {
 	}
 
 	test BoostContentsOnMySites {
-		property test.name.skip.portal.instance = "DefaultElements#BoostContentsOnMySites";
-
 		var element = "Boost Contents on My Sites";
 
 		Blueprints.addElement(element = "${element}");
@@ -180,8 +157,6 @@ definition {
 	}
 
 	test BoostContentsInACategory {
-		property test.name.skip.portal.instance = "DefaultElements#BoostContentsInACategory";
-
 		var element = "Boost Contents in a Category";
 
 		Blueprints.addElement(element = "${element}");
@@ -202,8 +177,6 @@ definition {
 	}
 
 	test BoostContentsForTheCurrentLanguage {
-		property test.name.skip.portal.instance = "DefaultElements#BoostContentsForTheCurrentLanguage";
-
 		var element = "Boost Contents for the Current Language";
 
 		Blueprints.addElement(element = "${element}");
@@ -224,8 +197,6 @@ definition {
 	}
 
 	test BoostAssetType {
-		property test.name.skip.portal.instance = "DefaultElements#BoostAssetType";
-
 		var element = "Boost Asset Type";
 
 		Blueprints.addElement(element = "${element}");
@@ -246,8 +217,6 @@ definition {
 	}
 
 	test BoostAllKeywordsMatch {
-		property test.name.skip.portal.instance = "DefaultElements#BoostAllKeywordsMatch";
-
 		var element = "Boost All Keywords Match";
 
 		Blueprints.addElement(element = "${element}");
@@ -268,8 +237,6 @@ definition {
 	}
 
 	test BoostItemsForMyCommerceAccountGroups {
-		property test.name.skip.portal.instance = "DefaultElements#BoostItemsForMyCommerceAccountGroups";
-
 		var element = "Boost Items for My Commerce Account Groups";
 
 		Blueprints.addElement(element = "${element}");
@@ -290,8 +257,6 @@ definition {
 	}
 
 	test HideContentsInACategoryForGuestUsers {
-		property test.name.skip.portal.instance = "DefaultElements#HideContentsInACategoryForGuestUsers";
-
 		var element = "Hide Contents in a Category for Guest Users";
 
 		Blueprints.addElement(element = "${element}");
@@ -312,8 +277,6 @@ definition {
 	}
 
 	test BoostWebContentsByKeywordMatch {
-		property test.name.skip.portal.instance = "DefaultElements#BoostWebContentsByKeywordMatch";
-
 		var element = "Boost Web Contents by Keyword Match";
 
 		Blueprints.addElement(element = "${element}");
@@ -335,8 +298,6 @@ definition {
 
 	// @ignore = "LPS-144193 - Invalid parameter name"
 	test BoostContentsInACategoryForTheTimeOfDay {
-		property test.name.skip.portal.instance = "DefaultElements#BoostContentsInACategoryForTheTimeOfDay";
-
 		var element = "Boost Contents in a Category for the Time of Day";
 
 		Blueprints.addElement(element = "${element}");
@@ -357,8 +318,6 @@ definition {
 	}
 
 	test BoostContentsInACategoryForNewUserAccounts {
-		property test.name.skip.portal.instance = "DefaultElements#BoostContentsInACategoryForNewUserAccounts";
-
 		var element = "Boost Contents in a Category for New User Accounts";
 
 		Blueprints.addElement(element = "${element}");
@@ -379,8 +338,6 @@ definition {
 	}
 
 	test BoostContentsInACategoryForGuestUsers {
-		property test.name.skip.portal.instance = "DefaultElements#BoostContentsInACategoryForGuestUsers";
-
 		var element = "Boost Contents in a Category for Guest Users";
 
 		Blueprints.addElement(element = "${element}");
@@ -402,8 +359,6 @@ definition {
 
 	// @ignore = "LPS-144193 - Invalid parameter name"
 	test BoostContentsInACategoryForAUserSegment {
-		property test.name.skip.portal.instance = "DefaultElements#BoostContentsInACategoryForAUserSegment";
-
 		var element = "Boost Contents in a Category for a User Segment";
 
 		Blueprints.addElement(element = "${element}");
@@ -425,8 +380,6 @@ definition {
 
 	// @ignore = "LPS-144193 - Invalid parameter name"
 	test BoostContentsInACategoryForAPeriodOfTime {
-		property test.name.skip.portal.instance = "DefaultElements#BoostContentsInACategoryForAPeriodOfTime";
-
 		var element = "Boost Contents in a Category for a Period of Time";
 
 		Blueprints.addElement(element = "${element}");
@@ -447,8 +400,6 @@ definition {
 	}
 
 	test BoostContentsInACategoryByKeywordMatch {
-		property test.name.skip.portal.instance = "DefaultElements#BoostContentsInACategoryByKeywordMatch";
-
 		var element = "Boost Contents in a Category by Keyword Match";
 
 		Blueprints.addElement(element = "${element}");
@@ -470,8 +421,6 @@ definition {
 
 	// @ignore = "LPS-144193 - Invalid parameter name"
 	test StagingAware {
-		property test.name.skip.portal.instance = "DefaultElements#StagingAware";
-
 		var element = "Staging Aware";
 
 		Blueprints.addElement(element = "${element}");
@@ -492,8 +441,6 @@ definition {
 	}
 
 	test SchedulingAware {
-		property test.name.skip.portal.instance = "DefaultElements#SchedulingAware";
-
 		var element = "Scheduling Aware";
 
 		Blueprints.addElement(element = "${element}");
@@ -514,8 +461,6 @@ definition {
 	}
 
 	test LimitSearchToTheseSites {
-		property test.name.skip.portal.instance = "DefaultElements#LimitSearchToTheseSites";
-
 		var element = "Limit Search to These Sites";
 
 		Blueprints.addElement(element = "${element}");
@@ -536,8 +481,6 @@ definition {
 	}
 
 	test LimitSearchToTheCurrentSite {
-		property test.name.skip.portal.instance = "DefaultElements#LimitSearchToTheCurrentSite";
-
 		var element = "Limit Search to the Current Site";
 
 		Blueprints.addElement(element = "${element}");
@@ -558,8 +501,6 @@ definition {
 	}
 
 	test LimitSearchToPublishedContents {
-		property test.name.skip.portal.instance = "DefaultElements#LimitSearchToPublishedContents";
-
 		var element = "Limit Search to Published Contents";
 
 		Blueprints.addElement(element = "${element}");
@@ -580,8 +521,6 @@ definition {
 	}
 
 	test LimitSearchToPDFFiles {
-		property test.name.skip.portal.instance = "DefaultElements#LimitSearchToPDFFiles";
-
 		var element = "Limit Search to PDF files";
 
 		Blueprints.addElement(element = "${element}");
@@ -602,8 +541,6 @@ definition {
 	}
 
 	test LimitSearchToMySites {
-		property test.name.skip.portal.instance = "DefaultElements#LimitSearchToMySites";
-
 		var element = "Limit Search to My Sites";
 
 		Blueprints.addElement(element = "${element}");
@@ -624,8 +561,6 @@ definition {
 	}
 
 	test LimitSearchToMyContents {
-		property test.name.skip.portal.instance = "DefaultElements#LimitSearchToMyContents";
-
 		var element = "Limit Search to My Contents";
 
 		Blueprints.addElement(element = "${element}");
@@ -646,8 +581,6 @@ definition {
 	}
 
 	test LimitSearchToHEADVersion {
-		property test.name.skip.portal.instance = "DefaultElements#LimitSearchToHEADVersion";
-
 		var element = "Limit Search to HEAD Version";
 
 		Blueprints.addElement(element = "${element}");
@@ -668,8 +601,6 @@ definition {
 	}
 
 	test LimitSearchToContentsCreatedWithinAPeriodOfTime {
-		property test.name.skip.portal.instance = "DefaultElements#LimitSearchToContentsCreatedWithinAPeriodOfTime";
-
 		var element = "Limit Search to Contents Created Within a Period of Time";
 
 		Blueprints.addElement(element = "${element}");
@@ -698,8 +629,6 @@ definition {
 	}
 
 	test FilterByExactTermsMatch {
-		property test.name.skip.portal.instance = "DefaultElements#FilterByExactTermsMatch";
-
 		var element = "Filter by Exact Terms Match";
 
 		Blueprints.addElement(element = "${element}");
@@ -734,8 +663,6 @@ definition {
 	}
 
 	test HideTaggedContents {
-		property test.name.skip.portal.instance = "DefaultElements#HideTaggedContents";
-
 		var element = "Hide Tagged Contents";
 
 		Blueprints.addElement(element = "${element}");
@@ -756,8 +683,6 @@ definition {
 	}
 
 	test HideHiddenContents {
-		property test.name.skip.portal.instance = "DefaultElements#HideHiddenContents";
-
 		var element = "Hide Hidden Contents";
 
 		Blueprints.addElement(element = "${element}");
@@ -778,8 +703,6 @@ definition {
 	}
 
 	test HideContentsInACategory {
-		property test.name.skip.portal.instance = "DefaultElements#HideContentsInACategory";
-
 		var element = "Hide Contents in a Category";
 
 		Blueprints.addElement(element = "${element}");
@@ -800,8 +723,6 @@ definition {
 	}
 
 	test HideComments {
-		property test.name.skip.portal.instance = "DefaultElements#HideComments";
-
 		var element = "Hide Comments";
 
 		Blueprints.addElement(element = "${element}");
@@ -822,8 +743,6 @@ definition {
 	}
 
 	test HideByExactTermMatch {
-		property test.name.skip.portal.instance = "DefaultElements#HideByAnExactTermMatch";
-
 		var element = "Hide by Exact Term Match";
 
 		Blueprints.addElement(element = "${element}");
@@ -858,8 +777,6 @@ definition {
 	}
 
 	test TextMatchOverMultipleFields {
-		property test.name.skip.portal.instance = "DefaultElements#TextMatchOverMultipleFields";
-
 		var element = "Text Match Over Multiple Fields";
 
 		Blueprints.addElement(element = "${element}");
@@ -880,8 +797,6 @@ definition {
 	}
 
 	test SearchWithTheLuceneSyntax {
-		property test.name.skip.portal.instance = "DefaultElements#SearchWithTheLuceneSyntax";
-
 		var element = "Search with the Lucene Syntax";
 
 		Blueprints.addElement(element = "${element}");
@@ -902,8 +817,6 @@ definition {
 	}
 
 	test PasteAnyElasticsearchQuery {
-		property test.name.skip.portal.instance = "DefaultElements#PasteAnyElasticsearchQuery";
-
 		var element = "Paste Any Elasticsearch Query";
 
 		Blueprints.addElement(element = "${element}");
@@ -924,8 +837,6 @@ definition {
 	}
 
 	test CustomJSONElement {
-		property test.name.skip.portal.instance = "DefaultElements#CustomJSONElement";
-
 		var element = "Custom JSON Element";
 
 		Blueprints.addElement(element = "${element}");
