@@ -2,8 +2,9 @@
 definition {
 
 	property liferay.data.guard.enabled = "true";
+	property portal.acceptance = "josh";
 	property portal.release = "true";
-	property portal.suite.search.engine = "elasticsearch7";
+	property portal.suite.search.engine = "josh";
 	property portal.upstream = "true";
 	property test.assert.warning.exceptions = "true";
 	property testray.main.component.name = "Search Experiences";

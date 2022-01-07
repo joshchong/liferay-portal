@@ -1576,7 +1576,7 @@ definition {
 			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT");
 	}
 
-	test editEntryTitle {
+	test EditBlueprintTitle {
 		Blueprints.openBlueprintsAdmin();
 
 		Blueprints.createBlueprint(title = "Test Blueprint");
@@ -1598,7 +1598,7 @@ definition {
 		Blueprints.viewNoEntry(title = "Test Blueprint");
 	}
 
-	test editEntryDescription {
+	test EditBlueprintDescription {
 		Blueprints.openBlueprintsAdmin();
 
 		Blueprints.createBlueprint(title = "Test Blueprint");
