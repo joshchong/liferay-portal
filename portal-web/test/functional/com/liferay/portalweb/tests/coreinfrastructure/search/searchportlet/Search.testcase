@@ -39,6 +39,18 @@ definition {
 		}
 	}
 
+	test AAATest1 {
+		property environment.josh = "true";
+
+		echo("Josh Test 1");
+	}
+
+	test AAATest2 {
+		property portal.jdk11 = "true";
+
+		echo("Josh Test 2");
+	}
+
 	@priority = "4"
 	test AssertBasicFacetSelection {
 		var webContentserviceContext1 = '''{"assetTagNames": ["fruit"]}''';
