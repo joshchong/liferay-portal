@@ -22,6 +22,48 @@ definition {
 		}
 	}
 
+	test Josh {
+		property portal.suite.search.engine = "josh";
+
+		Blueprints.openBlueprintsAdmin();
+
+		Blueprints.createBlueprint(title = "Test Blueprint");
+
+		Click(
+			linkContext = "element-sidebar",
+			linkText = "Learn more",
+			locator1 = "Blueprints#DOC_LINK");
+
+		SelectWindow(locator1 = "Search Blueprints Elements Reference — Liferay Learn");
+
+		var siteName = TestCase.getSiteName(siteName = "${siteName}");
+
+		Close.closeAndSelectWindow(locator1 = "Edit Blueprint - ${siteName}");
+
+		Navigator.gotoNavNested(navNested = "Query Settings");
+	}
+
+	test Josh2 {
+		property portal.suite.search.engine = "josh";
+
+		Blueprints.openBlueprintsAdmin();
+
+		Blueprints.createBlueprint(title = "Test Blueprint");
+
+		Click(
+			linkContext = "element-sidebar",
+			linkText = "Learn more",
+			locator1 = "Blueprints#DOC_LINK");
+
+		SelectWindow(locator1 = "Search Blueprints Elements Reference — Liferay Learn");
+
+		var siteName = TestCase.getSiteName(siteName = "${siteName}");
+
+		Close.closeAndSelectWindow(locator1 = "Edit Blueprint - ${siteName}");
+
+		Navigator.gotoNavNested(navNested = "Query Settings");
+	}
+
 	test AddBlueprintWithDescription {
 		Blueprints.openBlueprintsAdmin();
 
