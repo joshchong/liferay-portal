@@ -572,6 +572,118 @@ definition {
 		AssertElementNotPresent(locator1 = "Modal#MODAL");
 	}
 
+	test ContributedRolePermissions {
+		ApplicationsMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "System Settings");
+
+		SystemSettings.gotoConfiguration(
+			configurationCategory = "Segments",
+			configurationName = "Segments Service",
+			configurationScope = "System Scope");
+
+		Segmentation.enableAssingRolesBySegmentsCheckbox();
+
+		ProductMenu.gotoSite(site = "Global");
+
+		ProductMenu.gotoPortlet(
+			category = "People",
+			portlet = "Segments");
+
+		LexiconEntry.gotoAdd();
+
+		Segmentation.gotoSidebar(fieldType = "Session");
+
+		Segmentation.addProperties(propertyOption = "Signed In");
+
+		Segmentation.fillTitle(titleField = "Test Segment");
+
+		Button.clickSave();
+
+		JSONRole.addRegularRole(roleTitle = "Test Role");
+
+		ApplicationsMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Roles");
+
+		Role.addAssignee(
+			assigneeName = "Test Segment",
+			assigneeType = "Segments",
+			roleTitle = "Test Role");
+
+		JSONAssettag.addTag(
+			groupName = "Global",
+			tagName = "Test Tag");
+
+		JSONWebcontent.addWebContent(
+			assetTagNames = "Test Tag",
+			content = "WC Content",
+			groupName = "Global",
+			title = "Test Article");
+
+		WebContentNavigator.openWebContentAdmin(siteURLKey = "Global");
+
+		WebContentAdmin.clickEntryEllipsisItem(
+			entry = "Test Article",
+			item = "Permissions");
+
+		SelectFrame(locator1 = "IFrame#MODAL_BODY");
+
+		PermissionsInline.addOrRemoveViewPermissionFromAllRoles(
+			addOrRemoveViewPermission = "Remove",
+			roleList = "Guest,Owner,User");
+
+		PermissionsInline.addOrRemoveViewPermissionFromAllRoles(
+			addOrRemoveViewPermission = "Add",
+			roleList = "Test Role");
+
+		JSONAssetlist.addDynamicAssetListEntryWithItemType(
+			groupName = "Global",
+			itemType = "All Types",
+			title = "Test Collection");
+
+		AssetListsAdmin.openAssetListsAdmin(siteURLKey = "Global");
+
+		AssetListsAdmin.editAssetList(assetListTitle = "Test Collection");
+
+		AssetListsAdmin.addTagsFilter(tagNameList = "test tag");
+
+		JSONLayout.addPublicLayout(
+			groupName = "Guest",
+			layoutName = "Test Page",
+			type = "content");
+
+		ContentPagesNavigator.openEditContentPage(
+			pageName = "Test Page",
+			siteName = "Guest");
+
+		PageEditor.addWidget(portletName = "Asset Publisher");
+
+		AssetPublisherPortlet.selectAssetList(
+			assetListName = "Test Collection",
+			siteName = "Global");
+
+		IFrame.closeFrame();
+
+		PageEditor.clickPublish();
+
+		JSONUser.addUser(
+			userEmailAddress = "userea@liferay.com",
+			userFirstName = "userfn",
+			userLastName = "userln",
+			userScreenName = "usersn");
+
+		User.logoutPG();
+
+		User.loginPG(userEmailAddress = "userea@liferay.com");
+
+		Navigator.gotoPage(pageName = "Test Page");
+
+		AssetPublisherPortlet.viewAssetPG(assetTitle = "Test Article");
+	}
+
 	@priority = "4"
 	test DisableEnterpriseSearch {
 		property license.required = "true";
@@ -2066,12 +2178,10 @@ definition {
 			webContentTitle = "WC Title");
 
 		var port = Elasticsearch.getServerPort();
+
 		var portalHostname = PropsUtil.get("portal.hostname");
-
 		var curl = "http://${portalHostname}:${port}/_search?q=entryClassName:com.liferay.journal.model.JournalArticle";
-
 		var journalArticleDocumentType = JSONCurlUtil.get("${curl}");
-
 		var aggregationField = RegexUtil.replace("${journalArticleDocumentType}", "ddmFieldName\":\"(.*)\",\"ddmFieldValueKeyword\"", "1");
 
 		Search.openSearchPage();
@@ -2470,6 +2580,7 @@ definition {
 			searchAssetType = "Message Boards Message");
 
 		var actualScript = '''<script>alert(123);</script>''';
+
 		var escapedScript = '''&lt;script&gt;alert(123);&lt;/script&gt;''';
 
 		AssertHTMLSourceTextNotPresent(value1 = "${actualScript}");
@@ -2945,6 +3056,7 @@ definition {
 		var liferaySiteId = JSONGroupAPI._getGroupIdByName(
 			groupName = "Guest",
 			site = "true");
+
 		var siteName = TestCase.getSiteName();
 
 		var testSearchURL = SearchFacetPortlet.checkFacetAndViewURL(
@@ -2952,6 +3064,7 @@ definition {
 			facetValue = "${liferaySiteId}",
 			facetValueName = "${siteName}",
 			searchURL = "${testSearchURL}");
+
 		var newSiteId = JSONGroupAPI._getGroupIdByName(
 			groupName = "New Site",
 			site = "true");
@@ -3037,6 +3150,7 @@ definition {
 			facetValue = "${organicCategoryId}",
 			facetValueName = "organic",
 			searchURL = "${testSearchURL}");
+
 		var webContentFolderId1 = JSONWebcontent.getFolderIdByFolderName(
 			folderName = "${webContentFolderName1}",
 			groupName = "Guest");
