@@ -6250,6 +6250,86 @@ log.sanitizer.enabled=false</echo>
 		</run-batch-test>
 	</target>
 
+	<target name="modules-unit-jdk8-1">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-2">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-3">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-4">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-5">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-6">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-7">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-8">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-9">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-10">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-11">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-12">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-13">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-14">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-15">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-16">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-17">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-18">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-19">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
+	<target name="modules-unit-jdk8-20">
+		<antcall target="modules-unit-jdk8" />
+	</target>
+
 	<target name="modules-unit-jdk8_stable">
 		<antcall target="modules-unit-jdk8" />
 	</target>
