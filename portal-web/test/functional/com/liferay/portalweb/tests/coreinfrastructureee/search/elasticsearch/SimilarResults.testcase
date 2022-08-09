@@ -983,6 +983,8 @@ definition {
 
 	@priority = "4"
 	test ViewWithDifferentScope {
+		property portal.suite.search.engine = "josh";
+
 		for (var siteName : list "Site Name 1,Site Name 2,Site Name 3") {
 			JSONGroup.addGroup(groupName = "${siteName}");
 		}
