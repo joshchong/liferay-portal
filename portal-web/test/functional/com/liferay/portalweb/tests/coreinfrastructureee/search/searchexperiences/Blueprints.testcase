@@ -23,6 +23,8 @@ definition {
 	}
 
 	test Josh {
+		property portal.suite.search.engine = "josh";
+
 		JSONCategory.addVocabulary(
 			groupName = "Guest",
 			title = "Test Vocabulary");
