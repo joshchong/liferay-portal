@@ -91,6 +91,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>BLUEPRINTS_ADDED_ELEMENT_INPUT_FIELD_CLEAR_ALL_BUTTON</td>
+	<td>//div[contains(@id,'querySXPElement')][./ul[contains(.,'${elementName}')]]//li[contains(@class,'list-group-item')][.//label[contains(.,'${fieldLabel}')]]//button[@title="Clear All"]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>BLUEPRINTS_ADDED_ELEMENT_NTH_ELEMENT</td>
 	<td>xpath=(//div[contains(@id,'querySXPElement')])[${index}]</td>
 	<td></td>
@@ -158,6 +163,21 @@
 <tr>
 	<td>BLUEPRINTS_ADMIN_NTH_ENTRY</td>
 	<td>xpath=(//div[contains(@class,'table-list-title')])[${index}]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLUEPRINTS_ASSET_CATEGORY_FIELD_AUTOCOMPLETE_DROPDOWN_ITEM</td>
+	<td>//div[contains(@class,'autocomplete-dropdown-menu')]//button[contains(.,'${assetCategory}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLUEPRINTS_ASSET_CATEGORY_TREE_VIEW_ITEM</td>
+	<td>//span[contains(@class,'text-truncate')][normalize-space(text())='${treeItem}']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>BLUEPRINTS_ASSET_CATEGORY_TREE_VIEW_ITEM_CHECKBOX</td>
+	<td>//div[@role='treeitem' and contains(.,'${treeItem}')]//input[@type='checkbox']</td>
 	<td></td>
 </tr>
 <tr>

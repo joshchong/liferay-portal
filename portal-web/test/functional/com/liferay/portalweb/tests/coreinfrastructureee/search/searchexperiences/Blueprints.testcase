@@ -22,6 +22,101 @@ definition {
 		}
 	}
 
+	test Josh {
+		JSONCategory.addVocabulary(
+			groupName = "Guest",
+			title = "Test Vocabulary");
+
+		var categoryId = JSONCategory.addCategory(
+			groupName = "Guest",
+			title = "Test Category",
+			vocabularyName = "Test Vocabulary");
+
+		Blueprints.openBlueprintsAdmin();
+
+		Blueprints.createBlueprint(title = "Test Blueprint");
+
+		Blueprints.addElement(element = "Boost Contents in a Category");
+
+		Type(
+			elementName = "Boost Contents in a Category",
+			fieldLabel = "Asset Category Names (ID)",
+			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT_INPUT_FIELD",
+			value1 = "Test Category");
+
+		KeyPress(
+			elementName = "Boost Contents in a Category",
+			fieldLabel = "Asset Category Names (ID)",
+			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT_INPUT_FIELD",
+			value1 = "\RETURN");
+
+		Click.clickNoMouseOver(
+			elementName = "Boost Contents in a Category",
+			fieldLabel = "Asset Category Names (ID)",
+			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT_INPUT_FIELD_CLEAR_ALL_BUTTON");
+
+		Type(
+			elementName = "Boost Contents in a Category",
+			fieldLabel = "Asset Category Names (ID)",
+			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT_INPUT_FIELD",
+			value1 = "Test");
+
+		Click(
+			assetCategory = "Test Category (ID: ${categoryId})",
+			locator1 = "Blueprints#BLUEPRINTS_ASSET_CATEGORY_FIELD_AUTOCOMPLETE_DROPDOWN_ITEM");
+
+		AssertElementPresent(
+			elementName = "Boost Contents in a Category",
+			fieldLabel = "Asset Category Names (ID)",
+			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT_INPUT_FIELD",
+			value1 = "Test Element");
+
+		Click.clickNoMouseOver(
+			elementName = "Boost Contents in a Category",
+			fieldLabel = "Asset Category Names (ID)",
+			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT_INPUT_FIELD_CLEAR_ALL_BUTTON");
+
+		Type(
+			elementName = "Boost Contents in a Category",
+			fieldLabel = "Asset Category Names (ID)",
+			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT_INPUT_FIELD",
+			value1 = "${categoryId}");
+
+		Click(
+			assetCategory = "Test Category (ID: ${categoryId})",
+			locator1 = "Blueprints#BLUEPRINTS_ASSET_CATEGORY_FIELD_AUTOCOMPLETE_DROPDOWN_ITEM");
+
+		AssertElementPresent(
+			elementName = "Boost Contents in a Category",
+			fieldLabel = "Asset Category Names (ID)",
+			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT_INPUT_FIELD",
+			value1 = "Test Element");
+
+		Click.clickNoMouseOver(
+			elementName = "Boost Contents in a Category",
+			fieldLabel = "Asset Category Names (ID)",
+			locator1 = "Blueprints#BLUEPRINTS_ADDED_ELEMENT_INPUT_FIELD_CLEAR_ALL_BUTTON");
+
+		Button.clickSelect();
+
+		Select(
+			locator1 = "Select#ANY_ID",
+			selectId = "selectSite",
+			value1 = "Liferay DXP");
+
+		Click(
+			treeItem = "Test Vocabulary",
+			locator1 = "Blueprints#BLUEPRINTS_ASSET_CATEGORY_TREE_VIEW_ITEM");
+
+		Check.checkNotVisible(
+			treeItem = "Test Category (ID: ${categoryId})",
+			locator1 = "Blueprints#BLUEPRINTS_ASSET_CATEGORY_TREE_VIEW_ITEM_CHECKBOX");
+
+		Click(locator1 = "Modal#SAVE_BUTTON");
+
+		PortletEntry.save();
+	}
+
 	@description = "Can add a blueprint in a non-root portal context."
 	@priority = "4"
 	test AddBlueprintInNonRootContext {
