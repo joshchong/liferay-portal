@@ -22,6 +22,25 @@ definition {
 		}
 	}
 
+	test AAAFirstTest {
+		property portal.suite.search.engine = "josh";
+		property test.assert.warning.exceptions = "true";
+
+		Refresh();
+	}
+
+	test Investigate {
+		property portal.suite.search.engine = "josh";
+		property test.assert.warning.exceptions = "true";
+
+		Blueprints.openBlueprintsAdmin();
+
+		Blueprints.createBlueprint(title = "Test Blueprint");
+
+		Blueprints.addElement(element = "Boost Contents in a Category");
+
+		PortletEntry.save();
+	}
 	@description = "Can add a blueprint in a non-root portal context."
 	@priority = "4"
 	test AddBlueprintInNonRootContext {
