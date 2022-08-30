@@ -292,7 +292,8 @@ function EditSXPBlueprintForm({
 									configValue,
 									type,
 									typeOptions.required,
-									typeOptions.nullable
+									typeOptions.nullable,
+									name
 								) ||
 								validateBoost(configValue, type) ||
 								validateNumberRange(
