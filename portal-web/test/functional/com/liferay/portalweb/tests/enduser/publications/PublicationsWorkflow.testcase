@@ -29,6 +29,7 @@ definition {
 	@priority = "4"
 	test CannotPublishPublicationWithPendingAssetEntries {
 		property custom.properties = "jsonws.web.service.paths.excludes=";
+		property portal.acceptance = "josh";
 
 		JSONUser.addUser(
 			userEmailAddress = "userea@liferay.com",
@@ -60,6 +61,8 @@ definition {
 			panel = "Site Administration",
 			portlet = "Web Content");
 
+		takeScreenshot();
+
 		WebContentNavigator.gotoAddCP();
 
 		WebContent.addCP(
@@ -82,6 +85,8 @@ definition {
 			category = "Content & Data",
 			panel = "Site Administration",
 			portlet = "Web Content");
+
+		takeScreenshot();
 
 		WebContentNavigator.gotoAddCP();
 
