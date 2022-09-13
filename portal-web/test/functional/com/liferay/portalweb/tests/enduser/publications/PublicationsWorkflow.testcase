@@ -25,6 +25,15 @@ definition {
 		}
 	}
 
+	test AAAInitialTest {
+		property portal.acceptance = "josh";
+
+		ProductMenu.gotoPortlet(
+			category = "Content & Data",
+			panel = "Site Administration",
+			portlet = "Web Content");
+	}
+
 	@description = "This is a use case for LPS-159649."
 	@priority = "4"
 	test CannotPublishPublicationWithPendingAssetEntries {
@@ -61,13 +70,13 @@ definition {
 			panel = "Site Administration",
 			portlet = "Web Content");
 
-		takeScreenshot();
-
 		WebContentNavigator.gotoAddCP();
 
 		WebContent.addCP(
 			webContentContent = "WC WebContent Content",
 			webContentTitle = "WC WebContent Title 1");
+
+		takeScreenshot();
 
 		PortletEntry.submitForPublication();
 
@@ -86,13 +95,13 @@ definition {
 			panel = "Site Administration",
 			portlet = "Web Content");
 
-		takeScreenshot();
-
 		WebContentNavigator.gotoAddCP();
 
 		WebContent.addCP(
 			webContentContent = "WC WebContent Content",
 			webContentTitle = "WC WebContent Title 2");
+
+		takeScreenshot();
 
 		PortletEntry.submitForPublication();
 
