@@ -3978,6 +3978,8 @@ definition {
 	}
 
 	test ViewQueryBuilderAssetCategoryMultiselectField {
+		property portal.suite.search.engine = "josh";
+
 		JSONCategory.addVocabulary(
 			groupName = "Guest",
 			title = "Test Vocabulary");
@@ -4128,6 +4130,8 @@ definition {
 	}
 
 	test ViewQueryBuilderAssetCategorySingleSelectField {
+		property portal.suite.search.engine = "josh";
+
 		JSONCategory.addVocabulary(
 			groupName = "Guest",
 			title = "Test Vocabulary");
