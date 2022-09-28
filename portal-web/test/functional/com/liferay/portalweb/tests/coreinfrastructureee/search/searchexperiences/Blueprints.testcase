@@ -1104,6 +1104,8 @@ definition {
 	}
 
 	test CopyRawResponseViaBlueprintsPreview {
+		property portal.suite.search.engine = "josh";
+
 		Blueprints.openBlueprintsAdmin();
 
 		Blueprints.createBlueprint(title = "Test Blueprint");
