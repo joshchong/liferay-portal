@@ -39,6 +39,12 @@ definition {
 		}
 	}
 
+	test AAATest {
+		property portal.suite.search.engine = "josh";
+
+		echo("test");
+	}
+
 	@priority = "4"
 	test AssertBasicFacetSelection {
 		var webContentserviceContext1 = '''{"assetTagNames": ["fruit"]}''';
