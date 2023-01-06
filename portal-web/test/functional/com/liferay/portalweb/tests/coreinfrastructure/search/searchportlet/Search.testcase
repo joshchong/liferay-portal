@@ -1,6 +1,7 @@
 @component-name = "portal-search"
 definition {
 
+	property custom.properties = "include-and-override=portal-liferay-online.properties";
 	property portal.release = "true";
 	property portal.suite.search.engine = "elasticsearch7";
 	property portal.upstream = "true";
@@ -606,60 +607,6 @@ definition {
 		Pagination.viewResults(results = "Showing 1 to 2 of 5 entries.");
 	}
 
-	@description = "This is a use case for LPS-130227."
-	@priority = "4"
-	test AssertPaginationURLforHTTPS {
-		property custom.properties = "web.server.host=localhost${line.separator}redirect.url.security.mode=domain${line.separator}redirect.url.domains.allowed=${line.separator}web.server.https.port=8443${line.separator}web.server.protocol=https";
-		property portal.ssl.enabled = "true";
-		property search.environment.suite.exclude = "true";
-		property test.name.skip.portal.instance = "Search#AssertPaginationURLforHTTPS";
-
-		var portalURL = PropsUtil.get("portal.url");
-
-		JSONGroup.addGroup(groupName = "Test Site Name");
-
-		JSONLayout.addPublicLayout(
-			groupName = "Test Site Name",
-			layoutName = "Test Page Name",
-			type = "content");
-
-		Navigator.openSpecificURL(url = "https://localhost:8443/web/test-site-name/test-page-name?p_l_mode=edit");
-
-		PageEditor.addWidget(portletName = "Search Options");
-
-		SearchPortlets.configureSearchOptions(allowEmptySearches = "true");
-
-		PageEditor.addWidget(
-			collectionName = "Search",
-			portletName = "Search Results",
-			targetFragmentName = "Search Options");
-
-		PageEditor.publish();
-
-		for (var count : list "1,2,3,4,5") {
-			JSONWebcontent.addWebContent(
-				content = "WC Content ${count}",
-				groupName = "Test Site Name",
-				title = "WC Title ${count}");
-		}
-
-		Navigator.openSpecificURL(url = "https://localhost:8443/web/test-site-name/test-page-name");
-
-		Pagination.changePagination(itemsPerPage = "4");
-
-		Click(locator1 = "Pagination#NEXT_LINK");
-
-		AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
-
-		var currentURL = selenium.getCurrentUrl();
-
-		echo("Current URL: ${currentURL} ");
-
-		if (!(contains("${currentURL}", "https://")) || !(contains("${currentURL}", "start=2"))) {
-			fail("URL of second search results page should contain HTTPS.");
-		}
-	}
-
 	@description = "This is a use case for LPS-135288."
 	@priority = "4"
 	test AssertSearchTagURLNoXSS {
@@ -668,94 +615,6 @@ definition {
 		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search?tag=test%22%3E%3Csvg/onload=alert(document.domain)%3E");
 
 		AssertAlertNotPresent();
-	}
-
-	@description = "This is a use case for LPS-89561."
-	@priority = "4"
-	test AssertSearchURLWhenModifyingPagination {
-		property custom.properties = "search.container.page.default.delta=10";
-
-		for (var count : list "1,2,3,4,5,6,7,8,9,10,11") {
-			JSONWebcontent.addWebContent(
-				content = "WC Content ${count}",
-				groupName = "Guest",
-				title = "WC Title ${count}");
-		}
-
-		SearchPortlets.searchEmbedded(searchTerm = "WC Title");
-
-		SearchResultPortlet.paginateAndViewSearchResults(
-			searchAssetTitle = "WC Title 11",
-			searchAssetType = "Web Content Article",
-			searchTerm = "WC Title");
-
-		Pagination.changePagination(itemsPerPage = "4");
-
-		var currentURL = selenium.getCurrentUrl();
-
-		echo("Current URL: ${currentURL} ");
-
-		if (!(contains("${currentURL}", "delta=4")) || contains("${currentURL}", "start")) {
-			fail("URL should preserve delta, but not contain start.");
-		}
-
-		Click(locator1 = "Pagination#NEXT_LINK");
-
-		AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
-
-		var currentURL = selenium.getCurrentUrl();
-
-		echo("Current URL: ${currentURL} ");
-
-		if (!(contains("${currentURL}", "delta=4")) || !(contains("${currentURL}", "start=2"))) {
-			fail("URL should preserve delta and add start.");
-		}
-
-		Click(locator1 = "Pagination#NEXT_LINK");
-
-		AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
-
-		var currentURL = selenium.getCurrentUrl();
-
-		echo("Current URL: ${currentURL} ");
-
-		if (!(contains("${currentURL}", "delta=4")) && !(contains("${currentURL}", "start=3"))) {
-			fail("URL should preserve delta and modify start.");
-		}
-
-		Pagination.changePagination(itemsPerPage = "8");
-
-		var currentURL = selenium.getCurrentUrl();
-
-		echo("Current URL: ${currentURL} ");
-
-		if (!(contains("${currentURL}", "delta")) && !(contains("${currentURL}", "start"))) {
-			fail("Delta and start should be removed from URL.");
-		}
-
-		Click(locator1 = "Pagination#NEXT_LINK");
-
-		AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
-
-		var currentURL = selenium.getCurrentUrl();
-
-		echo("Current URL: ${currentURL} ");
-
-		if (!(contains("${currentURL}", "delta")) && contains("${currentURL}", "start=2")) {
-			fail("URL should preserve abscence of delta and start should be added.");
-		}
-
-		Click(locator1 = "Pagination#PREVIOUS_LINK");
-
-		AssertElementPresent(locator1 = "Pagination#CURRENT_PAGE_SELECT");
-
-		var currentURL = selenium.getCurrentUrl();
-
-		echo("Current URL: ${currentURL} ");
-
-		if (!(contains("${currentURL}", "delta")) && contains("${currentURL}", "start=1")) {
-			fail("URL should preserve abscence of delta and modify start.");
-		}
 	}
 
 	@priority = "3"
@@ -827,63 +686,6 @@ definition {
 		Refresh();
 
 		AssertAlertNotPresent();
-	}
-
-	@description = "This is a use case for LPS-95670."
-	@priority = "4"
-	test AssertSuggestionsCannotOfferInvalidWordsAsSuggestion {
-		property custom.properties = "locales.enabled=de_DE,en_US${line.separator}locales=de_DE,en_US${line.separator}index.search.spell.checker.dictionary[de_DE]=spellchecker/dictionary_de_DE.txt${line.separator}index.search.spell.checker.supported.locales=en_US,es_ES,de_DE";
-		property index.search.spell.checker.enabled = "true";
-		property search.environment.suite.exclude = "true";
-		property test.name.skip.portal.instance = "Search#AssertSuggestionsCannotOfferInvalidWordsAsSuggestion";
-
-		JSONWebcontent.addBasicWebContentLocalized(
-			contentMap = "en_US:WC Content,de_DE:ächten angreifen anmarschieren",
-			groupName = "Guest",
-			titleMap = "en_US:WC Title,de_DE:WC Titel");
-
-		Search.openSearchPage();
-
-		SearchPortlets.addWidgets(searchPortletList = "Suggestions");
-
-		SearchPortlets.gotoConfigureSuggestionsOptions();
-
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
-
-		FormFields.enableCheckbox(fieldName = "spellCheckSuggestionEnabled");
-
-		PortletEntry.save();
-
-		IFrame.closeFrame();
-
-		SearchAdministration.executeReindex(action = "Reindex spell-check dictionaries.");
-
-		AssertConsoleTextPresent(value1 = "Finished indexing dictionary spellchecker/dictionary_de_DE.txt");
-
-		Navigator.openURL();
-
-		ContentPages.gotoPageEditor();
-
-		PageEditor.addWidget(
-			portletName = "Language Selector",
-			targetFragmentName = "Container");
-
-		PageEditor.publish();
-
-		LanguagePortlet.selectLanguagePG(
-			locale = "de-DE",
-			textIcon = "deutsch-Deutschland");
-
-		for (var searchTerm : list "ächten,angreifen,anmarschieren") {
-			SearchPortlets.searchEmbedded(searchTerm = "${searchTerm}");
-
-			SearchResultPortlet.viewSearchResults(
-				searchAssetTitle = "WC Titel",
-				searchAssetType = "Webcontent, Artikel",
-				searchTerm = "${searchTerm}");
-
-			AssertElementNotPresent(locator1 = "Search#SEARCH_SUGGESTED_SPELLING");
-		}
 	}
 
 	@priority = "3"
@@ -1149,20 +951,6 @@ definition {
 		AssertElementNotPresent(
 			key_searchAssetTitle = "Title",
 			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE_SPECIFIC_HIGHLIGHT");
-	}
-
-	@priority = "4"
-	test CannotViewTermsOfUseWhenEnterpriseSearchIsDisabled {
-		property custom.properties = "enterprise.product.enterprise.search.enabled=false${line.separator}enterprise.product.notification.enabled=true";
-		property test.run.environment = "EE";
-
-		AssertElementNotPresent(locator1 = "Modal#MODAL");
-
-		User.logoutAndLoginPG(
-			userLoginEmailAddress = "test@liferay.com",
-			userLoginFullName = "Test Test");
-
-		AssertElementNotPresent(locator1 = "Modal#MODAL");
 	}
 
 	@priority = "3"
@@ -1523,32 +1311,6 @@ definition {
 	}
 
 	@priority = "4"
-	test CanViewTermsOfUseWhenEnterpriseSearchIsEnabled {
-		property custom.properties = "enterprise.product.notification.enabled=true";
-		property test.run.environment = "EE";
-
-		SelectFrame(value1 = "relative=top");
-
-		AssertTextEquals(
-			locator1 = "Modal#HEADER",
-			value1 = "Terms of Use");
-
-		AssertTextEquals.assertPartialText(
-			locator1 = "Modal#BODY",
-			value1 = "Use of Liferay Enterprise Search (LES) apps and features is not covered by Liferay Support and other subscription benefits without an active LES add-on subscription. If you do not want to use or have access to LES, access can be disabled completely by following these steps");
-
-		Click(locator1 = "Button#DONE");
-
-		AssertElementNotPresent(locator1 = "Modal#MODAL");
-
-		User.logoutAndLoginPG(
-			userLoginEmailAddress = "test@liferay.com",
-			userLoginFullName = "Test Test");
-
-		AssertElementNotPresent(locator1 = "Modal#MODAL");
-	}
-
-	@priority = "4"
 	test CopySearchInsightsJSON {
 		Search.openSearchPage();
 
@@ -1890,80 +1652,6 @@ definition {
 		SearchResultPortlet.viewMultipleSearchResults(
 			resultsList = "Apple 1/Web Content Article,Apple 2/Web Content Article,Apple 3/Web Content Article,Apple 4/Web Content Article,Apple 5/Web Content Article",
 			searchTerm = "Apple");
-	}
-
-	@description = "This is a use case for LPS-90078."
-	@priority = "4"
-	test ModifyPaginationPortalProperties {
-		property app.server.types = "jboss,tcserver,tomcat,weblogic,websphere,wildfly";
-		property custom.properties = "search.container.page.default.delta=1";
-		property database.types = "db2,hypersonic,mariadb,mysql,oracle,postgresql,sqlserver,sybase";
-		property environment.acceptance = "true";
-		property operating.system.types = "alpine,amazonlinux,centos,debian,fedora,orcllinux,osx,redhat,solaris,suse,ubuntu,windows";
-		property portal.acceptance = "true";
-
-		JSONLayout.addPublicLayout(
-			groupName = "Guest",
-			layoutName = "Search Result Widget Page");
-
-		JSONLayout.addWidgetToPublicLayout(
-			column = "1",
-			groupName = "Guest",
-			layoutName = "Search Result Widget Page",
-			widgetName = "Search Results");
-
-		for (var count : list "1,2,3") {
-			JSONWebcontent.addWebContent(
-				content = "WC Content ${count}",
-				groupName = "Guest",
-				title = "WC Title ${count}");
-		}
-
-		var portalURL = PropsUtil.get("portal.url");
-
-		Navigator.openSpecificURL(url = "${portalURL}/web/guest/search-result-widget-page");
-
-		Portlet.gotoPortletOptions(
-			portletName = "Search Results",
-			portletOption = "Configuration");
-
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
-
-		AssertTextEquals(
-			locator1 = "SearchResults#RESULTS_PORTLET_PAGINATION_CONFIG",
-			value1 = "1");
-
-		IFrame.closeFrame();
-
-		SearchPortlets.searchEmbedded(searchTerm = "WC Title");
-
-		Portlet.gotoPortletOptions(
-			portletName = "Search Results",
-			portletOption = "Configuration");
-
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
-
-		AssertTextEquals(
-			locator1 = "SearchResults#RESULTS_PORTLET_PAGINATION_CONFIG",
-			value1 = "1");
-
-		IFrame.closeFrame();
-
-		SearchResultPortlet.viewSearchResults(
-			searchAssetTitle = "WC Title",
-			searchAssetType = "Web Content Article");
-
-		Click(locator1 = "Pagination#NEXT_LINK");
-
-		SearchResultPortlet.viewSearchResults(
-			searchAssetTitle = "WC Title",
-			searchAssetType = "Web Content Article");
-
-		Click(locator1 = "Pagination#NEXT_LINK");
-
-		SearchResultPortlet.viewSearchResults(
-			searchAssetTitle = "WC Title",
-			searchAssetType = "Web Content Article");
 	}
 
 	@description = "This is a use case for LPS-112599."
@@ -2764,67 +2452,6 @@ definition {
 			searchTerm = "Apple");
 
 		SearchResultPortlet.viewMultipleSearchResultsNotPresent(noResultsList = "Apple/Web Content Article,Apple/Document");
-	}
-
-	@description = "This test will assert that configurations set within the Embedded search bar will be used when searching via the Widget search bar"
-	@priority = "4"
-	test SearchDifferentScopesViaSearchWidget {
-		property custom.properties = "company.default.time.zone=America/Los_Angeles";
-		property portal.acceptance = "true";
-
-		JSONDocument.addFileWithUploadedFile(
-			dmDocumentTitle = "Potato Document",
-			groupName = "Guest",
-			mimeType = "application/msword",
-			sourceFileName = "Document_1.doc");
-
-		JSONGroup.addGroup(groupName = "Test Site");
-
-		JSONBlog.addEntry(
-			entryContent = "This is a blog about Potatoes",
-			entryTitle = "Potato Blog",
-			groupName = "Test Site");
-
-		var currentDate = DateUtil.getFormattedCurrentDate("MMM d, yyyy");
-
-		Search.openSearchPage();
-
-		SearchPortlets.configureEmbeddedSearchBar(searchScope = "Everything");
-
-		SearchPortlets.searchWidget(searchTerm = "Potato");
-
-		SearchResultPortlet.viewSearchResults(
-			entryDate = "${currentDate}",
-			searchAssetSummary = "This is a blog about Potatoes",
-			searchAssetTitle = "Potato Blog",
-			searchAssetType = "Blogs Entry",
-			searchTerm = "Potato");
-
-		SearchResultPortlet.viewSearchResults(
-			entryDate = "${currentDate}",
-			searchAssetTitle = "Potato Document",
-			searchAssetType = "Document",
-			searchTerm = "Potato");
-
-		SearchPortlets.configureEmbeddedSearchBar(searchScope = "This Site");
-
-		SearchPortlets.searchWidget(searchTerm = "Potato");
-
-		SearchResultPortlet.viewSearchResults(
-			entryDate = "${currentDate}",
-			searchAssetTitle = "Potato Document",
-			searchAssetType = "Document",
-			searchTerm = "Potato");
-
-		SearchResultPortlet.viewSearchResultNotPresent(
-			searchAssetTitle = "Potato Blog",
-			searchAssetType = "Blogs Entry");
-
-		SearchPortlets.gotoSearchBarWidgetOptions(portletOption = "Configuration");
-
-		SelectFrame(locator1 = "IFrame#CONFIGURATION");
-
-		Alert.viewInfoMessageSpecific(infoMessage = "For disabled fields, the page header Search Bar configuration takes precedence.");
 	}
 
 	@priority = "5"
