@@ -12,6 +12,8 @@ definition {
 		TestCase.setUpPortalInstance();
 
 		User.firstLoginPG();
+
+		fail("This test failed");
 	}
 
 	tearDown {
