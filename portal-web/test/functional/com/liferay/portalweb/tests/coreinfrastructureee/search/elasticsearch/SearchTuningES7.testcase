@@ -56,8 +56,6 @@ definition {
 
 	@priority = "3"
 	test AssertCannotAddDuplicateQueriesAndAliases {
-		property app.server.types = "tomcat,websphere";
-
 		SearchTuning.openResultRankingsAdmin();
 
 		SearchTuning.addResultRanking(searchQuery = "Article");
@@ -530,8 +528,6 @@ definition {
 
 	@priority = "5"
 	test EnableAndDisableResultRankings {
-		property app.server.types = "tomcat,weblogic,websphere";
-
 		var content = "Article Article Article Article";
 
 		for (var count : list "1,2,3,4") {
