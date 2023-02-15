@@ -525,8 +525,6 @@ definition {
 
 	@priority = 4
 	test AssertNonAdminsCannotAddCertainWidgets {
-		property app.server.types = "tomcat";
-
 		JSONRole.addRegularRole(
 			roleKey = "Can Add Widgets",
 			roleTitle = "Can Add Widgets");
@@ -3064,10 +3062,6 @@ definition {
 
 	@priority = 5
 	test SearchDocumentsAndMediaDocument {
-		property app.server.types = "jboss,tcserver,tomcat,weblogic,websphere,wildfly";
-		property database.types = "db2,hypersonic,mariadb,mysql,oracle,postgresql,sqlserver,sybase";
-		property testray.component.names = "Training";
-
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
@@ -4128,8 +4122,6 @@ definition {
 
 	@description = "This is a use case for LPS-152937."
 	test SortAccentedWords {
-		property app.server.types = "tomcat,weblogic";
-
 		var digit = 1;
 
 		for (var content : list "Alicante,Barcelona,Álava,Alava") {
