@@ -41,6 +41,8 @@ definition {
 
 	@priority = 4
 	test AssertBasicFacetSelection {
+		property portal.stable = "true";
+
 		var webContentserviceContext1 = '''{"assetTagNames": ["fruit"]}''';
 
 		JSONWebcontent.addWebContent(

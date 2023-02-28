@@ -10,7 +10,7 @@
 							"occur": "must",
 							"query": {
 								"multi_match": {
-									"query": "los angeles"
+									"query": "los angeless"
 								}
 							}
 						}
