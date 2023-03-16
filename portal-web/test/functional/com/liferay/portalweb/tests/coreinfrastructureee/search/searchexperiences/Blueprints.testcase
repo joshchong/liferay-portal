@@ -4232,11 +4232,11 @@ definition {
 			linkText = "Learn more",
 			locator1 = "Blueprints#DOC_LINK_GENERIC");
 
-		SelectWindow(locator1 = "Search Blueprints Elements Reference — Liferay Learn");
+		SelectWindow.selectPopUp(locator1 = "null");
 
-		var siteName = TestCase.getSiteName(siteName = ${siteName});
+		AssertLocation(value1 = "https://learn.liferay.com/en/w/dxp/using-search/liferay-enterprise-search/search-experiences/search-blueprints-elements-reference");
 
-		Close.closeAndSelectWindow(locator1 = "Edit Blueprint - ${siteName}");
+		Close.closeAndSelectWindow(locator1 = "null");
 
 		Navigator.gotoNavNested(navNested = "Query Settings");
 
@@ -4247,9 +4247,11 @@ definition {
 			linkText = "Learn more",
 			locator1 = "Blueprints#DOC_LINK_GENERIC");
 
-		SelectWindow(locator1 = "Creating and Managing Search Blueprints — Liferay Learn");
+		SelectWindow.selectPopUp(locator1 = "null");
 
-		Close.closeAndSelectWindow(locator1 = "Edit Blueprint - ${siteName}");
+		AssertLocation(value1 = "https://learn.liferay.com/en/w/dxp/using-search/liferay-enterprise-search/search-experiences/creating-and-managing-search-blueprints#advanced-configuring-query-clause-contributors");
+
+		Close.closeAndSelectWindow(locator1 = "null");
 
 		Check.checkNotVisible(
 			locator1 = "Radio#ANY",
@@ -4262,9 +4264,11 @@ definition {
 			linkText = "Learn more",
 			locator1 = "Blueprints#DOC_LINK_GENERIC");
 
-		SelectWindow(locator1 = "Creating and Managing Search Blueprints — Liferay Learn");
+		SelectWindow.selectPopUp(locator1 = "null");
 
-		Close.closeAndSelectWindow(locator1 = "Edit Blueprint - ${siteName}");
+		AssertLocation(value1 = "https://learn.liferay.com/en/w/dxp/using-search/liferay-enterprise-search/search-experiences/creating-and-managing-search-blueprints#advanced-configuring-query-clause-contributors");
+
+		Close.closeAndSelectWindow(locator1 = "null");
 
 		Navigator.gotoNavTab(navTab = "Configuration");
 
@@ -4273,54 +4277,66 @@ definition {
 			linkText = "Learn more",
 			locator1 = "Blueprints#DOC_LINK_GENERIC");
 
-		SelectWindow(locator1 = "Search Blueprints Configuration Reference — Liferay Learn");
+		SelectWindow.selectPopUp(locator1 = "null");
 
-		Close.closeAndSelectWindow(locator1 = "Edit Blueprint - ${siteName}");
+		AssertLocation(value1 = "https://learn.liferay.com/en/w/dxp/using-search/liferay-enterprise-search/search-experiences/search-blueprints-configuration-reference");
+
+		Close.closeAndSelectWindow(locator1 = "null");
 
 		Click(
 			linkContext = "Add aggregations to those already present",
 			linkText = "Learn more",
 			locator1 = "Blueprints#DOC_LINK_GENERIC");
 
-		SelectWindow(locator1 = "Search Blueprints Configuration Reference — Liferay Learn");
+		SelectWindow.selectPopUp(locator1 = "null");
 
-		Close.closeAndSelectWindow(locator1 = "Edit Blueprint - ${siteName}");
+		AssertLocation(value1 = "https://learn.liferay.com/en/w/dxp/using-search/liferay-enterprise-search/search-experiences/search-blueprints-configuration-reference#aggregation-configuration");
+
+		Close.closeAndSelectWindow(locator1 = "null");
 
 		Click(
 			linkContext = "Override the default search highlight configuration",
 			linkText = "Learn more",
 			locator1 = "Blueprints#DOC_LINK_GENERIC");
 
-		SelectWindow(locator1 = "Search Blueprints Configuration Reference — Liferay Learn");
+		SelectWindow.selectPopUp(locator1 = "null");
 
-		Close.closeAndSelectWindow(locator1 = "Edit Blueprint - ${siteName}");
+		AssertLocation(value1 = "https://learn.liferay.com/en/w/dxp/using-search/liferay-enterprise-search/search-experiences/search-blueprints-configuration-reference#highlight-configuration");
+
+		Close.closeAndSelectWindow(locator1 = "null");
 
 		Click(
 			linkContext = "Add sorts to those already present in the search request",
 			linkText = "Learn more",
 			locator1 = "Blueprints#DOC_LINK_GENERIC");
 
-		SelectWindow(locator1 = "Search Blueprints Configuration Reference — Liferay Learn");
+		SelectWindow.selectPopUp(locator1 = "null");
 
-		Close.closeAndSelectWindow(locator1 = "Edit Blueprint - ${siteName}");
+		AssertLocation(value1 = "https://learn.liferay.com/en/w/dxp/using-search/liferay-enterprise-search/search-experiences/search-blueprints-configuration-reference#sort-configuration");
+
+		Close.closeAndSelectWindow(locator1 = "null");
 
 		Click(
 			linkContext = "Declare new template variables from search context attributes",
 			linkText = "Learn more",
 			locator1 = "Blueprints#DOC_LINK_GENERIC");
 
-		SelectWindow(locator1 = "Search Blueprints Configuration Reference — Liferay Learn");
+		SelectWindow.selectPopUp(locator1 = "null");
 
-		Close.closeAndSelectWindow(locator1 = "Edit Blueprint - ${siteName}");
+		AssertLocation(value1 = "https://learn.liferay.com/en/w/dxp/using-search/liferay-enterprise-search/search-experiences/search-blueprints-configuration-reference#parameter-configuration");
+
+		Close.closeAndSelectWindow(locator1 = "null");
 
 		Click(
 			linkContext = "Add source includes and excludes as search request parameters",
 			linkText = "Learn more",
 			locator1 = "Blueprints#DOC_LINK_GENERIC");
 
-		SelectWindow(locator1 = "Search Blueprints Configuration Reference — Liferay Learn");
+		SelectWindow.selectPopUp(locator1 = "null");
 
-		Close.closeAndSelectWindow(locator1 = "Edit Blueprint - ${siteName}");
+		AssertLocation(value1 = "https://learn.liferay.com/en/w/dxp/using-search/liferay-enterprise-search/search-experiences/search-blueprints-configuration-reference#advanced-configuration");
+
+		Close.closeAndSelectWindow(locator1 = "null");
 
 		ClickNoError(
 			key_text = "Cancel",
@@ -4335,9 +4351,11 @@ definition {
 			linkText = "Learn more",
 			locator1 = "Blueprints#DOC_LINK_GENERIC");
 
-		SelectWindow(locator1 = "Creating Elements — Liferay Learn");
+		SelectWindow.selectPopUp(locator1 = "null");
 
-		Close.closeAndSelectWindow(locator1 = "View Element - ${siteName}");
+		AssertLocation(value1 = "https://learn.liferay.com/en/w/dxp/using-search/liferay-enterprise-search/search-experiences/creating-and-managing-elements/creating-elements");
+
+		Close.closeAndSelectWindow(locator1 = "null");
 
 		Search.openSearchPage();
 
@@ -4354,7 +4372,9 @@ definition {
 			linkText = "Learn how",
 			locator1 = "Blueprints#DOC_LINK_GENERIC");
 
-		SelectWindow(locator1 = "Using a Search Blueprint on a Search Page — Liferay Learn");
+		SelectWindow.selectPopUp(locator1 = "null");
+
+		AssertLocation(value1 = "https://learn.liferay.com/en/w/dxp/using-search/liferay-enterprise-search/search-experiences/using-a-search-blueprint-on-a-search-page");
 	}
 
 	test ViewQueryBuilderAssetCategoryMultiselectField {
