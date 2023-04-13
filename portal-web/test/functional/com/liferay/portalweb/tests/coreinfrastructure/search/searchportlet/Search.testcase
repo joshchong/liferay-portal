@@ -2038,6 +2038,71 @@ definition {
 		}
 	}
 
+	test Josh {
+		property ci.retries.disabled = "true";
+
+		JSONLayout.addPublicLayout(
+			groupName = "Guest",
+			layoutName = "Federated Search Page");
+
+		JSONLayout.updateLayoutTemplateOfPublicLayout(
+			groupName = "Guest",
+			layoutName = "Federated Search Page",
+			layoutTemplate = "1-2 Columns (30/70)");
+
+		JSONLayout.addWidgetToPublicLayout(
+			column = 1,
+			groupName = "Guest",
+			layoutName = "Federated Search Page",
+			widgetName = "Search Bar");
+
+		JSONLayout.addWidgetToPublicLayout(
+			column = 1,
+			groupName = "Guest",
+			layoutName = "Federated Search Page",
+			widgetName = "Custom Filter");
+
+		JSONLayout.addWidgetToPublicLayout(
+			column = 2,
+			groupName = "Guest",
+			layoutName = "Federated Search Page",
+			widgetName = "Type Facet");
+
+		JSONLayout.addWidgetToPublicLayout(
+			column = 3,
+			groupName = "Guest",
+			layoutName = "Federated Search Page",
+			widgetName = "Search Results");
+
+		JSONLayout.addWidgetToPublicLayout(
+			column = 1,
+			groupName = "Guest",
+			layoutName = "Federated Search Page",
+			widgetName = "Custom Facet");
+
+		var portalURL = PropsUtil.get("portal.url");
+
+		Navigator.openSpecificURL(url = "${portalURL}/web/guest/federated-search-page");
+
+		SearchFacetPortlet.configureCustomFacet(aggregationField = "version");
+
+		Portlet.gotoPortletOptions(
+			portletName = "Type Facet",
+			portletOption = "Configuration");
+
+		IFrame.closeFrame();
+
+		JSONLayout.addWidgetToPublicLayout(
+			column = 1,
+			groupName = "Guest",
+			layoutName = "Search",
+			widgetName = "Custom Facet");
+
+		Search.openSearchPage();
+
+		SearchFacetPortlet.configureCustomFacet(aggregationField = "version");
+	}
+
 	@description = "This is a use case for LPS-140643."
 	@priority = 4
 	test FederatedSearchPopulatesWidgetsWithRespectiveKey {
