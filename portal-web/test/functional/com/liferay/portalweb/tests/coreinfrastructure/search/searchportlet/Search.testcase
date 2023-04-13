@@ -2066,7 +2066,13 @@ definition {
 			column = 2,
 			groupName = "Guest",
 			layoutName = "Federated Search Page",
-			widgetName = "Type Facet");
+			widgetName = "Low Level Search Options");
+
+		JSONLayout.addWidgetToPublicLayout(
+			column = 2,
+			groupName = "Guest",
+			layoutName = "Federated Search Page",
+			widgetName = "Search Options");
 
 		JSONLayout.addWidgetToPublicLayout(
 			column = 3,
@@ -2080,6 +2086,12 @@ definition {
 			layoutName = "Federated Search Page",
 			widgetName = "Custom Facet");
 
+		JSONLayout.addWidgetToPublicLayout(
+			column = 2,
+			groupName = "Guest",
+			layoutName = "Federated Search Page",
+			widgetName = "Type Facet");
+
 		var portalURL = PropsUtil.get("portal.url");
 
 		Navigator.openSpecificURL(url = "${portalURL}/web/guest/federated-search-page");
@@ -2091,16 +2103,6 @@ definition {
 			portletOption = "Configuration");
 
 		IFrame.closeFrame();
-
-		JSONLayout.addWidgetToPublicLayout(
-			column = 1,
-			groupName = "Guest",
-			layoutName = "Search",
-			widgetName = "Custom Facet");
-
-		Search.openSearchPage();
-
-		SearchFacetPortlet.configureCustomFacet(aggregationField = "version");
 	}
 
 	@description = "This is a use case for LPS-140643."
