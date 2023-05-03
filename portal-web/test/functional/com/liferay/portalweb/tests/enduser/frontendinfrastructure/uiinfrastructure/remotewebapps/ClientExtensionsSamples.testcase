@@ -1,0 +1,80 @@
+@component-name = "liferay-sample-workspace"
+definition {
+
+	property portal.release = "true";
+	property portal.upstream = "true";
+	property testray.main.component.name = "Liferay Sample Workspace";
+	property workspaces.client.extension.names = "liferay-sample-custom-element-1,liferay-sample-custom-element-2,liferay-sample-global-css,liferay-sample-global-js,liferay-sample-iframe-1,liferay-sample-theme-css-1,liferay-sample-theme-favicon,liferay-sample-theme-spritemap-1";
+	property workspaces.names = "liferay-sample-workspace";
+
+	setUp {
+		TestCase.setUpPortalInstance();
+
+		User.firstLoginPG();
+	}
+
+	tearDown {
+		var testPortalInstance = PropsUtil.get("test.portal.instance");
+
+		if (${testPortalInstance} == "true") {
+			PortalInstances.tearDownCP();
+		}
+	}
+
+	@description = "Smoke test Liferay Sample Custom Element 1"
+	@priority = 4
+	test LiferaySampleCustomElement1Smoke {
+		JSONLayout.addPublicLayout(
+			groupName = "Guest",
+			layoutName = "Test Page");
+
+		Navigator.openSitePage(
+			pageName = "Test Page",
+			siteName = "Guest");
+
+		Portlet.addPG(portletName = "Liferay Sample Custom Element 1");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_WIDGET",
+			value1 = "Portlet internal route");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_COUNTER",
+			value1 = 0);
+
+		Click(locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_INCREMENT_BUTTON");
+
+		Click(locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_INCREMENT_BUTTON");
+
+		Click(locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_INCREMENT_BUTTON");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_COUNTER",
+			value1 = 3);
+
+		AssertTextNotEquals.assertNotPartialText(
+			locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_COUNTER",
+			value1 = 0);
+
+		Click(locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_DECREMENT_BUTTON");
+
+		Click(locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_DECREMENT_BUTTON");
+
+		Click(locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_DECREMENT_BUTTON");
+
+		Click(locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_DECREMENT_BUTTON");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_COUNTER",
+			value1 = "-1");
+
+		AssertTextNotEquals.assertNotPartialText(
+			locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_COUNTER",
+			value1 = 3);
+
+		AssertTextNotEquals.assertNotPartialText(
+			locator1 = "ClientExtensionsSamples#CUSTOM_ELEMENT_1_COUNTER",
+			value1 = 0);
+	}
+
+}
