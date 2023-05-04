@@ -24,6 +24,8 @@ definition {
 	@description = "Smoke test Liferay Sample Custom Element 1"
 	@priority = 4
 	test LiferaySampleCustomElement1Smoke {
+		property test.name.skip.portal.instance = "ClientExtensionsSamples#LiferaySampleCustomElement1Smoke";
+
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
 			layoutName = "Test Page");
@@ -80,6 +82,8 @@ definition {
 	@description = "Smoke test Liferay Sample Custom Element 2"
 	@priority = 4
 	test LiferaySampleCustomElement2Smoke {
+		property test.name.skip.portal.instance = "ClientExtensionsSamples#LiferaySampleCustomElement2Smoke";
+
 		var pageName = "TestPage";
 
 		task ("Given: The Liferay Sample Custom Element 2 is added to a page") {
