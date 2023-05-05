@@ -3,6 +3,7 @@ definition {
 
 	property portal.release = "true";
 	property portal.upstream = "true";
+	property test.liferay.virtual.instance = "false";
 	property testray.main.component.name = "Liferay Sample Workspace";
 	property workspaces.client.extension.names = "liferay-sample-custom-element-1,liferay-sample-custom-element-2,liferay-sample-global-css,liferay-sample-global-js,liferay-sample-iframe-1,liferay-sample-theme-css-1,liferay-sample-theme-favicon,liferay-sample-theme-spritemap-1";
 	property workspaces.names = "liferay-sample-workspace";
@@ -24,8 +25,6 @@ definition {
 	@description = "Smoke test Liferay Sample Custom Element 1"
 	@priority = 4
 	test LiferaySampleCustomElement1Smoke {
-		property test.name.skip.portal.instance = "ClientExtensionsSamples#LiferaySampleCustomElement1Smoke";
-
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
 			layoutName = "Test Page");
@@ -82,8 +81,6 @@ definition {
 	@description = "Smoke test Liferay Sample Custom Element 2"
 	@priority = 4
 	test LiferaySampleCustomElement2Smoke {
-		property test.name.skip.portal.instance = "ClientExtensionsSamples#LiferaySampleCustomElement2Smoke";
-
 		var pageName = "TestPage";
 
 		task ("Given: The Liferay Sample Custom Element 2 is added to a page") {
