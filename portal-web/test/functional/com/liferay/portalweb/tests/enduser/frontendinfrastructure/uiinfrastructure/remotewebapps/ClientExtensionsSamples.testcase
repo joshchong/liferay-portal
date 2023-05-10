@@ -5,7 +5,7 @@ definition {
 	property portal.upstream = "true";
 	property test.liferay.virtual.instance = "false";
 	property testray.main.component.name = "Liferay Sample Workspace";
-	property workspaces.client.extension.names = "liferay-sample-theme-spritemap-1";
+	property workspaces.client.extension.names = "liferay-sample-custom-element-1";
 
 	setUp {
 		TestCase.setUpPortalInstance();
@@ -300,6 +300,28 @@ definition {
 		task ("Assert the pencil icon on the page is using the source image from Liferay Sample Theme Spritemap 1 ") {
 			AssertElementPresent(locator1 = "ClientExtensionsSamples#THEME_SPRITEMAP_1_PAGE_PENCIL_ICON");
 		}
+	}
+
+	test ZZZCheckSpritemapInput {
+		PagesAdmin.openPagesAdmin(siteURLKey = "guest");
+
+		WaitForPageLoad();
+
+		Click.waitForMenuToggleJSClick(locator1 = "Icon#HEADER_VERTICAL_ELLIPSIS");
+
+		if (IsElementPresent(key_menuItem = "Configuration", locator1 = "MenuItem#DROPDOWN_MENU_ITEM")) {
+
+		DropdownMenuItem.click(menuItem = "Configuration");}
+
+		Navigator.gotoNavTab(navTab = "Design");
+
+		ScrollWebElementIntoView(locator1 = "//div[label[contains(.,'Theme CSS')]]//input[not(contains(@type,'checkbox'))]");
+
+		takeScreenshot();
+
+		Click(locator1 = "ClientExtension#THEME_SPRITEMAP_CLIENT_EXTENSION_INPUT");
+
+		takeScreenshot();
 	}
 
 }
