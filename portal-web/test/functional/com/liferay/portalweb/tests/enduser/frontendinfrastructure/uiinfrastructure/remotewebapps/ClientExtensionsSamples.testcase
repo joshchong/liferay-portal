@@ -5,7 +5,7 @@ definition {
 	property portal.upstream = "true";
 	property test.liferay.virtual.instance = "false";
 	property testray.main.component.name = "Liferay Sample Workspace";
-	property workspaces.client.extension.names = "liferay-sample-custom-element-1,liferay-sample-custom-element-2,liferay-sample-global-css,liferay-sample-global-js,liferay-sample-iframe-1,liferay-sample-theme-css-1,liferay-sample-theme-favicon,liferay-sample-theme-spritemap-1";
+	property workspaces.client.extension.names = "liferay-sample-theme-spritemap-1";
 
 	setUp {
 		TestCase.setUpPortalInstance();

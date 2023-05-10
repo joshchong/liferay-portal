@@ -260,6 +260,8 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Design");
 
+		ScrollWebElementIntoView(locator1 = "//div[label[contains(.,'Theme CSS')]]//input[not(contains(@type,'checkbox'))]");
+
 		Click(locator1 = "ClientExtension#THEME_SPRITEMAP_CLIENT_EXTENSION_INPUT");
 
 		WaitForVisible(locator1 = "IFrame#IFRAME");
