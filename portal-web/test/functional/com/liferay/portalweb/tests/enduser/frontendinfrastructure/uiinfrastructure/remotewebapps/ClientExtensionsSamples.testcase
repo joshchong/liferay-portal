@@ -315,9 +315,51 @@ definition {
 
 		Navigator.gotoNavTab(navTab = "Design");
 
-		ScrollWebElementIntoView(locator1 = "//div[label[contains(.,'Theme CSS')]]//input[not(contains(@type,'checkbox'))]");
+		ScrollWebElementIntoView(locator1 = "//*[not(self::div)][contains(@class,'btn')][normalize-space()='Add CSS Client Extensions'][not(contains(@class,'navbar'))]");
 
 		takeScreenshot();
+
+		Click(locator1 = "ClientExtension#THEME_SPRITEMAP_CLIENT_EXTENSION_INPUT");
+
+		takeScreenshot();
+	}
+
+	test ZZZCheckSpritemapInputPage {
+		JSONLayout.addPublicLayout(
+			groupName = "Guest",
+			layoutName = "Test Page");
+
+		PagesAdmin.openPagesAdmin(siteURLKey = "guest");
+
+		PagesAdmin.gotoPageEllipsisMenuItem(
+			menuItem = "Configure",
+			pageName = "Test Page");
+
+		Navigator.gotoNavTab(navTab = "Design");
+
+		ScrollWebElementIntoView(locator1 = "//h3[contains(.,'Custom CSS')]");
+
+		takeScreenshot();
+
+		ScrollWebElementIntoView(locator1 = "ClientExtension#THEME_SPRITEMAP_CLIENT_EXTENSION_INPUT");
+
+		Click(locator1 = "ClientExtension#THEME_SPRITEMAP_CLIENT_EXTENSION_INPUT");
+
+		takeScreenshot();
+
+		PagesAdmin.openPagesAdmin(siteURLKey = "guest");
+
+		PagesAdmin.gotoPageEllipsisMenuItem(
+			menuItem = "Configure",
+			pageName = "Search");
+
+		Navigator.gotoNavTab(navTab = "Design");
+
+		ScrollWebElementIntoView(locator1 = "//h3[contains(.,'Custom CSS')]");
+
+		takeScreenshot();
+
+		ScrollWebElementIntoView(locator1 = "ClientExtension#THEME_SPRITEMAP_CLIENT_EXTENSION_INPUT");
 
 		Click(locator1 = "ClientExtension#THEME_SPRITEMAP_CLIENT_EXTENSION_INPUT");
 
