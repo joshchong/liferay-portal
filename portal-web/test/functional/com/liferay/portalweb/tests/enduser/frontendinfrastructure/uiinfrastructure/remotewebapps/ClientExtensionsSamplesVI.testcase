@@ -8,7 +8,6 @@ definition {
 	property testray.main.component.name = "Liferay Sample Workspace";
 
 	static var clientExtensionName = "";
-	static var companyWebId = "";
 
 	setUp {
 		TestCase.setUpPortalInstance();
@@ -19,7 +18,7 @@ definition {
 	}
 
 	tearDown {
-		if (${clientExtensionName} != "") {
+		if (isSet(clientExtensionName)) {
 			AntCommand(
 				locator1 = "build-test-liferay-sample-workspace.xml",
 				value1 = "undeploy-workspace-client-extension -Dvirtual.instance.id=${companyWebId} -Dworkspace.client.extension.name=${clientExtensionName}");
@@ -333,6 +332,10 @@ definition {
 			AntCommand(
 				locator1 = "build-test-liferay-sample-workspace.xml",
 				value1 = "deploy-workspace-client-extension -Dvirtual.instance.id=${companyWebId} -Dworkspace.client.extension.name=${clientExtensionName}");
+		}
+
+		task ("Go to the Site Pages configuration screen in Page Admin") {
+			PagesAdmin.openConfigureSitePages();
 		}
 
 		task ("Add Liferay Sample Theme CSS 1 as a Theme CSS Client Extension for all pages") {
