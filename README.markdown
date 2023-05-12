@@ -9,7 +9,7 @@ or exceeds your expectations!
 In addition to Liferay's engineering staff, a special thanks goes to the many
 open source developers who volunteer their time and energy to help with the
 release, whether it was bug fixing, idea generation, documentation,
-translations, or other contributions that helped to improve this release.
+translations, or other contributions that helped to improve this release!
 
 ## Liferay Portal Community Edition License
 
