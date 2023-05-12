@@ -4,7 +4,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		if (!(isSet(specificationGroupDescription))) {
@@ -47,7 +47,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var specificationGroupsCount = CommerceJSONSpecificationGroupsAPI._getCommerceSpecificationGroupsCount();
@@ -76,7 +76,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(specificationGroupsCount)) {
@@ -101,7 +101,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var curl = '''

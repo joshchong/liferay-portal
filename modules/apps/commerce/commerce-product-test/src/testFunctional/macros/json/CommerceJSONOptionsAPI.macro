@@ -4,7 +4,7 @@ definition {
 		Variables.assertDefined(parameterList = "${fieldType},${optionKey},${optionName}");
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		if (!(isSet(description))) {
@@ -86,7 +86,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var catalogId = CommerceJSONCatalogsAPI._getCommerceCatalogIdByName(catalogName = ${catalogName});
@@ -165,7 +165,7 @@ definition {
 
 	macro _assignOptionToCommerceProduct {
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var productId = CommerceJSONProductsAPI._getProductId(productName = ${productName});
@@ -195,7 +195,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var optionsCount = CommerceJSONOptionsAPI._getCommerceOptionsCount();
@@ -224,7 +224,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var curl = '''
@@ -246,7 +246,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(optionCount)) {
@@ -271,7 +271,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var curl = '''

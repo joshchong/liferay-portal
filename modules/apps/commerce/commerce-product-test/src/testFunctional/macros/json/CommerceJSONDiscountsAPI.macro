@@ -6,7 +6,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		if (!(isSet(limitationType))) {
@@ -155,7 +155,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var discountId = CommerceJSONDiscountsAPI._getDiscountId(discountTitle = ${discountTitle});
@@ -180,7 +180,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var discountId = CommerceJSONDiscountsAPI._getDiscountId(discountTitle = ${discountTitle});
@@ -205,7 +205,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var discountId = CommerceJSONDiscountsAPI._getDiscountId(discountTitle = ${discountTitle});
@@ -230,7 +230,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		if (!(isSet(discountId))) {
@@ -258,7 +258,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var discountsCount = CommerceJSONDiscountsAPI._getCommerceDiscountsCount();
@@ -287,7 +287,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(discountCount)) {
@@ -312,7 +312,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var curl = '''
@@ -334,7 +334,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(discountCount)) {

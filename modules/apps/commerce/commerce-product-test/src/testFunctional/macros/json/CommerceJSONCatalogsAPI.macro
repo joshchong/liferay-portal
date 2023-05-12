@@ -29,7 +29,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var catalogIds = CommerceJSONCatalogsAPI._getCommerceNoSystemCatalogIds();
@@ -57,7 +57,7 @@ definition {
 		var masterCatalogName = "Master";
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(catalogCount)) {
@@ -85,7 +85,7 @@ definition {
 		var masterCatalogName = "Master";
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(catalogCount)) {

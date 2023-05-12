@@ -6,7 +6,7 @@ definition {
 		var catalogId = CommerceJSONCatalogsAPI._getCommerceCatalogIdByName(catalogName = ${catalogName});
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		if (!(isSet(priority))) {
@@ -41,7 +41,7 @@ definition {
 		var priceListId = CommerceJSONPriceListsAndPromotionsAPI._getCommercePriceListsAndPromotionsIdByName(priceListAndPromotionName = ${priceListName});
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var curl = '''
@@ -67,7 +67,7 @@ definition {
 		var catalogId = CommerceJSONCatalogsAPI._getCommerceCatalogIdByName(catalogName = ${catalogName});
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var curl = '''
@@ -98,7 +98,7 @@ definition {
 		var promotionId = CommerceJSONPriceListsAndPromotionsAPI._getCommercePriceListsAndPromotionsIdByName(priceListAndPromotionName = ${promotionName});
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var curl = '''
@@ -122,7 +122,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		var priceListAndPromotionIds = CommerceJSONPriceListsAndPromotionsAPI._getCommerceNoMasterPriceListsAndPromotions();
@@ -147,7 +147,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(priceListAndPromotionCount)) {
@@ -174,7 +174,7 @@ definition {
 		var baseURL = ${baseURL};
 
 		if (!(isSet(baseURL))) {
-			var baseURL = JSONCompany.getPortalURL();
+			var baseURL = PropsUtil.get("portal.url");
 		}
 
 		if (isSet(priceListAndPromotionCount)) {
