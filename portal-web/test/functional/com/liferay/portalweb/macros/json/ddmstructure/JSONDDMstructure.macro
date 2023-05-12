@@ -6,11 +6,10 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 		var companyId = JSONCompany.getCompanyId();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/ddm.ddmstructure/get-structures \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d companyId=${companyId} \
 				-d groupIds=[${groupId}] \
 				-d classNameId=${classNameId} \
@@ -34,11 +33,10 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 		var companyId = JSONCompany.getCompanyId();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/ddm.ddmstructure/get-structures \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d companyId=${companyId} \
 				-d groupIds=[${groupId}] \
 				-d classNameId=${classNameId} \

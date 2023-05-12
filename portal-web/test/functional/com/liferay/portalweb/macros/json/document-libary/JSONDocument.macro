@@ -68,11 +68,10 @@ definition {
 			assetTagNames = ${assetTagNames},
 			serviceContext = ${serviceContext},
 			workflowAction = ${workflowAction});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/dlapp/add-file-entry \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d repositoryId=${repositoryId} \
 				-d folderId=${folderId} \
 				-d sourceFileName= \
@@ -277,11 +276,9 @@ definition {
 			var targetFolderId = 0;
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/dlfileshortcut/add-file-shortcut  \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${targetRepositoryId} \
 				-d repositoryId=${sourceRepositoryId} \
 				-d folderId=${targetFolderId} \
@@ -298,11 +295,10 @@ definition {
 		var fileEntryId = JSONDocument.getFileEntryId(
 			dmDocumentTitle = ${dmDocumentTitle},
 			groupName = ${groupName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/dlapp/check-in-file-entry \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d fileEntryId=${fileEntryId} \
 				-d lockUuid=''
 		''';
@@ -317,11 +313,10 @@ definition {
 		var fileEntryId = JSONDocument.getFileEntryId(
 			dmDocumentTitle = ${dmDocumentTitle},
 			groupName = ${groupName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/dlapp/check-out-file-entry \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d fileEntryId=${fileEntryId}
 		''';
 
@@ -349,11 +344,9 @@ definition {
 				name = ${folderName});
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/dlfileentry/delete-file-entry \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d folderId=${folderId} \
 				-d title=${dmDocumentTitle}
@@ -380,11 +373,9 @@ definition {
 			var folderId = 0;
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/dlfileentry/get-file-entry \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d folderId=${folderId} \
 				-d title=${dmDocumentTitle}
@@ -445,11 +436,9 @@ definition {
 			var folderId = 0;
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/dlfileentry/get-file-entry \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d folderId=${folderId} \
 				-d title=${dmDocumentTitle}
@@ -486,11 +475,10 @@ definition {
 		var newFolderId = JSONDocumentAPI._getFolderIdByFolderName(
 			groupName = ${groupName},
 			name = ${folderName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/dlapp/move-file-entry \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d fileEntryId=${fileEntryId} \
 				-d newFolderId=${newFolderId}
 		''';
@@ -526,11 +514,10 @@ definition {
 			portalURL = ${baseURL},
 			site = ${site});
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/dltrash/move-file-entry-to-trash \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d fileEntryId=${fileEntryId}
 		''';
 

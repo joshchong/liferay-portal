@@ -15,11 +15,9 @@ definition {
 			for (var accountGroupId : list ${accountGroupIds}) {
 				echo("Deleting Commerce account group with id: ${accountGroupId}");
 
-				var userLoginInfo = JSONUtil2.formatJSONUser();
-
 				var curl = '''
 					${baseURL}/o/headless-commerce-admin-account/v1.0/accountGroups/${accountGroupId} \
-						-u ${userLoginInfo} \
+						-u test@liferay.com:test \
 						-H 'accept: application/json' \
 				''';
 
@@ -47,11 +45,9 @@ definition {
 			var accountGroupCount = 100;
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-account/v1.0/accountGroups?pageSize=${accountGroupCount} \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 		''';
 
@@ -74,11 +70,9 @@ definition {
 			var accountGroupsCount = 100;
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-account/v1.0/accountGroups?pageSize=${accountGroupsCount} \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 		''';
 
@@ -94,11 +88,9 @@ definition {
 			var baseURL = JSONCompany.getPortalURL();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-account/v1.0/accountGroups \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 		''';
 

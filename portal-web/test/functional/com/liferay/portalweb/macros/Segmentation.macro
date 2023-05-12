@@ -349,11 +349,10 @@ definition {
 	macro getPortalInstanceDefaultLanguageId {
 		var portalURL = JSONCompany.getPortalURL();
 		var companyId = JSONCompany.getCompanyId(portalInstanceName = ${portalInstanceName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/country/get-company-countries \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d companyId=${companyId} \
 				-d start=0 \
 				-d end=1 \

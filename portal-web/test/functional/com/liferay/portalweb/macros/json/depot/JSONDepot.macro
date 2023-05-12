@@ -6,11 +6,9 @@ definition {
 			var portalURL = JSONCompany.getPortalURL();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/depot.depotentry/add-depot-entry \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d nameMap={"en_US": "${depotName}"} \
 				-d descriptionMap={"en_US": "${depotDescription}"}
 		''';
@@ -36,11 +34,10 @@ definition {
 			groupName = ${groupName},
 			site = ${site});
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/depot.depotentrygrouprel/add-depot-entry-group-rel \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d depotEntryId=${depotId}
 				-d toGroupId=${groupId}
 		''';
@@ -60,11 +57,10 @@ definition {
 			depotName = ${depotName},
 			noSelenium = ${noSelenium});
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/depot.depotentry/delete-depot-entry \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d depotEntryId=${depotId}
 		''';
 
@@ -85,11 +81,10 @@ definition {
 			groupName = ${groupName},
 			site = ${site});
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/depot.depotentrygrouprel/delete-depot-entry-group-rel \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d depotEntryGroupRelId=${depotEntryGroupRelId}
 		''';
 
@@ -144,11 +139,10 @@ definition {
 			groupName = ${groupName},
 			site = ${site});
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/depot.depotentrygrouprel/update-ddm-structures-available \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d depotEntryGroupRelId=${depotEntryGroupRelId} \
 				-d ddmStructuresAvailable=${ddmStructuresAvailable}
 		''';

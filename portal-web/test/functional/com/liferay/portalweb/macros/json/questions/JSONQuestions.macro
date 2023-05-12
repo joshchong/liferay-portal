@@ -86,11 +86,10 @@ definition {
 			threadSubject = ${titleField});
 		var portalURL = JSONCompany.getPortalURL();
 		var groupId = JSONGroupSetter.setGroupId(groupName = ${groupName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbmessage/get-thread-messages \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d categoryId=${categoryId} \
 				-d threadId=${threadId} \
@@ -173,11 +172,10 @@ definition {
 			groupName = ${groupName});
 		var portalURL = JSONCompany.getPortalURL();
 		var groupId = JSONGroupSetter.setGroupId(groupName = ${groupName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbthread/get-threads \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d categoryId=${categoryId} \
 				-d status=0 \
@@ -211,11 +209,9 @@ definition {
 			var status = 0;
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbthread/get-threads \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d categoryId=${categoryId} \
 				-d status=${status} \

@@ -26,11 +26,10 @@ definition {
 
 		var companyId = JSONCompany.getCompanyIdNoSelenium();
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/user/get-user-by-id/user-id/${userId} \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 		''';
 
 		return ${curl};

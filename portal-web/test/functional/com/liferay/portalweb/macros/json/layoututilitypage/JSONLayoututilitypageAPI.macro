@@ -8,11 +8,9 @@ definition {
 			var portalURL = JSONCompany.getPortalURL();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/layoututilitypage.layoututilitypageentry/delete-layout-utility-page-entry \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d layoutUtilityPageEntryId=${layoutUtilityPageEntryId}
 		''';
 
@@ -27,11 +25,9 @@ definition {
 			var portalURL = JSONCompany.getPortalURL();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/layoututilitypage.layoututilitypageentry/get-layout-utility-page-entries \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId}
 		''';
 

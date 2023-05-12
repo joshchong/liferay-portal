@@ -4,11 +4,10 @@ definition {
 		Variables.assertDefined(parameterList = "${description},${active},${layoutsUpdateable},${readyForPropagation},${siteTemplateName}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layoutsetprototype/add-layout-set-prototype \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d name=${siteTemplateName} \
 				-d description=${description} \
 				-d active=${active} \
@@ -23,11 +22,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${privateLayout},${layoutSetPrototypeUuid}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layoutset/update-layout-set-prototype-link-enabled \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId}  \
 				-d privateLayout=${privateLayout} \
 				-d layoutSetPrototypeLinkEnabled=true \
@@ -41,11 +39,10 @@ definition {
 		Variables.assertDefined(parameterList = ${companyId});
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layoutsetprototype/delete-nondefault-layout-set-prototypes \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d companyId=${companyId}
 		''';
 
@@ -56,11 +53,10 @@ definition {
 		Variables.assertDefined(parameterList = ${layoutSetPrototypeId});
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layoutsetprototype/delete-layout-set-prototype \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d layoutSetPrototypeId=${layoutSetPrototypeId}
 		''';
 
@@ -70,11 +66,10 @@ definition {
 	macro _getAllNonDefaultSiteTemplateId {
 		var companyId = JSONCompany.getCompanyId();
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layoutsetprototype/get-layout-set-prototypes \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d companyId=${companyId}
 		''';
 
@@ -96,11 +91,9 @@ definition {
 			var companyId = JSONCompany.getCompanyId(portalURL = ${portalURL});
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/layoutsetprototype/get-layout-set-prototypes \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d companyId=${companyId}
 		''';
 
@@ -118,11 +111,10 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 		var companyId = JSONCompany.getCompanyId();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layoutsetprototype/get-layout-set-prototypes \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d companyId=${companyId}
 		''';
 

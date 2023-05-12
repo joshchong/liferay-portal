@@ -8,11 +8,9 @@ definition {
 			var portalURL = JSONCompany.getPortalURL();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/group/add-group \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d parentGroupId=${parentGroupId} \
 				-d liveGroupId=0 \
 				-d nameMap=${groupNameMap} \
@@ -34,11 +32,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${roleId},${userId}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/usergrouprole/add-user-group-roles \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d roleId=${roleId} \
 				-d groupId=${groupId} \
 				-d userIds=${userId}
@@ -52,11 +49,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${roleId},${userGroupId}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/usergroupgrouprole/add-user-group-group-roles \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d roleId=${roleId} \
 				-d groupId=${groupId} \
 				-d userGroupIds=${userGroupId}
@@ -70,11 +66,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${organizationId}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/user/add-group-organizations \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d organizationIds=${organizationId}
 		''';
@@ -87,11 +82,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${userGroupId}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/usergroup/add-group-user-groups/group-id/${groupId}/user-group-ids/${userGroupId} \
-				-u ${userLoginInfo}
+				-u test@liferay.com:test
 		''';
 
 		com.liferay.poshi.runner.util.JSONCurlUtil.post(${curl});
@@ -102,11 +96,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${userId}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/user/add-group-users \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d userIds=${userId}
 		''';
@@ -122,11 +115,9 @@ definition {
 			var portalURL = JSONCompany.getPortalURL();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/group/delete-group \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId}
 		''';
 
@@ -142,11 +133,10 @@ definition {
 		var groupId = JSONGroupAPI._getGroupIdByName(
 			groupName = ${groupName},
 			site = ${site});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/depot.depotentrygrouprel/get-depot-entry-group-rels \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d "start=-1" \
 				-d "end=-1"
@@ -184,11 +174,9 @@ definition {
 		}
 
 		var locale = '''default-locale=\"${defaultLocale}\"''';
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/group/get-groups/company-id/${companyId}/parent-group-id/0/site/false \
-				-u ${userLoginInfo}
+				-u test@liferay.com:test
 		''';
 
 		var depotId = JSONCurlUtil.get(${curl}, "$.[?(@['nameCurrentValue'] == '${depotName}' && @['name'] contains '${locale}')]['classPK']");
@@ -211,11 +199,9 @@ definition {
 			var site = "true";
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/group/get-groups \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d companyId=${companyId} \
 				-d parentGroupId=0 \
 				-d site=${site}
@@ -239,11 +225,10 @@ definition {
 			grandParentGroupName = ${grandParentGroupName},
 			parentGroupName = ${parentGroupName});
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/group/get-groups/company-id/${companyId}/parent-group-id/${parentGroupId}/site/${site} \
-				-u ${userLoginInfo}
+				-u test@liferay.com:test
 		''';
 
 		var groupId = JSONCurlUtil.get(${curl}, "$.[?(@['groupKey'] == '${groupKey}')]['groupId']");
@@ -277,11 +262,10 @@ definition {
 			parentGroupName = ${parentGroupName},
 			portalInstanceName = ${portalInstanceName},
 			portalURL = ${portalURL});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/group/get-groups/company-id/${companyId}/parent-group-id/${parentGroupId}/site/${site} \
-				-u ${userLoginInfo}
+				-u test@liferay.com:test
 		''';
 
 		var groupId = JSONCurlUtil.get(${curl}, "$.[?(@['nameCurrentValue'] == '${groupName}')]['groupId']");
@@ -307,11 +291,10 @@ definition {
 		var parentGroupId = JSONGroupSetter.setParentGroupId(
 			grandParentGroupName = ${grandParentGroupName},
 			parentGroupName = ${parentGroupName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/group/get-groups/company-id/${companyId}/parent-group-id/${parentGroupId}/site/${site} \
-				-u ${userLoginInfo}
+				-u test@liferay.com:test
 		''';
 
 		var groupId = JSONCurlUtil.get(${curl}, "$.[?(@['nameCurrentValue'] == '${groupName}')]['groupId']");
@@ -331,11 +314,10 @@ definition {
 		var parentGroupId = JSONGroupSetter.setParentGroupId(
 			grandParentGroupName = ${grandParentGroupName},
 			parentGroupName = ${parentGroupName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/group/get-groups/company-id/${companyId}/parent-group-id/${parentGroupId}/site/${site} \
-				-u ${userLoginInfo}
+				-u test@liferay.com:test
 		''';
 
 		var groupId = JSONCurlUtil.get(${curl}, "$.[?(@['nameCurrentValue'] == '${groupName}')]['groupId']");
@@ -361,11 +343,10 @@ definition {
 		var parentGroupId = JSONGroupSetter.setParentGroupId(
 			grandParentGroupName = ${grandParentGroupName},
 			parentGroupName = ${parentGroupName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/group/get-groups/company-id/${companyId}/parent-group-id/${parentGroupId}/site/${site} \
-				-u ${userLoginInfo}
+				-u test@liferay.com:test
 		''';
 
 		var groupKey = JSONCurlUtil.get(${curl}, "$.[?(@['nameCurrentValue'] == '${groupName}')]['groupKey']");
@@ -385,11 +366,10 @@ definition {
 
 		var companyId = JSONCompany.getCompanyId();
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/group/get-group/group-id/${groupId} \
-				-u ${userLoginInfo}
+				-u test@liferay.com:test
 		''';
 
 		var groupName = JSONCurlUtil.get(${curl}, "$['nameCurrentValue']");
@@ -406,11 +386,9 @@ definition {
 			var site = "true";
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/group/get-groups \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d companyId=${companyId} \
 				-d parentGroupId=0 \
 				-d site=${site}
@@ -436,11 +414,10 @@ definition {
 			grandParentGroupName = ${grandParentGroupName},
 			portalInstanceName = ${portalInstanceName},
 			portalURL = ${portalURL});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/group/get-groups/company-id/${companyId}/parent-group-id/${grandParentGroupId}/site/true \
-				-u ${userLoginInfo}
+				-u test@liferay.com:test
 		''';
 
 		var groupId = JSONCurlUtil.get(${curl}, "$.[?(@['nameCurrentValue'] == '${groupName}')]['groupId']");
@@ -461,11 +438,10 @@ definition {
 		}
 
 		var companyId = JSONCompany.getCompanyId(portalURL = ${portalURL});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/group/get-group \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d companyId=${companyId} \
 				-d groupKey=${groupName}
 		''';

@@ -5,11 +5,10 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 		var groupId = JSONGroupSetter.setGroupId(groupName = ${groupName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/segments.segmentsexperience/get-segments-experiences \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d classNameId=20032 \
 				-d classPK=6 \

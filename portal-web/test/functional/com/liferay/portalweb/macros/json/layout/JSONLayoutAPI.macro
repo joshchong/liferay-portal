@@ -5,11 +5,10 @@ definition {
 		Variables.assertDefined(parameterList = "${friendlyURL},${groupId},${privateLayout},${parentLayoutId},${layoutName},${serviceContext}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layout/add-layout \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d privateLayout=${privateLayout} \
 				-d parentLayoutId=${parentLayoutId} \
@@ -32,11 +31,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${layoutId},${privateLayout},${serviceContext}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layout/delete-layout \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d privateLayout=${privateLayout} \
 				-d layoutId=${layoutId} \
@@ -51,11 +49,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${privateLayout}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layout/get-default-plid \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d privateLayout=${privateLayout}
 		''';
@@ -76,11 +73,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${layoutName},${privateLayout}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layout/get-layouts \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d privateLayout=${privateLayout}
 		''';
@@ -102,11 +98,9 @@ definition {
 			var portalURL = JSONCompany.getPortalURL();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/layout/get-layouts \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d privateLayout=${privateLayout}
 		''';
@@ -125,11 +119,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${layoutName},${privateLayout}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layout/get-layouts \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d privateLayout=${privateLayout}
 		''';
@@ -148,11 +141,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${layoutName},${privateLayout}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layout/get-layouts \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d privateLayout=${privateLayout}
 		''';
@@ -171,11 +163,10 @@ definition {
 		Variables.assertDefined(parameterList = ${plid});
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layout/publish-layout \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d plid=${plid}
 		''';
 
@@ -187,11 +178,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${privateLayout},${layoutId},${typeSettings}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/layout/update-layout \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d privateLayout=${privateLayout} \
 				-d layoutId=${layoutId} \

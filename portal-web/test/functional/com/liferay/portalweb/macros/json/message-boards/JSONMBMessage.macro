@@ -11,11 +11,10 @@ definition {
 		var dependenciesDir = PropsUtil.get("test.dependencies.dir.name");
 
 		var filePath = "${baseDir}${dependenciesDir}/${fileName}";
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbmessage/add-message-attachment \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-F messageId=${messageId} \
 				-F fileName=${fileName} \
 				-F mimeType=${mimeType} \
@@ -59,11 +58,9 @@ definition {
 				groupName = "Guest");
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbcategory/add-category \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d userId=${userId} \
 				-d parentCategoryId=${parentCategoryId} \
 				-d name=${categoryName} \
@@ -174,11 +171,10 @@ definition {
 		var serviceContext = JSONServiceContextUtil.setServiceContext(
 			addGroupPermissions = "true",
 			addGuestPermissions = ${addGuestPermissions});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbmessage/add-message \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d parentMessageId=${messageId} \
 				-d subject=RE: ${threadSubject} \
 				-d body=${replyBody} \
@@ -210,11 +206,10 @@ definition {
 			groupName = ${groupName});
 		var portalURL = JSONCompany.getPortalURL();
 		var groupId = JSONGroupSetter.setGroupId(groupName = ${groupName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbcategory/delete-category \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d categoryId=${categoryId} \
 				-d groupId=${groupId}
 		''';
@@ -229,11 +224,10 @@ definition {
 			groupName = ${groupName},
 			threadSubject = ${threadSubject});
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbmessage/delete-message \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d messageId=${messageId} \
 		''';
 
@@ -256,11 +250,10 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 		var groupId = JSONGroupSetter.setGroupId(groupName = ${groupName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbcategory/get-categories \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId}
 		''';
 
@@ -296,11 +289,10 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 		var groupId = JSONGroupSetter.setGroupId(groupName = ${groupName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbthread/get-threads \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d categoryId=${categoryId} \
 				-d status=0 \
@@ -330,11 +322,10 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 		var groupId = JSONGroupSetter.setGroupId(groupName = ${groupName});
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbthread/get-threads \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d categoryId=${categoryId} \
 				-d status=0 \
@@ -357,11 +348,10 @@ definition {
 			categoryName = ${categoryName},
 			groupName = ${groupName});
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbcategory/move-category-to-trash \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d categoryId=${categoryId} \
 		''';
 
@@ -375,11 +365,10 @@ definition {
 			groupName = ${groupName},
 			threadSubject = ${threadSubject});
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbthread/move-thread-to-trash \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d threadId=${threadId} \
 		''';
 
@@ -393,11 +382,10 @@ definition {
 			groupName = ${groupName},
 			threadSubject = ${threadSubject});
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbthread/split-thread \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d messageId=${messageId} \
 				-d subject=${threadSplitSubject}
 		''';
@@ -439,11 +427,10 @@ definition {
 			groupName = ${groupName},
 			threadSubject = ${threadSubject});
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/mb.mbmessage/update-message \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d messageId=${messageId} \
 				-d subject=${threadSubjectEdit} \
 				-d body=${threadBodyEdit} \

@@ -9,11 +9,9 @@ definition {
 			var portalURL = JSONCompany.getPortalURL();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/company/get-companies \
-				-u ${userLoginInfo}
+				-u test@liferay.com:test
 		''';
 
 		var companies = JSONCurlUtil.get(${curl}, "$..['mx']");
@@ -72,12 +70,12 @@ definition {
 				}
 			}
 			else {
-				var creatorEmailAddress = JSONUtil2.getDefaultUserEmail();
+				var creatorEmailAddress = "test@liferay.com";
 			}
 		}
 
 		if (!(isSet(creatorPassword))) {
-			var creatorPassword = JSONUtil2.getDefaultUserPassword();
+			var creatorPassword = "test";
 		}
 
 		var curl = '''
@@ -100,11 +98,11 @@ definition {
 		}
 
 		if (!(isSet(creatorEmailAddress))) {
-			var creatorEmailAddress = JSONUtil2.getDefaultUserEmail();
+			var creatorEmailAddress = "test@liferay.com";
 		}
 
 		if (!(isSet(creatorPassword))) {
-			var creatorPassword = JSONUtil2.getDefaultUserPassword();
+			var creatorPassword = "test";
 		}
 
 		var curl = '''

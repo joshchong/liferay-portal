@@ -131,11 +131,10 @@ definition {
 
 	macro getWidgetTemplateKey {
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/ddm.ddmtemplate/get-template \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d templateId=${templateID}
 		''';
 

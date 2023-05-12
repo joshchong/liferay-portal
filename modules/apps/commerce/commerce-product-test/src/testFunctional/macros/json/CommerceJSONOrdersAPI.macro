@@ -133,11 +133,9 @@ definition {
 
 		echo("Channel id: ${commerceChannelIds}");
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-order/v1.0/orders \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 				-H 'Content-Type: application/json' \
 				-d '{
@@ -180,11 +178,9 @@ definition {
 
 		echo("Order id: ${orderId}");
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-order/v1.0/orders/${orderId}/orderItems \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 				-H 'Content-Type: application/json' \
 				-d '{
@@ -263,11 +259,9 @@ definition {
 			var priority = 0;
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-order/v1.0/order-rules \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 				-H 'Content-Type: application/json' \
 				-d '{
@@ -317,11 +311,9 @@ definition {
 			var orderTypeDescription = "Test Order Type Description";
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-order/v1.0/order-types \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 				-H 'Content-Type: application/json' \
 				-d '{
@@ -363,11 +355,9 @@ definition {
 			for (var orderId : list ${orderIds}) {
 				echo("Deleting Commerce order with id: ${orderId}");
 
-				var userLoginInfo = JSONUtil2.formatJSONUser();
-
 				var curl = '''
 					${baseURL}/o/headless-commerce-admin-order/v1.0/orders/${orderId} \
-						-u ${userLoginInfo} \
+						-u test@liferay.com:test \
 						-H 'accept: application/json' \
 				''';
 
@@ -396,11 +386,9 @@ definition {
 			var baseURL = JSONCompany.getPortalURL();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-order/v1.0/orders \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 		''';
 
@@ -452,11 +440,10 @@ definition {
 		}
 
 		var orderId = CommerceJSONOrdersAPI._getCommerceOrder();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-order/v1.0/orders/${orderId}/orderItems \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 		''';
 
@@ -615,11 +602,9 @@ definition {
 			var commerceOrderId = CommerceJSONOrdersAPI._getCommerceOrder();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/api/jsonws/commerce.commerceorder/update-commerce-order-external-reference-code \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d externalReferenceCode='${externalReferenceCode}' \
 				-d commerceOrderId=${commerceOrderId}
 		''';

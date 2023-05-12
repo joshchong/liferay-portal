@@ -4,11 +4,10 @@ definition {
 		Variables.assertDefined(parameterList = ${userGroupName});
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/usergroup/add-user-group \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d name=${userGroupName} \
 				-d description=${userGroupDescription}
 		''';
@@ -21,11 +20,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${roleId},${userGroupId}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/usergroupgrouprole/add-user-group-group-roles \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d roleId=${roleId} \
 				-d groupId=${groupId} \
 				-d userGroupIds=${userGroupId}
@@ -39,11 +37,10 @@ definition {
 		Variables.assertDefined(parameterList = ${userGroupName});
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/usergroup/get-user-group \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d name=${userGroupName}
 		''';
 

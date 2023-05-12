@@ -5,11 +5,10 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 		var companyId = JSONCompany.getCompanyIdNoSelenium();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/resourcepermission/add-resource-permission \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d companyId=${companyId} \
 				-d name=${name} \
@@ -27,11 +26,10 @@ definition {
 
 		var portalURL = JSONCompany.getPortalURL();
 		var companyId = JSONCompany.getCompanyId();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/resourcepermission/remove-resource-permission \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d companyId=${companyId} \
 				-d name=${name} \

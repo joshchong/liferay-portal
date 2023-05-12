@@ -13,11 +13,9 @@ definition {
 			for (var commerceSitesId : list ${commerceSitesIds}) {
 				echo("Deleting Commerce Sites with id: ${commerceSitesId}");
 
-				var userLoginInfo = JSONUtil2.formatJSONUser();
-
 				var curl = '''
 					${baseURL}/api/jsonws/group/delete-group \
-						-u ${userLoginInfo} \
+						-u test@liferay.com:test \
 						-d groupId=${commerceSitesId}
 				''';
 
@@ -37,11 +35,9 @@ definition {
 		}
 
 		var companyId = JSONCompany.getCompanyId();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/api/jsonws/group/get-user-sites-groups \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 		''';
 
 		echo("curl: ${curl}");

@@ -27,11 +27,9 @@ definition {
 			var baseURL = JSONCompany.getPortalURL();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/api/jsonws/commerce.commerceshippingoptionaccountentryrel/add-commerce-shipping-option-account-entry-rel \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d accountEntryId=${accountEntryId} \
 				-d commerceChannelId=${commerceChannelId} \
 				-d commerceShippingMethodKey='${commerceShippingMethodKey}' \

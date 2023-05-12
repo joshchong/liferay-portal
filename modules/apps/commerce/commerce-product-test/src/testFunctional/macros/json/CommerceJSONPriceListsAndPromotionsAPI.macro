@@ -13,11 +13,9 @@ definition {
 			var priority = 0;
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-pricing/v2.0/price-lists \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 				-H 'Content-Type: application/json' \
 				-d '{
@@ -46,11 +44,9 @@ definition {
 			var baseURL = JSONCompany.getPortalURL();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-pricing/v2.0/price-lists/${priceListId}/price-entries \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 				-H 'Content-Type: application/json' \
 				-d '{
@@ -74,11 +70,9 @@ definition {
 			var baseURL = JSONCompany.getPortalURL();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-pricing/v2.0/price-lists \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 				-H 'Content-Type: application/json' \
 				-d '{
@@ -107,11 +101,9 @@ definition {
 			var baseURL = JSONCompany.getPortalURL();
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-pricing/v2.0/price-lists/${promotionId}/price-entries \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 				-H 'Content-Type: application/json' \
 				-d '{
@@ -137,11 +129,9 @@ definition {
 
 		if (${priceListAndPromotionIds} != "") {
 			for (var priceListAndPromotionId : list ${priceListAndPromotionIds}) {
-				var userLoginInfo = JSONUtil2.formatJSONUser();
-
 				var curl = '''
 					${baseURL}/o/headless-commerce-admin-pricing/v2.0/price-lists/${priceListAndPromotionId} \
-						-u ${userLoginInfo} \
+						-u test@liferay.com:test \
 						-H 'accept: application/json' \
 				''';
 
@@ -167,11 +157,9 @@ definition {
 			var priceListsAndPromotionsCount = 100;
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-pricing/v2.0/price-lists?pageSize=${priceListsAndPromotionsCount} \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 		''';
 
@@ -196,11 +184,9 @@ definition {
 			var priceListsAndPromotionsCount = 100;
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${baseURL}/o/headless-commerce-admin-pricing/v2.0/price-lists?pageSize=${priceListsAndPromotionsCount} \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-H 'accept: application/json' \
 		''';
 

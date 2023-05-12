@@ -13,11 +13,9 @@ definition {
 			var description = "";
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/bookmarks.bookmarksentry/add-entry \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d folderId=${folderId} \
 				-d name=${name} \
@@ -42,11 +40,9 @@ definition {
 			var description = "";
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/bookmarks.bookmarksfolder/add-folder \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d parentFolderId=${parentFolderId} \
 				-d name=${folderName} \
 				-d description=${description} \
@@ -61,11 +57,10 @@ definition {
 		Variables.assertDefined(parameterList = "${groupId},${folderName}");
 
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/bookmarks.bookmarksfolder/get-folders \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId}
 		''';
 

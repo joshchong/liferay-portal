@@ -83,11 +83,10 @@ definition {
 			groupName = ${groupName},
 			site = "true");
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/segments.segmentsentry/get-segments-entries \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d includeAncestorSegmentsEntries=true
 		''';

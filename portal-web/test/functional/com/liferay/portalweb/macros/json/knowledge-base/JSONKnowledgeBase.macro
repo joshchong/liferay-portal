@@ -23,11 +23,9 @@ definition {
 				kbArticleTitle = ${kbArticleTitle});
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/kb.kbarticle/get-kb-articles \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d parentResourcePrimKey=${parentResourcePrimKey} \
 				-d status=0 \
@@ -65,11 +63,10 @@ definition {
 			groupName = ${groupName},
 			site = ${site});
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/kb.kbarticle/get-kb-articles \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d parentResourcePrimKey=${folderId} \
 				-d status=0 \
@@ -141,11 +138,10 @@ definition {
 		}
 
 		var parentResourceClassNameId = JSONClassname._getClassNameId(value = "com.liferay.knowledge.base.model.KBFolder");
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/kb.kbarticle/add-kb-article \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d externalReferenceCode= \
 				-d portletId=0 \
 				-d parentResourceClassNameId=${parentResourceClassNameId} \
@@ -199,11 +195,9 @@ definition {
 			var expirationDate = "${displayDateYear}-01-01T01:01:00Z";
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/kb.kbarticle/add-kb-article \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d externalReferenceCode= \
 				-d portletId=0 \
 				-d parentResourceClassNameId=${parentResourceClassNameId} \
@@ -306,11 +300,9 @@ definition {
 			var expirationDate = "${displayDateYear}-01-01T01:01:00Z";
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/kb.kbarticle/add-kb-article \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d externalReferenceCode= \
 				-d portletId=0 \
 				-d parentResourceClassNameId=${parentResourceClassNameId} \
@@ -338,11 +330,10 @@ definition {
 	@summary = "This calls the JSON WS API to add a kB template"
 	macro addkBTemplate {
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/kb.kbtemplate/add-kb-template \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d portletId=0 \
 				-d title=${kbTemplateTitle} \
 				-d content=${kbTemplateContent}
@@ -371,11 +362,10 @@ definition {
 			groupName = ${groupName},
 			site = ${site});
 		var portalURL = JSONCompany.getPortalURL();
-		var userLoginInfo = JSONUtil2.formatJSONUser();
 
 		var curl = '''
 			${portalURL}/api/jsonws/kb.kbfolder/get-kb-folders \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d groupId=${groupId} \
 				-d parentKBFolderId=${parentFolderId} \
 				-d "start=-1" \
@@ -427,11 +417,9 @@ definition {
 			var expirationDate = "${displayDateYear}-01-01T01:01:00Z";
 		}
 
-		var userLoginInfo = JSONUtil2.formatJSONUser();
-
 		var curl = '''
 			${portalURL}/api/jsonws/kb.kbarticle/update-kb-article \
-				-u ${userLoginInfo} \
+				-u test@liferay.com:test \
 				-d resourcePrimKey=${resourcePrimKey} \
 				-d title=${newKbArticleTitle} \
 				-d content=<p>${newKbArticleContent}</p> \
