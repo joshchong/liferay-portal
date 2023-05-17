@@ -73,16 +73,21 @@ public class CTClosureFactoryImpl implements CTClosureFactory {
 
 	@Override
 	public CTClosure create(long ctCollectionId) {
+		return create(ctCollectionId, false);
+	}
+
+	@Override
+	public CTClosure create(long ctCollectionId, boolean ctEntriesOnly) {
 		return new CTClosureImpl(
 			ctCollectionId,
 			_buildClosureMap(
-				ctCollectionId,
+				ctCollectionId, ctEntriesOnly,
 				_tableReferenceDefinitionManager.
 					getCombinedTableReferenceInfos()));
 	}
 
 	private Map<Node, Collection<Node>> _buildClosureMap(
-		long ctCollectionId,
+		long ctCollectionId, boolean ctEntriesOnly,
 		Map<Long, TableReferenceInfo<?>> combinedTableReferenceInfos) {
 
 		Map<Long, List<Long>> map = new HashMap<>();
@@ -152,6 +157,10 @@ public class CTClosureFactoryImpl implements CTClosureFactory {
 					_tableReferenceDefinitionManager.getClassNameId(
 						entry.getKey());
 
+				if (ctEntriesOnly && !map.containsKey(parentClassNameId)) {
+					continue;
+				}
+
 				TableReferenceInfo<?> parentTableReferenceInfo =
 					combinedTableReferenceInfos.get(parentClassNameId);
 
@@ -175,10 +184,50 @@ public class CTClosureFactoryImpl implements CTClosureFactory {
 						entry, edgeMap, nodes, parentClassNameId,
 						parentTableReferenceInfo);
 
-					if (newParentPrimaryKeys != null) {
-						queue.add(
-							new AbstractMap.SimpleImmutableEntry<>(
-								parentClassNameId, newParentPrimaryKeys));
+					try (Connection connection = _getConnection(
+							parentTableReferenceInfo);
+						PreparedStatement preparedStatement =
+							_getPreparedStatement(connection, dslQuery);
+						ResultSet resultSet =
+							preparedStatement.executeQuery()) {
+
+						List<Long> newParents = null;
+
+						while (resultSet.next()) {
+							Node parentNode = new Node(
+								parentClassNameId, resultSet.getLong(1));
+
+							if (ctEntriesOnly && !nodes.contains(parentNode)) {
+								continue;
+							}
+
+							Node childNode = new Node(
+								childClassNameId, resultSet.getLong(2));
+
+							if (nodes.add(parentNode)) {
+								if (newParents == null) {
+									newParents = new ArrayList<>();
+								}
+
+								newParents.add(parentNode.getPrimaryKey());
+							}
+
+							Collection<Edge> edges = edgeMap.computeIfAbsent(
+								parentNode, key -> new LinkedList<>());
+
+							edges.add(new Edge(parentNode, childNode));
+						}
+
+						if (newParents != null) {
+							queue.add(
+								new AbstractMap.SimpleImmutableEntry<>(
+									parentClassNameId, newParents));
+						}
+					}
+					catch (SQLException sqlException) {
+						throw new ORMException(
+							"Unable to execute query: " + dslQuery,
+							sqlException);
 					}
 
 					i += batchSize;
