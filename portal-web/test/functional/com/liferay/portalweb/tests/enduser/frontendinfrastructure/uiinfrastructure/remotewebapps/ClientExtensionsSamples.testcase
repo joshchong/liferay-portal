@@ -213,6 +213,8 @@ definition {
 				fail("Could not find 'There are 1 message board threads in the Guest site'");
 			}
 		}
+
+		AntCommands.runCommand("build-test-liferay-sample-workspace.xml", "stop-liferay-sample-etc-cron");
 	}
 
 	@description = "Smoke test Liferay Sample Etc Spring Boot"
