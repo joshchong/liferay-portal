@@ -227,6 +227,8 @@ definition {
 				SignIn.signInPortalInstanceSetUp();
 			}
 		}
+
+		SearchAdministration.waitForReindexFinished();
 	}
 
 	macro setUpPortalInstanceNoSelenium {
