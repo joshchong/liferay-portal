@@ -113,7 +113,7 @@
 			<replace
 				file="${elasticsearch.dir}/bin/elasticsearch-env"
 			>
-				<replacetoken><![CDATA[JAVA="$JAVA_HOME/bin/java"]]></replacetoken>
+				<replacetoken><![CDATA[JAVA="$ES_JAVA_HOME/bin/java"]]></replacetoken>
 				<replacevalue><![CDATA[JAVA="/opt/java/openjdk17/bin/java"]]></replacevalue>
 			</replace>
 		</sequential>
@@ -708,6 +708,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			<configure-elasticsearch-properties />
 
 			<configure-portal-remote-elasticsearch-osgi-properties />
+
+			<configure-elasticsearch-jdk17 />
 		</sequential>
 	</macrodef>
 
@@ -782,8 +784,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			<configure-elasticsearch-discovery-type-single-node />
 
 			<configure-elasticsearch-ltr-properties />
-
-			<configure-elasticsearch-jdk17 />
 
 			<prepare-elasticsearch-ltr />
 
@@ -877,10 +877,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 					<configure-elasticsearch-x-pack-security-properties />
 				</else>
 			</if>
-
-			<get-testcase-property if:set="env.JENKINS_HOME" property.name="elasticsearch.jdk11.enabled" />
-
-			<configure-elasticsearch-jdk11 if:true="${elasticsearch.jdk11.enabled}" />
 
 			<antcall target="start-elasticsearch-node" />
 
