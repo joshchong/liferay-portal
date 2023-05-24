@@ -137,6 +137,7 @@ xpack.security.enabled: false</echo>
 	<macrodef name="configure-elasticsearch-second-cluster-properties">
 		<sequential>
 			<echo file="${elasticsearch.dir}-2/config/elasticsearch.yml">${line.separator}cluster.name: LiferayElasticsearchClusterTwo
+discovery.type: single-node
 http.port: 9202
 ingest.geoip.downloader.enabled: false
 transport.port: 9500-9600
