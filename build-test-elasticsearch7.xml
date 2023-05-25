@@ -702,7 +702,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 
 			<configure-portal-remote-elasticsearch-osgi-properties />
 
-			<var name="elasticsearch.jdk17.enabled" value="true" />
+			<var name="elasticsearch.jdk11.enabled" value="true" />
 
 			<if>
 				<istrue value="${elasticsearch.jdk11.enabled}" />
