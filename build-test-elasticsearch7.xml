@@ -127,7 +127,7 @@ path.repo: ${liferay.home}/data/elasticsearch7/repo</echo>
 	<macrodef name="configure-elasticsearch-properties">
 		<sequential>
 			<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}cluster.name: LiferayElasticsearchCluster
-http.host: ["_local_", "_site_"]
+http.host: ["_site_"]
 ingest.geoip.downloader.enabled: false
 xpack.license.self_generated.type: trial
 xpack.security.enabled: false</echo>
