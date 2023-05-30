@@ -137,7 +137,6 @@ xpack.security.enabled: false</echo>
 	<macrodef name="configure-elasticsearch-second-cluster-properties">
 		<sequential>
 			<echo file="${elasticsearch.dir}-2/config/elasticsearch.yml">${line.separator}cluster.name: LiferayElasticsearchClusterTwo
-discovery.type: single-node
 http.port: 9202
 ingest.geoip.downloader.enabled: false
 transport.port: 9500-9600
@@ -823,7 +822,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 		<sequential>
 			<set-up-standard-elasticsearch />
 
-			<configure-elasticsearch-discovery-type-single-node />
+			<!-- <configure-elasticsearch-discovery-type-single-node /> -->
 
 			<prepare-additional-elasticsearch-bundles total.bundles="2" />
 
