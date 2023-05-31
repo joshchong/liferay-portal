@@ -698,8 +698,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			<prepare-elasticsearch-analyzers />
 
 			<configure-elasticsearch-properties />
-
-			<configure-portal-remote-elasticsearch-osgi-properties />
 		</sequential>
 	</macrodef>
 
@@ -818,16 +816,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 				<param name="elasticsearch.bundle.number" value="2" />
 				<param name="elasticsearch.port" value="9202" />
 			</antcall>
-
-			<if>
-				<istrue value="${elasticsearch.ccr.enabled}" />
-				<then>
-					<configure-portal-ccr-osgi-properties />
-				</then>
-				<else>
-					<configure-portal-second-connection-osgi-properties connection.name="connection2" />
-				</else>
-			</if>
 		</sequential>
 	</macrodef>
 
