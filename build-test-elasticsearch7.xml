@@ -298,6 +298,10 @@ productionModeEnabled="true"</echo>
 		</sequential>
 	</macrodef>
 
+	<target name="configure-portal-second-connection-osgi-properties">
+		<configure-portal-second-connection-osgi-properties connection.name="connection2" />
+	</target>
+
 	<macrodef name="configure-portal-second-connection-osgi-properties">
 		<attribute name="connection.name" />
 
@@ -831,12 +835,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			<antcall target="start-elasticsearch-node">
 				<param name="elasticsearch.bundle.number" value="1" />
 			</antcall>
-
-			<antcall target="start-elasticsearch-node">
-				<param name="elasticsearch.bundle.number" value="2" />
-				<param name="elasticsearch.port" value="9202" />
-			</antcall>
-
+<!-- 
 			<if>
 				<istrue value="${elasticsearch.ccr.enabled}" />
 				<then>
@@ -845,7 +844,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 				<else>
 					<configure-portal-second-connection-osgi-properties connection.name="connection2" />
 				</else>
-			</if>
+			</if> -->
 		</sequential>
 	</macrodef>
 

@@ -370,10 +370,27 @@ definition {
 
 	@priority = 5
 	test MultipleConnectionsSmokeTest {
+		property elastic.override.version = "8.7.0";
 		property elasticsearch.multiple.connections = "true";
 		property remote.elasticsearch.enabled = "true";
 		property search.environment.suite.exclude = "true";
 		property test.name.skip.portal.instance = "Elasticsearch7#MultipleConnectionsSmokeTest";
+
+		Elasticsearch.viewClusterStatusViaClusterHealthAPI(
+			nodePort = 9200,
+			numberOfNodes = 1);
+
+		AntCommands.runCommand("build-test-elasticsearch7.xml", "start-elasticsearch-node -Delasticsearch.bundle.number=2 -Delasticsearch.port=9202");
+
+		Pause(locator1 = 20000);
+
+		AntCommands.runCommand("build-test-elasticsearch7.xml", "configure-portal-second-connection-osgi-properties");
+
+		Pause(locator1 = 30000);
+
+		Elasticsearch.viewClusterStatusViaClusterHealthAPI(
+			nodePort = 9200,
+			numberOfNodes = 1);
 
 		SearchAdministration.openSearchAdmin();
 
