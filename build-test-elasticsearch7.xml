@@ -134,22 +134,22 @@ path.repo: ${liferay.home}/data/elasticsearch7/repo</echo>
 
 	<macrodef name="configure-elasticsearch-properties">
 		<sequential>
-			<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}bootstrap.system_call_filter: false
-cluster.name: LiferayElasticsearchCluster
+			<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}cluster.name: LiferayElasticsearchCluster
 http.host: ["_local_", "_site_"]
 ingest.geoip.downloader.enabled: false
-xpack.license.self_generated.type: trial</echo>
+xpack.license.self_generated.type: trial
+xpack.security.enabled: false</echo>
 		</sequential>
 	</macrodef>
 
 	<macrodef name="configure-elasticsearch-second-cluster-properties">
 		<sequential>
-			<echo file="${elasticsearch.dir}-2/config/elasticsearch.yml">${line.separator}bootstrap.system_call_filter: false
-cluster.name: LiferayElasticsearchClusterTwo
+			<echo file="${elasticsearch.dir}-2/config/elasticsearch.yml">${line.separator}cluster.name: LiferayElasticsearchClusterTwo
 http.port: 9202
 ingest.geoip.downloader.enabled: false
 transport.port: 9500-9600
-xpack.license.self_generated.type: trial</echo>
+xpack.license.self_generated.type: trial
+xpack.security.enabled: false</echo>
 		</sequential>
 	</macrodef>
 
