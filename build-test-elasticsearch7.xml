@@ -700,24 +700,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			<configure-elasticsearch-properties />
 
 			<configure-portal-remote-elasticsearch-osgi-properties />
-
-			<var name="elasticsearch.jdk17.enabled" value="true" />
-
-			<if>
-				<istrue value="${elasticsearch.jdk11.enabled}" />
-				<then>
-					<configure-elasticsearch-jdk elasticsearch.java.home="/opt/java/jdk11" />
-				</then>
-				<elseif>
-					<istrue value="${elasticsearch.jdk17.enabled}" />
-					<then>
-						<configure-elasticsearch-jdk elasticsearch.java.home="/opt/java/openjdk17" />
-					</then>
-				</elseif>
-				<else>
-					<configure-elasticsearch-jdk elasticsearch.java.home="${elasticsearch.java.home}" />
-				</else>
-			</if>
 		</sequential>
 	</macrodef>
 
