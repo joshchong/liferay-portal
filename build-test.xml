@@ -8214,6 +8214,13 @@ war.path=${app.server.portal.dir}/</echo>
 						<param name="process.name" value="Bootstrap" />
 					</antcall>
 
+					<if>
+						<contains string="${suite.search.engine}" substring="remote-elasticsearch7" />
+						<then>
+							<ant antfile="build-test-elasticsearch7.xml" target="stop-elasticsearch" />
+						</then>
+					</if>
+
 					<stop-app-server app.server.bundle.index="@{app.server.bundle.index}" />
 
 					<fail if="app.server.waiting.timeout" message="No server is available at ${app.server.waiting.url}" />
