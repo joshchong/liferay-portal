@@ -156,6 +156,10 @@ definition {
 	}
 
 	macro commerceSetUp {
+		Portlet.shutdownServer();
+
+		Portlet.startServer(deleteLiferayHome = "false");
+
 		TestCase.setUpPortalInstance();
 
 		User.firstLoginPG();
