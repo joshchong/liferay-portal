@@ -788,6 +788,7 @@ definition {
 	@priority = 3
 	test TaxCategoryLifecycle {
 		property portal.acceptance = "false";
+		property remote.elasticsearch.enabled = "true";
 
 		// TODO Review
 
