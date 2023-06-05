@@ -18,7 +18,7 @@
 			</then>
 		</elseif>
 		<else>
-			<property name="elasticsearch.version" value="7.17.10" />
+			<property name="elasticsearch.version" value="8.8.0" />
 		</else>
 	</if>
 
@@ -134,8 +134,7 @@ path.repo: ${liferay.home}/data/elasticsearch7/repo</echo>
 
 	<macrodef name="configure-elasticsearch-properties">
 		<sequential>
-			<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}bootstrap.system_call_filter: false
-cluster.name: LiferayElasticsearchCluster
+			<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}cluster.name: LiferayElasticsearchCluster
 http.host: ["_local_", "_site_"]
 ingest.geoip.downloader.enabled: false
 xpack.license.self_generated.type: trial</echo>
@@ -144,8 +143,7 @@ xpack.license.self_generated.type: trial</echo>
 
 	<macrodef name="configure-elasticsearch-second-cluster-properties">
 		<sequential>
-			<echo file="${elasticsearch.dir}-2/config/elasticsearch.yml">${line.separator}bootstrap.system_call_filter: false
-cluster.name: LiferayElasticsearchClusterTwo
+			<echo file="${elasticsearch.dir}-2/config/elasticsearch.yml">${line.separator}cluster.name: LiferayElasticsearchClusterTwo
 http.port: 9202
 ingest.geoip.downloader.enabled: false
 transport.port: 9500-9600
