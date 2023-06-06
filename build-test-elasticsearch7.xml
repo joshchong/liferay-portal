@@ -1413,6 +1413,36 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 		<lstopwatch action="total" name="start.elasticsearch.node" />
 
 		<fail if="elasticsearch.server.not.started" message="Elasticsearch server on port ${elasticsearch.port} failed to initialize." />
+
+		<antcall target="stop-elasticsearch">
+			<param name="elasticsearch.stop.dir" value="${elasticsearch.start.dir}" />
+		</antcall>
+
+		<chmod
+			maxparallel="10"
+			perm="a+rwx"
+			type="both"
+		>
+			<fileset
+				dir="${elasticsearch.start.dir}"
+			/>
+		</chmod>
+
+		<exec dir="${elasticsearch.start.dir}/bin" executable="/bin/bash" osfamily="unix">
+			<arg value="-c" />
+			<arg if:set="env.JENKINS_HOME" value="sudo -H -u shutdown bash -c './elasticsearch -d -p pid-elasticsearch'" />
+			<arg unless:set="env.JENKINS_HOME" value="./elasticsearch -d -p pid-elasticsearch" />
+		</exec>
+
+		<waitfor maxwait="120" maxwaitunit="second" timeoutproperty="elasticsearch.server.not.started">
+			<socket port="${elasticsearch.port}" server="localhost" />
+		</waitfor>
+
+		<print-files dir="${elasticsearch.start.dir}/logs/" exclude="*_*" include="LiferayElasticsearchCluster*.log" />
+
+		<lstopwatch action="total" name="start.elasticsearch.node" />
+
+		<fail if="elasticsearch.server.not.started" message="Elasticsearch server on port ${elasticsearch.port} failed to initialize." />
 	</target>
 
 	<target name="start-kibana">
@@ -1455,10 +1485,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 	</target>
 
 	<target name="stop-elasticsearch">
-		<condition else="${elasticsearch.dir}" property="elasticsearch.stop.dir" value="${elasticsearch.dir}-${elasticsearch.bundle.number}">
-			<isset property="elasticsearch.bundle.number" />
-		</condition>
-
 		<if>
 			<available file="${elasticsearch.stop.dir}/pid-elasticsearch" />
 			<then>
