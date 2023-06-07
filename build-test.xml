@@ -15751,6 +15751,20 @@ mail.send.blacklist=</echo>
 			</then>
 		</if>
 
+		<echo>Checking to see if both ES servers are up</echo>
+
+		<waitfor maxwait="60" maxwaitunit="second" timeoutproperty="elasticsearch.server.one.not.started">
+			<socket port="9200" server="localhost" />
+		</waitfor>
+
+		<fail if="elasticsearch.server.one.not.started" message="Elasticsearch server on port 9200 failed to initialize." />
+
+		<waitfor maxwait="60" maxwaitunit="second" timeoutproperty="elasticsearch.server.two.not.started">
+			<socket port="9202" server="localhost" />
+		</waitfor>
+
+		<fail if="elasticsearch.server.two.not.started" message="Elasticsearch server on port 9200 failed to initialize." />
+
 		<get-testcase-property property.name="skip.start.app.server" />
 
 		<if>
