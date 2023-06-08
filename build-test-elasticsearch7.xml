@@ -709,6 +709,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			<configure-elasticsearch-properties />
 
 			<configure-portal-remote-elasticsearch-osgi-properties />
+
+			<configure-elasticsearch-jdk elasticsearch.java.home="/opt/java/openjdk17" />
 		</sequential>
 	</macrodef>
 
