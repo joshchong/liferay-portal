@@ -97,24 +97,16 @@
 		</sequential>
 	</macrodef>
 
-	<macrodef name="configure-elasticsearch-jdk11">
-		<sequential>
-			<replace
-				file="${elasticsearch.dir}/bin/elasticsearch-env"
-			>
-				<replacetoken><![CDATA[JAVA="$JAVA_HOME/bin/java"]]></replacetoken>
-				<replacevalue><![CDATA[JAVA="/opt/java/jdk11/bin/java"]]></replacevalue>
-			</replace>
-		</sequential>
-	</macrodef>
+	<macrodef name="configure-elasticsearch-jdk">
+		<attribute name="elasticsearch.java.home" />
 
-	<macrodef name="configure-elasticsearch-jdk17">
 		<sequential>
 			<replace
 				file="${elasticsearch.dir}/bin/elasticsearch-env"
 			>
-				<replacetoken><![CDATA[JAVA="$JAVA_HOME/bin/java"]]></replacetoken>
-				<replacevalue><![CDATA[JAVA="/opt/java/openjdk17/bin/java"]]></replacevalue>
+				<replacetoken><![CDATA[#!/bin/bash]]></replacetoken>
+				<replacevalue><![CDATA[#!/bin/bash
+ES_JAVA_HOME=@{elasticsearch.java.home}]]></replacevalue>
 			</replace>
 		</sequential>
 	</macrodef>
@@ -711,6 +703,24 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			<configure-elasticsearch-properties />
 
 			<configure-portal-remote-elasticsearch-osgi-properties />
+
+			<var name="elasticsearch.jdk17.enabled" value="true" />
+
+			<if>
+				<istrue value="${elasticsearch.jdk11.enabled}" />
+				<then>
+					<configure-elasticsearch-jdk elasticsearch.java.home="/opt/java/jdk11" />
+				</then>
+				<elseif>
+					<istrue value="${elasticsearch.jdk17.enabled}" />
+					<then>
+						<configure-elasticsearch-jdk elasticsearch.java.home="/opt/java/openjdk17" />
+					</then>
+				</elseif>
+				<else>
+					<configure-elasticsearch-jdk elasticsearch.java.home="${elasticsearch.java.home}" />
+				</else>
+			</if>
 		</sequential>
 	</macrodef>
 
@@ -785,8 +795,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			<configure-elasticsearch-discovery-type-single-node />
 
 			<configure-elasticsearch-ltr-properties />
-
-			<configure-elasticsearch-jdk17 />
 
 			<prepare-elasticsearch-ltr />
 
@@ -880,10 +888,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 					<configure-elasticsearch-x-pack-security-properties />
 				</else>
 			</if>
-
-			<get-testcase-property if:set="env.JENKINS_HOME" property.name="elasticsearch.jdk11.enabled" />
-
-			<configure-elasticsearch-jdk11 if:true="${elasticsearch.jdk11.enabled}" />
 
 			<antcall target="start-elasticsearch-node" />
 
