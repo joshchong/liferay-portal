@@ -210,11 +210,45 @@ definition {
 			var clientSecret = selenium.getElementValue("OAuth2#ADMIN_INPUT_FORM_CLIENT_SECRET");
 		}
 
+		task ("Assert the Message Board Thread Count of 0") {
+			AntCommands.runCommand("build-test-liferay-sample-workspace.xml", "start-liferay-sample-etc-cron -Doauth2.headless.server.client.secret=${clientSecret} -Dvirtual.instance.id=${companyWebId}");
+
+			var projectDir = PropsUtil.get("project.dir");
+
+			var springBootLogFile = "${projectDir}/workspaces/liferay-sample-workspace/client-extensions/liferay-sample-etc-cron/logs/spring.log";
+
+			var springBootLogFileContent = FileUtil.read(${springBootLogFile});
+
+			echo(${springBootLogFileContent});
+
+			if (!(contains(${springBootLogFileContent}, "There are 0 message board threads in the Guest site"))) {
+				fail("Could not find 'There are 0 message board threads in the Guest site'");
+			}
+		}
+
 		task ("Add a new Message Board Thread") {
 			JSONMBMessage.addMessage(
 				groupName = "Guest",
 				threadBody = "MB Thread Message Body",
 				threadSubject = "MB Thread Message Subject");
+		}
+
+		task ("Assert the Message Board Thread Count of 1") {
+			AntCommands.runCommand("build-test-liferay-sample-workspace.xml", "start-liferay-sample-etc-cron -Doauth2.headless.server.client.secret=${clientSecret} -Dvirtual.instance.id=${companyWebId}");
+
+			var springBootLogFileContent = FileUtil.read(${springBootLogFile});
+
+			echo(${springBootLogFileContent});
+
+			if (!(contains(${springBootLogFileContent}, "There are 1 message board threads in the Guest site"))) {
+				fail("Could not find 'There are 1 message board threads in the Guest site'");
+			}
+		}
+
+		task ("Workaround for LPS-187832") {
+			var liferayHome = PropsUtil.get("liferay.home.dir.name");
+
+			FileUtil.delete("${liferayHome}/osgi/modules/liferay-sample-etc-cron.zip");
 		}
 	}
 
