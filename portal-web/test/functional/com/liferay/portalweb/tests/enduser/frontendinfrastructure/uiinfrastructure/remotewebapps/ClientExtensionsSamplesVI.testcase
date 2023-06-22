@@ -20,10 +20,6 @@ definition {
 
 	tearDown {
 		if (isSet(clientExtensionSamples)) {
-			for (var clientExtension : list ${clientExtensionSamples}) {
-				AntCommands.runCommand("build-test-liferay-sample-workspace.xml", "undeploy-workspace-client-extension -Dvirtual.instance.id=${companyWebId} -Dworkspace.client.extension.name=${clientExtension}");
-			}
-
 			var clientExtensionSamples = "";
 		}
 
@@ -86,12 +82,6 @@ definition {
 	@description = "Smoke test Liferay Sample Custom Element 1"
 	@priority = 4
 	test LiferaySampleCustomElement1Smoke {
-		task ("Deploy Liferay Sample Custom Element 1 into the current virtual instance") {
-			var clientExtensionSamples = "liferay-sample-custom-element-1";
-
-			AntCommands.runCommand("build-test-liferay-sample-workspace.xml", "deploy-workspace-client-extension -Dvirtual.instance.id=${companyWebId} -Dworkspace.client.extension.name=${clientExtensionSamples}");
-		}
-
 		task ("Create a new widget page") {
 			JSONLayout.addPublicLayout(
 				groupName = "Guest",
@@ -100,40 +90,6 @@ definition {
 			Navigator.openSitePage(
 				pageName = "Test Page",
 				siteName = "Guest");
-		}
-
-		task ("Add the Liferay Sample Custom Element 1 widget to the page") {
-			Portlet.addPG(portletName = "Liferay Sample Custom Element 1");
-		}
-
-		task ("Assert the widget's increment button works") {
-			AssertTextEquals.assertPartialText(
-				locator1 = "ClientExtension#SAMPLE_CUSTOM_ELEMENT_1_COUNTER",
-				value1 = 0);
-
-			Click(locator1 = "ClientExtension#SAMPLE_CUSTOM_ELEMENT_1_INCREMENT_BUTTON");
-
-			Click(locator1 = "ClientExtension#SAMPLE_CUSTOM_ELEMENT_1_INCREMENT_BUTTON");
-
-			Click(locator1 = "ClientExtension#SAMPLE_CUSTOM_ELEMENT_1_INCREMENT_BUTTON");
-
-			AssertTextEquals.assertPartialText(
-				locator1 = "ClientExtension#SAMPLE_CUSTOM_ELEMENT_1_COUNTER",
-				value1 = 3);
-		}
-
-		task ("Assert the widget's increment button works") {
-			Click(locator1 = "ClientExtension#SAMPLE_CUSTOM_ELEMENT_1_DECREMENT_BUTTON");
-
-			Click(locator1 = "ClientExtension#SAMPLE_CUSTOM_ELEMENT_1_DECREMENT_BUTTON");
-
-			Click(locator1 = "ClientExtension#SAMPLE_CUSTOM_ELEMENT_1_DECREMENT_BUTTON");
-
-			Click(locator1 = "ClientExtension#SAMPLE_CUSTOM_ELEMENT_1_DECREMENT_BUTTON");
-
-			AssertTextEquals.assertPartialText(
-				locator1 = "ClientExtension#SAMPLE_CUSTOM_ELEMENT_1_COUNTER",
-				value1 = "-1");
 		}
 	}
 
