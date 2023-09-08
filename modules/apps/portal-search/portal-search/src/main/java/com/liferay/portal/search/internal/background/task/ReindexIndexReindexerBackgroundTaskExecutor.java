@@ -45,8 +45,10 @@ public class ReindexIndexReindexerBackgroundTaskExecutor
 				_indexReindexerRegistry.getIndexReindexers();
 
 			for (IndexReindexer indexReindexer : indexReindexers) {
+				Class<?> clazz = indexReindexer.getClass();
+
 				_reindex(
-					className, companyIds, executionMode, indexReindexer,
+					clazz.getName(), companyIds, executionMode, indexReindexer,
 					ReindexBackgroundTaskConstants.PORTAL_START,
 					ReindexBackgroundTaskConstants.PORTAL_END);
 			}
