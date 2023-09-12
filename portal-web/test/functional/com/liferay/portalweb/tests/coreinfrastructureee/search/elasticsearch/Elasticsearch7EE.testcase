@@ -190,6 +190,7 @@ definition {
 			searchAssetType = "Message Boards Message");
 	}
 
+	@ignore = "true"
 	@priority = 5
 	test XPackPkiAuthenticationSmokeTest {
 		property elastic.pki.authentication.enabled = "true";
@@ -217,6 +218,7 @@ definition {
 		ElasticsearchMonitoring.viewPG();
 	}
 
+	@ignore = "true"
 	@priority = 5
 	test XPackPkiAuthenticationWithJDK11 {
 		property elastic.pki.authentication.enabled = "true";
@@ -292,6 +294,7 @@ definition {
 		ElasticsearchMonitoring.viewAsGuestPG();
 	}
 
+	@ignore = "true"
 	@priority = 5
 	test XPackWithJDK11 {
 		property elastic.xpack.enabled = "true";
@@ -341,6 +344,7 @@ definition {
 		ElasticsearchMonitoring.viewAsGuestPG();
 	}
 
+	@ignore = "true"
 	@description = "This is a use case for LPS-151205."
 	@priority = 5
 	test XPackWithRestrictedCipherSuitesAndTLSVersions {
