@@ -50,6 +50,8 @@
 	<property name="elasticsearch.sidecar.analysis-smartcn.zip.url" value="https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-smartcn/analysis-smartcn-${elasticsearch.sidecar.version}.zip" />
 	<property name="elasticsearch.sidecar.analysis-stempel.zip.url" value="https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-stempel/analysis-stempel-${elasticsearch.sidecar.version}.zip" />
 	<property name="elasticsearch.sidecar.no.jdk.tar.url" value="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${elasticsearch.sidecar.version}-no-jdk-linux-x86_64.tar.gz" />
+	<property name="opensearch.version" value="2.9.0" />
+	<property name="opensearch.dir" value="${app.server.parent.dir}/opensearch-${opensearch.version}" />
 
 	<macrodef name="check-elasticsearch-security">
 		<attribute name="authentication.type" />
@@ -1456,6 +1458,68 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 		</if>
 	</target>
 
+	<target name="start-opensearch">
+		<if>
+			<not>
+				<available file="${app.server.parent.dir}/opensearch-${opensearch.version}-linux-x64.tar.gz" />
+			</not>
+			<then>
+				<mirrors-get
+					dest="${app.server.parent.dir}/opensearch-${opensearch.version}-linux-x64.tar.gz"
+					skipChecksum="true"
+					src="https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearch.version}/opensearch-${opensearch.version}-linux-x64.tar.gz"
+				/>
+			</then>
+		</if>
+
+		<untar
+			compression="gzip"
+			dest="${app.server.parent.dir}"
+			src="${app.server.parent.dir}/opensearch-${opensearch.version}-linux-x64.tar.gz"
+		/>
+
+		<echo append="true" file="${opensearch.dir}/config/opensearch.yml">${line.separator}cluster.name: LiferayElasticsearchCluster
+discovery.type: single-node
+http.host: ["_local_", "_site_"]
+plugins.security.disabled: true</echo>
+
+		<echo append="true" file="${opensearch.dir}/config/jvm.options">${line.separator}-Xms2g
+-Xmx2g</echo>
+
+		<!-- 		<echo append="true" file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch7.configuration.ElasticsearchConfiguration.config">${line.separator}minimumRequiredNodeVersion="${elasticsearch.version}"
+productionModeEnabled="true"</echo>-->
+
+		<lstopwatch action="start" name="start.opensearch.node" />
+
+		<chmod
+			maxparallel="10"
+			perm="a+rwx"
+			type="both"
+		>
+			<fileset
+				dir="${opensearch.dir}"
+			/>
+		</chmod>
+
+		<exec dir="${opensearch.dir}/bin" executable="/bin/bash" osfamily="unix">
+			<arg value="-c" />
+			<arg if:set="env.JENKINS_HOME" value="sudo -H -u shutdown bash -c './opensearch -d -p pid-opensearch'" />
+			<arg unless:set="env.JENKINS_HOME" value="./opensearch -d -p pid-opensearch" />
+		</exec>
+
+		<property name="opensearch.port" unless:set="opensearch.port" value="9200" />
+
+		<waitfor maxwait="120" maxwaitunit="second" timeoutproperty="opensearch.server.not.started">
+			<socket port="${opensearch.port}" server="localhost" />
+		</waitfor>
+
+		<print-files dir="${opensearch.dir}/logs/" exclude="*_*" include="LiferayElasticsearchCluster*.log" />
+
+		<lstopwatch action="total" name="start.opensearch.node" />
+
+		<fail if="opensearch.server.not.started" message="OpenSearch server on port ${opensearch.port} failed to initialize." />
+	</target>
+
 	<target name="stop-elasticsearch">
 		<condition else="${elasticsearch.dir}" property="elasticsearch.stop.dir" value="${elasticsearch.dir}-${elasticsearch.bundle.number}">
 			<isset property="elasticsearch.bundle.number" />
@@ -1500,5 +1564,22 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 				</exec>
 			</else>
 		</if>
+	</target>
+
+	<target name="stop-opensearch">
+		<if>
+			<available file="${opensearch.dir}/pid-opensearch" />
+			<then>
+				<exec dir="${opensearch.dir}" executable="/bin/bash" osfamily="unix">
+					<arg value="-c" />
+					<arg value="pkill -F pid-opensearch" />
+				</exec>
+			</then>
+			<else>
+				<echo>The OpenSearch server in ${opensearch.dir} has already been stopped</echo>
+			</else>
+		</if>
+
+		<print-files dir="${opensearch.dir}/logs/" exclude="*_*" include="LiferayElasticsearchCluster*.log" />
 	</target>
 </project>
