@@ -20,6 +20,18 @@ definition {
 		}
 	}
 
+	test CheckOpenSearchEndpoint {
+		property opensearch.enabled = "true";
+
+		var portalHostname = PropsUtil.get("portal.hostname");
+
+		Navigator.openSpecificURL(url = "http://${portalHostname}:9200/_cluster/health?level=indices&pretty");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "//body",
+			value1 = "cluster_name");
+	}
+
 	@priority = 4
 	test AssertIndexOnStartup {
 		property search.environment.suite.exclude = "true";
