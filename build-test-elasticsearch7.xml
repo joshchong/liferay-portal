@@ -93,6 +93,18 @@
 		</sequential>
 	</macrodef>
 
+	<macrodef name="configure-opensearch-jdk11">
+			<sequential>
+					<replace
+							file="${opensearch.dir}/bin/opensearch-env"
+					>
+							<replacetoken><![CDATA[JAVA="$JAVA_HOME/bin/java"]]></replacetoken>
+							<replacevalue><![CDATA[JAVA="/opt/java/jdk11/bin/java"]]></replacevalue>
+					</replace>
+			</sequential>
+	</macrodef>
+
+
 	<macrodef name="configure-elasticsearch-jdk">
 		<attribute name="elasticsearch.java.home" />
 
@@ -1500,6 +1512,8 @@ productionModeEnabled="true"</echo>-->
 				dir="${opensearch.dir}"
 			/>
 		</chmod>
+
+		<configure-opensearch-jdk11 />
 
 		<exec dir="${opensearch.dir}/bin" executable="/bin/bash" osfamily="unix">
 			<arg value="-c" />
