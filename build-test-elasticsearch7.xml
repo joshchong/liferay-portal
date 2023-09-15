@@ -1503,6 +1503,8 @@ productionModeEnabled="true"</echo>-->
 
 		<lstopwatch action="start" name="start.opensearch.node" />
 
+		<configure-opensearch-jdk17 />
+
 		<chmod
 			maxparallel="10"
 			perm="a+rwx"
@@ -1512,8 +1514,6 @@ productionModeEnabled="true"</echo>-->
 				dir="${opensearch.dir}"
 			/>
 		</chmod>
-
-		<configure-opensearch-jdk17 />
 
 		<exec dir="${opensearch.dir}/bin" executable="/bin/bash" osfamily="unix">
 			<arg value="-c" />
