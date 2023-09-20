@@ -183,7 +183,7 @@ definition {
 
 		SearchPortlets.addWidgets(searchPortletList = "Search Insights");
 
-		Search.openSearchPage();
+		SearchPortlets.openSearchPage();
 
 		Portlet.gotoPortletOptions(
 			portletName = "Search Insights",
@@ -336,7 +336,7 @@ definition {
 			mimeType = "text/plain",
 			sourceFileName = "Document_1.txt");
 
-		Search.openSearchPage(searchTerm = "Apple");
+		SearchPortlets.openSearchPage(searchTerm = "Apple");
 
 		SearchResultPortlet.viewSearchResults(
 			searchAssetTitle = "Apple",
@@ -346,7 +346,7 @@ definition {
 			searchAssetTitle = "Apple",
 			searchAssetType = "Message Boards Message");
 
-		Search.openSearchPage(searchTerm = "Orange");
+		SearchPortlets.openSearchPage(searchTerm = "Orange");
 
 		SearchResultPortlet.viewSearchResults(
 			searchAssetTitle = "Apple",
@@ -631,7 +631,7 @@ definition {
 		}
 
 		task ("Assert that search results are still returned during a reindex") {
-			Search.openSearchPage(searchTerm = "test");
+			SearchPortlets.openSearchPage(searchTerm = "test");
 
 			AssertElementPresent(locator1 = "Search#REINDEX_IN_PROGRESS_INDICATOR");
 
@@ -731,7 +731,7 @@ definition {
 		}
 
 		task ("Assert that search results are still returned during the reindex") {
-			Search.openSearchPage(searchTerm = "test");
+			SearchPortlets.openSearchPage(searchTerm = "test");
 
 			AssertElementPresent(locator1 = "Search#REINDEX_IN_PROGRESS_INDICATOR");
 

@@ -191,7 +191,7 @@ definition {
 			groupName = "Guest",
 			titleMap = "en_US:WC Title,de_DE:WC Titel");
 
-		Search.openSearchPage();
+		SearchPortlets.openSearchPage();
 
 		SearchPortlets.addWidgets(searchPortletList = "Suggestions");
 
@@ -213,7 +213,7 @@ definition {
 
 		Navigator.openURL();
 
-		Search.openSearchPage(locale = "de-DE");
+		SearchPortlets.openSearchPage(locale = "de-DE");
 
 		for (var searchTerm : list "ächten,angreifen,anmarschieren") {
 			SearchPortlets.searchEmbedded(searchTerm = ${searchTerm});
@@ -310,7 +310,7 @@ definition {
 			groupName = "Guest",
 			title = "WC Title");
 
-		Search.openSearchPage();
+		SearchPortlets.openSearchPage();
 
 		Portlet.gotoPortletOptions(
 			portletName = "Search Results",
@@ -421,7 +421,7 @@ definition {
 
 	@priority = 4
 	test CopySearchInsightsJSON {
-		Search.openSearchPage();
+		SearchPortlets.openSearchPage();
 
 		SearchPortlets.addWidgets(searchPortletList = "Search Insights");
 
@@ -431,7 +431,7 @@ definition {
 
 		SearchPortlets.viewCopiedContent(text = "\"explain\": true, \"highlight\":");
 
-		Search.openSearchPage();
+		SearchPortlets.openSearchPage();
 
 		SearchPortlets.searchEmbedded(searchTerm = "test");
 
@@ -570,7 +570,7 @@ definition {
 		task ("Add a Custom Filter widget to the search page and perform a search that returns the object entries and web content article") {
 			SearchPortlets.addWidgets(searchPortletList = "Custom Filter");
 
-			Search.openSearchPage(searchTerm = "fruit");
+			SearchPortlets.openSearchPage(searchTerm = "fruit");
 		}
 
 		task ("Configure the Custom Filter widget as a parent nested query for the custom object") {
@@ -715,7 +715,7 @@ definition {
 		}
 
 		task ("Go to the search page and execute a search for the web content articles") {
-			Search.openSearchPage(searchTerm = "Fruit");
+			SearchPortlets.openSearchPage(searchTerm = "Fruit");
 		}
 
 		task ("Configure the Custom Filter widget as a parent nested query") {
@@ -1576,7 +1576,7 @@ definition {
 			objectName = "CustomObject500",
 			value = "apple");
 
-		Search.openSearchPage();
+		SearchPortlets.openSearchPage();
 
 		SearchPortlets.configureEmbeddedSearchBar(searchScope = "Everything");
 
@@ -1782,7 +1782,7 @@ definition {
 
 		var currentDate = DateUtil.getCurrentYear();
 
-		Search.openSearchPage();
+		SearchPortlets.openSearchPage();
 
 		SearchPortlets.configureEmbeddedSearchBar(searchScope = "Everything");
 
@@ -1977,7 +1977,7 @@ definition {
 			groupName = "Guest",
 			title = "WC Title");
 
-		Search.openSearchPage();
+		SearchPortlets.openSearchPage();
 
 		SearchPortlets.searchEmbedded(searchTerm = "WC Title");
 
@@ -2397,7 +2397,7 @@ definition {
 		}
 
 		task ("Go to the search page and execute a search for the object entries") {
-			Search.openSearchPage(searchTerm = "fruit");
+			SearchPortlets.openSearchPage(searchTerm = "fruit");
 		}
 
 		task ("Add the Sort Widget to the search page") {
@@ -2654,7 +2654,7 @@ definition {
 			objectName = "CustomObject",
 			scope = "site");
 
-		Search.openSearchPage();
+		SearchPortlets.openSearchPage();
 
 		SearchPortlets.searchEmbedded(searchTerm = "apple");
 
@@ -2699,7 +2699,7 @@ definition {
 
 		DisplayPageTemplatesAdmin.markDisplayPageAsDefault(displayPageName = "Custom Object Display Template");
 
-		Search.openSearchPage();
+		SearchPortlets.openSearchPage();
 
 		SearchPortlets.searchEmbedded(searchTerm = "apple");
 
@@ -2721,7 +2721,7 @@ definition {
 	@priority = 3
 	test ViewSearchBarVisibility {
 		task ("Configure the embedded search bar to be invisible") {
-			Search.openSearchPage();
+			SearchPortlets.openSearchPage();
 
 			SearchPortlets.configureEmbeddedSearchBar(invisible = "true");
 		}
@@ -2751,7 +2751,7 @@ definition {
 		}
 
 		task ("Assert that the search bar is not present on the search page as a guest") {
-			Search.openSearchPage();
+			SearchPortlets.openSearchPage();
 
 			AssertElementNotPresent(locator1 = "Search#EMBEDDED_SEARCH_BAR");
 		}
@@ -2759,7 +2759,7 @@ definition {
 		task ("Sign in and configure the search bar to be visible with the destination page set as '/nowhere'") {
 			SignIn.signIn();
 
-			Search.openSearchPage();
+			SearchPortlets.openSearchPage();
 
 			SearchPortlets.configureEmbeddedSearchBar(
 				destinationPage = "/nowhere",
@@ -2797,7 +2797,7 @@ definition {
 		task ("Sign out and assert that both the search bar and alert message are not present on the search page as a guest") {
 			SignOut.signOut();
 
-			Search.openSearchPage();
+			SearchPortlets.openSearchPage();
 
 			AssertElementNotPresent(locator1 = "Search#EMBEDDED_SEARCH_BAR");
 
