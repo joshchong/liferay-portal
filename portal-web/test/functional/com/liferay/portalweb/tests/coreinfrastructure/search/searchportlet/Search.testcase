@@ -31,7 +31,7 @@ definition {
 
 		SearchPage.openSearchPage();
 
-		SearchResultPortlet.configureSearchResults(
+		SearchResults.configureSearchResults(
 			customEmptyResultMessage = "true",
 			customPagination = "true",
 			displayTemplate = "Search Results Test ADT");
@@ -284,7 +284,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "WC Title");
 
-		SearchResultPortlet.paginateAndViewSearchResults(
+		SearchResults.paginateAndViewSearchResults(
 			searchAssetTitle = "WC Title 11",
 			searchAssetType = "Web Content Article",
 			searchTerm = "WC Title");
@@ -428,7 +428,7 @@ definition {
 		for (var searchTerm : list "ächten,angreifen,anmarschieren") {
 			SearchPage.searchEmbedded(searchTerm = ${searchTerm});
 
-			SearchResultPortlet.viewSearchResults(
+			SearchResults.viewSearchResults(
 				searchAssetTitle = "WC Titel",
 				searchAssetType = "Webcontent, Artikel",
 				searchTerm = ${searchTerm});
@@ -453,7 +453,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Example Page");
 
-		SearchResultPortlet.configureSearchResults(disableDisplaySelectedResultInContext = "true");
+		SearchResults.configureSearchResults(disableDisplaySelectedResultInContext = "true");
 
 		SearchPage.searchEmbedded(searchTerm = "Example Page");
 
@@ -548,7 +548,7 @@ definition {
 			locator2 = "background-color",
 			value1 = "rgba(252, 248, 227, 1)");
 
-		SearchResultPortlet.configureSearchResults(disableHighlighting = "true");
+		SearchResults.configureSearchResults(disableHighlighting = "true");
 
 		SearchPage.searchEmbedded(searchTerm = "WC Title");
 
@@ -580,7 +580,7 @@ definition {
 	test CanPerformEmptySearches {
 		SearchPage.searchEmbedded(searchTerm = "test");
 
-		SearchResultPortlet.viewMultipleSearchResults(
+		SearchResults.viewMultipleSearchResults(
 			resultsList = "tree.png,stars.png,satellite.png,moon.png,earth.png,Home,Test Test",
 			searchTerm = "test");
 
@@ -590,7 +590,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "");
 
-		SearchResultPortlet.viewMultipleSearchResults(
+		SearchResults.viewMultipleSearchResults(
 			resultsList = "tree.png,stars.png,satellite.png,moon.png,earth.png,Search,Home,Test Test",
 			searchTerm = "");
 	}
@@ -618,7 +618,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "test");
 
-		SearchResultPortlet.viewMultipleSearchResults(
+		SearchResults.viewMultipleSearchResults(
 			resultsList = "tree.png,stars.png,satellite.png,moon.png,earth.png,Home,Test Test",
 			searchTerm = "test");
 
@@ -713,7 +713,7 @@ definition {
 				index = ${column},
 				keywordsParameterName = "keywordParameter${column}");
 
-			SearchResultPortlet.configureSearchResults(
+			SearchResults.configureSearchResults(
 				federatedSearchKey = "federatedSearchKey${column}",
 				index = ${column});
 		}
@@ -721,7 +721,7 @@ definition {
 		for (var count : list "1,2,3,4,5") {
 			SearchPage.searchWidget(searchTerm = "test");
 
-			SearchResultPortlet.viewSearchResults(
+			SearchResults.viewSearchResults(
 				searchAssetTitle = "Test Test",
 				searchAssetType = "User");
 
@@ -794,15 +794,15 @@ definition {
 		}
 
 		task ("Assert that only the object entries are returned in the search results and not the web content article") {
-			SearchResultPortlet.viewSearchResults(
+			SearchResults.viewSearchResults(
 				searchAssetTitle = "Apple Fruit",
 				searchAssetType = "Custom Object");
 
-			SearchResultPortlet.viewSearchResults(
+			SearchResults.viewSearchResults(
 				searchAssetTitle = "Banana Fruit",
 				searchAssetType = "Custom Object");
 
-			SearchResultPortlet.viewSearchResultNotPresent(
+			SearchResults.viewSearchResultNotPresent(
 				searchAssetTitle = "Coconut Fruit",
 				searchAssetType = "Web Content Article");
 		}
@@ -837,15 +837,15 @@ definition {
 		}
 
 		task ("Assert that only the object entries are returned in the search results and not the web content article") {
-			SearchResultPortlet.viewSearchResults(
+			SearchResults.viewSearchResults(
 				searchAssetTitle = "Apple Fruit",
 				searchAssetType = "Custom Object");
 
-			SearchResultPortlet.viewSearchResults(
+			SearchResults.viewSearchResults(
 				searchAssetTitle = "Banana Fruit",
 				searchAssetType = "Custom Object");
 
-			SearchResultPortlet.viewSearchResultNotPresent(
+			SearchResults.viewSearchResultNotPresent(
 				searchAssetTitle = "Coconut Fruit",
 				searchAssetType = "Web Content Article");
 		}
@@ -862,15 +862,15 @@ definition {
 		}
 
 		task ("Assert only the object entry that matches the filter is returned in the search results") {
-			SearchResultPortlet.viewSearchResults(
+			SearchResults.viewSearchResults(
 				searchAssetTitle = "Apple Fruit",
 				searchAssetType = "Custom Object");
 
-			SearchResultPortlet.viewSearchResultNotPresent(
+			SearchResults.viewSearchResultNotPresent(
 				searchAssetTitle = "Banana Fruit",
 				searchAssetType = "Custom Object");
 
-			SearchResultPortlet.viewSearchResultNotPresent(
+			SearchResults.viewSearchResultNotPresent(
 				searchAssetTitle = "Coconut Fruit",
 				searchAssetType = "Web Content Article");
 		}
@@ -962,11 +962,11 @@ definition {
 		}
 
 		task ("Assert the web content structure articles still appear in the search results and the basic web content article does not") {
-			SearchResultPortlet.viewMultipleSearchResults(
+			SearchResults.viewMultipleSearchResults(
 				resultsList = "Fruit 1,Fruit 2",
 				searchTerm = "Fruit");
 
-			SearchResultPortlet.viewSearchResultNotPresent(
+			SearchResults.viewSearchResultNotPresent(
 				searchAssetTitle = "Fruit 3",
 				searchAssetType = "Web Content Article");
 		}
@@ -987,7 +987,7 @@ definition {
 		}
 
 		task ("Assert the web content structure articles still appear in the search results") {
-			SearchResultPortlet.viewMultipleSearchResults(
+			SearchResults.viewMultipleSearchResults(
 				resultsList = "Fruit 1,Fruit 2",
 				searchTerm = "Fruit");
 		}
@@ -1004,11 +1004,11 @@ definition {
 		}
 
 		task ("Assert the first web content structure article appears in the search results and the second one does not") {
-			SearchResultPortlet.viewSearchResults(
+			SearchResults.viewSearchResults(
 				searchAssetTitle = "Fruit 1",
 				searchAssetType = "Web Content Article");
 
-			SearchResultPortlet.viewSearchResultNotPresent(
+			SearchResults.viewSearchResultNotPresent(
 				searchAssetTitle = "Fruit 2",
 				searchAssetType = "Web Content Article");
 		}
@@ -1089,7 +1089,7 @@ definition {
 			clickMagnifyingGlassIcon = "true",
 			searchTerm = "test");
 
-		SearchResultPortlet.viewMultipleSearchResults(
+		SearchResults.viewMultipleSearchResults(
 			resultsList = "tree.png,stars.png,satellite.png,moon.png,earth.png",
 			searchTerm = "test");
 
@@ -1144,37 +1144,37 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Apple");
 
-		SearchResultPortlet.viewMultipleSearchResults(
+		SearchResults.viewMultipleSearchResults(
 			resultsList = "Apple 1,Apple 2,Apple 3,Apple 4,Apple 5",
 			searchTerm = "Apple");
 
-		SearchResultPortlet.configureSearchResults(paginationDelta = 3);
+		SearchResults.configureSearchResults(paginationDelta = 3);
 
 		Refresh();
 
-		SearchResultPortlet.viewSearchResultNotPresent(
+		SearchResults.viewSearchResultNotPresent(
 			searchAssetTitle = "Apple 4",
 			searchAssetType = "Web Content Article");
 
 		Pagination.changePagination(itemsPerPage = 20);
 
-		SearchResultPortlet.viewMultipleSearchResults(
+		SearchResults.viewMultipleSearchResults(
 			resultsList = "Apple 1,Apple 2,Apple 3,Apple 4,Apple 5",
 			searchTerm = "Apple");
 
 		Pagination.changePagination(itemsPerPage = 4);
 
-		SearchResultPortlet.viewMultipleSearchResults(
+		SearchResults.viewMultipleSearchResults(
 			resultsList = "Apple 1,Apple 2,Apple 3,Apple 4",
 			searchTerm = "Apple");
 
-		SearchResultPortlet.viewSearchResultNotPresent(
+		SearchResults.viewSearchResultNotPresent(
 			searchAssetTitle = "Apple 5",
 			searchAssetType = "Web Content Article");
 
 		Pagination.changePagination(itemsPerPage = 20);
 
-		SearchResultPortlet.viewMultipleSearchResults(
+		SearchResults.viewMultipleSearchResults(
 			resultsList = "Apple 1,Apple 2,Apple 3,Apple 4,Apple 5",
 			searchTerm = "Apple");
 	}
@@ -1234,19 +1234,19 @@ definition {
 
 		IFrame.closeFrame();
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "WC Title",
 			searchAssetType = "Web Content Article");
 
 		Click(locator1 = "Pagination#NEXT_LINK");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "WC Title",
 			searchAssetType = "Web Content Article");
 
 		Click(locator1 = "Pagination#NEXT_LINK");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "WC Title",
 			searchAssetType = "Web Content Article");
 	}
@@ -1320,7 +1320,7 @@ definition {
 			locator1 = "Search#SEARCH_BAR_WIDGET",
 			value1 = "Potato");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "Potato Blog",
 			searchAssetType = "Blogs Entry");
 
@@ -1348,7 +1348,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Second");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "Second WC",
 			searchAssetType = "Web Content Article",
 			searchTerm = "Second");
@@ -1364,56 +1364,56 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Blogs Entry Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "Blogs Entry Content");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "Blogs Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "Blogs Content");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "Blogs");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "Entry");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "Content");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
@@ -1437,7 +1437,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Category Name");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
@@ -1455,25 +1455,25 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Category");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "Name");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "Category1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "Category1");
+		SearchResults.viewNoSearchResults(searchTerm = "Category1");
 
 		SearchPage.searchEmbedded(searchTerm = "Name1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "Name1");
+		SearchResults.viewNoSearchResults(searchTerm = "Name1");
 	}
 
 	@priority = 4
@@ -1494,36 +1494,36 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "\"Category Name\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Category\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Name\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Category Name1\"");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "\"Category Name1\"");
+		SearchResults.viewNoSearchResults(searchTerm = "\"Category Name1\"");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Category1\"");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "\"Category1\"");
+		SearchResults.viewNoSearchResults(searchTerm = "\"Category1\"");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Name1\"");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "\"Name1\"");
+		SearchResults.viewNoSearchResults(searchTerm = "\"Name1\"");
 	}
 
 	@priority = 4
@@ -1534,94 +1534,94 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "\"Blogs Entry Title\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Entry Title\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Title\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Blogs Entry Content\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Blogs Entry\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Blogs\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Entry Content\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Entry\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Content\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Blogs Content\"");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "\"Blogs Content\"");
+		SearchResults.viewNoSearchResults(searchTerm = "\"Blogs Content\"");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Blogs1\"");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "\"Blogs1\"");
+		SearchResults.viewNoSearchResults(searchTerm = "\"Blogs1\"");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Entry1\"");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "\"Entry1\"");
+		SearchResults.viewNoSearchResults(searchTerm = "\"Entry1\"");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Title1\"");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "\"Title1\"");
+		SearchResults.viewNoSearchResults(searchTerm = "\"Title1\"");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Content1\"");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "\"Content1\"");
+		SearchResults.viewNoSearchResults(searchTerm = "\"Content1\"");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Blogs Entry Title1\"");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "\"Blogs Entry Title1\"");
+		SearchResults.viewNoSearchResults(searchTerm = "\"Blogs Entry Title1\"");
 
 		SearchPage.searchEmbedded(searchTerm = "\"Blogs Entry Content1\"");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "\"Blogs Entry Content1\"");
+		SearchResults.viewNoSearchResults(searchTerm = "\"Blogs Entry Content1\"");
 	}
 
 	@priority = 4
@@ -1633,7 +1633,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "tag name");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
@@ -1650,25 +1650,25 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "tag");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "name");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "tag1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "tag1");
+		SearchResults.viewNoSearchResults(searchTerm = "tag1");
 
 		SearchPage.searchEmbedded(searchTerm = "name1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "name1");
+		SearchResults.viewNoSearchResults(searchTerm = "name1");
 	}
 
 	@priority = 4
@@ -1680,36 +1680,36 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "\"tag name\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"tag\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"name\"");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Blogs Entry Content",
 			searchAssetTitle = "Blogs Entry Title",
 			searchAssetType = "Blogs Entry");
 
 		SearchPage.searchEmbedded(searchTerm = "\"tag name1\"");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "\"tag name1\"");
+		SearchResults.viewNoSearchResults(searchTerm = "\"tag name1\"");
 
 		SearchPage.searchEmbedded(searchTerm = "\"tag1\"");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "\"tag1\"");
+		SearchResults.viewNoSearchResults(searchTerm = "\"tag1\"");
 
 		SearchPage.searchEmbedded(searchTerm = "\"name1\"");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "\"name1\"");
+		SearchResults.viewNoSearchResults(searchTerm = "\"name1\"");
 	}
 
 	@priority = 4
@@ -1736,7 +1736,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Entry Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "Entry Title",
 			searchAssetType = "Blogs Entry",
 			searchTerm = "Entry Title");
@@ -1750,7 +1750,7 @@ definition {
 			clickMagnifyingGlassIcon = "true",
 			searchTerm = "test");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "Test Test",
 			searchAssetType = "User");
 
@@ -1758,7 +1758,7 @@ definition {
 			clickMagnifyingGlassIcon = "true",
 			searchTerm = "test");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "Test Test",
 			searchAssetType = "User");
 	}
@@ -1797,7 +1797,7 @@ definition {
 			fieldName = "title",
 			objectName = "CustomObject500");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = ${objectEntryId},
 			searchAssetType = "Custom Object 500");
 
@@ -1817,7 +1817,7 @@ definition {
 			facetName = "Type Facet",
 			facetTerm = "Custom Object 500");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = ${objectEntryId},
 			searchAssetType = "Custom Object 500");
 	}
@@ -1852,7 +1852,7 @@ definition {
 
 		SearchPage.searchWidget(searchTerm = "WC Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "WC Title",
 			searchAssetType = "Web Content Article",
 			searchTerm = "WC Title");
@@ -1937,7 +1937,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Apple");
 
-		SearchResultPortlet.viewMultipleSearchResults(
+		SearchResults.viewMultipleSearchResults(
 			resultsList = "Apple/Web Content Article,Apple/Document,Apple/Blogs Entry",
 			searchTerm = "Apple");
 
@@ -1963,12 +1963,12 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Apple");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "Apple",
 			searchAssetType = "Blogs Entry",
 			searchTerm = "Apple");
 
-		SearchResultPortlet.viewMultipleSearchResultsNotPresent(noResultsList = "Apple/Web Content Article,Apple/Document");
+		SearchResults.viewMultipleSearchResultsNotPresent(noResultsList = "Apple/Web Content Article,Apple/Document");
 	}
 
 	@description = "This test will assert that configurations set within the Embedded search bar will be used when searching via the Widget search bar"
@@ -1998,14 +1998,14 @@ definition {
 
 		SearchPage.searchWidget(searchTerm = "Potato");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			entryDate = ${currentDate},
 			searchAssetSummary = "This is a blog about Potatoes",
 			searchAssetTitle = "Potato Blog",
 			searchAssetType = "Blogs Entry",
 			searchTerm = "Potato");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			entryDate = ${currentDate},
 			searchAssetTitle = "Potato Document",
 			searchAssetType = "Document",
@@ -2015,13 +2015,13 @@ definition {
 
 		SearchPage.searchWidget(searchTerm = "Potato");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			entryDate = ${currentDate},
 			searchAssetTitle = "Potato Document",
 			searchAssetType = "Document",
 			searchTerm = "Potato");
 
-		SearchResultPortlet.viewSearchResultNotPresent(
+		SearchResults.viewSearchResultNotPresent(
 			searchAssetTitle = "Potato Blog",
 			searchAssetType = "Blogs Entry");
 
@@ -2044,49 +2044,49 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "DM Document Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "DM Document Title",
 			searchAssetType = "Document");
 
 		SearchPage.searchEmbedded(searchTerm = "DM");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "DM Document Title",
 			searchAssetType = "Document");
 
 		SearchPage.searchEmbedded(searchTerm = "Document");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "DM Document Title",
 			searchAssetType = "Document");
 
 		SearchPage.searchEmbedded(searchTerm = "Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "DM Document Title",
 			searchAssetType = "Document");
 
 		SearchPage.searchEmbedded(searchTerm = "DM Document");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "DM Document Title",
 			searchAssetType = "Document");
 
 		SearchPage.searchEmbedded(searchTerm = "DM Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "DM Document Title",
 			searchAssetType = "Document");
 
 		SearchPage.searchEmbedded(searchTerm = "Document Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "DM Document Title",
 			searchAssetType = "Document");
 
 		SearchPage.searchEmbedded(searchTerm = "moon rocks");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "DM Document Title",
 			searchAssetType = "Document");
 
@@ -2094,21 +2094,21 @@ definition {
 			facetName = "Tag Facet",
 			facetTerm = "moon rocks");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "DM Document Title",
 			searchAssetType = "Document");
 
 		SearchPage.searchEmbedded(searchTerm = "DM1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "DM1");
+		SearchResults.viewNoSearchResults(searchTerm = "DM1");
 
 		SearchPage.searchEmbedded(searchTerm = "Document1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "Document1");
+		SearchResults.viewNoSearchResults(searchTerm = "Document1");
 
 		SearchPage.searchEmbedded(searchTerm = "Title1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "Title1");
+		SearchResults.viewNoSearchResults(searchTerm = "Title1");
 	}
 
 	@description = "This is a use case for LPS-81931"
@@ -2160,7 +2160,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Blogs");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "Blogs Entry 1 Title",
 			searchAssetType = "Blogs Entry",
 			searchTerm = "Blogs");
@@ -2191,7 +2191,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "WC Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "WC Title",
 			searchAssetType = "Web Content Article",
 			searchTerm = "WC Title");
@@ -2236,7 +2236,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "userfn userln");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "userfn userln",
 			searchAssetType = "User");
 
@@ -2258,33 +2258,33 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "userfn");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "userfn userln",
 			searchAssetType = "User");
 
 		SearchPage.searchEmbedded(searchTerm = "userln");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "userfn userln",
 			searchAssetType = "User");
 
 		SearchPage.searchEmbedded(searchTerm = "usersn");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "userfn userln",
 			searchAssetType = "User");
 
 		SearchPage.searchEmbedded(searchTerm = "userfn1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "userfn1");
+		SearchResults.viewNoSearchResults(searchTerm = "userfn1");
 
 		SearchPage.searchEmbedded(searchTerm = "userln1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "userln1");
+		SearchResults.viewNoSearchResults(searchTerm = "userln1");
 
 		SearchPage.searchEmbedded(searchTerm = "usersn1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "usersn1");
+		SearchResults.viewNoSearchResults(searchTerm = "usersn1");
 	}
 
 	@priority = 4
@@ -2310,13 +2310,13 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "users*");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "userfn userln",
 			searchAssetType = "User");
 
 		SearchPage.searchEmbedded(searchTerm = "userf*");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "userfn userln",
 			searchAssetType = "User");
 	}
@@ -2338,61 +2338,61 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "WC WebContent Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "WC WebContent Content",
 			searchAssetTitle = "WC WebContent Title",
 			searchAssetType = "Web Content Article");
 
 		SearchPage.searchEmbedded(searchTerm = "WC WebContent Content");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "WC WebContent Content",
 			searchAssetTitle = "WC WebContent Title",
 			searchAssetType = "Web Content Article");
 
 		SearchPage.searchEmbedded(searchTerm = "WC");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "WC WebContent Content",
 			searchAssetTitle = "WC WebContent Title",
 			searchAssetType = "Web Content Article");
 
 		SearchPage.searchEmbedded(searchTerm = "WebContent");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "WC WebContent Content",
 			searchAssetTitle = "WC WebContent Title",
 			searchAssetType = "Web Content Article");
 
 		SearchPage.searchEmbedded(searchTerm = "Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "WC WebContent Content",
 			searchAssetTitle = "WC WebContent Title",
 			searchAssetType = "Web Content Article");
 
 		SearchPage.searchEmbedded(searchTerm = "Content");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "WC WebContent Content",
 			searchAssetTitle = "WC WebContent Title",
 			searchAssetType = "Web Content Article");
 
 		SearchPage.searchEmbedded(searchTerm = "WC1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "WC1");
+		SearchResults.viewNoSearchResults(searchTerm = "WC1");
 
 		SearchPage.searchEmbedded(searchTerm = "WebContent1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "WebContent1");
+		SearchResults.viewNoSearchResults(searchTerm = "WebContent1");
 
 		SearchPage.searchEmbedded(searchTerm = "Title1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "Title1");
+		SearchResults.viewNoSearchResults(searchTerm = "Title1");
 
 		SearchPage.searchEmbedded(searchTerm = "Content1");
 
-		SearchResultPortlet.viewNoSearchResults(searchTerm = "Content1");
+		SearchResults.viewNoSearchResults(searchTerm = "Content1");
 	}
 
 	@priority = 4
@@ -2420,42 +2420,42 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Wiki Page Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Wiki Page Content",
 			searchAssetTitle = "Wiki Page Title",
 			searchAssetType = "Wiki Page");
 
 		SearchPage.searchEmbedded(searchTerm = "Wiki Page Content");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Wiki Page Content",
 			searchAssetTitle = "Wiki Page Title",
 			searchAssetType = "Wiki Page");
 
 		SearchPage.searchEmbedded(searchTerm = "Wiki");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Wiki Page Content",
 			searchAssetTitle = "Wiki Page Title",
 			searchAssetType = "Wiki Page");
 
 		SearchPage.searchEmbedded(searchTerm = "Page");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Wiki Page Content",
 			searchAssetTitle = "Wiki Page Title",
 			searchAssetType = "Wiki Page");
 
 		SearchPage.searchEmbedded(searchTerm = "Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Wiki Page Content",
 			searchAssetTitle = "Wiki Page Title",
 			searchAssetType = "Wiki Page");
 
 		SearchPage.searchEmbedded(searchTerm = "Content");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = "Wiki Page Content",
 			searchAssetTitle = "Wiki Page Title",
 			searchAssetType = "Wiki Page");
@@ -2519,7 +2519,7 @@ definition {
 		}
 
 		task ("Assert the search results are being ordered by title even though the extra words in the articles's content fields would have produced the opposite order") {
-			SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Apple,Banana,Cantaloupe");
+			SearchResults.viewSearchResultsSpecificOrder(resultsList = "Apple,Banana,Cantaloupe");
 		}
 	}
 
@@ -2534,7 +2534,7 @@ definition {
 
 		AssertAlertNotPresent();
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetSummary = '''<script>alert(123);</script>''',
 			searchAssetTitle = "Thread Subject",
 			searchAssetType = "Message Boards Message");
@@ -2546,7 +2546,7 @@ definition {
 
 		AssertHTMLSourceTextPresent(value1 = ${escapedScript});
 
-		SearchResultPortlet.configureSearchResults(disableHighlighting = "true");
+		SearchResults.configureSearchResults(disableHighlighting = "true");
 
 		Refresh();
 
@@ -2717,25 +2717,25 @@ definition {
 		task ("Assert the search results are ordered correctly when sorting by the 'title' custom object field in ascending order") {
 			SearchPage.chooseSortOption(sortOption = "Object Title Asc");
 
-			SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Apple Fruit,Banana Fruit,Coconut Fruit");
+			SearchResults.viewSearchResultsSpecificOrder(resultsList = "Apple Fruit,Banana Fruit,Coconut Fruit");
 		}
 
 		task ("Assert the search results are ordered correctly when sorting by the 'title' custom object field in descending order") {
 			SearchPage.chooseSortOption(sortOption = "Object Title Desc");
 
-			SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Coconut Fruit,Banana Fruit,Apple Fruit");
+			SearchResults.viewSearchResultsSpecificOrder(resultsList = "Coconut Fruit,Banana Fruit,Apple Fruit");
 		}
 
 		task ("Assert the search results are ordered correctly when sorting by the 'date' custom object field") {
 			SearchPage.chooseSortOption(sortOption = "Object Date");
 
-			SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Banana Fruit,Apple Fruit,Coconut Fruit");
+			SearchResults.viewSearchResultsSpecificOrder(resultsList = "Banana Fruit,Apple Fruit,Coconut Fruit");
 		}
 
 		task ("Assert the search results are ordered correctly when sorting by the 'siteID' custom object field") {
 			SearchPage.chooseSortOption(sortOption = "Object Site ID");
 
-			SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Coconut Fruit,Banana Fruit,Apple Fruit");
+			SearchResults.viewSearchResultsSpecificOrder(resultsList = "Coconut Fruit,Banana Fruit,Apple Fruit");
 		}
 	}
 
@@ -2790,7 +2790,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "WC Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "WC Title",
 			searchAssetType = "Web Content Article",
 			searchTerm = "WC Title");
@@ -2807,7 +2807,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "WC Title");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "WC Title",
 			searchAssetType = "Web Content Article",
 			searchTerm = "WC Title");
@@ -2870,7 +2870,7 @@ definition {
 				locator1 = "Portlet#BODY");
 		}
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "WC Title",
 			searchAssetType = "Web Content Article",
 			searchTerm = "WC Title");
@@ -2889,7 +2889,7 @@ definition {
 				locator1 = "Portlet#BODY");
 		}
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "WC Title",
 			searchAssetType = "Web Content Article",
 			searchTerm = "WC Title");
@@ -2938,7 +2938,7 @@ definition {
 
 		GoBack();
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "apple",
 			searchAssetType = "Custom Object");
 
@@ -2984,7 +2984,7 @@ definition {
 
 		GoBack();
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "apple",
 			searchAssetType = "Custom Object");
 	}
@@ -3088,7 +3088,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Test Test");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "Test Test",
 			searchAssetType = "User");
 
@@ -3124,15 +3124,15 @@ definition {
 
 		SearchPage.chooseSortOption(sortOption = "Title");
 
-		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Apple,Banana,Cantaloupe");
+		SearchResults.viewSearchResultsSpecificOrder(resultsList = "Apple,Banana,Cantaloupe");
 
 		SearchPage.chooseSortOption(sortOption = "Created");
 
-		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Cantaloupe,Banana,Apple");
+		SearchResults.viewSearchResultsSpecificOrder(resultsList = "Cantaloupe,Banana,Apple");
 
 		SearchPage.chooseSortOption(sortOption = "Created (oldest first)");
 
-		SearchResultPortlet.viewSearchResultsSpecificOrder(resultsList = "Apple,Banana,Cantaloupe");
+		SearchResults.viewSearchResultsSpecificOrder(resultsList = "Apple,Banana,Cantaloupe");
 	}
 
 	@description = "This is a use case for LPS-134052."
@@ -3287,7 +3287,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Apple");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "Apple",
 			searchAssetType = "Web Content Article");
 
@@ -3295,7 +3295,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Apple");
 
-		SearchResultPortlet.viewSearchResultNotPresent(
+		SearchResults.viewSearchResultNotPresent(
 			searchAssetTitle = "Apple",
 			searchAssetType = "Web Content Article");
 
@@ -3303,7 +3303,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Apple");
 
-		SearchResultPortlet.viewSearchResultNotPresent(
+		SearchResults.viewSearchResultNotPresent(
 			searchAssetTitle = "Apple",
 			searchAssetType = "Web Content Article");
 
@@ -3323,7 +3323,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Apple");
 
-		SearchResultPortlet.viewSearchResultNotPresent(
+		SearchResults.viewSearchResultNotPresent(
 			searchAssetTitle = "Apple",
 			searchAssetType = "Web Content Article");
 
@@ -3331,7 +3331,7 @@ definition {
 
 		SearchPage.searchEmbedded(searchTerm = "Apple");
 
-		SearchResultPortlet.viewSearchResults(
+		SearchResults.viewSearchResults(
 			searchAssetTitle = "Apple",
 			searchAssetType = "Web Content Article");
 	}
