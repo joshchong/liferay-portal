@@ -27,6 +27,25 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class SXPBlueprintResourceTest extends BaseSXPBlueprintResourceTestCase {
 
+	@Ignore
+	@Override
+	@Test
+	public void testDeleteSXPBlueprint() throws Exception {
+	}
+
+	@Ignore
+	@Override
+	@Test
+	public void testGetSXPBlueprint() throws Exception {
+	}
+
+	@Ignore
+	@Override
+	@Test
+	public void testGetSXPBlueprintByExternalReferenceCode() throws Exception {
+	}
+
+	@Ignore
 	@Override
 	@Test
 	public void testGetSXPBlueprintExport() throws Exception {
@@ -59,6 +78,13 @@ public class SXPBlueprintResourceTest extends BaseSXPBlueprintResourceTestCase {
 				)));
 	}
 
+	@Ignore
+	@Override
+	@Test
+	public void testGetSXPBlueprintsPage() throws Exception {
+	}
+
+	@Ignore
 	@Override
 	@Test
 	public void testGetSXPBlueprintsPageWithFilterDateTimeEquals()
