@@ -557,6 +557,7 @@ definition {
 		property search.environment.suite.exclude = "true";
 		property test.liferay.virtual.instance = "false";
 		property test.run.type = "single";
+		property timeout.explicit.wait = "120";
 
 		task ("Create a new Web Content Article") {
 			JSONWebcontent.addWebContent(
@@ -674,6 +675,7 @@ definition {
 		property search.environment.suite.exclude = "true";
 		property test.liferay.virtual.instance = "false";
 		property test.run.type = "single";
+		property timeout.explicit.wait = "120";
 
 		task ("Create a stale document in the default company index") {
 			var companyId = JSONCompany.getCompanyId();
