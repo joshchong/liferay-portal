@@ -696,8 +696,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			<prepare-elasticsearch-analyzers />
 
 			<configure-elasticsearch-properties />
-
-			<configure-portal-remote-elasticsearch-osgi-properties />
 		</sequential>
 	</macrodef>
 
@@ -1409,6 +1407,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 		<waitfor maxwait="120" maxwaitunit="second" timeoutproperty="elasticsearch.server.not.started">
 			<socket port="${elasticsearch.port}" server="localhost" />
 		</waitfor>
+
+		<configure-portal-remote-elasticsearch-osgi-properties />
 
 		<print-files dir="${elasticsearch.start.dir}/logs/" exclude="*_*" include="LiferayElasticsearchCluster*.log" />
 
