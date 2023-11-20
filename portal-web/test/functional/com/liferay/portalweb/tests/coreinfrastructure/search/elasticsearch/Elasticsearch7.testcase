@@ -20,6 +20,41 @@ definition {
 		}
 	}
 
+	test CheckOpenSearchEndpoint {
+		property opensearch.enabled = "true";
+
+		var portalHostname = PropsUtil.get("portal.hostname");
+
+		Navigator.openSpecificURL(url = "http://${portalHostname}:9200/_cluster/health?level=indices&pretty");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "//body",
+			value1 = "cluster_name");
+	}
+
+	test CheckOpenSearchSecurityEndpoint {
+		property opensearch.enabled = "true";
+		property opensearch.security.enabled = "true";
+
+		var portalHostname = PropsUtil.get("portal.hostname");
+
+		Navigator.openSpecificURL(url = "https://admin:admin@${portalHostname}:9200");
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "//body",
+			value1 = "cluster_name");
+	}
+
+	test SearchWithOpenSearch {
+		property opensearch.enabled = "true";
+
+		SearchPage.openSearchPage(searchTerm = "test");
+
+		SearchResults.viewSearchResults(
+			searchAssetTitle = "Test Test",
+			searchAssetType = "User");
+	}
+
 	@priority = 4
 	test AssertIndexOnStartup {
 		property search.environment.suite.exclude = "true";
