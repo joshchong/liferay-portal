@@ -1463,9 +1463,9 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 	</target>
 
 	<target name="start-opensearch">
-<!-- 		<ant antfile="build-test.xml" target="deploy-osgi-apps">
+		<ant antfile="build-test.xml" target="deploy-osgi-apps">
 			<property name="osgi.app.includes" value="portal-search-opensearch2" />
-		</ant> -->
+		</ant>
 
 		<if>
 			<not>
@@ -1485,6 +1485,51 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			dest="${app.server.parent.dir}"
 			src="${app.server.parent.dir}/opensearch-${opensearch.version}-linux-x64.tar.gz"
 		/>
+
+		<echo file="${opensearch.dir}/config/opensearch.yml">cluster.name: LiferayOpenSearchCluster
+discovery.type: single-node
+http.host: ["_local_", "_site_"]
+plugins.security.disabled: true</echo>
+
+		<property name="opensearch.java.home" unless:set="opensearch.java.home" value="/opt/java/jdk11" />
+
+		<replace file="${opensearch.dir}/bin/opensearch-env" token="#!/usr/bin/env bash" value="#!/usr/bin/env bash${line.separator}OPENSEARCH_JAVA_HOME=${opensearch.java.home}"/>
+
+		<replaceregexp
+			file="${opensearch.dir}/config/jvm.options"
+			flags="g"
+			match="(?&lt;=-Xm.).*"
+			replace="2g"
+		/>
+
+		<get-testcase-property if:set="env.JENKINS_HOME" property.name="opensearch.security.enabled" />
+
+		<if>
+			<istrue value="${opensearch.security.enabled}" />
+			<then>
+				<replaceregexp
+					file="${opensearch.dir}/config/opensearch.yml"
+					flags="g"
+					match="\nplugins.security.disabled: true"
+					replace=""
+				/>
+
+				<chmod
+					maxparallel="10"
+					perm="a+rwx"
+					type="both"
+				>
+					<fileset
+						dir="${opensearch.dir}"
+					/>
+				</chmod>
+
+				<exec dir="${opensearch.dir}/plugins/opensearch-security/tools" executable="/bin/bash">
+					<arg value="-c" />
+					<arg value="printf '%s\n' y y N | ./install_demo_configuration.sh" />
+				</exec>
+			</then>
+		</if>
 
 		<if>
 			<not>
@@ -1557,51 +1602,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 			</sequential>
 		</for>
 
-		<echo file="${opensearch.dir}/config/opensearch.yml">cluster.name: LiferayOpenSearchCluster
-discovery.type: single-node
-http.host: ["_local_", "_site_"]
-plugins.security.disabled: true</echo>
-
-		<property name="opensearch.java.home" unless:set="opensearch.java.home" value="/opt/java/jdk11" />
-
-		<replace file="${opensearch.dir}/bin/opensearch-env" token="#!/usr/bin/env bash" value="#!/usr/bin/env bash${line.separator}OPENSEARCH_JAVA_HOME=${opensearch.java.home}"/>
-
-		<replaceregexp
-			file="${opensearch.dir}/config/jvm.options"
-			flags="g"
-			match="(?&lt;=-Xm.).*"
-			replace="2g"
-		/>
-
-		<get-testcase-property if:set="env.JENKINS_HOME" property.name="opensearch.security.enabled" />
-
-		<if>
-			<istrue value="${opensearch.security.enabled}" />
-			<then>
-				<replaceregexp
-					file="${opensearch.dir}/config/opensearch.yml"
-					flags="g"
-					match="\nplugins.security.disabled: true"
-					replace=""
-				/>
-
-				<chmod
-					maxparallel="10"
-					perm="a+rwx"
-					type="both"
-				>
-					<fileset
-						dir="${opensearch.dir}"
-					/>
-				</chmod>
-
-				<exec dir="${opensearch.dir}/plugins/opensearch-security/tools" executable="/bin/bash">
-					<arg value="-c" />
-					<arg value="printf '%s\n' y y N | ./install_demo_configuration.sh" />
-				</exec>
-			</then>
-		</if>
-
 		<echo file="${liferay.home}/osgi/configs/com.liferay.portal.bundle.blacklist.internal.configuration.BundleBlacklistConfiguration.config">blacklistBundleSymbolicNames=[\
 "com.liferay.portal.search.elasticsearch7.api",\
 "com.liferay.portal.search.elasticsearch7.impl"\
@@ -1611,16 +1611,6 @@ plugins.security.disabled: true</echo>
 connectionId="REMOTE"</echo>
 
 		<echo file="${liferay.home}/osgi/configs/com.liferay.portal.search.opensearch2.configuration.OpenSearchConfiguration.config">remoteClusterConnectionId="REMOTE"</echo>
-
-		<chmod
-			maxparallel="10"
-			perm="a+rwx"
-			type="both"
-		>
-			<fileset
-				dir="${opensearch.dir}"
-			/>
-		</chmod>
 
 		<lstopwatch action="start" name="start.opensearch.node" />
 
