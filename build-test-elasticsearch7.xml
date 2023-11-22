@@ -1463,8 +1463,8 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 	</target>
 
 	<target name="start-opensearch">
-		<ant antfile="build-test.xml" target="deploy-osgi-apps">
-			<property name="osgi.app.includes" value="portal-search-opensearch2" />
+		<ant antfile="build-test.xml" target="deploy-osgi-modules">
+			<property name="osgi.modules.includes" value="portal-search-opensearch2" />
 		</ant>
 
 		<if>

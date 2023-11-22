@@ -22,6 +22,7 @@ definition {
 
 	test CheckOpenSearchEndpoint {
 		property opensearch.enabled = "true";
+		property osgi.modules.includes = "portal-search-opensearch2";
 
 		var portalHostname = PropsUtil.get("portal.hostname");
 
@@ -47,6 +48,7 @@ definition {
 
 	test SearchWithOpenSearch {
 		property opensearch.enabled = "true";
+		property osgi.modules.includes = "portal-search-opensearch2";
 
 		SearchPage.openSearchPage(searchTerm = "test");
 
